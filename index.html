@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Orivo Health Inc — Precision health technology for patients navigating complex care. Clear pathways through communication, integration, and connection.">
+<meta property="og:title" content="Orivo Health Inc — Guided by Technology">
+<meta property="og:description" content="Connecting health-bound patients with the tools, information, and clinical pathways they need — clearly, securely, and on their terms.">
+<title>Orivo Health Inc — Precision Care Technology</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #055082;
+    --navy-dark:  #033554;
+    --navy-deep:  #022440;
+    --teal:       #05b3c6;
+    --teal-dark:  #0494a5;
+    --teal-light: #e0f7fa;
+    --green:      #87c140;
+    --green-dark: #6a9a30;
+    --green-light:#f1f8e9;
+    --mid-blue:   #156cad;
+    --pale-teal:  #d0f6f6;
+    --bg:         #f4f8fa;
+    --white:      #ffffff;
+    --text-dark:  #1a2b35;
+    --text-mid:   #4a6572;
+    --text-light: #7a9aaa;
+    --border:     #dde8ec;
+    --rule:       rgba(255,255,255,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.6; }
+  }
+  .anim-1 { animation: fadeUp 0.7s ease both; }
+  .anim-2 { animation: fadeUp 0.7s 0.12s ease both; }
+  .anim-3 { animation: fadeUp 0.7s 0.24s ease both; }
+  .anim-4 { animation: fadeUp 0.7s 0.36s ease both; }
+  .anim-5 { animation: fadeUp 0.7s 0.48s ease both; }
+  .anim-6 { animation: fadeUp 0.7s 0.60s ease both; }
+
+  /* ── TRUST RIBBON ── */
+  .trust-ribbon {
+    background: var(--navy-deep);
+    padding: 7px 0;
+    overflow: hidden;
+  }
+  .trust-ribbon-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,0.65);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .trust-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .nav-logo-img {
+    height: 36px;
+    width: auto;
+  }
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .nav-logo-name {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .nav-logo-sub {
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-link {
+    color: rgba(255,255,255,0.72);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-link:hover { color: #fff; background: rgba(255,255,255,0.07); }
+  .nav-cta {
+    background: var(--teal);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 24px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    margin-left: 8px;
+  }
+  .nav-cta:hover { background: var(--teal-dark); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 80px 24px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(5,179,198,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 40px; left: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(135,193,64,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(5,179,198,0.15);
+    border: 1px solid rgba(5,179,198,0.30);
+    color: var(--teal);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 24px;
+    margin-bottom: 22px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5.5vw, 58px);
+    font-weight: 400;
+    color: var(--white);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+  }
+  h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  h1 .green { color: var(--green); }
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 17px);
+    color: rgba(255,255,255,0.68);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 52px;
+  }
+  .btn-primary {
+    background: var(--teal);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px 28px;
+    border-radius: 28px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 20px rgba(5,179,198,0.35);
+  }
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(5,179,198,0.45);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: rgba(255,255,255,0.85);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 13px 26px;
+    border-radius: 28px;
+    text-decoration: none;
+    border: 1.5px solid rgba(255,255,255,0.28);
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover {
+    border-color: rgba(255,255,255,0.55);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  /* Stats */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px 16px 0 0;
+    padding: 24px 16px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+  }
+  .stat + .stat::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 10%; bottom: 10%;
+    width: 1px;
+    background: rgba(255,255,255,0.12);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num span { color: var(--teal); font-size: 20px; }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.48);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 500;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 24px; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  h2 em { font-style: italic; color: var(--teal); }
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 48px;
+  }
+
+  /* ── FEATURES ── */
+  .features-bg { background: var(--white); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 768px) {
+    .features-grid { grid-template-columns: 1fr; }
+    .nav-links .nav-link { display: none; }
+    h1 { font-size: 34px; }
+    .stats-row { gap: 0; }
+    .stat + .stat::before { display: none; }
+  }
+  .feat-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .feat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(5,80,130,0.10);
+  }
+  .feat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .feat-card.blue::before  { background: var(--navy); }
+  .feat-card.teal::before  { background: var(--teal); }
+  .feat-card.green::before { background: var(--green); }
+  .feat-icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+  }
+  .feat-icon.blue  { background: #e3f2fd; }
+  .feat-icon.teal  { background: var(--teal-light); }
+  .feat-icon.green { background: var(--green-light); }
+  .feat-icon svg { width: 22px; height: 22px; }
+  .feat-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .feat-card p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+  .feat-tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 10px;
+  }
+  .feat-tag.blue  { background: #e3f2fd; color: #1565c0; }
+  .feat-tag.teal  { background: var(--teal-light); color: #006064; }
+  .feat-tag.green { background: var(--green-light); color: #33691e; }
+
+  /* ── HOW IT WORKS ── */
+  .how-bg { background: var(--bg); }
+  .how-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    counter-reset: steps;
+  }
+  @media (max-width: 768px) { .how-grid { grid-template-columns: 1fr; } }
+  .how-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    position: relative;
+    counter-increment: steps;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .how-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(5,80,130,0.08);
+  }
+  .how-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 18px;
+    flex-shrink: 0;
+  }
+  .how-card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .how-card p {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+  .how-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 10px;
+  }
+  .how-badge::before {
+    content: '';
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .badge-blue  { background: #e3f2fd; color: #1565c0; }
+  .badge-blue::before  { background: #1565c0; }
+  .badge-teal  { background: var(--teal-light); color: #006064; }
+  .badge-teal::before  { background: var(--teal); }
+  .badge-green { background: var(--green-light); color: #33691e; }
+  .badge-green::before { background: var(--green); }
+
+  /* ── TRUST SECTION ── */
+  .trust-bg {
+    background: var(--navy);
+    padding: 80px 24px;
+  }
+  .trust-header { margin-bottom: 40px; }
+  .trust-header .section-eyebrow { color: rgba(255,255,255,0.5); }
+  .trust-header h2 { color: var(--white); }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 768px) { .trust-grid { grid-template-columns: repeat(4, 1fr); } }
+  .trust-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 14px;
+    padding: 22px 18px;
+    transition: background 0.2s;
+  }
+  .trust-card:hover { background: rgba(255,255,255,0.11); }
+  .trust-card-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+  }
+  .trust-card-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+    line-height: 1.2;
+  }
+  .trust-card-check {
+    font-size: 12px;
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .trust-card-check::before {
+    content: '✓';
+    font-weight: 700;
+  }
+
+  /* ── ABOUT ── */
+  .about-bg { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .about-visual {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .about-stat-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    transition: transform 0.2s;
+  }
+  .about-stat-row:hover { transform: translateX(4px); }
+  .about-icon-circle {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .about-stat-label { font-size: 12px; color: var(--text-mid); margin-bottom: 1px; }
+  .about-stat-val { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .about-text p {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .about-mission {
+    background: var(--teal-light);
+    border-left: 3px solid var(--teal);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 20px;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--navy);
+    line-height: 1.6;
+    margin-bottom: 28px;
+  }
+
+  /* ── CTA ── */
+  .cta-bg {
+    background: linear-gradient(135deg, var(--teal) 0%, var(--mid-blue) 100%);
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 280px; height: 280px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.06);
+    pointer-events: none;
+  }
+  .cta-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 540px; margin: 0 auto; }
+  .cta-bg h2 { color: var(--white); margin-bottom: 12px; }
+  .cta-bg p {
+    color: rgba(255,255,255,0.82);
+    font-size: 16px;
+    margin-bottom: 32px;
+    line-height: 1.65;
+  }
+  .cta-form {
+    display: flex;
+    gap: 10px;
+    max-width: 440px;
+    margin: 0 auto 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .cta-input {
+    flex: 1;
+    min-width: 220px;
+    background: rgba(255,255,255,0.18);
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 28px;
+    padding: 13px 20px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cta-input::placeholder { color: rgba(255,255,255,0.55); }
+  .cta-input:focus {
+    border-color: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.24);
+  }
+  .cta-submit {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 13px 26px;
+    border-radius: 28px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-submit:hover { background: var(--navy-dark); transform: translateY(-1px); }
+  .cta-privacy {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+  .cta-privacy::before { content: '🔒'; font-size: 10px; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy-deep);
+    padding: 40px 24px 28px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 20px;
+  }
+  .footer-brand { max-width: 260px; }
+  .footer-brand-name {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-brand-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--teal);
+  }
+  .footer-brand p {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+  }
+  .footer-links-col h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 12px;
+  }
+  .footer-links-col a {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    margin-bottom: 8px;
+    transition: color 0.2s;
+  }
+  .footer-links-col a:hover { color: var(--teal); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-copy {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+  }
+  .footer-badges {
+    display: flex;
+    gap: 8px;
+  }
+  .footer-badge {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 8px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .footer-badge.hipaa {
+    background: rgba(5,179,198,0.15);
+    color: var(--teal);
+    border: 1px solid rgba(5,179,198,0.25);
+  }
+  .footer-badge.secure {
+    background: rgba(135,193,64,0.12);
+    color: var(--green);
+    border: 1px solid rgba(135,193,64,0.22);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- TRUST RIBBON -->
+<div class="trust-ribbon">
+  <div class="trust-ribbon-inner">
+    <div class="trust-item"><div class="trust-dot"></div>HIPAA-aligned platform</div>
+    <div class="trust-item"><div class="trust-dot"></div>256-bit encryption</div>
+    <div class="trust-item"><div class="trust-dot"></div>WCAG 2.1 AA accessible</div>
+    <div class="trust-item"><div class="trust-dot"></div>Clinician-reviewed pathways</div>
+    <div class="trust-item"><div class="trust-dot"></div>Your data, your rights</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <!-- Replace the div below with an <img> tag once you have the logo file -->
+      <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#05b3c6,#87c140);"></div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Orivo Health</span>
+        <span class="nav-logo-sub">Inc.</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#solutions" class="nav-link">Solutions</a>
+      <a href="#how" class="nav-link">How it works</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#contact" class="nav-cta">Get started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow anim-1">Health technology for patients</div>
+    <h1 class="anim-2">Your health journey,<br>guided by <em>technology.</em></h1>
+    <p class="hero-sub anim-3">Orivo Health connects health-bound patients with the tools, clinical pathways, and care teams they need — clearly, securely, and entirely on their terms.</p>
+    <div class="hero-btns anim-4">
+      <a href="#contact" class="btn-primary">Get started — it's free</a>
+      <a href="#how" class="btn-secondary">See how it works</a>
+    </div>
+    <div class="stats-row anim-5">
+      <div class="stat">
+        <div class="stat-num">98<span>%</span></div>
+        <div class="stat-label">Patient satisfaction</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3<span>×</span></div>
+        <div class="stat-label">Faster care navigation</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-label">Platform availability</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" style="font-size:22px;">HIPAA</div>
+        <div class="stat-label">Security standard</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="features-bg" id="solutions">
+  <div class="container">
+    <p class="section-eyebrow reveal">Our solutions</p>
+    <h2 class="reveal">Built for patients navigating <em>complex care</em></h2>
+    <p class="section-sub reveal">Whether you're managing a chronic condition, coordinating specialist visits, or simply trying to understand your options — Orivo gives you clarity and control.</p>
+    <div class="features-grid">
+      <div class="feat-card blue reveal reveal-delay-1">
+        <div class="feat-icon blue">
+          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="3" width="16" height="16" rx="3" stroke="#055082" stroke-width="1.75"/>
+            <path d="M11 7v8M7 11h8" stroke="#055082" stroke-width="1.75" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Care coordination</h3>
+        <p>Seamlessly connect your providers, records, and appointments in one secure, centralized place. No more scattered paperwork.</p>
+        <span class="feat-tag blue">Secure records</span>
+      </div>
+      <div class="feat-card teal reveal reveal-delay-2">
+        <div class="feat-icon teal">
+          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="7.5" stroke="#05b3c6" stroke-width="1.75"/>
+            <path d="M11 7.5V11.75L13.5 14.25" stroke="#05b3c6" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Real-time monitoring</h3>
+        <p>Track your health metrics and receive timely, intelligent alerts that keep you and your entire care team informed and aligned.</p>
+        <span class="feat-tag teal">Always on</span>
+      </div>
+      <div class="feat-card green reveal reveal-delay-3">
+        <div class="feat-icon green">
+          <svg viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 11.5L8.5 16L18 6" stroke="#87c140" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Clinical pathways</h3>
+        <p>Evidence-based guidance mapped precisely to your diagnosis, delivered in plain language. Know your options before your next appointment.</p>
+        <span class="feat-tag green">Evidence-based</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-bg" id="how">
+  <div class="container">
+    <p class="section-eyebrow reveal">How it works</p>
+    <h2 class="reveal">From diagnosis to direction <em>in three steps</em></h2>
+    <p class="section-sub reveal">Designed for patients, not just providers. Orivo removes the complexity from navigating modern healthcare — so you can focus on getting better.</p>
+    <div class="how-grid">
+      <div class="how-card reveal reveal-delay-1">
+        <div class="how-num">1</div>
+        <h3>Share your health context</h3>
+        <p>Securely input your diagnosis, current providers, and care goals. Orivo never sells or shares your personal health data — ever.</p>
+        <span class="how-badge badge-blue">Encrypted & private</span>
+      </div>
+      <div class="how-card reveal reveal-delay-2">
+        <div class="how-num">2</div>
+        <h3>Get your personalized pathway</h3>
+        <p>Our platform maps clinically-reviewed options to your specific situation — specialist referrals, resources, and clear next steps.</p>
+        <span class="how-badge badge-teal">Clinician-reviewed</span>
+      </div>
+      <div class="how-card reveal reveal-delay-3">
+        <div class="how-num">3</div>
+        <h3>Stay connected & in control</h3>
+        <p>Monitor your progress, communicate with your care team, and adapt your plan as your health evolves over time.</p>
+        <span class="how-badge badge-green">24/7 access</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="trust-bg" id="trust">
+  <div class="container">
+    <div class="trust-header reveal">
+      <p class="section-eyebrow">Why patients trust Orivo</p>
+      <h2 style="color:white;">Security and transparency <em style="color:var(--teal);">by design</em></h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card reveal reveal-delay-1">
+        <div class="trust-card-label">Security standard</div>
+        <div class="trust-card-value">HIPAA-aligned</div>
+        <div class="trust-card-check">End-to-end encrypted</div>
+      </div>
+      <div class="trust-card reveal reveal-delay-2">
+        <div class="trust-card-label">Clinical oversight</div>
+        <div class="trust-card-value">MD-reviewed content</div>
+        <div class="trust-card-check">Evidence-based pathways</div>
+      </div>
+      <div class="trust-card reveal reveal-delay-1">
+        <div class="trust-card-label">Accessibility</div>
+        <div class="trust-card-value">WCAG 2.1 AA</div>
+        <div class="trust-card-check">Built for all abilities</div>
+      </div>
+      <div class="trust-card reveal reveal-delay-2">
+        <div class="trust-card-label">Patient rights</div>
+        <div class="trust-card-value">You own your data</div>
+        <div class="trust-card-check">Delete anytime, no questions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-bg" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="section-eyebrow">About Orivo</p>
+        <h2>Clear pathways to <em>better health</em></h2>
+        <div class="about-mission">"We believe every patient deserves to understand their health journey — not just receive instructions, but have a clear, guided path forward."</div>
+        <p>Orivo Health Inc. was founded on the principle that technology should simplify healthcare, not complicate it. We build tools that translate complex medical information into clear, actionable guidance for patients who need it most.</p>
+        <p>Our platform combines communication, integration, and human connection to give health-bound patients the confidence and clarity to navigate their care with purpose.</p>
+        <a href="#contact" class="btn-primary" style="display:inline-block;">Connect with us</a>
+      </div>
+      <div class="about-visual reveal reveal-delay-1">
+        <div class="about-stat-row">
+          <div class="about-icon-circle" style="background:#e3f2fd;">🏥</div>
+          <div>
+            <div class="about-stat-label">Platform focus</div>
+            <div class="about-stat-val">Health-bound patient support</div>
+          </div>
+        </div>
+        <div class="about-stat-row">
+          <div class="about-icon-circle" style="background:var(--teal-light);">🔗</div>
+          <div>
+            <div class="about-stat-label">Core approach</div>
+            <div class="about-stat-val">Communication + Integration + Connection</div>
+          </div>
+        </div>
+        <div class="about-stat-row">
+          <div class="about-icon-circle" style="background:var(--green-light);">🔒</div>
+          <div>
+            <div class="about-stat-label">Data philosophy</div>
+            <div class="about-stat-val">Patient-owned, never sold</div>
+          </div>
+        </div>
+        <div class="about-stat-row">
+          <div class="about-icon-circle" style="background:#fff3e0;">⚕️</div>
+          <div>
+            <div class="about-stat-label">Clinical standard</div>
+            <div class="about-stat-val">MD-reviewed, evidence-based</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / CONTACT -->
+<section class="cta-bg" id="contact">
+  <div class="cta-inner">
+    <h2 class="reveal">Take control of your<br>health journey.</h2>
+    <p class="reveal">Join thousands of patients navigating care with clarity, confidence, and the right technology by their side.</p>
+    <form class="cta-form reveal" onsubmit="handleSubmit(event)">
+      <input class="cta-input" type="email" placeholder="Enter your email address" required>
+      <button class="cta-submit" type="submit">Get started</button>
+    </form>
+    <p class="cta-privacy reveal">Your email is encrypted and never shared with third parties.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">
+          <div class="footer-brand-dot"></div>
+          Orivo Health Inc.
+        </div>
+        <p>Precision health technology connecting patients with the pathways they need to navigate care with clarity and confidence.</p>
+      </div>
+      <div class="footer-links-col">
+        <h4>Platform</h4>
+        <a href="#solutions">Solutions</a>
+        <a href="#how">How it works</a>
+        <a href="#trust">Security</a>
+      </div>
+      <div class="footer-links-col">
+        <h4>Company</h4>
+        <a href="#about">About us</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="footer-links-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy policy</a>
+        <a href="#">Terms of service</a>
+        <a href="#">HIPAA notice</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Orivo Health Inc. All rights reserved.</p>
+      <div class="footer-badges">
+        <span class="footer-badge hipaa">HIPAA aligned</span>
+        <span class="footer-badge secure">256-bit secure</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => observer.observe(el));
+
+  // Smooth nav highlight
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(l => {
+      l.style.color = l.getAttribute('href') === '#' + current
+        ? 'rgba(255,255,255,1)'
+        : 'rgba(255,255,255,0.72)';
+    });
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('button');
+    btn.textContent = '✓ You\'re on the list!';
+    btn.style.background = '#87c140';
+    btn.style.color = '#1a3a08';
+    setTimeout(() => {
+      btn.textContent = 'Get started';
+      btn.style.background = '';
+      btn.style.color = '';
+      e.target.reset();
+    }, 4000);
+  }
+</script>
+
+</body>
+</html>
