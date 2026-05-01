@@ -1,1 +1,17 @@
-orivohealth.com
+# Claims Review Notes
+
+Changed or softened:
+
+- Unsupported performance claims changed to targets or hypotheses.
+- `HIPAA compliant` language changed to `HIPAA-aligned`, `HIPAA-conscious`, or `design target`.
+- Prototype disclaimers added to demo pages.
+- Legal placeholder pages added.
+
+Keep off the public site until substantiated:
+
+- Patient satisfaction percentages.
+- Adherence lift claims.
+- Reduced ADE claims.
+- End-to-end encryption claims unless technically true.
+- HIPAA compliant claims unless reviewed by counsel and backed by operational controls, BAAs, policies, and vendor agreements.
+- Any claim that the AI diagnoses, prescribes, or tells patients to stop medication.
