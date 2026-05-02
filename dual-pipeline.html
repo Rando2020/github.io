@@ -300,7 +300,7 @@ nav{
         <div style="display:flex;flex-direction:column;gap:4px;text-align:right">
           <div style="font-size:11px;color:var(--w3)">SMS · Voice · App</div>
           <div style="font-size:11px;color:var(--w3)">40+ languages</div>
-          <div style="font-size:11px;color:var(--w3)">Any phone · Any insurance</div>
+          <div style="font-size:11px;color:var(--w3)">SMS-first · Verified care-team routing</div>
         </div>
       </div>
     </div>
@@ -323,7 +323,7 @@ nav{
         <div class="dd-item"><div class="dd-dot" style="background:var(--teal)"></div>Surface 911 and crisis resources immediately when urgency score hits 5</div>
         <div class="dd-item"><div class="dd-dot" style="background:var(--teal)"></div>Preserve the original patient voice verbatim - always accessible on hover</div>
         <div class="dd-item"><div class="dd-dot" style="background:var(--teal)"></div>Send outbound voice calls to pharmacy lines when SMS is not sufficient</div>
-        <div class="dd-item"><div class="dd-dot" style="background:var(--teal)"></div>Work globally on any phone - SMS and voice transcend all platforms</div>
+        <div class="dd-item"><div class="dd-dot" style="background:var(--teal)"></div>Designed for SMS and voice access across basic phones and smartphones</div>
       </div>
     </div>
     <div class="dd-card dd-dont">
@@ -526,13 +526,13 @@ nav{
             <div class="ph-msgs" id="pharmMsgs">
               <div class="sms sms-in" id="ps1">🔔 Priority flag - Patient [ID#4821]. Possible ACE-inhibitor reaction. Brief ready. Reply 1 to view, 2 for voice summary.</div>
               <div class="sms sms-out" id="ps2">1</div>
-              <div class="sms sms-in" id="ps3">Brief: Chest tightness Day 3 Lisinopril. Possible angioedema. Recommend ARB switch. Original patient message accessible in secure portal. Verafy'd ✓</div>
+              <div class="sms sms-in" id="ps3">Brief: Chest tightness reported after new blood pressure medication. Possible safety concern. Pharmacist review recommended. Original patient message accessible in secure portal. Verafy'd ✓</div>
             </div>
           </div>
           <div>
             <div style="display:flex;flex-direction:column;gap:8px" id="smsNotes">
               <div class="rl-step" id="sn1"><div class="rl-num">!</div><div><strong style="color:var(--w1)">No PHI in the SMS body</strong> - the notification contains only a patient ID, a flag type, and a secure link. Full clinical details are behind authentication. This is deliberate HIPAA design.</div></div>
-              <div class="rl-step" id="sn2"><div class="rl-num">!</div><div><strong style="color:var(--w1)">Voice option always available</strong> - pharmacist can reply "2" and receive an automated voice summary via Twilio call. This works on any phone, any country, any network. No app required.</div></div>
+              <div class="rl-step" id="sn2"><div class="rl-num">!</div><div><strong style="color:var(--w1)">Voice option always available</strong> - pharmacist can reply "2" and receive an automated voice summary via Twilio call. This is designed to work across basic phone and smartphone workflows. Deployment depends on country, telecom, and compliance requirements. No app required for the core concept.</div></div>
               <div class="rl-step" id="sn3"><div class="rl-num">!</div><div><strong style="color:var(--w1)">Original patient voice preserved</strong> - the secure brief includes the verbatim patient message alongside the Aevo translation. Pharmacist always sees both. Liability intact.</div></div>
               <div class="rl-step" id="sn4"><div class="rl-num">!</div><div><strong style="color:var(--w1)">Verafy badge on every brief</strong> - the pharmacist knows this brief has passed all six Vera validation checks before they act on it. Trust built into every interaction.</div></div>
             </div>
@@ -549,7 +549,7 @@ nav{
         <div class="stage-num" style="color:var(--teal)">A5</div>
         <div class="stage-info">
           <div class="stage-title">Why SMS + voice is a global superpower</div>
-          <div class="stage-sub">Works on any handset · Any network · Any country · No smartphone needed</div>
+          <div class="stage-sub">Designed for basic-phone and smartphone access · No app required for core SMS workflow</div>
         </div>
         <div class="stage-right">
           <div class="sbadge" id="aS5b" style="color:var(--w3);border-color:var(--border)"><div style="width:5px;height:5px;border-radius:50%;background:var(--w3)"></div>Pending</div>
@@ -565,7 +565,7 @@ nav{
           <div class="globe-card" id="gc3"><div class="gc-flag">🇿🇦</div><div class="gc-name">South Africa</div><div class="gc-detail">Clinic network, landline + basic smartphone</div><div class="gc-channel">SMS + voice call</div></div>
           <div class="globe-card" id="gc4"><div class="gc-flag">🇬🇧</div><div class="gc-name">UK (NHS)</div><div class="gc-detail">Smartphone, NHS FHIR UK Core integration</div><div class="gc-channel">App + SMS</div></div>
           <div class="globe-card" id="gc5"><div class="gc-flag">🇨🇦</div><div class="gc-name">Canada</div><div class="gc-detail">DHDR integration, bilingual EN/FR</div><div class="gc-channel">SMS + app</div></div>
-          <div class="globe-card" id="gc6"><div class="gc-flag">🌍</div><div class="gc-name">Any country</div><div class="gc-detail">If a phone line exists, Orivo can reach it</div><div class="gc-channel">Universal</div></div>
+          <div class="globe-card" id="gc6"><div class="gc-flag">🌍</div><div class="gc-name">Future markets</div><div class="gc-detail">Expansion depends on telecom, localization, and regulatory setup</div><div class="gc-channel">Roadmap</div></div>
         </div>
       </div>
     </div>

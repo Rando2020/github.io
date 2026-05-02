@@ -349,9 +349,9 @@ html,body{height:100%;overflow:hidden;background:var(--ink);font-family:var(--sa
   <div class="ring" style="width:300px;height:300px;top:-60px;right:-40px;--dur:35s;--dir:reverse"></div>
 
   <div style="max-width:600px;position:relative;z-index:1">
-    <div class="ey">Seed Round &nbsp;·&nbsp; 2025</div>
+    <div class="ey">Pilot-Stage Preview &nbsp;·&nbsp; 2026</div>
     <div class="h1">Epic helps<br>providers.<br><span style="color:var(--teal)">Aevo helps<br>patients.</span></div>
-    <div class="body" style="max-width:460px;margin-top:4px">An AI that listens - in any language, on any phone, regardless of insurance - finds solutions to the real roadblocks between a patient and their health. Not to make them take a pill. To help them understand why it matters.</div>
+    <div class="body" style="max-width:460px;margin-top:4px">An AI-assisted communication layer designed to help patients explain medication questions, access barriers, and safety concerns in plain language, then route the right context to the right care team.</div>
     <div class="pillrow">
       <span class="pill">SMS-native</span>
       <span class="pill">App-ready</span>
@@ -463,7 +463,7 @@ html,body{height:100%;overflow:hidden;background:var(--ink);font-family:var(--sa
 <div class="slide s4" id="s4">
   <div class="ey">How Aevo works</div>
   <div class="h2" style="font-size:34px">Listen. Translate. Connect.</div>
-  <div class="body" style="max-width:560px">Three steps. Any phone. Any language. The patient finally has something in their corner.</div>
+  <div class="body" style="max-width:560px">Three steps. SMS-first access. Plain-language support. Care-team context when it matters.</div>
 
   <div class="steps">
     <div class="step" data-n="1">
@@ -597,7 +597,7 @@ html,body{height:100%;overflow:hidden;background:var(--ink);font-family:var(--sa
       <div class="comp-label" style="color:var(--teal)">Aevo</div>
       <div class="comp-items">
         <div class="ci"><span class="ci-ico">✓</span>Built entirely for the patient's experience and understanding</div>
-        <div class="ci"><span class="ci-ico">✓</span>Works on any phone, any language, SMS or app</div>
+        <div class="ci"><span class="ci-ico">✓</span>Designed for SMS-first and multilingual workflows</div>
         <div class="ci"><span class="ci-ico">✓</span>Translates patient voice into clinical language - and back</div>
         <div class="ci"><span class="ci-ico">✓</span>Loads each patient's specific insurance benefits automatically</div>
         <div class="ci"><span class="ci-ico">✓</span>Detects and resolves SDoH barriers in real time</div>
@@ -731,7 +731,7 @@ html,body{height:100%;overflow:hidden;background:var(--ink);font-family:var(--sa
     </div>
     <div style="text-align:right">
       <div class="sm" style="font-size:11px;color:var(--w3)">aevo.health &nbsp;·&nbsp; hello@aevo.health</div>
-      <div class="sm" style="font-size:11px;color:var(--w3);margin-top:3px">Confidential - Seed 2025</div>
+      <div class="sm" style="font-size:11px;color:var(--w3);margin-top:3px">Prototype preview · 2026</div>
     </div>
   </div>
 </div>

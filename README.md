@@ -1,7 +1,562 @@
-# Orivo Health GitHub Pages Site
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orivo Health - Provider Login</title>
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.22);
+  --amber:#F5A623;--amber-lo:rgba(245,166,35,.08);--amber-b:rgba(245,166,35,.22);
+  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.08);--blue-b:rgba(74,158,255,.2);
+  --w1:#F0F2FF;--w2:rgba(240,242,255,.72);--w3:rgba(240,242,255,.32);--w4:rgba(240,242,255,.06);
+  --border:rgba(240,242,255,.08);--border2:rgba(240,242,255,.16);
+  --bg:#050A14;--bg2:#07101A;
+  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html,body{min-height:100vh;background:var(--bg);font-family:var(--sans);color:var(--w2)}
 
-Static website package for orivohealth.com.
+/* ── LAYOUT ── */
+.page{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+}
 
-Deploy by uploading these files to the root of the GitHub Pages repository. Confirm Settings > Pages publishes from `main` and `/root`, custom domain is `orivohealth.com`, and Enforce HTTPS is enabled.
+/* ── LEFT PANEL ── */
+.left{
+  background:linear-gradient(160deg,#060D1A 0%,#050A14 100%);
+  border-right:1px solid var(--border);
+  padding:52px 56px;
+  display:flex;flex-direction:column;
+  position:relative;overflow:hidden;
+}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(0,200,150,.05);pointer-events:none;animation:spin var(--dur,50s) linear infinite var(--dir,normal)}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.l-logo{font-family:var(--serif);font-size:22px;color:var(--teal);letter-spacing:-.4px;margin-bottom:auto}
+.l-logo span{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w3);margin-left:8px;vertical-align:middle}
+.l-content{margin:auto 0;position:relative;z-index:1}
+.l-eye{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.l-h{font-family:var(--serif);font-size:40px;line-height:1.08;color:var(--w1);margin-bottom:16px}
+.l-body{font-size:14px;line-height:1.7;color:var(--w2);max-width:380px;margin-bottom:32px}
 
-Do not collect PHI on GitHub Pages. Use a separate HIPAA-appropriate backend for live patient workflows.
+/* ── TYPE PILLS ── */
+.type-pills{display:flex;flex-direction:column;gap:10px}
+.tp{
+  display:flex;align-items:center;gap:14px;
+  background:var(--w4);border:1px solid var(--border);border-radius:12px;
+  padding:16px 18px;cursor:pointer;transition:all .2s;
+  text-decoration:none;
+}
+.tp:hover,.tp.on{border-color:var(--teal-b);background:var(--teal-lo)}
+.tp-ico{
+  width:38px;height:38px;border-radius:9px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+  background:rgba(240,242,255,.05);border:1px solid var(--border);
+  transition:all .2s;
+}
+.tp:hover .tp-ico,.tp.on .tp-ico{background:rgba(0,200,150,.1);border-color:var(--teal-b)}
+.tp-t{font-size:14px;font-weight:500;color:var(--w1)}
+.tp-s{font-size:11px;color:var(--w3);margin-top:2px}
+.tp-arrow{margin-left:auto;font-size:14px;color:var(--w3);transition:all .2s}
+.tp:hover .tp-arrow,.tp.on .tp-arrow{color:var(--teal);transform:translateX(3px)}
+
+.l-foot{margin-top:auto;padding-top:32px}
+.l-foot-line{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--w3)}
+.l-foot-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0}
+
+/* ── RIGHT PANEL ── */
+.right{
+  background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  padding:52px 56px;
+  position:relative;
+}
+.login-box{width:100%;max-width:400px}
+
+/* ── FORM ── */
+.form-logo{font-family:var(--serif);font-size:20px;color:var(--teal);margin-bottom:28px;display:flex;align-items:center;gap:10px}
+.form-logo-sep{width:1px;height:20px;background:var(--border);margin:0 2px}
+.portal-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--w4);border:1px solid var(--border);
+  padding:4px 12px;border-radius:100px;font-size:11px;color:var(--w3);
+  font-family:var(--sans);
+}
+.portal-badge.active{border-color:var(--teal-b);background:var(--teal-lo);color:var(--teal)}
+
+.tab-row{display:flex;gap:0;background:rgba(240,242,255,.04);border:1px solid var(--border);border-radius:11px;padding:3px;margin-bottom:28px}
+.tab{
+  flex:1;padding:9px 12px;border-radius:8px;font-size:13px;font-weight:500;
+  color:var(--w3);background:none;border:none;cursor:pointer;
+  font-family:var(--sans);transition:all .2s;text-align:center;
+}
+.tab.on{background:rgba(0,200,150,.12);color:var(--teal);border:1px solid var(--teal-b)}
+
+.form-h{font-family:var(--serif);font-size:26px;color:var(--w1);margin-bottom:6px}
+.form-sub{font-size:13px;color:var(--w3);margin-bottom:26px;line-height:1.5}
+
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;color:var(--w3);margin-bottom:6px;letter-spacing:.3px}
+.field input,.field select{
+  width:100%;background:rgba(240,242,255,.05);
+  border:1px solid var(--border);color:var(--w1);
+  padding:11px 14px;border-radius:9px;font-size:14px;
+  font-family:var(--sans);outline:none;
+  transition:border-color .2s,background .2s;
+  appearance:none;-webkit-appearance:none;
+}
+.field input:focus,.field select:focus{border-color:var(--teal-b);background:rgba(0,200,150,.04)}
+.field input::placeholder{color:var(--w3)}
+.field select option{background:#060C18;color:var(--w1)}
+
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+.pw-wrap{position:relative}
+.pw-wrap input{padding-right:44px}
+.pw-eye{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--w3);cursor:pointer;
+  font-size:15px;padding:4px;transition:color .2s;
+  display:flex;align-items:center;
+}
+.pw-eye:hover{color:var(--teal)}
+
+.npi-hint{font-size:11px;color:var(--w3);margin-top:4px}
+.npi-hint a{color:var(--teal);text-decoration:none}
+.npi-hint a:hover{text-decoration:underline}
+
+.checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:20px}
+.checkbox-row input[type="checkbox"]{
+  width:16px;height:16px;border-radius:4px;margin-top:2px;flex-shrink:0;
+  accent-color:var(--teal);cursor:pointer;
+}
+.checkbox-row label{font-size:12px;color:var(--w3);line-height:1.5;cursor:pointer}
+.checkbox-row a{color:var(--teal);text-decoration:none}
+.checkbox-row a:hover{text-decoration:underline}
+
+.submit-btn{
+  width:100%;background:var(--teal);color:#030C0A;
+  padding:13px 20px;border-radius:10px;font-size:14px;font-weight:600;
+  border:none;cursor:pointer;font-family:var(--sans);
+  transition:all .2s;letter-spacing:.2px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.submit-btn:hover{background:var(--teal-d);transform:translateY(-1px)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+.divider{display:flex;align-items:center;gap:10px;margin:20px 0}
+.div-line{flex:1;height:1px;background:var(--border)}
+.div-txt{font-size:11px;color:var(--w3)}
+
+.sso-btn{
+  width:100%;background:var(--w4);color:var(--w2);
+  padding:12px 20px;border-radius:10px;font-size:13px;
+  border:1px solid var(--border);cursor:pointer;font-family:var(--sans);
+  transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.sso-btn:hover{border-color:var(--border2);background:rgba(240,242,255,.09)}
+
+.form-foot{margin-top:20px;display:flex;align-items:center;justify-content:space-between}
+.form-foot a{font-size:12px;color:var(--teal);text-decoration:none}
+.form-foot a:hover{text-decoration:underline}
+.form-foot-sm{font-size:12px;color:var(--w3)}
+
+/* ── MFA PANEL (hidden by default) ── */
+.mfa-panel{display:none}
+.mfa-panel.show{display:block}
+.mfa-code-row{display:flex;gap:8px;margin-bottom:24px}
+.mfa-digit{
+  flex:1;height:52px;background:rgba(240,242,255,.05);
+  border:1px solid var(--border);border-radius:9px;
+  font-size:22px;font-weight:600;color:var(--w1);
+  text-align:center;font-family:var(--serif);
+  outline:none;transition:border-color .2s;
+}
+.mfa-digit:focus{border-color:var(--teal-b);background:rgba(0,200,150,.04)}
+
+/* ── REQUEST ACCESS ── */
+.request-panel{display:none}
+.request-panel.show{display:block}
+
+/* ── SUCCESS STATE ── */
+.success-panel{display:none;text-align:center;padding:20px 0}
+.success-panel.show{display:block}
+.success-ico{font-size:48px;margin-bottom:16px}
+.success-h{font-family:var(--serif);font-size:24px;color:var(--w1);margin-bottom:8px}
+.success-b{font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:24px}
+
+/* ── SECURITY BADGES ── */
+.security-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--border)}
+.sec-badge{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--w3)}
+.sec-ico{font-size:12px}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:999;
+  background:#060C18;border:1px solid var(--teal-b);
+  border-radius:10px;padding:14px 18px;
+  font-size:13px;color:var(--w1);
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  transform:translateY(80px);opacity:0;
+  transition:all .3s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-ico{color:var(--teal);font-size:16px}
+
+@media(max-width:800px){
+  .page{grid-template-columns:1fr}
+  .left{display:none}
+  .right{padding:36px 24px;align-items:flex-start;min-height:100vh}
+  .login-box{max-width:100%}
+}
+</style>
+</head>
+<body>
+<div style="position:fixed;left:12px;bottom:12px;z-index:9999;max-width:380px;background:rgba(5,10,20,.92);border:1px solid rgba(0,200,150,.24);color:rgba(240,242,255,.72);font-family:Arial,sans-serif;font-size:11px;line-height:1.45;padding:10px 12px;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.35)">Prototype demo. Not medical advice. Not a live clinical system. No PHI should be entered on this static GitHub Pages site.</div>
+
+
+<div class="page">
+
+<!-- ── LEFT: BRAND + TYPE SELECTOR ── -->
+<div class="left">
+  <div class="ring" style="width:420px;height:420px;top:-160px;right:-160px;--dur:55s"></div>
+  <div class="ring" style="width:250px;height:250px;top:-60px;right:-60px;--dur:32s;--dir:reverse"></div>
+
+  <div class="l-logo">orivo <span>health</span></div>
+
+  <div class="l-content">
+    <div class="l-eye">Provider Portal</div>
+    <div class="l-h">Your patients.<br>Full context.<br><span style="color:var(--teal)">Every time.</span></div>
+    <div class="l-body">Access AI-generated clinical briefs, patient conversation summaries, medication flags, and SDoH alerts - all in one place. Updated in real time as patients interact with Aevo.</div>
+
+    <div class="type-pills">
+      <div class="tp on" onclick="setPortal('provider',this)" id="ptp-provider">
+        <div class="tp-ico">🏥</div>
+        <div>
+          <div class="tp-t">Physician / Clinical Provider</div>
+          <div class="tp-s">Orivo Brief dashboard - patient briefs, flags, EHR updates</div>
+        </div>
+        <div class="tp-arrow">&#8594;</div>
+      </div>
+      <div class="tp" onclick="setPortal('pharmacy',this)" id="ptp-pharmacy">
+        <div class="tp-ico">💊</div>
+        <div>
+          <div class="tp-t">Pharmacist / Pharmacy</div>
+          <div class="tp-s">Medication review, adherence tracking, counseling queue</div>
+        </div>
+        <div class="tp-arrow">&#8594;</div>
+      </div>
+      <div class="tp" onclick="setPortal('admin',this)" id="ptp-admin">
+        <div class="tp-ico">🏛️</div>
+        <div>
+          <div class="tp-t">Health System Administrator</div>
+          <div class="tp-s">Pilot management, outcomes reporting, team access</div>
+        </div>
+        <div class="tp-arrow">&#8594;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="l-foot">
+    <div class="l-foot-line">
+      <div class="l-foot-dot"></div>
+      <span>Patient-facing Aevo is SMS-only - no patient login exists by design</span>
+    </div>
+  </div>
+</div>
+
+<!-- ── RIGHT: LOGIN FORM ── -->
+<div class="right">
+  <div class="login-box">
+
+    <div class="form-logo">
+      <span style="font-size:18px">orivo</span>
+      <div class="form-logo-sep"></div>
+      <div class="portal-badge active" id="portalBadge">Physician Portal</div>
+    </div>
+
+    <!-- Tab row: Sign in / Request Access -->
+    <div class="tab-row">
+      <button class="tab on" onclick="setTab('signin',this)">Sign in</button>
+      <button class="tab" onclick="setTab('request',this)">Request access</button>
+    </div>
+
+    <!-- ── SIGN IN PANEL ── -->
+    <div id="signinPanel">
+      <div class="form-h">Welcome back.</div>
+      <div class="form-sub" id="signinSubtext">Sign into your Physician Portal account.</div>
+
+      <div class="field">
+        <label>Work email</label>
+        <input type="email" id="emailInput" placeholder="you@healthsystem.org" autocomplete="email">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="pwInput" placeholder="••••••••••" autocomplete="current-password">
+          <button class="pw-eye" onclick="togglePw()" title="Show password">👁</button>
+        </div>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="rememberMe">
+        <label for="rememberMe">Keep me signed in on this device</label>
+      </div>
+
+      <button class="submit-btn" onclick="handleSignIn()" id="signinBtn">
+        Sign in &nbsp;&#8594;
+      </button>
+
+      <div class="divider">
+        <div class="div-line"></div>
+        <div class="div-txt">or</div>
+        <div class="div-line"></div>
+      </div>
+
+      <button class="sso-btn" onclick="handleSSO()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" fill="#4A9EFF" opacity=".8"/><rect x="9" y="2" width="5" height="5" rx="1" fill="#00C896" opacity=".8"/><rect x="2" y="9" width="5" height="5" rx="1" fill="#F5A623" opacity=".8"/><rect x="9" y="9" width="5" height="5" rx="1" fill="#A78BFA" opacity=".8"/></svg>
+        Sign in with SSO (Epic, Okta, Azure AD)
+      </button>
+
+      <div class="form-foot">
+        <a href="#" onclick="showForgot();return false">Forgot password?</a>
+        <span class="form-foot-sm">Need access? <a href="#" onclick="setTab('request',document.querySelectorAll('.tab')[1]);return false">Request it</a></span>
+      </div>
+    </div>
+
+    <!-- ── MFA PANEL ── -->
+    <div id="mfaPanel" class="mfa-panel">
+      <div class="form-h">Verify it's you.</div>
+      <div class="form-sub">We sent a 6-digit code to <strong style="color:var(--w1)" id="mfaEmail"></strong>. Enter it below to continue.</div>
+      <div class="mfa-code-row">
+        <input class="mfa-digit" type="text" maxlength="1" id="d0" oninput="mfaNext(0)">
+        <input class="mfa-digit" type="text" maxlength="1" id="d1" oninput="mfaNext(1)">
+        <input class="mfa-digit" type="text" maxlength="1" id="d2" oninput="mfaNext(2)">
+        <input class="mfa-digit" type="text" maxlength="1" id="d3" oninput="mfaNext(3)">
+        <input class="mfa-digit" type="text" maxlength="1" id="d4" oninput="mfaNext(4)">
+        <input class="mfa-digit" type="text" maxlength="1" id="d5" oninput="mfaNext(5)">
+      </div>
+      <button class="submit-btn" onclick="handleMFA()" id="mfaBtn">
+        Verify &amp; sign in &nbsp;&#8594;
+      </button>
+      <div style="text-align:center;margin-top:16px">
+        <a href="#" onclick="showSignin();return false" style="font-size:12px;color:var(--teal);text-decoration:none">&#8592; Back</a>
+        &nbsp;&nbsp;
+        <a href="#" style="font-size:12px;color:var(--w3);text-decoration:none">Resend code</a>
+      </div>
+    </div>
+
+    <!-- ── SUCCESS PANEL ── -->
+    <div id="successPanel" class="success-panel">
+      <div class="success-ico">✓</div>
+      <div class="success-h">Signed in.</div>
+      <div class="success-b">Redirecting you to your <span id="dashboardName" style="color:var(--teal)">Orivo Brief</span> dashboard…</div>
+      <div style="width:100%;height:2px;background:var(--border);border-radius:1px;overflow:hidden">
+        <div id="progressBar" style="height:100%;background:var(--teal);width:0;transition:width 2.5s ease"></div>
+      </div>
+    </div>
+
+    <!-- ── REQUEST ACCESS PANEL ── -->
+    <div id="requestPanel" class="request-panel">
+      <div class="form-h">Request access.</div>
+      <div class="form-sub">We'll verify your credentials and have you set up within 1-2 business days.</div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>First name</label>
+          <input type="text" placeholder="Jane" autocomplete="given-name">
+        </div>
+        <div class="field">
+          <label>Last name</label>
+          <input type="text" placeholder="Smith" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="field">
+        <label>Work email</label>
+        <input type="email" id="reqEmail" placeholder="you@healthsystem.org">
+      </div>
+      <div class="field">
+        <label>Organization / Health system</label>
+        <input type="text" placeholder="Midwest Health Partners">
+      </div>
+      <div class="field">
+        <label>Role</label>
+        <select id="roleSelect">
+          <option value="">Select your role…</option>
+          <option>Physician / MD / DO</option>
+          <option>Nurse Practitioner / PA</option>
+          <option>Pharmacist (RPh / PharmD)</option>
+          <option>Pharmacy Technician</option>
+          <option>Clinical Pharmacist Specialist</option>
+          <option>Health System Administrator</option>
+          <option>Population Health Manager</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>NPI Number <span style="color:var(--w3)">(optional - speeds up verification)</span></label>
+        <input type="text" placeholder="1234567890" maxlength="10">
+        <div class="npi-hint">Find yours at <a href="https://npiregistry.cms.hhs.gov" target="_blank">npiregistry.cms.hhs.gov</a></div>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="baaCheck">
+        <label for="baaCheck">I understand this platform handles protected health information (PHI) and agree to Orivo's <a href="#">BAA terms</a> and <a href="#">privacy policy</a></label>
+      </div>
+
+      <button class="submit-btn" onclick="handleRequest()">
+        Submit request &nbsp;&#8594;
+      </button>
+
+      <div class="form-foot" style="margin-top:16px">
+        <span class="form-foot-sm">Already have access? <a href="#" onclick="setTab('signin',document.querySelectorAll('.tab')[0]);return false">Sign in</a></span>
+        <a href="mailto:hello@orivo.health">Need help?</a>
+      </div>
+    </div>
+
+    <!-- ── SECURITY BADGES ── -->
+    <div class="security-row">
+      <div class="sec-badge"><span class="sec-ico">🔒</span>HIPAA-aligned design target</div>
+      <div class="sec-badge"><span class="sec-ico">✓</span>SOC 2 Type I</div>
+      <div class="sec-badge"><span class="sec-ico">🛡</span>BAA available</div>
+      <div class="sec-badge"><span class="sec-ico">🔑</span>MFA required</div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <span class="toast-ico">✓</span>
+  <span id="toastMsg">Done.</span>
+</div>
+
+<script>
+let currentPortal = 'provider';
+let currentTab = 'signin';
+
+const portalMeta = {
+  provider: {badge:'Physician Portal', subtext:'Sign into your Physician Portal account.', dashboard:'Orivo Brief'},
+  pharmacy: {badge:'Pharmacy Portal', subtext:'Sign into your Pharmacy Portal account.', dashboard:'Pharmacy Dashboard'},
+  admin:    {badge:'Admin Portal',    subtext:'Sign into your Health System Admin account.', dashboard:'Admin Console'},
+};
+
+function setPortal(type, el){
+  currentPortal = type;
+  document.querySelectorAll('.tp').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  const m = portalMeta[type];
+  document.getElementById('portalBadge').textContent = m.badge;
+  document.getElementById('signinSubtext').textContent = m.subtext;
+  document.getElementById('dashboardName').textContent = m.dashboard;
+  showToast('Switched to '+m.badge);
+}
+
+function setTab(tab, el){
+  currentTab = tab;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('signinPanel').style.display = tab==='signin' ? 'block' : 'none';
+  document.getElementById('requestPanel').style.display = tab==='request' ? 'block' : 'none';
+  document.getElementById('requestPanel').classList.toggle('show', tab==='request');
+  document.getElementById('mfaPanel').classList.remove('show');
+  document.getElementById('successPanel').classList.remove('show');
+}
+
+function togglePw(){
+  const inp = document.getElementById('pwInput');
+  inp.type = inp.type==='password' ? 'text' : 'password';
+}
+
+function handleSignIn(){
+  const email = document.getElementById('emailInput').value.trim();
+  const pw = document.getElementById('pwInput').value;
+  if(!email || !email.includes('@')){showToast('Please enter a valid work email','err');return;}
+  if(!pw || pw.length < 6){showToast('Please enter your password','err');return;}
+  const btn = document.getElementById('signinBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span style="opacity:.6">Verifying…</span>';
+  setTimeout(()=>{
+    document.getElementById('signinPanel').style.display = 'none';
+    document.getElementById('mfaEmail').textContent = email;
+    document.getElementById('mfaPanel').classList.add('show');
+    btn.disabled = false;
+    btn.innerHTML = 'Sign in &nbsp;&#8594;';
+  }, 900);
+}
+
+function handleSSO(){
+  showToast('Redirecting to SSO provider…');
+}
+
+function mfaNext(i){
+  const v = document.getElementById('d'+i).value;
+  if(v && i < 5) document.getElementById('d'+(i+1)).focus();
+  const code = Array.from({length:6},(_,j)=>document.getElementById('d'+j).value).join('');
+  if(code.length===6) handleMFA();
+}
+
+function handleMFA(){
+  const code = Array.from({length:6},(_,j)=>document.getElementById('d'+j).value).join('');
+  if(code.length < 6){showToast('Enter the full 6-digit code','err');return;}
+  const btn = document.getElementById('mfaBtn');
+  btn.disabled=true;
+  btn.innerHTML='<span style="opacity:.6">Verifying…</span>';
+  setTimeout(()=>{
+    document.getElementById('mfaPanel').classList.remove('show');
+    const sp = document.getElementById('successPanel');
+    sp.classList.add('show');
+    setTimeout(()=>{
+      document.getElementById('progressBar').style.width='100%';
+    },100);
+    btn.disabled=false;
+    btn.innerHTML='Verify &amp; sign in &nbsp;&#8594;';
+  },800);
+}
+
+function showSignin(){
+  document.getElementById('mfaPanel').classList.remove('show');
+  document.getElementById('signinPanel').style.display='block';
+  Array.from({length:6},(_,i)=>document.getElementById('d'+i).value='');
+}
+
+function handleRequest(){
+  const email = document.getElementById('reqEmail').value.trim();
+  const role = document.getElementById('roleSelect').value;
+  const baa = document.getElementById('baaCheck').checked;
+  if(!email || !email.includes('@')){showToast('Please enter a valid work email','err');return;}
+  if(!role){showToast('Please select your role','err');return;}
+  if(!baa){showToast('Please agree to the BAA terms to continue','err');return;}
+  showToast('Access request submitted - we\'ll be in touch within 1-2 business days');
+}
+
+function showForgot(){
+  showToast('Password reset link sent to your email');
+}
+
+function showToast(msg, type){
+  const t = document.getElementById('toast');
+  const m = document.getElementById('toastMsg');
+  m.textContent = msg;
+  t.style.borderColor = type==='err' ? 'rgba(255,107,107,.35)' : 'var(--teal-b)';
+  t.querySelector('.toast-ico').textContent = type==='err' ? '⚠' : '✓';
+  t.querySelector('.toast-ico').style.color = type==='err' ? '#FF6B6B' : 'var(--teal)';
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// Init
+document.getElementById('signinPanel').style.display='block';
+document.getElementById('requestPanel').style.display='none';
+</script>
+</body>
+</html>

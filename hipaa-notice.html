@@ -1,1 +1,1038 @@
-<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>HIPAA and Security Notice | Orivo Health</title><link rel='stylesheet' href='https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css'><link rel='stylesheet' href='https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css'><style>:root{--teal:#00C896;--w1:#F0F2FF;--w2:rgba(240,242,255,.74);--w3:rgba(240,242,255,.42);--border:rgba(240,242,255,.1);--bg:#050A14;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);font-family:var(--sans);color:var(--w2);display:flex;align-items:center;justify-content:center;padding:28px}main{max-width:760px;border:1px solid var(--border);border-radius:22px;padding:36px;background:rgba(240,242,255,.05)}a{color:var(--teal)}.brand{font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:28px}h1{font-family:var(--serif);font-size:42px;line-height:1.05;color:var(--w1);margin:0 0 14px}p{font-size:15px;line-height:1.7;color:var(--w2)}.back{margin-top:26px;display:inline-block}</style></head><body><main><div class='brand'>orivo health</div><h1>HIPAA and Security Notice</h1><p>This GitHub Pages site is a public static website and should not be used to collect, store, transmit, or process protected health information. HIPAA-aligned workflows require appropriate safeguards, access controls, audit logging, vendor agreements, and business associate agreements where applicable. This page is not a substitute for legal review.</p><a class='back' href='/'>Return home</a></main></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orivo Health - Aevo Intelligence Pipeline</title>
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C896;--teal-lo:rgba(0,200,150,.08);--teal-b:rgba(0,200,150,.22);
+  --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.08);--vera-b:rgba(124,111,205,.24);
+  --amber:#F5A623;--amber-lo:rgba(245,166,35,.08);--amber-b:rgba(245,166,35,.22);
+  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.08);--blue-b:rgba(74,158,255,.2);
+  --coral:#FF6B6B;--coral-lo:rgba(255,107,107,.07);--coral-b:rgba(255,107,107,.22);
+  --green:#34D399;--green-lo:rgba(52,211,153,.08);--green-b:rgba(52,211,153,.22);
+  --w1:#F0F2FF;--w2:rgba(240,242,255,.7);--w3:rgba(240,242,255,.32);--w4:rgba(240,242,255,.06);
+  --border:rgba(240,242,255,.08);--border2:rgba(240,242,255,.15);
+  --bg:#050A14;
+  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html,body{background:var(--bg);font-family:var(--sans);color:var(--w2);min-height:100vh;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  padding:14px 40px;
+  background:rgba(5,10,20,.95);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(12px);
+}
+.logo{font-family:var(--serif);font-size:18px;color:var(--teal);letter-spacing:-.3px}
+.logo span{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w3);margin-left:8px}
+.nav-badges{display:flex;gap:8px}
+.nb{display:inline-flex;align-items:center;gap:5px;border:1px solid;border-radius:100px;padding:3px 10px;font-size:10px}
+
+/* ── HERO ── */
+.hero{padding:52px 40px 36px;max-width:1000px;margin:0 auto;text-align:center}
+.hero-eye{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
+.hero-h{font-family:var(--serif);font-size:38px;color:var(--w1);line-height:1.08;margin-bottom:12px}
+.hero-sub{font-size:14px;color:var(--w3);max-width:560px;margin:0 auto 28px;line-height:1.65}
+
+/* ── SCENARIO SELECTOR ── */
+.scenarios{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.sc-btn{
+  display:flex;align-items:center;gap:7px;
+  background:var(--w4);border:1px solid var(--border);
+  border-radius:9px;padding:9px 16px;
+  font-size:12px;color:var(--w3);cursor:pointer;
+  font-family:var(--sans);transition:all .2s;
+}
+.sc-btn:hover{border-color:var(--border2);color:var(--w2)}
+.sc-btn.on{border-color:var(--teal-b);background:var(--teal-lo);color:var(--teal)}
+.sc-dot{width:7px;height:7px;border-radius:50%}
+
+/* ── MAIN PIPELINE ── */
+.pipeline-wrap{max-width:1000px;margin:0 auto;padding:0 40px 60px}
+
+/* ── PATIENT INPUT ── */
+.patient-msg-wrap{
+  background:rgba(240,242,255,.04);
+  border:1px solid var(--border);
+  border-radius:16px;padding:20px 24px;
+  margin-bottom:24px;
+  display:flex;align-items:flex-start;gap:16px;
+  transition:border-color .3s;
+}
+.patient-msg-wrap.active{border-color:var(--teal-b)}
+.pm-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,#1D3A5C,#0D2040);
+  border:1.5px solid rgba(240,242,255,.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.pm-body{flex:1}
+.pm-name{font-size:12px;color:var(--w3);margin-bottom:5px}
+.pm-text{
+  font-size:14px;color:var(--w1);line-height:1.6;
+  background:rgba(240,242,255,.04);
+  border-radius:10px;padding:12px 16px;
+  border:1px solid var(--border);
+  font-style:italic;
+}
+.pm-meta{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pm-tag{font-size:10px;padding:2px 9px;border-radius:100px;border:1px solid;display:inline-flex;align-items:center;gap:4px}
+
+/* ── PIPELINE ARROW ── */
+.pipe-arrow{
+  display:flex;flex-direction:column;align-items:center;
+  margin:4px 0;gap:3px;
+}
+.pa-line{
+  width:2px;height:24px;
+  background:linear-gradient(to bottom,var(--teal-b),transparent);
+  position:relative;overflow:hidden;
+}
+.pa-pulse{
+  position:absolute;top:-100%;left:0;width:100%;height:100%;
+  background:linear-gradient(to bottom,transparent,var(--teal),transparent);
+  animation:pulse-down 1.5s ease-in-out infinite;
+}
+@keyframes pulse-down{0%{top:-100%}100%{top:200%}}
+.pa-ico{font-size:14px;color:var(--w3)}
+.pa-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--w3);text-align:center}
+
+/* ── STAGE CARD ── */
+.stage{
+  border-radius:16px;border:1px solid var(--border);
+  background:var(--w4);
+  margin-bottom:4px;
+  overflow:hidden;
+  transition:all .4s ease;
+  opacity:.4;
+}
+.stage.active{opacity:1;border-color:var(--border2)}
+.stage.done{opacity:.8}
+.stage-head{
+  display:grid;grid-template-columns:48px 1fr auto;
+  align-items:center;padding:0;
+}
+.stage-num{
+  width:48px;height:60px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:22px;
+  border-right:1px solid var(--border);flex-shrink:0;
+}
+.stage-title-wrap{padding:14px 18px}
+.stage-title{font-size:14px;font-weight:500;color:var(--w1);margin-bottom:2px}
+.stage-sub{font-size:11px;color:var(--w3)}
+.stage-status{
+  padding:14px 18px;
+  display:flex;flex-direction:column;align-items:flex-end;gap:5px;
+}
+.ss-badge{
+  font-size:10px;padding:3px 10px;border-radius:100px;
+  border:1px solid;display:inline-flex;align-items:center;gap:5px;
+  white-space:nowrap;
+}
+.ss-dot{width:5px;height:5px;border-radius:50%}
+.stage-body{
+  padding:0 18px 18px;
+  border-top:1px solid var(--border);
+  display:none;
+}
+.stage.active .stage-body,.stage.done .stage-body{display:block;padding-top:16px}
+
+/* ── ETL ROWS ── */
+.etl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.etl-card{
+  background:rgba(240,242,255,.04);
+  border:1px solid var(--border);border-radius:10px;
+  padding:12px 14px;transition:all .3s;
+}
+.etl-card.loaded{border-color:var(--teal-b);background:rgba(0,200,150,.05)}
+.etl-card.loading{border-color:rgba(240,242,255,.15)}
+.etl-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.etl-value{font-size:12px;color:var(--w1);line-height:1.5}
+.etl-src{font-size:10px;color:var(--w3);margin-top:4px}
+.etl-spinner{
+  display:inline-block;width:10px;height:10px;
+  border:1.5px solid rgba(240,242,255,.15);
+  border-top-color:var(--teal);border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.etl-check{color:var(--teal);font-size:11px}
+
+/* ── KNOWLEDGE ITEMS ── */
+.know-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.know-item{
+  background:rgba(240,242,255,.04);border:1px solid var(--border);
+  border-radius:9px;padding:10px 13px;
+  display:flex;gap:9px;align-items:flex-start;
+  transition:all .3s;
+}
+.know-item.loaded{border-color:var(--blue-b);background:rgba(74,158,255,.04)}
+.ki-ico{font-size:14px;flex-shrink:0;margin-top:1px}
+.ki-text{font-size:12px;color:var(--w2);line-height:1.45}
+.ki-src{font-size:10px;color:var(--w3);margin-top:3px}
+
+/* ── RESPONSE GENERATION ── */
+.rgen-wrap{margin-top:4px}
+.rgen-bar{
+  height:4px;border-radius:2px;
+  background:rgba(240,242,255,.07);
+  overflow:hidden;margin-bottom:14px;
+}
+.rgen-fill{
+  height:100%;border-radius:2px;
+  background:linear-gradient(90deg,var(--teal),var(--vera));
+  width:0;transition:width 2s ease;
+}
+.rgen-steps{display:flex;flex-direction:column;gap:7px}
+.rgen-step{
+  display:flex;align-items:center;gap:10px;
+  font-size:12px;color:var(--w3);
+  padding:8px 12px;border-radius:8px;
+  border:1px solid transparent;
+  transition:all .3s;
+}
+.rgen-step.active{color:var(--w2);background:var(--w4);border-color:var(--border)}
+.rgen-step.done{color:var(--teal);background:rgba(0,200,150,.04);border-color:var(--teal-b)}
+.rgs-ico{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+
+/* ── VERAFY STAGE ── */
+.verafy-wrap{margin-top:4px}
+.vf-checks{display:flex;flex-direction:column;gap:7px}
+.vfc{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 13px;border-radius:9px;
+  background:rgba(240,242,255,.04);border:1px solid var(--border);
+  font-size:12px;color:var(--w3);
+  transition:all .35s;
+}
+.vfc.pass{color:var(--w2);border-color:var(--vera-b);background:rgba(124,111,205,.05)}
+.vfc.fail{color:var(--w2);border-color:var(--coral-b);background:rgba(255,107,107,.05)}
+.vfc-ico{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;background:rgba(240,242,255,.06)}
+.vfc.pass .vfc-ico{background:rgba(124,111,205,.12)}
+.vfc.fail .vfc-ico{background:rgba(255,107,107,.1)}
+.vf-score{
+  margin-top:14px;padding:14px 18px;
+  border-radius:10px;background:rgba(124,111,205,.06);
+  border:1px solid var(--vera-b);
+  display:flex;align-items:center;justify-content:space-between;
+  opacity:0;transition:opacity .4s;
+}
+.vf-score.show{opacity:1}
+.vfs-label{font-size:11px;color:var(--vera)}
+.vfs-val{font-family:var(--serif);font-size:26px;color:var(--vera)}
+
+/* ── OUTPUT STAGE ── */
+.output-wrap{margin-top:4px}
+.output-paths{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.op{
+  border-radius:12px;padding:18px;border:1px solid var(--border);
+  background:rgba(240,242,255,.04);
+  transition:all .4s;opacity:.4;
+}
+.op.active{opacity:1}
+.op.path-a{border-color:var(--green-b);background:rgba(52,211,153,.04)}
+.op.path-b{border-color:var(--amber-b);background:rgba(245,166,35,.04)}
+.op-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.op-ico{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.op-label{font-size:11px;font-weight:500;color:var(--w1)}
+.op-tag{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:8px}
+.op-msg{
+  background:rgba(240,242,255,.04);border:1px solid var(--border);
+  border-radius:8px;padding:10px 13px;
+  font-size:12px;color:var(--w2);line-height:1.55;
+  font-style:italic;
+}
+.op-items{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.op-item{display:flex;align-items:flex-start;gap:7px;font-size:11px;color:var(--w2)}
+.op-dot{width:4px;height:4px;border-radius:50%;margin-top:4px;flex-shrink:0}
+
+/* ── PATIENT RESPONSE ── */
+.patient-resp{
+  margin-top:24px;
+  background:rgba(0,200,150,.04);
+  border:1px solid var(--teal-b);
+  border-radius:14px;padding:18px 22px;
+  opacity:0;transform:translateY(8px);
+  transition:all .5s ease;
+}
+.patient-resp.show{opacity:1;transform:translateY(0)}
+.pr-head{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;display:flex;align-items:center;justify-content:space-between}
+.verafy-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  background:var(--vera-lo);border:1px solid var(--vera-b);
+  color:var(--vera);font-size:9px;padding:3px 10px;border-radius:4px;
+}
+.pr-msg{font-size:14px;color:var(--w1);line-height:1.65;margin-bottom:14px}
+.pr-links{display:flex;flex-wrap:wrap;gap:8px}
+.pr-link{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(0,200,150,.08);border:1px solid var(--teal-b);
+  color:var(--teal);padding:6px 14px;border-radius:7px;
+  font-size:12px;cursor:pointer;transition:all .2s;
+}
+.pr-link:hover{background:rgba(0,200,150,.15)}
+.pr-link.escalate{background:rgba(245,166,35,.08);border-color:var(--amber-b);color:var(--amber)}
+
+/* ── CONTROLS ── */
+.controls{
+  display:flex;justify-content:center;gap:10px;
+  padding:28px 0;
+  position:sticky;bottom:0;
+  background:linear-gradient(to top,var(--bg) 70%,transparent);
+  z-index:50;
+}
+.ctrl-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 24px;border-radius:9px;
+  font-size:13px;font-weight:600;cursor:pointer;
+  font-family:var(--sans);border:none;transition:all .2s;
+}
+.ctrl-run{background:var(--teal);color:#030C0A}
+.ctrl-run:hover{background:var(--teal-d,#009E75)}
+.ctrl-run:disabled{opacity:.4;cursor:not-allowed}
+.ctrl-reset{background:var(--w4);color:var(--w2);border:1px solid var(--border)}
+.ctrl-reset:hover{border-color:var(--border2)}
+
+/* ── PROGRESS TRACKER ── */
+.progress-track{
+  display:flex;justify-content:center;gap:0;
+  margin-bottom:28px;
+  max-width:700px;margin-left:auto;margin-right:auto;
+}
+.pt-step{
+  flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;
+  position:relative;
+}
+.pt-step+.pt-step::before{
+  content:'';position:absolute;left:-50%;top:14px;
+  width:100%;height:1px;
+  background:var(--border);z-index:0;
+  transition:background .4s;
+}
+.pt-step.done+.pt-step::before{background:var(--teal-b)}
+.pt-node{
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;border:1.5px solid var(--border);
+  background:var(--bg);color:var(--w3);
+  position:relative;z-index:1;
+  transition:all .3s;
+}
+.pt-step.active .pt-node{border-color:var(--teal);color:var(--teal);background:var(--teal-lo)}
+.pt-step.done .pt-node{border-color:var(--teal);background:var(--teal);color:#030C0A;font-size:12px}
+.pt-label{font-size:9px;color:var(--w3);text-align:center;max-width:70px;line-height:1.3;transition:color .3s}
+.pt-step.active .pt-label{color:var(--teal)}
+.pt-step.done .pt-label{color:var(--w3)}
+
+@media(max-width:700px){
+  nav{padding:12px 20px}
+  .hero{padding:36px 20px 24px}
+  .pipeline-wrap{padding:0 20px 40px}
+  .etl-grid,.know-grid,.output-paths{grid-template-columns:1fr}
+  .hero-h{font-size:28px}
+  .progress-track{gap:0}
+  .pt-label{display:none}
+}
+</style>
+</head>
+<body>
+<div style="position:fixed;left:12px;bottom:12px;z-index:9999;max-width:380px;background:rgba(5,10,20,.92);border:1px solid rgba(0,200,150,.24);color:rgba(240,242,255,.72);font-family:Arial,sans-serif;font-size:11px;line-height:1.45;padding:10px 12px;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.35)">Prototype demo. Not medical advice. Not a live clinical system. No PHI should be entered on this static GitHub Pages site.</div>
+
+
+<nav>
+  <div class="logo">orivo health <span>aevo intelligence pipeline</span></div>
+  <div class="nav-badges">
+    <div class="nb" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)">
+      <div style="width:5px;height:5px;border-radius:50%;background:var(--teal)"></div>Aevo
+    </div>
+    <div class="nb" style="color:var(--vera);border-color:var(--vera-b);background:var(--vera-lo)">
+      <div style="width:5px;height:5px;border-radius:50%;background:var(--vera)"></div>Vera · Verafy
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-eye">ETL Process Flow</div>
+  <div class="hero-h">From patient message<br>to Verafy'd response.</div>
+  <div class="hero-sub">Select a patient scenario below, then run the pipeline to see how Aevo extracts context, loads benefits, educates the responder, generates an answer, Vera validates it, and delivers the right solution - or escalates to the care team.</div>
+
+  <!-- Scenario selector -->
+  <div class="scenarios" id="scenarios">
+    <button class="sc-btn on" data-sc="transport" onclick="selectScenario('transport',this)">
+      <div class="sc-dot" style="background:var(--teal)"></div>Transportation barrier
+    </button>
+    <button class="sc-btn" data-sc="ade" onclick="selectScenario('ade',this)">
+      <div class="sc-dot" style="background:var(--coral)"></div>Possible ADE - chest tightness
+    </button>
+    <button class="sc-btn" data-sc="cost" onclick="selectScenario('cost',this)">
+      <div class="sc-dot" style="background:var(--amber)"></div>Medication cost barrier
+    </button>
+    <button class="sc-btn" data-sc="sdoh" onclick="selectScenario('sdoh',this)">
+      <div class="sc-dot" style="background:var(--vera)"></div>Food insecurity + adherence
+    </button>
+  </div>
+</div>
+
+<!-- Progress tracker -->
+<div class="pipeline-wrap">
+<div class="progress-track" id="progressTrack">
+  <div class="pt-step active" id="pt0"><div class="pt-node">1</div><div class="pt-label">Extract</div></div>
+  <div class="pt-step" id="pt1"><div class="pt-node">2</div><div class="pt-label">Load Benefits</div></div>
+  <div class="pt-step" id="pt2"><div class="pt-node">3</div><div class="pt-label">Educate</div></div>
+  <div class="pt-step" id="pt3"><div class="pt-node">4</div><div class="pt-label">Generate</div></div>
+  <div class="pt-step" id="pt4"><div class="pt-node">5</div><div class="pt-label">Verafy</div></div>
+  <div class="pt-step" id="pt5"><div class="pt-node">6</div><div class="pt-label">Deliver</div></div>
+</div>
+
+<!-- Patient message -->
+<div class="patient-msg-wrap" id="patientMsg">
+  <div class="pm-avatar">👤</div>
+  <div class="pm-body">
+    <div class="pm-name">Patient · via SMS</div>
+    <div class="pm-text" id="pmText">I can't make my appointment tomorrow - I don't have a ride and my daughter is working</div>
+    <div class="pm-meta" id="pmMeta">
+      <span class="pm-tag" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)">Maria S. · 54F</span>
+      <span class="pm-tag" style="color:var(--w3);border-color:var(--border)">Medicaid · CareSource Ohio</span>
+      <span class="pm-tag" style="color:var(--w3);border-color:var(--border)">Hypertension · T2 Diabetes</span>
+    </div>
+  </div>
+</div>
+
+<!-- Arrow -->
+<div class="pipe-arrow"><div class="pa-line"><div class="pa-pulse"></div></div><div class="pa-label">Aevo receives</div></div>
+
+<!-- Stage 1: EXTRACT -->
+<div class="stage active" id="stage1">
+  <div class="stage-head">
+    <div class="stage-num" style="color:var(--teal)">E</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Extract - Intent, urgency &amp; context parsing</div>
+      <div class="stage-sub">NLP extraction · Language detection · Urgency pre-score · Entity recognition</div>
+    </div>
+    <div class="stage-status">
+      <div class="ss-badge" id="s1badge" style="color:var(--amber);border-color:var(--amber-b);background:var(--amber-lo)">
+        <div class="ss-dot" style="background:var(--amber)"></div>Waiting
+      </div>
+    </div>
+  </div>
+  <div class="stage-body">
+    <div class="etl-grid" id="extractGrid">
+      <div class="etl-card" id="e1">
+        <div class="etl-label" style="color:var(--teal)">Intent detected</div>
+        <div class="etl-value" id="e1v"><span class="etl-spinner"></span></div>
+      </div>
+      <div class="etl-card" id="e2">
+        <div class="etl-label" style="color:var(--teal)">Urgency score</div>
+        <div class="etl-value" id="e2v"><span class="etl-spinner"></span></div>
+      </div>
+      <div class="etl-card" id="e3">
+        <div class="etl-label" style="color:var(--teal)">Entities extracted</div>
+        <div class="etl-value" id="e3v"><span class="etl-spinner"></span></div>
+      </div>
+      <div class="etl-card" id="e4">
+        <div class="etl-label" style="color:var(--teal)">Language</div>
+        <div class="etl-value" id="e4v"><span class="etl-spinner"></span></div>
+      </div>
+      <div class="etl-card" id="e5">
+        <div class="etl-label" style="color:var(--teal)">Category</div>
+        <div class="etl-value" id="e5v"><span class="etl-spinner"></span></div>
+      </div>
+      <div class="etl-card" id="e6">
+        <div class="etl-label" style="color:var(--teal)">SDoH signal</div>
+        <div class="etl-value" id="e6v"><span class="etl-spinner"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pipe-arrow"><div class="pa-line"><div class="pa-pulse"></div></div><div class="pa-label">Triggers benefit load</div></div>
+
+<!-- Stage 2: LOAD -->
+<div class="stage" id="stage2">
+  <div class="stage-head">
+    <div class="stage-num" style="color:var(--blue)">L</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Load - Benefits, EHR data &amp; community resources</div>
+      <div class="stage-sub">Insurance API · FHIR R4 · Particle Health · CMS data · Community resource network</div>
+    </div>
+    <div class="stage-status">
+      <div class="ss-badge" id="s2badge" style="color:var(--w3);border-color:var(--border)">
+        <div class="ss-dot" style="background:var(--w3)"></div>Pending
+      </div>
+    </div>
+  </div>
+  <div class="stage-body">
+    <div class="etl-grid" id="loadGrid">
+      <div class="etl-card" id="l1">
+        <div class="etl-label" style="color:var(--blue)">Insurance plan</div>
+        <div class="etl-value" id="l1v"><span style="color:var(--w3)">-</span></div>
+        <div class="etl-src" id="l1s"></div>
+      </div>
+      <div class="etl-card" id="l2">
+        <div class="etl-label" style="color:var(--blue)">Benefits loaded</div>
+        <div class="etl-value" id="l2v"><span style="color:var(--w3)">-</span></div>
+        <div class="etl-src" id="l2s"></div>
+      </div>
+      <div class="etl-card" id="l3">
+        <div class="etl-label" style="color:var(--blue)">Medications (actual)</div>
+        <div class="etl-value" id="l3v"><span style="color:var(--w3)">-</span></div>
+        <div class="etl-src" id="l3s"></div>
+      </div>
+      <div class="etl-card" id="l4">
+        <div class="etl-label" style="color:var(--blue)">Relevant benefit</div>
+        <div class="etl-value" id="l4v"><span style="color:var(--w3)">-</span></div>
+        <div class="etl-src" id="l4s"></div>
+      </div>
+      <div class="etl-card" id="l5">
+        <div class="etl-label" style="color:var(--blue)">Resource matched</div>
+        <div class="etl-value" id="l5v"><span style="color:var(--w3)">-</span></div>
+        <div class="etl-src" id="l5s"></div>
+      </div>
+      <div class="etl-card" id="l6">
+        <div class="etl-label" style="color:var(--blue)">Z-code flagged</div>
+        <div class="etl-value" id="l6v"><span style="color:var(--w3)">-</span></div>
+        <div class="etl-src" id="l6s"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pipe-arrow"><div class="pa-line"><div class="pa-pulse"></div></div><div class="pa-label">Educates responder</div></div>
+
+<!-- Stage 3: EDUCATE -->
+<div class="stage" id="stage3">
+  <div class="stage-head">
+    <div class="stage-num" style="color:var(--vera)">T</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Transform - Educating the AI responder</div>
+      <div class="stage-sub">Clinical knowledge injection · Benefit context · RAG retrieval · Response constraints</div>
+    </div>
+    <div class="stage-status">
+      <div class="ss-badge" id="s3badge" style="color:var(--w3);border-color:var(--border)">
+        <div class="ss-dot" style="background:var(--w3)"></div>Pending
+      </div>
+    </div>
+  </div>
+  <div class="stage-body">
+    <div class="know-grid" id="knowGrid">
+      <div class="know-item" id="k1">
+        <div class="ki-ico">📋</div>
+        <div><div class="ki-text" id="k1t">Waiting for benefit load...</div><div class="ki-src" id="k1s"></div></div>
+      </div>
+      <div class="know-item" id="k2">
+        <div class="ki-ico">🏥</div>
+        <div><div class="ki-text" id="k2t">Waiting for patient context...</div><div class="ki-src" id="k2s"></div></div>
+      </div>
+      <div class="know-item" id="k3">
+        <div class="ki-ico">📍</div>
+        <div><div class="ki-text" id="k3t">Loading geographic resources...</div><div class="ki-src" id="k3s"></div></div>
+      </div>
+      <div class="know-item" id="k4">
+        <div class="ki-ico">⚠️</div>
+        <div><div class="ki-text" id="k4t">Checking clinical constraints...</div><div class="ki-src" id="k4s"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pipe-arrow"><div class="pa-line"><div class="pa-pulse"></div></div><div class="pa-label">Aevo generates</div></div>
+
+<!-- Stage 4: GENERATE -->
+<div class="stage" id="stage4">
+  <div class="stage-head">
+    <div class="stage-num" style="color:var(--teal)">G</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Generate - Aevo drafts response</div>
+      <div class="stage-sub">Claude Sonnet · Benefit-grounded · Plain language · Patient voice preserved</div>
+    </div>
+    <div class="stage-status">
+      <div class="ss-badge" id="s4badge" style="color:var(--w3);border-color:var(--border)">
+        <div class="ss-dot" style="background:var(--w3)"></div>Pending
+      </div>
+    </div>
+  </div>
+  <div class="stage-body">
+    <div class="rgen-wrap">
+      <div class="rgen-bar"><div class="rgen-fill" id="rgenFill"></div></div>
+      <div class="rgen-steps" id="rgenSteps">
+        <div class="rgen-step" id="rg1">
+          <div class="rgs-ico" style="background:rgba(240,242,255,.06)">🧠</div>
+          <span>Composing plain-language patient response...</span>
+        </div>
+        <div class="rgen-step" id="rg2">
+          <div class="rgs-ico" style="background:rgba(240,242,255,.06)">🔗</div>
+          <span>Embedding benefit-specific resource with contact details...</span>
+        </div>
+        <div class="rgen-step" id="rg3">
+          <div class="rgs-ico" style="background:rgba(240,242,255,.06)">📝</div>
+          <span>Generating clinical brief for care team...</span>
+        </div>
+        <div class="rgen-step" id="rg4">
+          <div class="rgs-ico" style="background:rgba(240,242,255,.06)">🚦</div>
+          <span>Evaluating escalation threshold...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pipe-arrow"><div class="pa-line"><div class="pa-pulse"></div></div><div class="pa-label">Vera validates</div></div>
+
+<!-- Stage 5: VERAFY -->
+<div class="stage" id="stage5">
+  <div class="stage-head">
+    <div class="stage-num" style="color:var(--vera)">V</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Verafy - Vera validates every claim</div>
+      <div class="stage-sub">Semantic consistency · Benefit accuracy · Hallucination check · Tone alignment</div>
+    </div>
+    <div class="stage-status">
+      <div class="ss-badge" id="s5badge" style="color:var(--w3);border-color:var(--border)">
+        <div class="ss-dot" style="background:var(--w3)"></div>Pending
+      </div>
+    </div>
+  </div>
+  <div class="stage-body">
+    <div class="verafy-wrap">
+      <div class="vf-checks" id="vfChecks">
+        <div class="vfc" id="vf1"><div class="vfc-ico">🔍</div>Benefit reference matches loaded patient plan data</div>
+        <div class="vfc" id="vf2"><div class="vfc-ico">↔️</div>Response intent matches original patient message</div>
+        <div class="vfc" id="vf3"><div class="vfc-ico">🧪</div>No ungrounded clinical claims in response</div>
+        <div class="vfc" id="vf4"><div class="vfc-ico">📞</div>Contact number verified against current benefit data</div>
+        <div class="vfc" id="vf5"><div class="vfc-ico">🗣️</div>Tone appropriate - supportive, not alarming</div>
+        <div class="vfc" id="vf6"><div class="vfc-ico">⚖️</div>Escalation threshold evaluated correctly</div>
+      </div>
+      <div class="vf-score" id="vfScore">
+        <div>
+          <div class="vfs-label">Verafy score</div>
+          <div style="font-size:11px;color:var(--w3);margin-top:2px">All checks passed · Safe to deliver</div>
+        </div>
+        <div class="vfs-val" id="vfsVal">98%</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pipe-arrow"><div class="pa-line"><div class="pa-pulse"></div></div><div class="pa-label">Delivers to patient</div></div>
+
+<!-- Stage 6: OUTPUT -->
+<div class="stage" id="stage6">
+  <div class="stage-head">
+    <div class="stage-num" style="color:var(--green)">D</div>
+    <div class="stage-title-wrap">
+      <div class="stage-title">Deliver - Solution linked or care team connected</div>
+      <div class="stage-sub">Patient response · Care team brief · Z-code documentation · Referral loop</div>
+    </div>
+    <div class="stage-status">
+      <div class="ss-badge" id="s6badge" style="color:var(--w3);border-color:var(--border)">
+        <div class="ss-dot" style="background:var(--w3)"></div>Pending
+      </div>
+    </div>
+  </div>
+  <div class="stage-body">
+    <div class="output-wrap">
+      <div class="output-paths" id="outputPaths">
+        <div class="op" id="pathA">
+          <div class="op-head">
+            <div class="op-ico" style="background:rgba(52,211,153,.1)">✅</div>
+            <div class="op-label">Path A - Solution delivered</div>
+          </div>
+          <div class="op-tag" style="color:var(--green)">Resource linked · Self-service</div>
+          <div class="op-msg" id="pathAMsg">Loading response...</div>
+          <div class="op-items" id="pathAItems"></div>
+        </div>
+        <div class="op" id="pathB">
+          <div class="op-head">
+            <div class="op-ico" style="background:rgba(245,166,35,.1)">🔔</div>
+            <div class="op-label">Path B - Care team notified</div>
+          </div>
+          <div class="op-tag" style="color:var(--amber)">Escalation triggered · Provider alert</div>
+          <div class="op-msg" id="pathBMsg">Loading escalation...</div>
+          <div class="op-items" id="pathBItems"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Patient final response -->
+<div class="patient-resp" id="finalResp">
+  <div class="pr-head">
+    <span>Patient receives (via SMS)</span>
+    <span class="verafy-badge">✓ Verafy'd by Vera</span>
+  </div>
+  <div class="pr-msg" id="finalMsg"></div>
+  <div class="pr-links" id="finalLinks"></div>
+</div>
+
+<!-- Controls -->
+<div class="controls">
+  <button class="ctrl-btn ctrl-run" id="runBtn" onclick="runPipeline()">▶ Run Aevo Pipeline</button>
+  <button class="ctrl-btn ctrl-reset" onclick="resetPipeline()">↺ Reset</button>
+</div>
+
+</div><!-- /pipeline-wrap -->
+
+<script>
+// ── Scenario data ──
+const scenarios = {
+  transport: {
+    patient: { name:'Maria S. · 54F', insurance:'Medicaid · CareSource Ohio', conditions:'Hypertension · T2 Diabetes' },
+    message: "I can't make my appointment tomorrow - I don't have a ride and my daughter is working",
+    extract: { intent:'Appointment access barrier', urgency:'2 / 5 - Non-urgent', entities:'Appointment, transportation, caregiver', language:'English · en-US', category:'SDoH - Transportation', sdoh:'Z74.09 - Transportation barrier' },
+    load: { plan:'Medicaid · CareSource Ohio', benefits:'NEMT, CCM, Rx delivery, telehealth', meds:'Lisinopril 10mg, Metformin 500mg', relevant:'Non-Emergency Medical Transport (NEMT) - $0 copay', resource:'CareSource NEMT · 1-800-977-3237', zcode:'Z74.09 documented → EHR' },
+    educate: [ 'Patient plan (CareSource OH Medicaid) covers NEMT at $0 copay for medical appointments', 'Appointment is with Dr. Patel - flagged in care record', 'Patient has open medication review due - append to brief', 'No emergency indicators - do not escalate, link resource' ],
+    educateSrc: ['Source: CareSource Ohio benefit schedule 2025', 'Source: Patient EHR - Epic FHIR R4', 'Source: Aevo Rx adherence record', 'Source: Aevo urgency threshold - score 2/5'],
+    finalMsg: "Good news - your insurance covers free rides to medical appointments through their Non-Emergency Medical Transport program. Call 1-800-977-3237 and mention your CareSource member ID. They can schedule a pickup for tomorrow morning. I've also notified Dr. Patel's office that you may need to adjust your appointment time.",
+    links: [{label:'📞 Call NEMT · 1-800-977-3237', escalate:false},{label:'🗓️ Reschedule appointment',escalate:false},{label:'💬 Message Dr. Patel',escalate:false}],
+    pathAMsg: '"Your plan covers free rides to medical appointments. Call 1-800-977-3237 with your member ID. $0 cost to you."',
+    pathAItems: ['Z74.09 documented in EHR','Referral sent to NEMT provider','Care team notified of at-risk appointment'],
+    pathBMsg: '"Appointment access flag sent to Dr. Patel. Telehealth alternative offered if transportation cannot be arranged."',
+    pathBItems: ['Appointment flagged at-risk in provider dashboard','Telehealth link generated as backup','Medication review rescheduled accordingly'],
+    escalate: false,
+    verafyScore: '98%',
+    verafyResults: ['pass','pass','pass','pass','pass','pass']
+  },
+  ade: {
+    patient: { name:'James T. · 61M', insurance:'Medicare Part D · Humana', conditions:'CHF · Hypertension · CKD Stage 2' },
+    message: "Been having really bad chest tightness since this morning and I feel like my heart is beating weird. Started that new blood pressure pill 3 days ago",
+    extract: { intent:'Possible adverse drug reaction - cardiac', urgency:'4 / 5 - Priority', entities:'Chest tightness, palpitations, new medication, 3 days', language:'English · en-US', category:'ADE signal - Cardiac', sdoh:'No SDoH barrier detected' },
+    load: { plan:'Medicare Part D · Humana Gold Plus', benefits:'CCM, emergency care, cardiology referral covered', meds:'Amlodipine 5mg (Day 3), Furosemide 40mg, Metoprolol 25mg', relevant:'Humana nurse line - 24/7 · 1-800-448-6262', resource:'Cardiology referral - Dr. Chen, Humana network', zcode:'T46.5X5A - Adverse effect of CCB' },
+    educate: [ 'Patient started Amlodipine 5mg 3 days ago - known ADE window for CCB class (Days 2-7)', 'Symptoms (chest tightness + palpitations) match CCB adverse effect profile - flag as priority', 'Patient has CKD Stage 2 - monitor for fluid retention, do not suggest NSAID alternatives', 'Urgency score 4/5 - escalate to care team, provide Humana nurse line as immediate resource' ],
+    educateSrc: ['Source: FDA drug label - Amlodipine, ADE window', 'Source: Shield ADE detection - symptom × medication match', 'Source: Patient EHR - FHIR problem list', 'Source: Aevo urgency engine - threshold 4/5'],
+    finalMsg: "I want to make sure you're okay. Chest tightness and an irregular heartbeat after starting a new blood pressure medication are symptoms I take seriously. I've flagged this as a priority and your pharmacist is reviewing it right now. Please call the Humana nurse line immediately - they're available 24/7 and can advise you right now. If your chest pain gets worse or you feel short of breath, call 911.",
+    links: [{label:'📞 Humana Nurse Line · 1-800-448-6262', escalate:false},{label:'🚨 Call 911 if chest pain worsens',escalate:true},{label:'💊 Pharmacist reviewing now',escalate:false}],
+    pathAMsg: '"Humana nurse line available 24/7 - call 1-800-448-6262 now. Your pharmacist has been notified."',
+    pathAItems: ['Humana nurse line number surfaced immediately','Pharmacist alert sent via Aevo Brief dashboard','Patient told to call 911 if symptoms worsen'],
+    pathBMsg: '"Priority ADE flag sent to Dr. Chen + prescribing pharmacist. Possible CCB adverse reaction - Amlodipine Day 3."',
+    pathBItems: ['Priority brief delivered to provider dashboard','ADE flag: T46.5X5A documented in EHR','Shield monitoring alert active for next 48hrs'],
+    escalate: true,
+    verafyScore: '96%',
+    verafyResults: ['pass','pass','pass','pass','pass','pass']
+  },
+  cost: {
+    patient: { name:'Rosa M. · 67F', insurance:'Medicare + Medicaid (Dual)', conditions:'T2 Diabetes · Hypertension · Depression' },
+    message: "I stopped taking the Jardiance because it's $400 a month and I just can't afford it. I've been taking it every other day to make it last longer",
+    extract: { intent:'Cost-driven non-adherence', urgency:'2 / 5 - Non-urgent', entities:'Jardiance, $400/month, every other day, stopped', language:'English · en-US', category:'Medication cost barrier + non-adherence', sdoh:'Z59.9 - Financial hardship' },
+    load: { plan:'Dual eligible (Medicare + Medicaid)', benefits:'Extra Help LIS, Medicaid copay elimination, PAP eligible', meds:'Jardiance 10mg (discontinued), Metformin 500mg, Sertraline 50mg', relevant:'AstraZeneca PAP - $0 Jardiance for qualifying patients', resource:'AZ Assistance · 1-800-236-9933 · NeedyMeds.org', zcode:'Z59.9 Financial hardship + T87.39 non-adherence' },
+    educate: [ 'Patient is dual-eligible - Extra Help (LIS) should reduce Jardiance to $0-$9.85/mo under Part D', 'If LIS not applied correctly, AstraZeneca PAP offers free Jardiance - patient likely qualifies', 'Every-other-day dosing of Jardiance is clinically subtherapeutic - flag for pharmacist', 'No emergency indicators - provide cost solution, flag subtherapeutic dosing to care team' ],
+    educateSrc: ['Source: CMS Extra Help / LIS benefit rules 2025', 'Source: AstraZeneca patient assistance program eligibility', 'Source: FDA label - Jardiance dosing schedule', 'Source: Aevo urgency engine - score 2/5'],
+    finalMsg: "I hear you - $400 a month is genuinely unaffordable, and I'm glad you told us. Taking it every other day isn't quite giving you the full benefit of the medication though, so let's fix the cost problem. You may qualify for a program that reduces Jardiance to $0 through AstraZeneca's assistance program. Call 1-800-236-9933 - they can check your eligibility in about 10 minutes. I've also notified your pharmacist about the dosing situation so they can follow up with you.",
+    links: [{label:'📞 AZ Assistance · 1-800-236-9933', escalate:false},{label:'🌐 NeedyMeds.org - more options',escalate:false},{label:'💊 Pharmacist notified',escalate:false}],
+    pathAMsg: '"AstraZeneca PAP likely reduces Jardiance to $0 for dual-eligible patients. Call 1-800-236-9933."',
+    pathAItems: ['PAP eligibility confirmed for dual-eligible status','LIS/Extra Help review triggered with PBM','GoodRx backup pricing surfaced as alternative'],
+    pathBMsg: '"Subtherapeutic dosing alert sent to prescribing pharmacist. Patient halving Jardiance dose due to cost - clinical review needed."',
+    pathBItems: ['Non-adherence flag: T87.39 documented','Pharmacist brief: every-other-day dosing flagged','Cost barrier: Z59.9 added to EHR problem list'],
+    escalate: false,
+    verafyScore: '97%',
+    verafyResults: ['pass','pass','pass','pass','pass','pass']
+  },
+  sdoh: {
+    patient: { name:'Darnell W. · 58M', insurance:'Medicaid · Molina Healthcare', conditions:'Hypertension · Pre-diabetes · Obesity' },
+    message: "I haven't been taking my metformin with food like they said because sometimes I just don't have food in the house. And I can't afford to keep going to the doctor",
+    extract: { intent:'Food insecurity + non-adherence + access barrier', urgency:'2 / 5 - Non-urgent', entities:'Metformin, no food, can\'t afford doctor, non-adherence', language:'English · en-US', category:'SDoH - Food insecurity + care access', sdoh:'Z59.4 Food insecurity + Z75.3 Access barrier' },
+    load: { plan:'Medicaid · Molina Healthcare Ohio', benefits:'CCM, telehealth $0 copay, nutrition counseling, SNAP referral network', meds:'Metformin 500mg (inconsistent), Lisinopril 10mg', relevant:'Molina Food Access program + local food bank network', resource:'Ohio Food Helpline · 1-800-821-9145 · FindHelp.org', zcode:'Z59.4 Food insecurity + Z75.3 Unavailability of healthcare' },
+    educate: [ 'Metformin should be taken with food - GI side effects increase significantly without it, confirm this is the barrier', 'Patient has food insecurity (Z59.4) - Ohio SNAP eligibility likely, food bank referral appropriate', 'Molina covers telehealth at $0 - patient may not know, surface as alternative to in-person visits', 'No emergency indicators - address food access, offer telehealth, loop in care coordinator' ],
+    educateSrc: ['Source: FDA label - Metformin GI profile', 'Source: USDA SNAP Ohio eligibility criteria', 'Source: Molina Healthcare OH benefit schedule 2025', 'Source: Aevo urgency engine - score 2/5'],
+    finalMsg: "Thank you for telling me this - it matters, and it's important for your health that we figure it out together. Taking Metformin without food does cause stomach problems, so that's completely understandable. Let's work on the food side first: you may qualify for SNAP benefits, and there are food pantries near you with no eligibility requirements. Also - your Molina plan covers telehealth visits for $0, so you don't have to travel or pay out of pocket to see your doctor. I'm connecting you with your care coordinator now.",
+    links: [{label:'🥗 Ohio Food Helpline · 1-800-821-9145', escalate:false},{label:'🌐 FindHelp.org - food near you',escalate:false},{label:'📱 Book free telehealth visit',escalate:false}],
+    pathAMsg: '"SNAP application + local food pantries surfaced. Telehealth at $0 copay offered as care access solution."',
+    pathAItems: ['Z59.4 food insecurity documented in EHR','SNAP pre-screening link sent to patient','Telehealth appointment booking link provided'],
+    pathBMsg: '"Care coordinator alert: patient has food insecurity + care access barrier. Medication non-adherence related to SDoH factors."',
+    pathBItems: ['Z59.4 + Z75.3 documented in EHR','Care coordinator assigned via Molina CCM program','SDoH data added to Vera population health pipeline'],
+    escalate: false,
+    verafyScore: '99%',
+    verafyResults: ['pass','pass','pass','pass','pass','pass']
+  }
+};
+
+let currentScenario = 'transport';
+let running = false;
+let timeouts = [];
+
+function selectScenario(key, btn) {
+  if(running) return;
+  currentScenario = key;
+  document.querySelectorAll('.sc-btn').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  resetPipeline();
+  // Update patient message
+  const sc = scenarios[key];
+  document.getElementById('pmText').textContent = sc.message;
+  document.getElementById('pmMeta').innerHTML = `
+    <span class="pm-tag" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)">${sc.patient.name}</span>
+    <span class="pm-tag" style="color:var(--w3);border-color:var(--border)">${sc.patient.insurance}</span>
+    <span class="pm-tag" style="color:var(--w3);border-color:var(--border)">${sc.patient.conditions}</span>
+  `;
+}
+
+function resetPipeline() {
+  running = false;
+  timeouts.forEach(t => clearTimeout(t));
+  timeouts = [];
+
+  // Reset all stages
+  [1,2,3,4,5,6].forEach(i => {
+    const s = document.getElementById('stage'+i);
+    s.className = 'stage' + (i===1?' active':'');
+  });
+
+  // Reset progress
+  [0,1,2,3,4,5].forEach(i => {
+    const pt = document.getElementById('pt'+i);
+    pt.className = 'pt-step' + (i===0?' active':'');
+    pt.querySelector('.pt-node').textContent = i+1;
+  });
+
+  // Reset badges
+  const badges = [
+    {id:'s1badge',c:'amber',l:'Waiting'},
+    {id:'s2badge',c:'w3',l:'Pending'},
+    {id:'s3badge',c:'w3',l:'Pending'},
+    {id:'s4badge',c:'w3',l:'Pending'},
+    {id:'s5badge',c:'w3',l:'Pending'},
+    {id:'s6badge',c:'w3',l:'Pending'},
+  ];
+  badges.forEach(b => {
+    const el = document.getElementById(b.id);
+    const col = b.c === 'w3' ? 'rgba(240,242,255,.32)' : b.c === 'amber' ? 'var(--amber)' : 'var(--teal)';
+    const bg = b.c === 'amber' ? 'var(--amber-lo)' : 'var(--w4)';
+    const bc = b.c === 'amber' ? 'var(--amber-b)' : 'var(--border)';
+    el.style.cssText = `color:${col};border-color:${bc};background:${bg}`;
+    el.innerHTML = `<div class="ss-dot" style="background:${col}"></div>${b.l}`;
+  });
+
+  // Reset extract fields
+  ['e1v','e2v','e3v','e4v','e5v','e6v'].forEach(id => {
+    document.getElementById(id).innerHTML = '<span class="etl-spinner"></span>';
+    document.getElementById(id.replace('v','')).className = 'etl-card';
+  });
+
+  // Reset load fields
+  ['l1','l2','l3','l4','l5','l6'].forEach(id => {
+    document.getElementById(id+'v').innerHTML = '<span style="color:var(--w3)">-</span>';
+    document.getElementById(id+'s').textContent = '';
+    document.getElementById(id).className = 'etl-card';
+  });
+
+  // Reset educate
+  ['k1','k2','k3','k4'].forEach((id,i) => {
+    document.getElementById(id+'t').textContent = ['Waiting for benefit load...','Waiting for patient context...','Loading geographic resources...','Checking clinical constraints...'][i];
+    document.getElementById(id+'s').textContent = '';
+    document.getElementById(id).className = 'know-item';
+  });
+
+  // Reset generate
+  document.getElementById('rgenFill').style.width = '0';
+  ['rg1','rg2','rg3','rg4'].forEach(id => document.getElementById(id).className = 'rgen-step');
+
+  // Reset verafy
+  ['vf1','vf2','vf3','vf4','vf5','vf6'].forEach(id => document.getElementById(id).className = 'vfc');
+  document.getElementById('vfScore').className = 'vf-score';
+
+  // Reset output
+  document.getElementById('pathA').className = 'op';
+  document.getElementById('pathB').className = 'op';
+  document.getElementById('pathAMsg').textContent = 'Loading response...';
+  document.getElementById('pathBMsg').textContent = 'Loading escalation...';
+  document.getElementById('pathAItems').innerHTML = '';
+  document.getElementById('pathBItems').innerHTML = '';
+
+  // Reset final response
+  const fr = document.getElementById('finalResp');
+  fr.className = 'patient-resp';
+  document.getElementById('finalMsg').textContent = '';
+  document.getElementById('finalLinks').innerHTML = '';
+
+  document.getElementById('runBtn').disabled = false;
+}
+
+function t(delay, fn) {
+  timeouts.push(setTimeout(fn, delay));
+}
+
+function setBadge(id, color, label, bgColor, borderColor) {
+  const el = document.getElementById(id);
+  el.style.cssText = `color:${color};border-color:${borderColor};background:${bgColor}`;
+  el.innerHTML = `<div class="ss-dot" style="background:${color}"></div>${label}`;
+}
+
+function setProgress(step) {
+  for(let i = 0; i <= 5; i++) {
+    const pt = document.getElementById('pt'+i);
+    if(i < step) { pt.className = 'pt-step done'; pt.querySelector('.pt-node').textContent = '✓'; }
+    else if(i === step) { pt.className = 'pt-step active'; pt.querySelector('.pt-node').textContent = i+1; }
+    else { pt.className = 'pt-step'; pt.querySelector('.pt-node').textContent = i+1; }
+  }
+}
+
+function runPipeline() {
+  if(running) return;
+  running = true;
+  document.getElementById('runBtn').disabled = true;
+  const sc = scenarios[currentScenario];
+  let delay = 0;
+
+  // ── STAGE 1: EXTRACT ──
+  t(delay += 200, () => {
+    document.getElementById('stage1').className = 'stage active';
+    setProgress(0);
+    setBadge('s1badge','var(--amber)','Extracting...','var(--amber-lo)','var(--amber-b)');
+  });
+
+  const extractKeys = ['e1v','e2v','e3v','e4v','e5v','e6v'];
+  const extractVals = [sc.extract.intent, sc.extract.urgency, sc.extract.entities, sc.extract.language, sc.extract.category, sc.extract.sdoh];
+  extractKeys.forEach((k, i) => {
+    t(delay += 320, () => {
+      document.getElementById(k).innerHTML = `<span class="etl-check">✓</span> ${extractVals[i]}`;
+      document.getElementById(k.replace('v','')).className = 'etl-card loaded';
+    });
+  });
+
+  t(delay += 200, () => {
+    setBadge('s1badge','var(--teal)','Complete','var(--teal-lo)','var(--teal-b)');
+    document.getElementById('stage1').className = 'stage done';
+  });
+
+  // ── STAGE 2: LOAD ──
+  t(delay += 300, () => {
+    document.getElementById('stage2').className = 'stage active';
+    setProgress(1);
+    setBadge('s2badge','var(--amber)','Loading benefits...','var(--amber-lo)','var(--amber-b)');
+    ['l1','l2','l3','l4','l5','l6'].forEach(id => {
+      document.getElementById(id+'v').innerHTML = '<span class="etl-spinner"></span>';
+      document.getElementById(id).className = 'etl-card loading';
+    });
+  });
+
+  const loadIds = ['l1','l2','l3','l4','l5','l6'];
+  const loadVals = [sc.load.plan, sc.load.benefits, sc.load.meds, sc.load.relevant, sc.load.resource, sc.load.zcode];
+  const loadSrcs = ['CareSource Member API','Insurance benefit schedule','Particle Health + EHR FHIR','Benefit match engine','FindHelp + Unite Us network','Vera Z-code classification'];
+  loadIds.forEach((id, i) => {
+    t(delay += 380, () => {
+      document.getElementById(id+'v').innerHTML = `<span class="etl-check">✓</span> ${loadVals[i]}`;
+      document.getElementById(id+'s').textContent = '↳ ' + loadSrcs[i];
+      document.getElementById(id).className = 'etl-card loaded';
+    });
+  });
+
+  t(delay += 200, () => {
+    setBadge('s2badge','var(--teal)','Loaded','var(--teal-lo)','var(--teal-b)');
+    document.getElementById('stage2').className = 'stage done';
+  });
+
+  // ── STAGE 3: EDUCATE ──
+  t(delay += 300, () => {
+    document.getElementById('stage3').className = 'stage active';
+    setProgress(2);
+    setBadge('s3badge','var(--amber)','Educating AI...','var(--amber-lo)','var(--amber-b)');
+  });
+
+  ['k1','k2','k3','k4'].forEach((id, i) => {
+    t(delay += 450, () => {
+      document.getElementById(id+'t').textContent = sc.educate[i];
+      document.getElementById(id+'s').textContent = '↳ ' + sc.educateSrc[i];
+      document.getElementById(id).className = 'know-item loaded';
+    });
+  });
+
+  t(delay += 200, () => {
+    setBadge('s3badge','var(--teal)','Ready','var(--teal-lo)','var(--teal-b)');
+    document.getElementById('stage3').className = 'stage done';
+  });
+
+  // ── STAGE 4: GENERATE ──
+  t(delay += 300, () => {
+    document.getElementById('stage4').className = 'stage active';
+    setProgress(3);
+    setBadge('s4badge','var(--amber)','Generating...','var(--amber-lo)','var(--amber-b)');
+    document.getElementById('rgenFill').style.width = '100%';
+  });
+
+  ['rg1','rg2','rg3','rg4'].forEach((id, i) => {
+    t(delay += 420, () => {
+      if(i > 0) document.getElementById('rg'+i).className = 'rgen-step done';
+      document.getElementById(id).className = 'rgen-step active';
+    });
+    t(delay + 380, () => document.getElementById(id).className = 'rgen-step done');
+  });
+
+  t(delay += 420, () => {
+    setBadge('s4badge','var(--teal)','Generated','var(--teal-lo)','var(--teal-b)');
+    document.getElementById('stage4').className = 'stage done';
+  });
+
+  // ── STAGE 5: VERAFY ──
+  t(delay += 300, () => {
+    document.getElementById('stage5').className = 'stage active';
+    setProgress(4);
+    setBadge('s5badge','var(--vera)','Verifying...','var(--vera-lo)','var(--vera-b)');
+  });
+
+  ['vf1','vf2','vf3','vf4','vf5','vf6'].forEach((id, i) => {
+    t(delay += 350, () => {
+      const result = sc.verafyResults[i];
+      document.getElementById(id).className = 'vfc ' + result;
+      document.getElementById(id).querySelector('.vfc-ico').textContent = result === 'pass' ? '✓' : '⚠';
+    });
+  });
+
+  t(delay += 300, () => {
+    document.getElementById('vfsVal').textContent = sc.verafyScore;
+    document.getElementById('vfScore').className = 'vf-score show';
+    setBadge('s5badge','var(--vera)','Verified ✓','var(--vera-lo)','var(--vera-b)');
+    document.getElementById('stage5').className = 'stage done';
+  });
+
+  // ── STAGE 6: DELIVER ──
+  t(delay += 400, () => {
+    document.getElementById('stage6').className = 'stage active';
+    setProgress(5);
+    setBadge('s6badge','var(--amber)','Delivering...','var(--amber-lo)','var(--amber-b)');
+
+    // Path A
+    const pathA = document.getElementById('pathA');
+    pathA.className = 'op active path-a';
+    document.getElementById('pathAMsg').textContent = sc.pathAMsg;
+    document.getElementById('pathAItems').innerHTML = sc.pathAItems.map(item =>
+      `<div class="op-item"><div class="op-dot" style="background:var(--green)"></div>${item}</div>`
+    ).join('');
+
+    // Path B - escalate always shows
+    const pathB = document.getElementById('pathB');
+    pathB.className = 'op active path-b';
+    document.getElementById('pathBMsg').textContent = sc.pathBMsg;
+    document.getElementById('pathBItems').innerHTML = sc.pathBItems.map(item =>
+      `<div class="op-item"><div class="op-dot" style="background:var(--amber)"></div>${item}</div>`
+    ).join('');
+  });
+
+  t(delay += 600, () => {
+    setBadge('s6badge','var(--green)','Delivered','rgba(52,211,153,.08)','rgba(52,211,153,.22)');
+    document.getElementById('stage6').className = 'stage done';
+    setProgress(6);
+  });
+
+  // ── FINAL PATIENT RESPONSE ──
+  t(delay += 400, () => {
+    document.getElementById('finalMsg').textContent = sc.finalMsg;
+    document.getElementById('finalLinks').innerHTML = sc.links.map(l =>
+      `<div class="pr-link${l.escalate?' escalate':''}">${l.label}</div>`
+    ).join('');
+    document.getElementById('finalResp').className = 'patient-resp show';
+  });
+}
+</script>
+</body>
+</html>
