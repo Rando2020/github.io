@@ -1,0 +1,109 @@
+<!--
+  ORIVO HEALTH — SHARED NAV
+  Paste this block at the top of <body> on every demo/resource page.
+  Replace PAGE_TITLE with the current page name e.g. "Pitch Deck", "Engineering Stack" etc.
+  The Cal.com script is already included — just make sure it's not duplicated if the page has its own.
+-->
+
+<!-- Cal.com embed -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, [L, namespace, ...Array.prototype.slice.call(ar, 1)]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", {origin:"https://cal.com"});
+Cal("ui", {"styles":{"branding":{"brandColor":"#00C896"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
+
+<style>
+.orivo-nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(5,10,20,.95);backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(240,242,255,.09);
+  height:58px;padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.orivo-nav-brand{display:flex;align-items:baseline;gap:8px;text-decoration:none}
+.orivo-nav-logo{font-family:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;font-size:19px;color:#00C896;letter-spacing:-.4px}
+.orivo-nav-sub{font-size:8.5px;letter-spacing:3.5px;text-transform:uppercase;color:rgba(240,242,255,.3)}
+.orivo-nav-crumb{font-size:12px;color:rgba(240,242,255,.35);display:flex;align-items:center;gap:7px}
+.orivo-nav-crumb span{color:rgba(240,242,255,.2)}
+.orivo-nav-crumb strong{color:rgba(240,242,255,.65);font-weight:500}
+.orivo-nav-right{display:flex;align-items:center;gap:8px}
+.orivo-nav-home{font-size:12px;color:rgba(240,242,255,.5);text-decoration:none;padding:6px 13px;border-radius:7px;border:1px solid rgba(240,242,255,.09);transition:all .15s}
+.orivo-nav-home:hover{color:rgba(240,242,255,.85);border-color:rgba(240,242,255,.16)}
+.orivo-nav-book{font-size:12px;font-weight:600;color:#030C0A;background:#00C896;padding:7px 15px;border-radius:7px;text-decoration:none;border:none;cursor:pointer;font-family:inherit;transition:all .15s}
+.orivo-nav-book:hover{background:#009E75}
+@media(max-width:700px){
+  .orivo-nav{padding:0 16px}
+  .orivo-nav-crumb{display:none}
+}
+</style>
+
+<!-- Booking modal (minimal, self-contained) -->
+<div id="orivoBookModal" style="display:none;position:fixed;inset:0;background:rgba(4,8,18,.88);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(12px)" onclick="if(event.target===this)this.style.display='none'">
+  <div style="background:#060C18;border:1px solid rgba(0,200,150,.22);border-radius:18px;padding:38px 42px;max-width:420px;width:90%;position:relative;font-family:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif">
+    <button onclick="document.getElementById('orivoBookModal').style.display='none'" style="position:absolute;top:12px;right:12px;background:none;border:1px solid rgba(240,242,255,.1);color:rgba(240,242,255,.4);width:26px;height:26px;border-radius:6px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center">✕</button>
+    <div style="font-family:'DM Serif Display',Georgia,serif;font-size:15px;color:#00C896;margin-bottom:4px">orivo health</div>
+    <div style="font-family:'DM Serif Display',Georgia,serif;font-size:26px;color:#F0F2FF;margin-bottom:6px">Let's talk.</div>
+    <div style="font-size:12px;color:rgba(240,242,255,.4);margin-bottom:24px;line-height:1.6">All conversations are confidential.</div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <a href="https://cal.com/josiah.parve/investor-call" target="_blank" rel="noopener" data-cal-link="josiah.parve/investor-call" data-cal-origin="https://cal.com"
+         style="display:flex;align-items:center;gap:12px;background:rgba(240,242,255,.05);border:1px solid rgba(240,242,255,.09);border-radius:10px;padding:14px 16px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.borderColor='rgba(0,200,150,.22)';this.style.background='rgba(0,200,150,.08)'"
+         onmouseout="this.style.borderColor='rgba(240,242,255,.09)';this.style.background='rgba(240,242,255,.05)'">
+        <span style="font-size:18px">📅</span>
+        <div>
+          <div style="font-size:13px;font-weight:500;color:#F0F2FF;margin-bottom:2px">30-min investor call</div>
+          <div style="font-size:10.5px;color:rgba(240,242,255,.35)">Zoom · Free · via Cal.com</div>
+        </div>
+      </a>
+      <a href="https://cal.com/josiah.parve/product-demo" target="_blank" rel="noopener" data-cal-link="josiah.parve/product-demo" data-cal-origin="https://cal.com"
+         style="display:flex;align-items:center;gap:12px;background:rgba(240,242,255,.05);border:1px solid rgba(240,242,255,.09);border-radius:10px;padding:14px 16px;text-decoration:none;transition:all .15s"
+         onmouseover="this.style.borderColor='rgba(0,200,150,.22)';this.style.background='rgba(0,200,150,.08)'"
+         onmouseout="this.style.borderColor='rgba(240,242,255,.09)';this.style.background='rgba(240,242,255,.05)'">
+        <span style="font-size:18px">🖥️</span>
+        <div>
+          <div style="font-size:13px;font-weight:500;color:#F0F2FF;margin-bottom:2px">45-min product demo</div>
+          <div style="font-size:10.5px;color:rgba(240,242,255,.35)">For health systems &amp; pharmacies</div>
+        </div>
+      </a>
+    </div>
+    <div style="display:flex;align-items:center;gap:9px;margin:16px 0">
+      <div style="flex:1;height:1px;background:rgba(240,242,255,.08)"></div>
+      <div style="font-size:10.5px;color:rgba(240,242,255,.3)">or send a note</div>
+      <div style="flex:1;height:1px;background:rgba(240,242,255,.08)"></div>
+    </div>
+    <div style="display:flex;gap:7px">
+      <input type="email" placeholder="your@email.com" id="sharedEmail"
+        style="flex:1;background:rgba(240,242,255,.05);border:1px solid rgba(240,242,255,.09);color:#F0F2FF;padding:9px 12px;border-radius:7px;font-size:12px;font-family:inherit;outline:none">
+      <button onclick="sharedSendNote()" style="background:#00C896;color:#030C0A;border:none;padding:9px 14px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit">Send →</button>
+    </div>
+    <div id="sharedEmailOk" style="display:none;margin-top:8px;font-size:11px;color:#00C896">✓ We'll be in touch within 24 hours.</div>
+  </div>
+</div>
+
+<nav class="orivo-nav">
+  <a class="orivo-nav-brand" href="/">
+    <span class="orivo-nav-logo">orivo</span>
+    <span class="orivo-nav-sub">health</span>
+  </a>
+  <div class="orivo-nav-crumb">
+    <a href="/" style="color:rgba(240,242,255,.35);text-decoration:none;font-size:12px">Home</a>
+    <span>›</span>
+    <strong>PAGE_TITLE</strong>
+  </div>
+  <div class="orivo-nav-right">
+    <a class="orivo-nav-home" href="/">← Back to site</a>
+    <a class="orivo-nav-home" href="/provider-login.html">Provider login</a>
+    <button class="orivo-nav-book" onclick="document.getElementById('orivoBookModal').style.display='flex'">Book a demo</button>
+  </div>
+</nav>
+
+<script>
+function sharedSendNote(){
+  const v=document.getElementById('sharedEmail').value.trim();
+  if(!v||!v.includes('@'))return;
+  document.getElementById('sharedEmailOk').style.display='block';
+  document.getElementById('sharedEmail').disabled=true;
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('orivoBookModal').style.display='none'});
+</script>

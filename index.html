@@ -274,6 +274,32 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 44p
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
 
+/* ── TRACTION ── */
+.traction-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}
+.tr-card{background:var(--w4);border:1px solid var(--border);border-radius:15px;padding:26px 20px;transition:all .22s;text-align:center}
+.tr-card:hover{border-color:rgba(0,200,150,.18)}
+.tr-card.hi{border-color:var(--teal-b);background:var(--teal-lo)}
+.tr-n{font-family:var(--serif);font-size:44px;color:var(--teal);line-height:1;margin-bottom:9px}
+.tr-l{font-size:13px;color:var(--w2);line-height:1.5;margin-bottom:6px}
+.tr-s{font-size:10.5px;color:var(--w3);line-height:1.4}
+
+/* ── FOUNDER ── */
+.founder-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:36px}
+.founder-quote{display:flex;gap:16px;align-items:flex-start;margin-top:4px}
+.fq-bar{width:3px;flex-shrink:0;background:var(--teal);border-radius:2px;align-self:stretch;min-height:48px}
+.fq-text{font-family:var(--serif);font-size:18px;line-height:1.55;color:var(--w1);font-style:italic}
+.founder-card{background:var(--w4);border:1px solid var(--teal-b);border-radius:16px;padding:26px 24px;margin-bottom:14px}
+.fc-avatar{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#00C896,#0070CC);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;font-weight:400;color:#fff;margin-bottom:12px}
+.fc-name{font-family:var(--serif);font-size:20px;color:var(--w1);margin-bottom:3px}
+.fc-title{font-size:12px;color:var(--teal);letter-spacing:.3px;margin-bottom:18px}
+.fc-creds{display:flex;flex-direction:column;gap:8px}
+.fc-cred{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;color:var(--w2);line-height:1.45}
+.fc-dot{width:4px;height:4px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px}
+.founder-insight{background:rgba(240,242,255,.04);border:1px solid var(--border);border-radius:13px;padding:20px 22px}
+.fi-head{font-size:9px;text-transform:uppercase;letter-spacing:2.5px;color:var(--teal);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.fi-item{font-size:13px;color:var(--w2);line-height:1.55;margin-bottom:9px;display:flex;align-items:flex-start;gap:8px}
+.fi-item:last-child{margin-bottom:0}
+
 /* ── MOBILE ── */
 @media(max-width:880px){
   nav{padding:0 18px}
@@ -289,7 +315,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 44p
   .cta-h{font-size:34px}
   .stats-inner{grid-template-columns:repeat(2,1fr);padding:0 20px}
   .stat{border-right:none;padding:20px 12px}
-  .nap-grid,.nas-row,.steps,.prod-grid,.prov-grid,.res-grid,.hor-row{grid-template-columns:1fr}
+  .nap-grid,.nas-row,.steps,.prod-grid,.prov-grid,.res-grid,.hor-row,.traction-row,.founder-wrap{grid-template-columns:1fr}
   h2{font-size:32px}
   .foot-top{grid-template-columns:1fr 1fr;gap:28px}
   .foot-bottom{flex-direction:column;text-align:center}
@@ -320,6 +346,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 44p
     <a href="#how-it-works">How it works</a>
     <a href="#products">Products</a>
     <a href="#for-providers">For providers</a>
+    <a href="#founder">Our story</a>
     <a href="#demos">Resources</a>
     <a href="/why-invest.html">Investors</a>
   </div>
@@ -462,6 +489,76 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 44p
       <div class="step-ico">🤝</div>
       <div class="step-t">Patient is heard. Team can act.</div>
       <div class="step-b">The patient gets clear plain-language responses with specific next steps. The care team gets a structured clinical brief. Both sides feel supported, not overwhelmed.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── TRACTION CALLOUT ── -->
+<div class="sec-alt">
+<div class="sec reveal">
+  <div class="eyebrow">Early traction</div>
+  <h2>The data is already speaking.</h2>
+  <p class="lead">Before we raised a dollar, we ran it. Here's what happened.</p>
+  <div class="traction-row">
+    <div class="tr-card hi">
+      <div class="tr-n">2.1×</div>
+      <div class="tr-l">Medication adherence lift in early pilot</div>
+      <div class="tr-s">200 patients · 90 days · Independent pharmacy</div>
+    </div>
+    <div class="tr-card">
+      <div class="tr-n">$48B</div>
+      <div class="tr-l">Total addressable market — patient communication platforms (US)</div>
+      <div class="tr-s">Source: NEHI / CMS market analysis</div>
+    </div>
+    <div class="tr-card">
+      <div class="tr-n">230M</div>
+      <div class="tr-l">US patients managing chronic conditions requiring pharmacy coordination</div>
+      <div class="tr-s">Annals of Internal Medicine</div>
+    </div>
+    <div class="tr-card">
+      <div class="tr-n">$2M</div>
+      <div class="tr-l">Seed round — HIPAA compliance, 3 health system pilots, 18-month runway</div>
+      <div class="tr-s">Currently raising</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── FOUNDER ── -->
+<div id="founder">
+<div class="sec reveal">
+  <div class="eyebrow">Why we exist</div>
+  <h2>Built from the front lines.</h2>
+  <div class="founder-wrap">
+    <div class="founder-left">
+      <p style="font-size:16px;line-height:1.72;color:var(--w2);margin-bottom:22px">I stood at the pharmacy counter in underserved communities and watched patients arrive with 20 medications they couldn't name — leaving with instructions they didn't understand, feeling like a problem to be managed, not a person to be heard.</p>
+      <p style="font-size:16px;line-height:1.72;color:var(--w2);margin-bottom:28px">I've seen what no healthcare access looks like — from the counter of a CVS in an underserved neighborhood to clinics in Africa with Hope Without Borders. The gap isn't clinical. It's communication.</p>
+      <div class="founder-quote">
+        <div class="fq-bar"></div>
+        <div class="fq-text">"Providers had Epic. Payers had data platforms. Pharmacies had dispensing systems. Nobody had built anything for the patient. So we did."</div>
+      </div>
+    </div>
+    <div class="founder-right">
+      <div class="founder-card">
+        <div class="fc-avatar">JP</div>
+        <div class="fc-name">Josiah Parve</div>
+        <div class="fc-title">Founder &amp; CEO, Orivo Health</div>
+        <div class="fc-creds">
+          <div class="fc-cred"><span class="fc-dot"></span>Certified Pharmacy Technician — CVS Health</div>
+          <div class="fc-cred"><span class="fc-dot"></span>Genetics degree — molecular &amp; population health</div>
+          <div class="fc-cred"><span class="fc-dot"></span>EQUIPP · CMS Star Ratings · PDC / PQA adherence programs</div>
+          <div class="fc-cred"><span class="fc-dot"></span>Worked across every major US healthcare company</div>
+          <div class="fc-cred" style="color:var(--amber)"><span class="fc-dot" style="background:var(--amber)"></span>Hope Without Borders — clinical outreach, Africa</div>
+        </div>
+      </div>
+      <div class="founder-insight">
+        <div class="fi-head">The pattern I kept seeing</div>
+        <div class="fi-item">👁 Patients with 20+ meds who didn't know what any of them were for</div>
+        <div class="fi-item">🌍 Communities with zero access to benefits inside their own insurance plan</div>
+        <div class="fi-item">📋 Discharge instructions that confused more than they guided</div>
+        <div class="fi-item">💔 Patients who stopped trusting the system — and stopped taking their medications</div>
+      </div>
     </div>
   </div>
 </div>
@@ -690,17 +787,17 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 44p
     <div class="modal-h">Let's talk.</div>
     <div class="modal-sub">Choose how you'd like to connect. All conversations are confidential.</div>
     <div class="modal-opts">
-      <!-- Replace YOUR-CAL-USERNAME with your Cal.com username after signing up at cal.com -->
-      <a class="mopt" href="https://cal.com/YOUR-CAL-USERNAME/investor-call" target="_blank" rel="noopener"
-         data-cal-link="YOUR-CAL-USERNAME/investor-call" data-cal-origin="https://cal.com">
+      <!-- Replace josiah.parve with your Cal.com username after signing up at cal.com -->
+      <a class="mopt" href="https://cal.com/josiah.parve/investor-call" target="_blank" rel="noopener"
+         data-cal-link="josiah.parve/investor-call" data-cal-origin="https://cal.com">
         <div class="mopt-ico">📅</div>
         <div>
           <div class="mopt-t">Schedule a 30-min investor call</div>
           <div class="mopt-s">Zoom · Free · via Cal.com</div>
         </div>
       </a>
-      <a class="mopt" href="https://cal.com/YOUR-CAL-USERNAME/product-demo" target="_blank" rel="noopener"
-         data-cal-link="YOUR-CAL-USERNAME/product-demo" data-cal-origin="https://cal.com">
+      <a class="mopt" href="https://cal.com/josiah.parve/product-demo" target="_blank" rel="noopener"
+         data-cal-link="josiah.parve/product-demo" data-cal-origin="https://cal.com">
         <div class="mopt-ico">🖥️</div>
         <div>
           <div class="mopt-t">Book a product demo</div>
