@@ -133,6 +133,74 @@ body.orivo-motion-premium > *{position:relative}
 /* Pointer spotlight */
 .om-spotlight{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(500px circle at var(--om-x,50%) var(--om-y,20%),rgba(0,200,150,.045),transparent 42%);opacity:.75;transition:opacity .2s ease}
 
+
+/* Homepage layout and logo normalization */
+body.orivo-motion-premium .nav,
+body.orivo-motion-premium .topbar{
+  padding-left:clamp(28px,3.2vw,56px)!important;
+  padding-right:clamp(28px,3.2vw,56px)!important;
+}
+body.orivo-motion-premium .logo{
+  gap:12px!important;
+}
+body.orivo-motion-premium .logo-img,
+body.orivo-motion-premium .orivo-nav-logo-img{
+  width:clamp(132px,10vw,172px)!important;
+  height:auto!important;
+  max-height:46px!important;
+  object-fit:contain!important;
+  display:block!important;
+  filter:drop-shadow(0 4px 14px rgba(0,200,150,.18))!important;
+}
+body.orivo-motion-premium .logo.has-image .logo-mark,
+body.orivo-motion-premium .logo.has-image .logo-text,
+body.orivo-motion-premium .logo.has-image .logo-sub{
+  display:none!important;
+}
+body.orivo-motion-premium .hero{
+  min-height:calc(100vh - 66px)!important;
+}
+body.orivo-motion-premium .hero .wrap{
+  max-width:1480px!important;
+  width:min(1480px,100%)!important;
+  margin:0 auto!important;
+  padding-left:clamp(44px,6vw,104px)!important;
+  padding-right:clamp(34px,4.5vw,82px)!important;
+  grid-template-columns:minmax(560px,720px) minmax(360px,520px)!important;
+  justify-content:center!important;
+  gap:clamp(44px,6vw,96px)!important;
+}
+body.orivo-motion-premium .hero-copy{
+  max-width:720px!important;
+}
+body.orivo-motion-premium .phone-wrap{
+  justify-content:flex-end!important;
+}
+body.orivo-motion-premium .hero .h1{
+  max-width:720px!important;
+}
+@media(min-width:1400px){
+  body.orivo-motion-premium .hero .wrap{
+    transform:translateX(-2vw);
+  }
+}
+@media(max-width:1100px){
+  body.orivo-motion-premium .hero .wrap{
+    grid-template-columns:1fr!important;
+    transform:none!important;
+    padding-left:clamp(22px,5vw,52px)!important;
+    padding-right:clamp(22px,5vw,52px)!important;
+  }
+  body.orivo-motion-premium .phone-wrap{justify-content:center!important;order:2!important}
+}
+@media(max-width:700px){
+  body.orivo-motion-premium .logo-img,
+  body.orivo-motion-premium .orivo-nav-logo-img{
+    width:128px!important;
+    max-height:40px!important;
+  }
+}
+
 @media(max-width:820px){.orivo-hero-aura{opacity:.36;right:-190px;top:40px}.om-mini-pipeline{grid-template-columns:1fr}.om-mini-link{width:2px;height:22px;justify-self:center}.om-mini-link::after{width:100%;height:48%;animation:om-flow-down 1.55s ease-in-out infinite}@keyframes om-flow-down{from{transform:translateY(-120%)}to{transform:translateY(330%)}}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.om-reveal,.om-enter{opacity:1!important;transform:none!important}.om-spotlight,.orivo-hero-aura{display:none!important}}
 `;
@@ -282,9 +350,47 @@ body.orivo-motion-premium > *{position:relative}
     const b=document.createElement("div");b.className="om-prototype-banner";b.textContent="Prototype preview. Do not enter PHI. Not medical advice or a live clinical system.";document.body.appendChild(b);
   }
 
+
+  function normalizeHomepageBrandAndLayout(){
+    const isHome = location.pathname === "/" || location.pathname.endsWith("/index.html") || document.querySelector(".hero .phone, .hero .thread");
+    if(!isHome) return;
+
+    const logoCandidates = qsa('a.logo');
+    logoCandidates.forEach((logo, idx) => {
+      if(logo.querySelector('img.logo-img')) return;
+      const img = document.createElement('img');
+      img.className = 'logo-img';
+      img.alt = 'Orivo Health logo';
+      img.src = '/assets/logo.png';
+      img.onerror = function(){
+        if(this.dataset.fallback === 'root') return;
+        this.dataset.fallback = 'root';
+        this.src = '/logo.png';
+      };
+      logo.classList.add('has-image');
+      logo.prepend(img);
+    });
+
+    const footerLogo = document.querySelector('footer .logo');
+    if(footerLogo && !footerLogo.querySelector('img.logo-img')){
+      const img = document.createElement('img');
+      img.className = 'logo-img';
+      img.alt = 'Orivo Health logo';
+      img.src = '/assets/logo.png';
+      img.onerror = function(){
+        if(this.dataset.fallback === 'root') return;
+        this.dataset.fallback = 'root';
+        this.src = '/logo.png';
+      };
+      footerLogo.classList.add('has-image');
+      footerLogo.prepend(img);
+    }
+  }
+
   function init(){
     injectStyles();
     document.body.classList.add("orivo-motion-premium");
+    normalizeHomepageBrandAndLayout();
     addHeroAura();
     heroEntrance();
     revealSetup();
