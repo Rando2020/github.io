@@ -1,5 +1,5 @@
 /*!
- * Orivo Motion Layer v2.0 Premium
+ * Orivo Motion Layer v2.1 Premium (centering fix)
  * Static GitHub Pages compatible. No dependencies. No network requests. No data collection.
  * Install: add <script src="/orivo-motion.js" defer></script> before </body>.
  */
@@ -134,7 +134,7 @@ body.orivo-motion-premium > *{position:relative}
 .om-spotlight{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(500px circle at var(--om-x,50%) var(--om-y,20%),rgba(0,200,150,.045),transparent 42%);opacity:.75;transition:opacity .2s ease}
 
 
-/* Homepage layout and logo normalization */
+/* Homepage layout and logo normalization (centered) */
 body.orivo-motion-premium .nav,
 body.orivo-motion-premium .topbar{
   padding-left:clamp(28px,3.2vw,56px)!important;
@@ -159,30 +159,30 @@ body.orivo-motion-premium .logo.has-image .logo-sub{
 }
 body.orivo-motion-premium .hero{
   min-height:calc(100vh - 66px)!important;
+  justify-content:center!important;
 }
 body.orivo-motion-premium .hero .wrap{
-  max-width:1480px!important;
-  width:min(1480px,100%)!important;
-  margin:0 auto!important;
-  padding-left:clamp(44px,6vw,104px)!important;
-  padding-right:clamp(34px,4.5vw,82px)!important;
-  grid-template-columns:minmax(560px,720px) minmax(360px,520px)!important;
-  justify-content:center!important;
-  gap:clamp(44px,6vw,96px)!important;
+  max-width:1240px!important;
+  width:min(1240px,100%)!important;
+  margin-left:auto!important;
+  margin-right:auto!important;
+  padding-left:clamp(28px,4vw,56px)!important;
+  padding-right:clamp(28px,4vw,56px)!important;
+  grid-template-columns:minmax(0,1.18fr) minmax(0,.82fr)!important;
+  justify-content:stretch!important;
+  justify-items:stretch!important;
+  gap:clamp(40px,5vw,72px)!important;
+  transform:none!important;
 }
 body.orivo-motion-premium .hero-copy{
-  max-width:720px!important;
+  max-width:640px!important;
+  margin:0 auto!important;
 }
 body.orivo-motion-premium .phone-wrap{
-  justify-content:flex-end!important;
+  justify-content:center!important;
 }
 body.orivo-motion-premium .hero .h1{
-  max-width:720px!important;
-}
-@media(min-width:1400px){
-  body.orivo-motion-premium .hero .wrap{
-    transform:translateX(-2vw);
-  }
+  max-width:640px!important;
 }
 @media(max-width:1100px){
   body.orivo-motion-premium .hero .wrap{
@@ -190,6 +190,16 @@ body.orivo-motion-premium .hero .h1{
     transform:none!important;
     padding-left:clamp(22px,5vw,52px)!important;
     padding-right:clamp(22px,5vw,52px)!important;
+    justify-items:center!important;
+    text-align:center!important;
+  }
+  body.orivo-motion-premium .hero-copy{
+    text-align:center!important;
+    margin:0 auto!important;
+  }
+  body.orivo-motion-premium .hero-actions,
+  body.orivo-motion-premium .hero-pills{
+    justify-content:center!important;
   }
   body.orivo-motion-premium .phone-wrap{justify-content:center!important;order:2!important}
 }
