@@ -1,0 +1,144 @@
+{
+  "lastReviewed": "2026-05-02",
+  "claimBoundary": {
+    "approvedOutcomeWording": [
+      "designed to support",
+      "intended to help",
+      "can help surface",
+      "supports pharmacist review",
+      "prototype-stage",
+      "pilot outcomes pending"
+    ],
+    "avoidUntilValidated": [
+      "Orivo reduces adverse drug events",
+      "Orivo improves PDC",
+      "Orivo improves Star Ratings",
+      "Orivo prevents readmissions",
+      "Orivo is HIPAA compliant in production",
+      "Orivo diagnoses",
+      "Orivo prescribes"
+    ]
+  },
+  "claims": [
+    {
+      "id": "nonadherence-common",
+      "label": "1",
+      "category": "Medication adherence",
+      "claim": "Medication nonadherence is common among patients taking long-term medications.",
+      "approvedSiteWording": "Medication nonadherence is common, costly, and linked to preventable harm.",
+      "evidenceUrl": "https://jamanetwork.com/journals/jama/fullarticle/1690707",
+      "evidencePageAnchor": "/evidence.html#nonadherence-common",
+      "riskLevel": "medium"
+    },
+    {
+      "id": "nonadherence-deaths-costs",
+      "label": "2",
+      "category": "Medication adherence",
+      "claim": "Published estimates frequently cite approximately 125,000 deaths annually and $100B to $300B in annual costs associated with medication nonadherence in the United States.",
+      "approvedSiteWording": "125K preventable deaths per year from non-adherence.",
+      "evidenceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3234383/",
+      "evidencePageAnchor": "/evidence.html#nonadherence-deaths-costs",
+      "riskLevel": "medium",
+      "avoidWording": ["Orivo prevents 125K deaths", "Orivo reduces $300B in costs"]
+    },
+    {
+      "id": "ade-costs",
+      "label": "3",
+      "category": "Medication safety",
+      "claim": "Adverse drug events are a serious public health issue and are associated with billions in excess medical costs annually.",
+      "approvedSiteWording": "$3.5B in excess medical costs of adverse drug events annually.",
+      "evidenceUrl": "https://odphp.health.gov/healthypeople/about/workgroups/medical-product-safety-workgroup",
+      "secondaryEvidenceUrl": "https://www.cdc.gov/medication-safety/about/index.html",
+      "evidencePageAnchor": "/evidence.html#ade-costs",
+      "riskLevel": "medium",
+      "avoidWording": ["annual CMS spend unless specifically tied to CMS source", "Orivo prevents ADEs"]
+    },
+    {
+      "id": "health-literacy-12",
+      "label": "4",
+      "category": "Health literacy",
+      "claim": "Only 12% of U.S. adults have proficient health literacy.",
+      "approvedSiteWording": "Only 12% of U.S. adults have proficient health literacy.",
+      "evidenceUrl": "https://www.ncbi.nlm.nih.gov/books/NBK44254/",
+      "secondaryEvidenceUrl": "https://www.ncbi.nlm.nih.gov/books/n/nhqdr2019/ch4/",
+      "evidencePageAnchor": "/evidence.html#health-literacy-12",
+      "riskLevel": "low"
+    },
+    {
+      "id": "sms-cell-access",
+      "label": "5",
+      "category": "Access channel",
+      "claim": "Cellphone ownership is broad enough to support an SMS-first access wedge, including people who may not download or use a dedicated health app.",
+      "approvedSiteWording": "Orivo starts with SMS because cellphone access is broader than app adoption.",
+      "evidenceUrl": "https://www.pewresearch.org/internet/fact-sheets/mobile/",
+      "evidencePageAnchor": "/evidence.html#sms-cell-access",
+      "riskLevel": "low"
+    },
+    {
+      "id": "health-app-abandonment",
+      "label": "6",
+      "category": "Digital health retention",
+      "claim": "Health, lifestyle, and mental health apps commonly experience abandonment after acquisition, with one scoping review finding a median of 70% discontinued use within 100 days.",
+      "approvedSiteWording": "Digital health apps often struggle with sustained engagement and abandonment.",
+      "evidenceUrl": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11694054/",
+      "secondaryEvidenceUrl": "https://www.mdpi.com/2227-9032/10/2/221",
+      "evidencePageAnchor": "/evidence.html#health-app-abandonment",
+      "riskLevel": "medium"
+    },
+    {
+      "id": "pdc-adherence",
+      "label": "7",
+      "category": "Pharmacy quality",
+      "claim": "PQA uses Proportion of Days Covered as its preferred adherence methodology, with 80% commonly used as the standard threshold for many chronic medication classes.",
+      "approvedSiteWording": "PDC is a standard adherence methodology used in pharmacy quality measurement.",
+      "evidenceUrl": "https://www.pqaalliance.org/adherence-measures",
+      "evidencePageAnchor": "/evidence.html#pdc-adherence",
+      "riskLevel": "low"
+    },
+    {
+      "id": "cms-star-ratings",
+      "label": "8",
+      "category": "Medicare quality",
+      "claim": "CMS Part D Star Ratings include medication adherence measures and are used to help Medicare beneficiaries compare plan quality.",
+      "approvedSiteWording": "Medication adherence connects to Medicare Part D quality economics.",
+      "evidenceUrl": "https://www.cms.gov/newsroom/fact-sheets/2025-medicare-advantage-and-part-d-star-ratings",
+      "evidencePageAnchor": "/evidence.html#cms-star-ratings",
+      "riskLevel": "low",
+      "avoidWording": ["Orivo improves Star Ratings without pilot validation"]
+    },
+    {
+      "id": "hrsn-sdoh",
+      "label": "9",
+      "category": "HRSN / SDOH",
+      "claim": "CMS describes health-related social needs as individual social and economic needs that affect health and health care use, including food, housing, utilities, health care access, and transportation.",
+      "approvedSiteWording": "Transportation and other health-related social needs can affect care access and medication use.",
+      "evidenceUrl": "https://www.cms.gov/priorities/innovation/key-concepts/social-drivers-health-and-health-related-social-needs",
+      "secondaryEvidenceUrl": "https://www.medicaid.gov/medicaid/section-1115-demonstrations/health-related-social-needs",
+      "evidencePageAnchor": "/evidence.html#hrsn-sdoh",
+      "riskLevel": "low"
+    },
+    {
+      "id": "twilio-hipaa",
+      "label": "10",
+      "category": "Technical feasibility",
+      "claim": "Twilio states that HIPAA-eligible messaging workflows require eligible products, a Business Associate Addendum, and customer-side safeguards.",
+      "approvedSiteWording": "Twilio can support HIPAA-eligible messaging workflows when configured correctly.",
+      "evidenceUrl": "https://www.twilio.com/en-us/hipaa",
+      "secondaryEvidenceUrl": "https://help.twilio.com/articles/360059959413-Building-HIPAA-Compliant-Messaging-Applications-with-Twilio",
+      "evidencePageAnchor": "/evidence.html#twilio-hipaa",
+      "riskLevel": "high",
+      "avoidWording": ["Orivo is HIPAA compliant", "SMS is automatically HIPAA compliant"]
+    },
+    {
+      "id": "rxnorm-normalization",
+      "label": "11",
+      "category": "Medication normalization",
+      "claim": "RxNorm provides normalized names for clinical drugs and supports semantic interoperation between drug terminologies and pharmacy knowledge base systems.",
+      "approvedSiteWording": "RxNorm is a credible foundation for medication normalization.",
+      "evidenceUrl": "https://www.nlm.nih.gov/research/umls/rxnorm/index.html",
+      "secondaryEvidenceUrl": "https://www.nlm.nih.gov/research/umls/rxnorm/overview.html",
+      "evidencePageAnchor": "/evidence.html#rxnorm-normalization",
+      "riskLevel": "low"
+    }
+  ]
+}
