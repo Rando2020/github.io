@@ -1,448 +1,301 @@
 /*!
- * Orivo Motion Layer v1.0
- * Drop-in animation layer for GitHub Pages.
+ * Orivo Motion Layer v2.0 Premium
+ * Static GitHub Pages compatible. No dependencies. No network requests. No data collection.
  * Install: add <script src="/orivo-motion.js" defer></script> before </body>.
- * Does not collect data. Does not send network requests. Does not touch forms.
  */
 (() => {
   "use strict";
 
-  const MOTION_STYLE_ID = "orivo-motion-style-v1";
-  const REDUCED = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const STYLE_ID = "orivo-motion-premium-style-v2";
+  const reduced = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   const css = `
-:root {
-  --om-teal: var(--teal, #00C896);
-  --om-vera: var(--vera, #7C6FCD);
-  --om-amber: var(--amber, #F5A623);
-  --om-coral: var(--coral, #FF6B6B);
-  --om-w1: var(--w1, #F0F2FF);
-  --om-w2: var(--w2, rgba(240,242,255,.72));
-  --om-w3: var(--w3, rgba(240,242,255,.32));
-  --om-w4: var(--w4, rgba(240,242,255,.06));
-  --om-border: var(--border, rgba(240,242,255,.08));
-  --om-teal-b: var(--teal-b, rgba(0,200,150,.22));
-  --om-vera-b: var(--vera-b, rgba(124,111,205,.24));
+:root{
+  --om-teal:var(--teal,#00C896);
+  --om-teal-d:var(--teal-d,#009E75);
+  --om-vera:var(--vera,#7C6FCD);
+  --om-amber:var(--amber,#F5A623);
+  --om-coral:var(--coral,#FF6B6B);
+  --om-bg:var(--bg,#050A14);
+  --om-bg2:var(--bg2,#07101D);
+  --om-w1:var(--w1,#F0F2FF);
+  --om-w2:var(--w2,rgba(240,242,255,.76));
+  --om-w3:var(--w3,rgba(240,242,255,.48));
+  --om-w4:var(--w4,rgba(240,242,255,.07));
+  --om-border:var(--border,rgba(240,242,255,.10));
+  --om-teal-b:var(--teal-b,rgba(0,200,150,.24));
+  --om-vera-b:var(--vera-b,rgba(124,111,205,.24));
 }
 
-body.orivo-motion-ready {
+html{scroll-behavior:smooth}
+body.orivo-motion-premium{
   background:
-    radial-gradient(circle at 12% 10%, rgba(0,200,150,.045), transparent 28rem),
-    radial-gradient(circle at 88% 24%, rgba(124,111,205,.04), transparent 24rem),
-    var(--bg, #050A14);
+    radial-gradient(circle at 12% 8%,rgba(0,200,150,.055),transparent 30rem),
+    radial-gradient(circle at 88% 18%,rgba(124,111,205,.055),transparent 28rem),
+    var(--om-bg)!important;
 }
-
-body.orivo-motion-ready::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: .16;
+body.orivo-motion-premium::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+  opacity:.13;
   background-image:
-    linear-gradient(rgba(0,200,150,.35) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(124,111,205,.25) 1px, transparent 1px);
-  background-size: 84px 84px;
-  mask-image: radial-gradient(circle at 50% 10%, black 0%, transparent 68%);
+    linear-gradient(rgba(0,200,150,.28) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(124,111,205,.18) 1px,transparent 1px);
+  background-size:92px 92px;
+  mask-image:radial-gradient(circle at 50% 8%,#000 0%,transparent 72%);
 }
-body.orivo-motion-ready > * { position: relative; }
+body.orivo-motion-premium > *{position:relative}
 
-.orivo-hero-aura {
-  position: absolute;
-  width: min(46vw, 560px);
-  height: min(46vw, 560px);
-  min-width: 260px;
-  min-height: 260px;
-  right: clamp(-100px, 4vw, 40px);
-  top: clamp(40px, 12vh, 160px);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
+/* Hero aura */
+.orivo-hero-aura{
+  position:absolute;
+  width:min(48vw,620px);
+  height:min(48vw,620px);
+  min-width:280px;
+  min-height:280px;
+  right:clamp(-160px,2vw,30px);
+  top:clamp(24px,12vh,150px);
+  pointer-events:none;
+  border-radius:50%;
+  z-index:0;
   background:
-    radial-gradient(circle, rgba(0,200,150,.18) 0%, rgba(0,200,150,.055) 34%, transparent 68%),
-    radial-gradient(circle, rgba(124,111,205,.14) 0%, transparent 64%);
-  filter: blur(.4px);
-  animation: orivo-aura-pulse 6.2s ease-in-out infinite;
+    radial-gradient(circle,rgba(0,200,150,.20) 0%,rgba(0,200,150,.06) 34%,transparent 69%),
+    radial-gradient(circle,rgba(124,111,205,.15) 0%,transparent 65%);
+  filter:blur(.4px);
+  animation:om-aura 7s ease-in-out infinite;
 }
-.orivo-hero-aura::before,
-.orivo-hero-aura::after {
-  content: "";
-  position: absolute;
-  inset: 13%;
-  border-radius: 50%;
-  border: 1px solid rgba(0,200,150,.16);
-  animation: orivo-ring-spin 32s linear infinite;
+.orivo-hero-aura::before,.orivo-hero-aura::after{
+  content:"";
+  position:absolute;
+  inset:10%;
+  border-radius:50%;
+  border:1px solid rgba(0,200,150,.16);
+  border-top-color:rgba(240,242,255,.12);
+  animation:om-spin 42s linear infinite;
 }
-.orivo-hero-aura::after {
-  inset: 28%;
-  border-color: rgba(124,111,205,.18);
-  animation-duration: 44s;
-  animation-direction: reverse;
+.orivo-hero-aura::after{
+  inset:26%;
+  border-color:rgba(124,111,205,.18);
+  border-bottom-color:rgba(0,200,150,.18);
+  animation-duration:58s;
+  animation-direction:reverse;
 }
-@keyframes orivo-aura-pulse { 0%, 100% { transform: scale(.94); opacity: .46; } 50% { transform: scale(1.06); opacity: .78; } }
-@keyframes orivo-ring-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes om-aura{0%,100%{transform:scale(.94);opacity:.48}50%{transform:scale(1.065);opacity:.78}}
+@keyframes om-spin{to{transform:rotate(360deg)}}
 
-.orivo-enter {
-  opacity: 0;
-  transform: translateY(18px);
-  animation: orivo-rise-in .78s cubic-bezier(.2,.8,.2,1) forwards;
-}
-.orivo-enter[data-om-delay="1"] { animation-delay: .07s; }
-.orivo-enter[data-om-delay="2"] { animation-delay: .17s; }
-.orivo-enter[data-om-delay="3"] { animation-delay: .29s; }
-.orivo-enter[data-om-delay="4"] { animation-delay: .43s; }
-.orivo-enter[data-om-delay="5"] { animation-delay: .59s; }
-@keyframes orivo-rise-in { to { opacity: 1; transform: translateY(0); } }
+/* Entrance and scroll reveals */
+.om-enter{opacity:0;transform:translateY(18px);animation:om-rise .75s cubic-bezier(.2,.8,.2,1) forwards}
+.om-enter[data-om-delay="1"]{animation-delay:.06s}.om-enter[data-om-delay="2"]{animation-delay:.16s}.om-enter[data-om-delay="3"]{animation-delay:.28s}.om-enter[data-om-delay="4"]{animation-delay:.42s}.om-enter[data-om-delay="5"]{animation-delay:.58s}
+@keyframes om-rise{to{opacity:1;transform:translateY(0)}}
+.om-reveal{opacity:0;transform:translateY(24px);transition:opacity .72s ease,transform .72s cubic-bezier(.2,.8,.2,1),box-shadow .26s ease,border-color .26s ease,background .26s ease;will-change:opacity,transform}
+.om-reveal.om-in{opacity:1;transform:translateY(0)}
+.om-delay-1{transition-delay:.06s}.om-delay-2{transition-delay:.12s}.om-delay-3{transition-delay:.18s}.om-delay-4{transition-delay:.24s}
 
-.orivo-reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  transition:
-    opacity .68s ease,
-    transform .68s cubic-bezier(.2,.8,.2,1),
-    border-color .26s ease,
-    background .26s ease,
-    box-shadow .26s ease;
-  will-change: opacity, transform;
-}
-.orivo-reveal.orivo-in { opacity: 1; transform: translateY(0); }
-.orivo-delay-1 { transition-delay: .07s; }
-.orivo-delay-2 { transition-delay: .14s; }
-.orivo-delay-3 { transition-delay: .21s; }
-.orivo-delay-4 { transition-delay: .28s; }
+/* Premium cards */
+.om-card{transform-style:preserve-3d;transition:transform .26s ease,box-shadow .26s ease,border-color .26s ease,background .26s ease!important;will-change:transform}
+.om-card:hover{transform:translateY(-5px);box-shadow:0 22px 58px rgba(0,0,0,.34),0 0 34px rgba(0,200,150,.07)!important}
+.om-card:hover::before{opacity:1}
+.om-card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .28s ease;background:linear-gradient(135deg,rgba(0,200,150,.14),transparent 32%,rgba(124,111,205,.12));mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;padding:1px}
 
-.orivo-motion-card {
-  transform-style: preserve-3d;
-  transition:
-    transform .24s ease,
-    border-color .24s ease,
-    background .24s ease,
-    box-shadow .24s ease,
-    opacity .24s ease;
+/* Magnetic CTAs */
+.btn,.cta-btn,.run-btn,.submit-btn,.ctrl-run,.ctrl-btn,.nbtn,.demo-link,.login-link,.cal-opt,.resource-card,a.card{position:relative;overflow:hidden}
+.btn::after,.cta-btn::after,.run-btn::after,.submit-btn::after,.ctrl-run::after,.demo-link::after,.cal-opt::after{
+  content:"";position:absolute;inset:0;transform:translateX(-125%);background:linear-gradient(90deg,transparent,rgba(255,255,255,.27),transparent);transition:transform .72s ease;pointer-events:none
 }
-.orivo-motion-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 18px 48px rgba(0,0,0,.34),
-    0 0 28px rgba(0,200,150,.055);
-}
-.orivo-motion-card.hi:hover,
-.orivo-motion-card.priority:hover,
-.orivo-motion-card.active:hover,
-.orivo-motion-card.on:hover {
-  box-shadow:
-    0 22px 58px rgba(0,0,0,.38),
-    0 0 38px rgba(0,200,150,.10);
-}
+.btn:hover::after,.cta-btn:hover::after,.run-btn:hover::after,.submit-btn:hover::after,.ctrl-run:hover::after,.demo-link:hover::after,.cal-opt:hover::after{transform:translateX(125%)}
 
-.btn, .cta-btn, .run-btn, .submit-btn, .ctrl-run, .ctrl-btn, .nbtn, .cb, .ac-action, .pi-act, .sc-btn, .tab, .nl {
-  position: relative;
-  overflow: hidden;
-}
-.btn::after, .cta-btn::after, .run-btn::after, .submit-btn::after, .ctrl-run::after, .cb-run-aevo::after, .cb-run-vera::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-120%);
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent);
-  transition: transform .62s ease;
-  pointer-events: none;
-}
-.btn:hover::after, .cta-btn:hover::after, .run-btn:hover::after, .submit-btn:hover::after, .ctrl-run:hover::after, .cb-run-aevo:hover::after, .cb-run-vera:hover::after {
-  transform: translateX(120%);
-}
+/* Aevo to Vera flow */
+.om-flow-line{height:2px;width:100%;min-width:180px;background:rgba(240,242,255,.075);border-radius:999px;overflow:hidden;position:relative;margin:22px 0}
+.om-flow-line::after{content:"";position:absolute;inset:0;width:38%;background:linear-gradient(90deg,transparent,var(--om-teal),var(--om-vera),transparent);animation:om-flow 2.85s ease-in-out infinite}
+@keyframes om-flow{from{transform:translateX(-115%)}to{transform:translateX(285%)}}
 
-.orivo-flow-line {
-  height: 2px;
-  width: 100%;
-  min-width: 180px;
-  background: rgba(240,242,255,.075);
-  border-radius: 999px;
-  overflow: hidden;
-  position: relative;
-  margin: 20px 0;
-}
-.orivo-flow-line::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 38%;
-  background: linear-gradient(90deg, transparent, var(--om-teal), var(--om-vera), transparent);
-  animation: orivo-flow-across 2.7s ease-in-out infinite;
-}
-@keyframes orivo-flow-across { from { transform: translateX(-115%); } to { transform: translateX(285%); } }
+/* Mini product pipeline */
+.om-mini-pipeline{display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr 38px 1fr;align-items:center;gap:8px;margin-top:28px;margin-bottom:6px}
+.om-mini-step{border:1px solid var(--om-border);background:rgba(240,242,255,.055);border-radius:14px;padding:14px 16px;font-size:12px;color:var(--om-w3);line-height:1.35;transition:all .42s ease;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+.om-mini-step.om-active{color:var(--om-teal);border-color:var(--om-teal-b);background:rgba(0,200,150,.085);box-shadow:0 0 28px rgba(0,200,150,.085)}
+.om-mini-link{height:2px;background:linear-gradient(90deg,rgba(0,200,150,.08),rgba(124,111,205,.28));position:relative;overflow:hidden;border-radius:999px}
+.om-mini-link::after{content:"";position:absolute;inset:0;width:48%;background:linear-gradient(90deg,transparent,var(--om-teal),transparent);animation:om-flow 1.9s ease-in-out infinite}
 
-.orivo-mini-pipeline {
-  display: grid;
-  grid-template-columns: 1fr 38px 1fr 38px 1fr 38px 1fr;
-  align-items: center;
-  gap: 8px;
-  margin-top: 28px;
-}
-.orivo-mini-step {
-  border: 1px solid var(--om-border);
-  background: var(--om-w4);
-  border-radius: 13px;
-  padding: 14px 16px;
-  font-size: 12px;
-  color: var(--om-w3);
-  line-height: 1.35;
-  transition: all .42s ease;
-}
-.orivo-mini-step.orivo-active {
-  color: var(--om-teal);
-  border-color: var(--om-teal-b);
-  background: rgba(0,200,150,.08);
-  box-shadow: 0 0 26px rgba(0,200,150,.08);
-}
-.orivo-mini-link {
-  height: 2px;
-  background: linear-gradient(90deg, rgba(0,200,150,.08), rgba(124,111,205,.28));
-  position: relative;
-  overflow: hidden;
-  border-radius: 999px;
-}
-.orivo-mini-link::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 48%;
-  background: linear-gradient(90deg, transparent, var(--om-teal), transparent);
-  animation: orivo-flow-across 1.85s ease-in-out infinite;
-}
-.orivo-type-cursor::after { content: "▋"; color: var(--om-teal); margin-left: 2px; animation: orivo-blink 1s steps(2, start) infinite; }
-@keyframes orivo-blink { 50% { opacity: 0; } }
+/* Text highlight gradient */
+.om-gradient-text{background:linear-gradient(90deg,var(--om-teal),#74F4D0,var(--om-vera));-webkit-background-clip:text;background-clip:text;color:transparent!important}
 
-.pfill, .cb-fill, .rgen-fill { position: relative; overflow: hidden; }
-.pfill::after, .cb-fill::after, .rgen-fill::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  width: 34%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.45), transparent);
-  animation: orivo-progress-shimmer 2.2s ease-in-out infinite;
-}
-@keyframes orivo-progress-shimmer { from { transform: translateX(-120%); } to { transform: translateX(330%); } }
+/* Progress shimmer */
+.pfill,.cb-fill,.rgen-fill{position:relative;overflow:hidden}
+.pfill::after,.cb-fill::after,.rgen-fill::after{content:"";position:absolute;inset:0;width:34%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:om-progress 2.2s ease-in-out infinite}
+@keyframes om-progress{from{transform:translateX(-120%)}to{transform:translateX(330%)}}
 
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .001ms !important;
-    scroll-behavior: auto !important;
-  }
-  .orivo-reveal, .orivo-enter { opacity: 1 !important; transform: none !important; }
-}
-@media (max-width: 820px) {
-  .orivo-hero-aura { opacity: .38; right: -160px; top: 40px; }
-  .orivo-mini-pipeline { grid-template-columns: 1fr; }
-  .orivo-mini-link { width: 2px; height: 22px; justify-self: center; }
-  .orivo-mini-link::after { width: 100%; height: 48%; animation: orivo-flow-down 1.55s ease-in-out infinite; }
-  @keyframes orivo-flow-down { from { transform: translateY(-120%); } to { transform: translateY(330%); } }
-}`;
+/* Floating safety chip on demo pages */
+.om-prototype-banner{position:fixed;left:14px;bottom:14px;z-index:9999;max-width:min(460px,calc(100vw - 28px));padding:10px 14px;border-radius:11px;border:1px solid rgba(245,166,35,.28);background:rgba(5,10,20,.88);color:rgba(240,242,255,.76);font:12px/1.4 var(--sans,system-ui,sans-serif);backdrop-filter:blur(12px);box-shadow:0 14px 42px rgba(0,0,0,.34)}
 
-  function injectStyles() {
-    if (document.getElementById(MOTION_STYLE_ID)) return;
-    const style = document.createElement("style");
-    style.id = MOTION_STYLE_ID;
-    style.textContent = css;
+/* Pointer spotlight */
+.om-spotlight{position:fixed;inset:0;pointer-events:none;z-index:1;background:radial-gradient(500px circle at var(--om-x,50%) var(--om-y,20%),rgba(0,200,150,.045),transparent 42%);opacity:.75;transition:opacity .2s ease}
+
+@media(max-width:820px){.orivo-hero-aura{opacity:.36;right:-190px;top:40px}.om-mini-pipeline{grid-template-columns:1fr}.om-mini-link{width:2px;height:22px;justify-self:center}.om-mini-link::after{width:100%;height:48%;animation:om-flow-down 1.55s ease-in-out infinite}@keyframes om-flow-down{from{transform:translateY(-120%)}to{transform:translateY(330%)}}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}.om-reveal,.om-enter{opacity:1!important;transform:none!important}.om-spotlight,.orivo-hero-aura{display:none!important}}
+`;
+
+  function injectStyles(){
+    if(document.getElementById(STYLE_ID)) return;
+    const style=document.createElement("style");
+    style.id=STYLE_ID;
+    style.textContent=css;
     document.head.appendChild(style);
   }
 
-  function safeSelect(selector) {
-    try { return Array.from(document.querySelectorAll(selector)); }
-    catch { return []; }
-  }
+  function qsa(sel,root=document){try{return Array.from(root.querySelectorAll(sel));}catch{return[];}}
+  function first(sel){try{return document.querySelector(sel);}catch{return null;}}
 
-  function addHeroAura() {
-    if (REDUCED) return;
-    const hero = document.querySelector(".cover, .hero, .slide.s1, #s1, header");
-    if (!hero || hero.querySelector(".orivo-hero-aura")) return;
-    const computed = window.getComputedStyle(hero);
-    if (computed.position === "static") hero.style.position = "relative";
-    if (computed.overflow === "visible") hero.style.overflow = "hidden";
-    const aura = document.createElement("div");
-    aura.className = "orivo-hero-aura";
+  function addHeroAura(){
+    if(reduced) return;
+    const hero=first(".hero,.cover,.slide.s1,#s1,main section:first-of-type,header");
+    if(!hero || hero.querySelector(".orivo-hero-aura")) return;
+    const cs=getComputedStyle(hero);
+    if(cs.position==="static") hero.style.position="relative";
+    if(cs.overflow==="visible") hero.style.overflow="hidden";
+    const aura=document.createElement("div");
+    aura.className="orivo-hero-aura";
     hero.prepend(aura);
   }
 
-  function applyHeroEntrance() {
-    const hero = document.querySelector(".cover, .hero, .slide.s1, #s1, header");
-    if (!hero || REDUCED) return;
-    const targets = [".cv-eye", ".hero-eye", ".ey", ".cv-h", ".hero-h", ".h1", ".cv-thesis", ".lead", ".body", ".cv-sub", ".hero-sub", ".pillrow", ".cv-metrics", ".stats", ".btn", ".btn-o", ".cta-btn"];
-    let count = 1;
-    targets.forEach(sel => {
-      hero.querySelectorAll(sel).forEach(el => {
-        if (el.classList.contains("orivo-enter")) return;
-        el.classList.add("orivo-enter");
-        el.dataset.omDelay = String(Math.min(count, 5));
-        count += 1;
-      });
+  function heroEntrance(){
+    if(reduced) return;
+    const hero=first(".hero,.cover,.slide.s1,#s1,main section:first-of-type,header");
+    if(!hero) return;
+    const selectors=[".ey",".cv-eye",".hero-eye",".h1",".cv-h",".hero-h","h1",".lead",".body",".cv-thesis",".cv-sub",".hero-actions",".pillrow",".hero-pills",".stats",".cv-metrics",".phone-wrap",".phone",".btn",".btn-o"];
+    let i=1;
+    selectors.forEach(sel=>qsa(sel,hero).slice(0,4).forEach(el=>{
+      if(el.classList.contains("om-enter")) return;
+      el.classList.add("om-enter");
+      el.dataset.omDelay=String(Math.min(i,5));
+      i++;
+    }));
+  }
+
+  function revealSetup(){
+    const selectors=["section",".block",".section",".card",".stat",".step",".resource-card",".prod-icon",".prod-name",".prod-desc",".pc",".rc",".mk",".fg-card",".tool-card",".stage",".alert-card",".vera-panel",".phone-col",".comp-card",".founder-card",".market-grid",".reasons",".metric",".mc",".rh",".bs"];
+    let i=0;
+    qsa(selectors.join(",")).forEach(el=>{
+      if(!el.classList.contains("om-reveal")) el.classList.add("om-reveal",`om-delay-${(i%4)+1}`);
+      const tag=el.tagName.toLowerCase();
+      if(!["section","body","main"].includes(tag)) el.classList.add("om-card");
+      i++;
     });
   }
 
-  function addRevealClasses() {
-    const selectors = [".section", ".rc", ".mk", ".fg", ".fg-card", ".uof", ".risk", ".sc", ".step", ".pc", ".rh", ".mc", ".layer-block", ".tool-card", ".co-card", ".stage", ".alert-card", ".vera-panel", ".phv-section", ".patient-msg-wrap", ".phone-col", ".bs", ".comp-card", ".founder-card", ".market-grid", ".reasons"];
-    let index = 0;
-    safeSelect(selectors.join(",")).forEach(el => {
-      if (!el.classList.contains("orivo-reveal")) {
-        el.classList.add("orivo-reveal", `orivo-delay-${(index % 4) + 1}`);
-        index += 1;
-      }
-      el.classList.add("orivo-motion-card");
-    });
-  }
-
-  function observeReveals() {
-    const targets = safeSelect(".orivo-reveal");
-    if (!targets.length) return;
-    if (REDUCED || !("IntersectionObserver" in window)) {
-      targets.forEach(el => el.classList.add("orivo-in"));
+  function observeReveals(){
+    const targets=qsa(".om-reveal");
+    if(!targets.length) return;
+    if(reduced || !("IntersectionObserver" in window)){
+      targets.forEach(el=>el.classList.add("om-in"));
       return;
     }
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("orivo-in");
-          observer.unobserve(entry.target);
-        }
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){entry.target.classList.add("om-in");observer.unobserve(entry.target);}
       });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    targets.forEach(el => observer.observe(el));
+    },{threshold:.11,rootMargin:"0px 0px -8% 0px"});
+    targets.forEach(el=>observer.observe(el));
   }
 
-  function addFlowLines() {
-    if (REDUCED) return;
-    const twoCol = document.querySelector(".ai-pillars, .phone-compare, .compare");
-    if (twoCol && !twoCol.nextElementSibling?.classList?.contains("orivo-flow-line")) {
-      const flow = document.createElement("div");
-      flow.className = "orivo-flow-line";
-      twoCol.insertAdjacentElement("afterend", flow);
+  function addFlowLines(){
+    if(reduced) return;
+    qsa(".ai-pillars,.phone-compare,.compare,.split,.two").slice(0,2).forEach(el=>{
+      if(el.nextElementSibling && el.nextElementSibling.classList && el.nextElementSibling.classList.contains("om-flow-line")) return;
+      const flow=document.createElement("div");
+      flow.className="om-flow-line";
+      el.insertAdjacentElement("afterend",flow);
+    });
+  }
+
+  function addMiniPipeline(){
+    if(first(".om-mini-pipeline")) return;
+    const path=location.pathname;
+    const isHome=path==="/" || path.endsWith("index.html") || path==="";
+    if(!isHome) return;
+    const anchor=first(".hero-actions,.steps,.hero .lead,.cover .cv-sub,#s1 .body");
+    if(!anchor) return;
+    const pipeline=document.createElement("div");
+    pipeline.className="om-mini-pipeline";
+    pipeline.setAttribute("aria-label","Orivo workflow animation");
+    pipeline.innerHTML=`
+      <div class="om-mini-step om-active">Patient concern received</div>
+      <div class="om-mini-link"></div>
+      <div class="om-mini-step">Aevo translates context</div>
+      <div class="om-mini-link"></div>
+      <div class="om-mini-step">Vera validates boundaries</div>
+      <div class="om-mini-link"></div>
+      <div class="om-mini-step">Pharmacist brief ready</div>`;
+    anchor.insertAdjacentElement("afterend",pipeline);
+    if(!reduced){
+      const steps=qsa(".om-mini-step",pipeline);let idx=0;
+      setInterval(()=>{steps.forEach(s=>s.classList.remove("om-active"));steps[idx].classList.add("om-active");idx=(idx+1)%steps.length;},1450);
     }
   }
 
-  function addMiniPipelineToHomepage() {
-    if (document.querySelector(".orivo-mini-pipeline")) return;
-    const likelyHome = location.pathname === "/" || location.pathname.endsWith("/index.html") || document.title.toLowerCase().includes("orivo health");
-    if (!likelyHome) return;
-    const anchor = document.querySelector(".steps, .hero .body, .cover .cv-sub, #s1 .body");
-    if (!anchor) return;
-    const pipeline = document.createElement("div");
-    pipeline.className = "orivo-mini-pipeline";
-    pipeline.setAttribute("aria-label", "Orivo workflow animation");
-    pipeline.innerHTML = `
-      <div class="orivo-mini-step orivo-active">Patient concern received</div>
-      <div class="orivo-mini-link"></div>
-      <div class="orivo-mini-step">Aevo translates context</div>
-      <div class="orivo-mini-link"></div>
-      <div class="orivo-mini-step">Vera validates boundaries</div>
-      <div class="orivo-mini-link"></div>
-      <div class="orivo-mini-step">Pharmacist brief ready</div>`;
-    if (anchor.classList.contains("steps")) anchor.insertAdjacentElement("beforebegin", pipeline);
-    else anchor.insertAdjacentElement("afterend", pipeline);
-    if (!REDUCED) {
-      const steps = Array.from(pipeline.querySelectorAll(".orivo-mini-step"));
-      let idx = 0;
-      setInterval(() => {
-        steps.forEach(step => step.classList.remove("orivo-active"));
-        steps[idx].classList.add("orivo-active");
-        idx = (idx + 1) % steps.length;
-      }, 1400);
-    }
-  }
-
-  function animateCounters() {
-    const counters = safeSelect("[data-target].count, .count[data-target]");
-    if (!counters.length || REDUCED) return;
-    const runCounter = (el) => {
-      const rawTarget = String(el.dataset.target || "").replace(/,/g, "");
-      const target = parseFloat(rawTarget);
-      if (Number.isNaN(target)) return;
-      const prefix = el.dataset.prefix || "";
-      const suffix = el.dataset.suffix || "";
-      const decimals = Number.isInteger(target) ? 0 : 1;
-      const duration = 1050;
-      const start = performance.now();
-      const tick = now => {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const value = target * eased;
-        el.textContent = `${prefix}${value.toFixed(decimals)}${suffix}`;
-        if (progress < 1) requestAnimationFrame(tick);
-        else el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
-      };
+  function animateCounters(){
+    const metricSel=".stat-n,.sn,.mk-n,.fg-n,.mn,.bs-n,.co-n,.cvm-n";
+    const counters=qsa(metricSel).filter(el=>/\d/.test(el.textContent.trim()));
+    counters.forEach(el=>{
+      if(el.dataset.omTarget) return;
+      const txt=el.textContent.trim();
+      const match=txt.match(/^(\$)?\s*([0-9]+(?:\.[0-9]+)?)\s*([BKMX×%])?$/i);
+      if(!match) return;
+      el.dataset.omTarget=match[2];
+      el.dataset.omPrefix=match[1]||"";
+      el.dataset.omSuffix=match[3]||"";
+      el.textContent=`${el.dataset.omPrefix}0${el.dataset.omSuffix}`;
+    });
+    const run=(el)=>{
+      const target=parseFloat(el.dataset.omTarget);if(Number.isNaN(target))return;
+      const prefix=el.dataset.omPrefix||"";const suffix=el.dataset.omSuffix||"";const decimals=Number.isInteger(target)?0:1;const start=performance.now();const dur=1150;
+      const tick=(now)=>{const p=Math.min((now-start)/dur,1);const eased=1-Math.pow(1-p,3);el.textContent=`${prefix}${(target*eased).toFixed(decimals)}${suffix}`;if(p<1)requestAnimationFrame(tick);else el.textContent=`${prefix}${target.toFixed(decimals)}${suffix}`;};
       requestAnimationFrame(tick);
     };
-    if (!("IntersectionObserver" in window)) {
-      counters.forEach(runCounter);
-      return;
-    }
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.dataset.omDone) {
-          entry.target.dataset.omDone = "true";
-          runCounter(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: .45 });
-    counters.forEach(counter => observer.observe(counter));
+    const targets=qsa("[data-om-target]");
+    if(reduced || !("IntersectionObserver" in window)){targets.forEach(run);return;}
+    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.omDone){e.target.dataset.omDone="1";run(e.target);io.unobserve(e.target);}}),{threshold:.45});
+    targets.forEach(el=>io.observe(el));
   }
 
-  function enrichExistingMetrics() {
-    const metricSelectors = ".cvm-n, .sn, .mk-n, .fg-n, .mn, .bs-n, .co-n";
-    safeSelect(metricSelectors).forEach(el => {
-      if (el.dataset.target || el.classList.contains("count")) return;
-      const txt = el.textContent.trim();
-      const match = txt.match(/^(\$)?\s*([0-9]+(?:\.[0-9]+)?)\s*([BKMX×%]|M|K|B)?$/i);
-      if (!match) return;
-      el.classList.add("count");
-      el.dataset.target = match[2];
-      if (match[1]) el.dataset.prefix = match[1];
-      if (match[3]) el.dataset.suffix = match[3];
-      el.textContent = match[1] ? `${match[1]}0${match[3] || ""}` : `0${match[3] || ""}`;
-    });
+  function spotlight(){
+    if(reduced || first(".om-spotlight")) return;
+    const s=document.createElement("div");s.className="om-spotlight";document.body.appendChild(s);
+    let raf=null;
+    document.addEventListener("pointermove",e=>{
+      if(raf) return;
+      raf=requestAnimationFrame(()=>{document.documentElement.style.setProperty("--om-x",`${e.clientX}px`);document.documentElement.style.setProperty("--om-y",`${e.clientY}px`);raf=null;});
+    },{passive:true});
   }
 
-  function addClinicalSafetyToast() {
-    const isDemo = /demo|pipeline|provider|walkthrough|stack/i.test(location.pathname + " " + document.title);
-    if (!isDemo) return;
-    if (document.querySelector(".orivo-prototype-banner")) return;
-    if (document.body.textContent.toLowerCase().includes("prototype") && document.body.textContent.toLowerCase().includes("not medical advice")) return;
-    const banner = document.createElement("div");
-    banner.className = "orivo-prototype-banner";
-    banner.textContent = "Prototype preview. Do not enter PHI. Not medical advice or a live clinical system.";
-    banner.style.cssText = `
-      position: fixed;
-      left: 14px;
-      bottom: 14px;
-      z-index: 9999;
-      max-width: min(440px, calc(100vw - 28px));
-      padding: 10px 14px;
-      border-radius: 10px;
-      border: 1px solid rgba(245,166,35,.28);
-      background: rgba(5,10,20,.88);
-      color: rgba(240,242,255,.76);
-      font: 12px/1.4 var(--sans, system-ui, sans-serif);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 14px 42px rgba(0,0,0,.34);`;
-    document.body.appendChild(banner);
+  function gradientKeyWords(){
+    qsa(".h1 span,.hero h1 span,.cv-h span,h1 span").forEach(el=>el.classList.add("om-gradient-text"));
   }
 
-  function init() {
+  function safetyBanner(){
+    const text=document.body.textContent.toLowerCase();
+    const isDemo=/demo|pipeline|provider|walkthrough|stack/i.test(location.pathname+" "+document.title);
+    if(!isDemo || first(".om-prototype-banner")) return;
+    if(text.includes("not medical advice") || text.includes("do not enter phi")) return;
+    const b=document.createElement("div");b.className="om-prototype-banner";b.textContent="Prototype preview. Do not enter PHI. Not medical advice or a live clinical system.";document.body.appendChild(b);
+  }
+
+  function init(){
     injectStyles();
-    document.body.classList.add("orivo-motion-ready");
+    document.body.classList.add("orivo-motion-premium");
     addHeroAura();
-    applyHeroEntrance();
-    addRevealClasses();
+    heroEntrance();
+    revealSetup();
     observeReveals();
     addFlowLines();
-    addMiniPipelineToHomepage();
-    enrichExistingMetrics();
+    addMiniPipeline();
     animateCounters();
-    addClinicalSafetyToast();
+    spotlight();
+    gradientKeyWords();
+    safetyBanner();
   }
 
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
-  else init();
+  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init,{once:true}); else init();
 })();
