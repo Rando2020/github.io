@@ -1,19 +1,778 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Orivo Health | Patient Communication AI</title>
-<meta name="description" content="Orivo Health is building SMS-first AI support to help patients understand medications, surface access barriers, and communicate with pharmacists and care teams.">
-<meta property="og:title" content="Orivo Health | Patient Communication AI"><meta property="og:description" content="SMS-first patient communication AI for medication understanding, access barriers, and safer care team routing."><meta property="og:type" content="website"><meta property="og:image" content="/assets/og-image.svg">
-<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css"><link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orivo Health | AI that speaks patient and clinical</title>
+<meta name="description" content="Orivo Health connects patients to the care they need — in any language, on any phone, through a text message. No app. No download. No new behavior required.">
+<meta property="og:title" content="Orivo Health | Patient Communication AI">
+<meta property="og:description" content="AI that speaks patient and clinical. SMS-native, any phone, 40+ languages. No app required.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/og-image.svg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<!-- Cal.com embed (free scheduling) -->
+<script type="text/javascript">
+(function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, [L, namespace, ...Array.prototype.slice.call(ar, 1)]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", {origin:"https://cal.com"});
+Cal("ui", {"styles":{"branding":{"brandColor":"#00C896"}},"hideEventTypeDetails":false,"layout":"month_view"});
+</script>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}:root{--teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.24);--w1:#F0F2FF;--w2:rgba(240,242,255,.74);--w3:rgba(240,242,255,.42);--w4:rgba(240,242,255,.06);--border:rgba(240,242,255,.1);--bg:#050A14;--bg2:#07101A;--serif:'DM Serif Display',Georgia,serif;--sans:'DM Sans',Arial,sans-serif}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--w2);font-family:var(--sans);line-height:1.65;overflow-x:hidden}a{color:inherit}nav{position:sticky;top:0;z-index:10;background:rgba(5,10,20,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);height:64px;padding:0 40px;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:baseline;gap:10px;text-decoration:none}.brand-main{font-family:var(--serif);font-size:24px;color:var(--teal);letter-spacing:-.4px}.brand-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--w3)}.navlinks{display:flex;gap:8px;align-items:center}.navlinks a{font-size:12px;color:var(--w3);text-decoration:none;padding:7px 11px;border-radius:8px;border:1px solid transparent}.navlinks a:hover{color:var(--teal);background:var(--teal-lo);border-color:var(--teal-b)}.hero{min-height:calc(100vh - 64px);display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;max-width:1120px;margin:0 auto;padding:76px 40px;background:radial-gradient(ellipse at 70% 30%,rgba(0,200,150,.1),transparent 54%)}.eyebrow{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}.h1{font-family:var(--serif);font-size:64px;line-height:1.02;color:var(--w1);letter-spacing:-1px;margin-bottom:18px}.sub{font-size:18px;color:var(--w2);max-width:600px;margin-bottom:28px}.cta-row{display:flex;gap:12px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;background:var(--teal);color:#04110D;border-radius:11px;padding:13px 22px;font-weight:800;font-size:14px}.btn:hover{background:var(--teal-d)}.btn.secondary{background:transparent;color:var(--teal);border:1px solid var(--teal-b)}.btn.secondary:hover{background:var(--teal-lo)}.notice{margin-top:20px;font-size:12px;color:var(--w3);max-width:560px}.hero-card{background:linear-gradient(160deg,rgba(240,242,255,.08),rgba(240,242,255,.03));border:1px solid var(--border);border-radius:24px;padding:26px;box-shadow:0 24px 80px rgba(0,0,0,.35)}.phone{background:#0E1520;border:1px solid rgba(240,242,255,.12);border-radius:24px;padding:12px;margin-bottom:18px}.msg{padding:11px 13px;border-radius:14px;font-size:13px;margin:8px 0;max-width:88%}.patient{background:#1D2B3E;margin-left:auto}.aevo{background:rgba(0,200,150,.1);border:1px solid var(--teal-b)}.brief{border:1px solid var(--teal-b);background:rgba(0,200,150,.05);border-radius:14px;padding:14px}.brief h3{font-family:var(--serif);font-size:22px;color:var(--w1);margin-bottom:6px}.brief ul{padding-left:18px;font-size:13px;color:var(--w2)}section{max-width:1120px;margin:0 auto;padding:72px 40px;border-top:1px solid var(--border)}.h2{font-family:var(--serif);font-size:42px;color:var(--w1);line-height:1.08;margin-bottom:12px}.lead{font-size:16px;color:var(--w3);max-width:720px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}.card{background:var(--w4);border:1px solid var(--border);border-radius:18px;padding:22px}.card h3{font-size:16px;color:var(--w1);margin-bottom:8px}.card p{font-size:13px;color:var(--w3)}.tag{display:inline-flex;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--teal);border:1px solid var(--teal-b);background:var(--teal-lo);padding:4px 10px;border-radius:999px;margin-bottom:12px}.page-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}.page-card{display:block;text-decoration:none;background:var(--w4);border:1px solid var(--border);border-radius:18px;padding:22px;transition:.2s}.page-card:hover{transform:translateY(-2px);border-color:var(--teal-b);background:rgba(0,200,150,.04)}.page-card h3{font-size:18px;color:var(--w1);margin-bottom:6px}.page-card p{font-size:13px;color:var(--w3)}.risk{border-color:rgba(245,166,35,.28);background:rgba(245,166,35,.05)}footer{border-top:1px solid var(--border);background:var(--bg2);padding:34px 40px;color:var(--w3);font-size:12px}.foot-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot-links{display:flex;gap:14px;flex-wrap:wrap}.foot-links a{color:var(--w3);text-decoration:none}.foot-links a:hover{color:var(--teal)}@media(max-width:840px){nav{padding:0 18px}.navlinks{display:none}.hero{grid-template-columns:1fr;padding:54px 20px}.h1{font-size:42px}.grid,.page-grid{grid-template-columns:1fr}section{padding:54px 20px}.hero-card{padding:18px}}
-</style></head><body>
-<nav><a class="brand" href="/"><span class="brand-main">orivo</span><span class="brand-sub">health</span></a><div class="navlinks"><a href="#product">Product</a><a href="#demos">Demos</a><a href="#safety">Safety</a><a href="/why-invest.html">Investors</a><a href="/pitch-deck.html">Pitch Deck</a></div></nav>
-<main>
-<div class="hero"><div><div class="eyebrow">SMS-first patient communication AI</div><h1 class="h1">Medication guidance, translated for real life.</h1><p class="sub">Orivo Health is building tools that help patients ask better questions, understand medication routines, surface access barriers, and route concerns to pharmacists or care teams.</p><div class="cta-row"><a class="btn" href="/demo.html?v=2">View patient + provider demo</a><a class="btn secondary" href="/pitch-deck.html">View pitch deck</a></div><p class="notice">Prototype site only. Orivo does not diagnose, prescribe, replace clinical judgment, or collect protected health information through this static GitHub Pages site.</p></div><div class="hero-card" aria-label="Orivo product preview"><div class="phone"><div class="msg patient">I am scared to take this new medicine because my chest feels tight.</div><div class="msg aevo">I am sorry you are feeling that. Chest tightness can be urgent. If severe or worsening, call emergency services now. I can also help notify your care team.</div><div class="msg patient">Please tell my pharmacist.</div></div><div class="brief"><h3>Care team brief</h3><ul><li>Patient-reported symptom captured in original language</li><li>Urgency routed for human review</li><li>No diagnosis generated by AI</li><li>Secure workflow required for PHI</li></ul></div></div></div>
-<section id="product"><div class="tag">What Orivo is building</div><h2 class="h2">A communication layer between patient language and clinical action.</h2><p class="lead">The first version should stay narrow: SMS intake, medication literacy support, barrier detection, care-team summarization, and safe escalation. That is more credible than claiming to solve every healthcare outcome on day one.</p><div class="grid"><div class="card"><h3>Patient language intake</h3><p>Patients can describe symptoms, confusion, affordability problems, transportation barriers, or adherence issues in plain language.</p></div><div class="card"><h3>Clinical summarization</h3><p>The system converts messy patient language into concise, reviewable context for pharmacists, physicians, and care coordinators.</p></div><div class="card"><h3>Human-in-the-loop routing</h3><p>Urgent, uncertain, medication-related, or low-confidence situations are routed to the right human instead of being answered as if the AI knows.</p></div></div></section>
-<section id="demos"><div class="tag">Prototype pages</div><h2 class="h2">Use these pages for demos, investors, and technical walkthroughs.</h2><p class="lead">These are static demos. They should not collect real patient data. Use them to explain the product vision and workflow.</p><div class="page-grid"><a class="page-card" href="/demo.html?v=2"><h3>Patient + Provider Experience</h3><p>Two-sided view of the patient SMS journey and provider-side action queue.</p></a><a class="page-card" href="/dual-pipeline.html"><h3>Aevo + Vera Dual Pipeline</h3><p>Shows patient AI routing and data AI validation logic in one interactive walkthrough.</p></a><a class="page-card" href="/etl-pipeline.html"><h3>ETL Pipeline</h3><p>Patient message extraction, benefit context, generation, validation, and delivery.</p></a><a class="page-card" href="/provider-login.html"><h3>Provider Login Mockup</h3><p>Provider, pharmacist, and administrator access concept. Not a live login.</p></a><a class="page-card" href="/engineering-stack.html"><h3>Engineering Stack</h3><p>Layered technical stack, costs, infrastructure choices, and build assumptions.</p></a><a class="page-card" href="/why-invest.html"><h3>Why Invest</h3><p>Investor thesis, market logic, moat hypothesis, and rollout plan.</p></a><a class="page-card" href="/pitch-deck.html"><h3>Investor Pitch Deck</h3><p>Main Orivo deck for demo conversations.</p></a><a class="page-card" href="/aevo-pitch-deck.html"><h3>Aevo Pitch Deck</h3><p>Aevo-focused version of the deck.</p></a></div></section>
-<section id="safety"><div class="tag">Legal and credibility cleanup</div><h2 class="h2">What this site should not claim yet.</h2><p class="lead">Until pilots, contracts, BAAs, security reviews, and clinical oversight are real, keep public claims careful. Strong positioning is good. Unsupported medical, performance, security, or compliance claims are not.</p><div class="grid"><div class="card risk"><h3>Avoid hard outcomes</h3><p>Do not claim patient satisfaction, adherence lift, reduced ADEs, or faster care navigation unless backed by actual data.</p></div><div class="card risk"><h3>Avoid compliance overclaiming</h3><p>Say HIPAA-aligned design target or HIPAA-conscious architecture until legal review, BAAs, operational controls, and vendor agreements are in place.</p></div><div class="card risk"><h3>Avoid medical advice</h3><p>Use clear language that Orivo supports education and routing. It does not diagnose, prescribe, or tell patients to stop medications.</p></div></div></section>
-</main><footer><div class="foot-inner"><div>© 2026 Orivo Health Inc. Prototype website.</div><div class="foot-links"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/hipaa-notice.html">HIPAA Notice</a><a href="/accessibility.html">Accessibility</a></div></div></footer></body></html>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.22);
+  --amber:#F5A623;--amber-lo:rgba(245,166,35,.08);--amber-b:rgba(245,166,35,.22);
+  --coral:#FF6B6B;--coral-lo:rgba(255,107,107,.06);--coral-b:rgba(255,107,107,.18);
+  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.08);--blue-b:rgba(74,158,255,.2);
+  --purple:#A78BFA;--purple-lo:rgba(167,139,250,.08);--purple-b:rgba(167,139,250,.2);
+  --w1:#F0F2FF;--w2:rgba(240,242,255,.72);--w3:rgba(240,242,255,.36);--w4:rgba(240,242,255,.06);
+  --border:rgba(240,242,255,.09);--border2:rgba(240,242,255,.16);
+  --bg:#050A14;--bg2:#07101A;--bg3:#060D1A;
+  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--w2);font-family:var(--sans);font-size:15px;line-height:1.65;overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(5,10,20,.93);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+  height:62px;padding:0 44px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.brand{display:flex;align-items:baseline;gap:9px;text-decoration:none}
+.brand-main{font-family:var(--serif);font-size:22px;color:var(--teal);letter-spacing:-.4px}
+.brand-sub{font-family:var(--sans);font-size:9px;letter-spacing:3.5px;text-transform:uppercase;color:var(--w3)}
+.navlinks{display:flex;gap:2px;align-items:center}
+.navlinks a{font-size:12.5px;color:var(--w3);text-decoration:none;padding:6px 13px;border-radius:7px;border:1px solid transparent;transition:all .18s}
+.navlinks a:hover{color:var(--w2);background:var(--w4);border-color:var(--border)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-login{font-size:12.5px;color:var(--w2);text-decoration:none;padding:7px 15px;border-radius:8px;border:1px solid var(--border);transition:all .18s;white-space:nowrap}
+.nav-login:hover{border-color:var(--teal-b);color:var(--teal)}
+.nav-book{font-size:12.5px;font-weight:600;color:#030C0A;background:var(--teal);padding:8px 17px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);transition:all .18s;white-space:nowrap}
+.nav-book:hover{background:var(--teal-d)}
+.ham{display:none;background:none;border:1px solid var(--border);color:var(--w2);width:34px;height:34px;border-radius:7px;cursor:pointer;font-size:17px;align-items:center;justify-content:center;font-family:var(--sans)}
+
+/* ── HERO ── */
+.hero{
+  min-height:calc(100vh - 62px);
+  display:grid;grid-template-columns:1.05fr .95fr;gap:52px;
+  align-items:center;max-width:1120px;margin:0 auto;
+  padding:80px 44px 72px;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 68% 38%,rgba(0,200,150,.08) 0%,transparent 58%),
+             radial-gradient(ellipse at 20% 75%,rgba(74,158,255,.04) 0%,transparent 48%);
+}
+.grid-bg{
+  position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.016;
+  background-image:linear-gradient(rgba(0,200,150,1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,200,150,1) 1px,transparent 1px);
+  background-size:68px 68px;
+}
+.ring{position:fixed;border-radius:50%;border:1px solid rgba(0,200,150,.04);pointer-events:none;animation:spin var(--d,55s) linear infinite var(--r,normal);z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.hero-left{position:relative;z-index:1}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--teal-lo);border:1px solid var(--teal-b);
+  color:var(--teal);padding:5px 13px;border-radius:100px;
+  font-size:11px;letter-spacing:.3px;margin-bottom:22px;
+}
+.hero-badge-dot{width:5px;height:5px;border-radius:50%;background:var(--teal);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.75)}}
+h1{font-family:var(--serif);font-size:66px;line-height:1.01;color:var(--w1);margin-bottom:20px;letter-spacing:-.5px}
+h1 em{color:var(--teal);font-style:normal}
+.hero-sub{font-size:17px;line-height:1.72;color:var(--w2);max-width:520px;margin-bottom:30px}
+.cta-row{display:flex;gap:11px;flex-wrap:wrap;margin-bottom:24px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#030C0A;padding:13px 24px;border-radius:10px;font-size:13.5px;font-weight:700;text-decoration:none;border:none;cursor:pointer;font-family:var(--sans);transition:all .18s;letter-spacing:.1px}
+.btn-primary:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--w1);padding:12px 22px;border-radius:10px;font-size:13.5px;text-decoration:none;border:1px solid var(--border2);transition:all .18s;cursor:pointer;font-family:var(--sans)}
+.btn-ghost:hover{border-color:var(--teal-b);color:var(--teal)}
+.no-app-strip{
+  display:flex;align-items:center;gap:0;
+  background:rgba(240,242,255,.04);border:1px solid var(--border);
+  border-radius:10px;padding:11px 16px;
+  font-size:12.5px;flex-wrap:wrap;gap:14px;
+}
+.nac{display:flex;align-items:center;gap:6px;color:var(--w2)}
+.nac-check{color:var(--teal);font-size:13px}
+
+/* ── HERO RIGHT: PHONE CARD ── */
+.hero-card{
+  position:relative;z-index:1;
+  background:linear-gradient(160deg,rgba(240,242,255,.07),rgba(240,242,255,.03));
+  border:1px solid var(--border);border-radius:22px;
+  padding:24px;box-shadow:0 28px 80px rgba(0,0,0,.38);
+}
+.phone{background:#0D1420;border:1px solid rgba(240,242,255,.1);border-radius:20px;padding:11px;margin-bottom:16px}
+.phone-bar{display:flex;align-items:center;gap:8px;padding:7px 10px;background:#162030;border-radius:7px 7px 0 0;border-bottom:1px solid rgba(255,255,255,.04);margin-bottom:0}
+.phone-av{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#00C896,#0070CC);display:flex;align-items:center;justify-content:center;font-size:8.5px;font-weight:700;color:#fff;flex-shrink:0}
+.phone-name{font-size:10px;color:var(--w1);font-weight:500}
+.phone-online{font-size:7.5px;color:var(--teal)}
+.msgs{background:#090F18;border-radius:0 0 7px 7px;padding:8px 7px;min-height:170px;display:flex;flex-direction:column;gap:5px}
+.m{padding:7px 10px;border-radius:11px;font-size:9.5px;line-height:1.5;max-width:90%;opacity:0;transform:translateY(4px);transition:opacity .3s ease,transform .3s ease}
+.m.show{opacity:1;transform:translateY(0)}
+.mp{background:#1C293B;color:rgba(240,242,255,.82);align-self:flex-end;border-bottom-right-radius:2px}
+.ma{background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.16);color:rgba(240,242,255,.82);align-self:flex-start;border-bottom-left-radius:2px}
+.dots-wrap{display:flex;gap:3px;padding:7px 10px;background:rgba(0,200,150,.08);border-radius:11px;border-bottom-left-radius:2px;width:34px;opacity:0;transition:opacity .28s;align-self:flex-start}
+.dots-wrap.show{opacity:1}
+.dot-p{width:3.5px;height:3.5px;border-radius:50%;background:var(--teal);animation:dp 1.2s ease-in-out infinite}
+.dot-p:nth-child(2){animation-delay:.2s}.dot-p:nth-child(3){animation-delay:.4s}
+@keyframes dp{0%,60%,100%{opacity:.3;transform:scale(1)}30%{opacity:1;transform:scale(1.3)}}
+.brief-card{border:1px solid rgba(0,200,150,.18);background:rgba(0,200,150,.05);border-radius:12px;padding:14px;opacity:0;transition:opacity .5s ease}
+.brief-card.show{opacity:1}
+.brief-ey{font-size:8px;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid rgba(0,200,150,.12)}
+.brief-row{display:flex;gap:7px;margin-bottom:7px;align-items:flex-start}
+.brief-dot{width:3px;height:3px;border-radius:50%;background:var(--teal);margin-top:4px;flex-shrink:0}
+.brief-txt{font-size:10.5px;color:var(--w2);line-height:1.45}
+
+/* ── STATS ── */
+.stats-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 44px}
+.stat{padding:28px 24px;border-right:1px solid var(--border);text-align:center}
+.stat:last-child{border-right:none}
+.stat-n{font-family:var(--serif);font-size:40px;color:var(--teal);line-height:1;margin-bottom:5px}
+.stat-l{font-size:11.5px;color:var(--w3);line-height:1.5}
+
+/* ── SECTIONS ── */
+.sec{padding:88px 44px;max-width:1120px;margin:0 auto}
+.sec-full{padding:88px 0}
+.sec-full-inner{max-width:1120px;margin:0 auto;padding:0 44px}
+.sec-alt{background:var(--bg2)}
+.sec-alt3{background:var(--bg3)}
+.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+h2{font-family:var(--serif);font-size:44px;line-height:1.07;color:var(--w1);margin-bottom:14px}
+.lead{font-size:16px;line-height:1.72;color:var(--w2);max-width:620px}
+
+/* ── NO-APP ── */
+.nap-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:36px}
+.nap-col{border-radius:16px;padding:28px 26px;border:1px solid}
+.nap-bad{border-color:var(--coral-b);background:var(--coral-lo)}
+.nap-good{border-color:var(--teal-b);background:var(--teal-lo)}
+.nap-head{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;margin-bottom:16px}
+.nap-item{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;color:var(--w2);margin-bottom:10px;line-height:1.55}
+.nap-ico{font-size:12px;flex-shrink:0;margin-top:2px}
+.nas-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.nas{background:var(--w4);border:1px solid var(--border);border-radius:14px;padding:22px 18px;text-align:center}
+.nas-n{font-family:var(--serif);font-size:38px;color:var(--teal);line-height:1;margin-bottom:7px}
+.nas-l{font-size:11.5px;color:var(--w3);line-height:1.5}
+
+/* ── HOW IT WORKS ── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:36px}
+.step{background:var(--w4);border:1px solid var(--border);border-radius:15px;padding:28px 24px;position:relative;overflow:hidden;transition:all .22s}
+.step:hover{border-color:rgba(0,200,150,.18)}
+.step.hi{border-color:var(--teal-b);background:var(--teal-lo)}
+.step::after{content:attr(data-n);position:absolute;bottom:-14px;right:10px;font-family:var(--serif);font-size:100px;color:rgba(240,242,255,.024);line-height:1;pointer-events:none}
+.step-ico{width:42px;height:42px;border-radius:10px;background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.18);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:19px}
+.step-t{font-size:15.5px;font-weight:500;color:var(--w1);margin-bottom:7px}
+.step-b{font-size:12.5px;color:var(--w3);line-height:1.62}
+
+/* ── PRODUCTS ── */
+.prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-top:36px}
+.pc{background:var(--w4);border:1px solid var(--border);border-radius:13px;padding:20px 16px;transition:all .22s;cursor:default}
+.pc:hover{background:rgba(240,242,255,.09);border-color:var(--border2);transform:translateY(-3px)}
+.pc-ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:13px;font-size:15px}
+.pc-name{font-size:13.5px;font-weight:600;color:var(--w1);margin-bottom:5px}
+.pc-desc{font-size:11px;color:var(--w3);line-height:1.55}
+.pc-tag{font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;margin-top:9px}
+.hor-row{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:26px}
+.hor{border-radius:13px;padding:20px 22px;border:1px solid;transition:all .22s}
+.hor:hover{transform:translateY(-2px)}
+.hor-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid;border-radius:100px;padding:3px 11px 3px 7px;font-size:10.5px;margin-bottom:10px}
+.hor-dot{width:5px;height:5px;border-radius:50%}
+.hor-label{font-size:13.5px;font-weight:500;color:var(--w1);margin-bottom:6px}
+.hor-body{font-size:11.5px;color:var(--w3);line-height:1.6}
+.hor-arr{font-family:var(--serif);font-size:22px;line-height:1;margin-top:12px}
+
+/* ── FOR PROVIDERS ── */
+.prov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:36px}
+.prov-card{background:var(--w4);border:1px solid var(--border);border-radius:15px;padding:26px 24px;transition:all .22s;display:flex;flex-direction:column}
+.prov-card:hover{border-color:var(--border2);background:rgba(240,242,255,.08)}
+.prov-ico{font-size:26px;margin-bottom:13px}
+.prov-t{font-family:var(--serif);font-size:19px;color:var(--w1);margin-bottom:7px}
+.prov-b{font-size:12.5px;color:var(--w3);line-height:1.62;margin-bottom:16px;flex:1}
+.prov-feats{display:flex;flex-direction:column;gap:5px;margin-bottom:20px}
+.pf{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--w2)}
+.pf-dot{width:3px;height:3px;border-radius:50%;background:var(--teal);flex-shrink:0}
+.prov-btn{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--teal);text-decoration:none;font-weight:500;transition:gap .15s;margin-top:auto}
+.prov-btn:hover{gap:11px}
+
+/* ── RESOURCES ── */
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:36px}
+.res-card{background:var(--w4);border:1px solid var(--border);border-radius:13px;padding:24px 22px;text-decoration:none;transition:all .22s;display:flex;flex-direction:column}
+.res-card:hover{border-color:var(--border2);background:rgba(240,242,255,.08);transform:translateY(-2px)}
+.res-tag{font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:9px}
+.res-t{font-size:15.5px;font-weight:500;color:var(--w1);margin-bottom:7px;line-height:1.35;flex:1}
+.res-b{font-size:11.5px;color:var(--w3);line-height:1.55}
+.res-arrow{font-size:12px;color:var(--teal);margin-top:13px;display:block}
+
+/* ── CTA SECTION ── */
+.cta-sec{
+  background:radial-gradient(ellipse at 50% 50%,rgba(0,200,150,.07) 0%,transparent 62%),var(--bg3);
+  border-top:1px solid var(--border);
+  padding:100px 44px;text-align:center;
+}
+.cta-inner{max-width:600px;margin:0 auto}
+.cta-h{font-family:var(--serif);font-size:46px;line-height:1.06;color:var(--w1);margin-bottom:14px}
+.cta-sub{font-size:16px;color:var(--w2);line-height:1.72;margin-bottom:34px}
+.cta-btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-bottom:26px}
+.cta-links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap}
+.cta-link{font-size:12.5px;color:var(--w3);text-decoration:none;display:flex;align-items:center;gap:5px;transition:color .18s}
+.cta-link:hover{color:var(--teal)}
+
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:52px 44px 34px}
+.foot-inner{max-width:1120px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:42px}
+.foot-brand{font-family:var(--serif);font-size:20px;color:var(--teal);margin-bottom:10px}
+.foot-tag{font-size:12.5px;color:var(--w3);line-height:1.6;max-width:220px}
+.foot-col-h{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);margin-bottom:13px}
+.foot-col a{display:block;font-size:12.5px;color:var(--w3);text-decoration:none;margin-bottom:7px;transition:color .15s}
+.foot-col a:hover{color:var(--w2)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:22px;border-top:1px solid var(--border);flex-wrap:wrap;gap:14px}
+.foot-copy{font-size:11.5px;color:var(--w3)}
+.foot-badges{display:flex;gap:14px;flex-wrap:wrap}
+.fbadge{font-size:10.5px;color:var(--w3);display:flex;align-items:center;gap:4px}
+
+/* ── MODAL ── */
+.overlay{position:fixed;inset:0;background:rgba(4,8,18,.9);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(12px)}
+.overlay.open{display:flex}
+.modal{background:#060C18;border:1px solid var(--teal-b);border-radius:18px;padding:42px 46px;max-width:440px;width:90%;position:relative;box-shadow:0 0 60px rgba(0,200,150,.1)}
+.modal-close{position:absolute;top:14px;right:14px;background:none;border:1px solid var(--border);color:var(--w3);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;font-family:var(--sans);transition:all .15s}
+.modal-close:hover{border-color:var(--teal);color:var(--teal)}
+.modal-logo{font-family:var(--serif);font-size:16px;color:var(--teal);margin-bottom:5px}
+.modal-h{font-family:var(--serif);font-size:27px;color:var(--w1);margin-bottom:7px}
+.modal-sub{font-size:12.5px;color:var(--w3);line-height:1.62;margin-bottom:26px}
+.modal-opts{display:flex;flex-direction:column;gap:9px}
+.mopt{display:flex;align-items:center;gap:13px;background:var(--w4);border:1px solid var(--border);border-radius:11px;padding:15px 17px;cursor:pointer;transition:all .18s;text-decoration:none}
+.mopt:hover{border-color:var(--teal-b);background:var(--teal-lo)}
+.mopt-ico{font-size:19px;flex-shrink:0}
+.mopt-t{font-size:13.5px;font-weight:500;color:var(--w1);margin-bottom:2px}
+.mopt-s{font-size:10.5px;color:var(--w3)}
+.mdiv{display:flex;align-items:center;gap:9px;margin:16px 0}
+.mdiv-line{flex:1;height:1px;background:var(--border)}
+.mdiv-txt{font-size:10.5px;color:var(--w3)}
+.memail{display:flex;gap:7px}
+.minput{flex:1;background:rgba(240,242,255,.05);border:1px solid var(--border);color:var(--w1);padding:10px 13px;border-radius:8px;font-size:12.5px;font-family:var(--sans);outline:none;transition:border-color .15s}
+.minput:focus{border-color:var(--teal-b)}
+.minput::placeholder{color:var(--w3)}
+.msend{background:var(--teal);color:#030C0A;border:none;padding:10px 15px;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:var(--sans);transition:all .15s}
+.msend:hover{background:var(--teal-d)}
+#mconfirm{display:none;margin-top:9px;font-size:11.5px;color:var(--teal)}
+
+/* ── NOTICE BANNER ── */
+.notice-bar{background:rgba(240,242,255,.04);border-bottom:1px solid var(--border);padding:9px 44px;text-align:center;font-size:11.5px;color:var(--w3)}
+
+/* ── REVEAL ── */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── MOBILE ── */
+@media(max-width:880px){
+  nav{padding:0 18px}
+  .navlinks{display:none}
+  .ham{display:flex}
+  .hero{grid-template-columns:1fr;padding:52px 20px 44px;min-height:auto;gap:32px}
+  h1{font-size:44px}
+  .hero-sub{font-size:15px}
+  .hero-card{display:none}
+  .sec,.sec-full-inner{padding-left:20px;padding-right:20px}
+  .sec{padding-top:60px;padding-bottom:60px}
+  .cta-sec{padding:64px 20px}
+  .cta-h{font-size:34px}
+  .stats-inner{grid-template-columns:repeat(2,1fr);padding:0 20px}
+  .stat{border-right:none;padding:20px 12px}
+  .nap-grid,.nas-row,.steps,.prod-grid,.prov-grid,.res-grid,.hor-row{grid-template-columns:1fr}
+  h2{font-size:32px}
+  .foot-top{grid-template-columns:1fr 1fr;gap:28px}
+  .foot-bottom{flex-direction:column;text-align:center}
+  .notice-bar{padding:9px 18px}
+  .modal{padding:26px 22px}
+}
+</style>
+</head>
+<body>
+
+<!-- Subtle fixed decorations -->
+<div class="grid-bg"></div>
+<div class="ring" style="width:700px;height:700px;top:-300px;right:-250px;--d:70s"></div>
+<div class="ring" style="width:420px;height:420px;top:-100px;right:-60px;--d:40s;--r:reverse"></div>
+
+<!-- ── PROTOTYPE NOTICE ── -->
+<div class="notice-bar">
+  Prototype site · Orivo does not diagnose, prescribe, or collect PHI through this static site · <a href="/hipaa-notice.html" style="color:var(--teal);text-decoration:none">HIPAA Notice</a>
+</div>
+
+<!-- ── NAV ── -->
+<nav id="nav">
+  <a class="brand" href="/">
+    <span class="brand-main">orivo</span>
+    <span class="brand-sub">health</span>
+  </a>
+  <div class="navlinks" id="navlinks">
+    <a href="#how-it-works">How it works</a>
+    <a href="#products">Products</a>
+    <a href="#for-providers">For providers</a>
+    <a href="#demos">Resources</a>
+    <a href="/why-invest.html">Investors</a>
+  </div>
+  <div class="nav-right">
+    <a class="nav-login" href="/provider-login.html">Provider login</a>
+    <button class="nav-book" onclick="openModal()">Book a demo</button>
+    <button class="ham" id="ham" onclick="toggleNav()">☰</button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge reveal">
+      <span class="hero-badge-dot"></span>
+      Seed stage · 2025 · Confidential
+    </div>
+    <h1 class="reveal" style="animation-delay:.05s">
+      Epic helps providers.<br>
+      <em>Orivo helps patients.</em>
+    </h1>
+    <p class="hero-sub reveal" style="animation-delay:.1s">
+      An AI that listens — in any language, on any phone, regardless of insurance — finds solutions to the real roadblocks between a patient and their health. No app to download. No portal to learn. Just a text message.
+    </p>
+    <div class="cta-row reveal" style="animation-delay:.15s">
+      <button class="btn-primary" onclick="openModal()">Book a demo &nbsp;↗</button>
+      <a class="btn-ghost" href="/demo.html?v=2">See it live &nbsp;→</a>
+      <a class="btn-ghost" href="/pitch-deck.html">Pitch deck &nbsp;→</a>
+    </div>
+    <div class="no-app-strip reveal" style="animation-delay:.2s">
+      <span class="nac"><span class="nac-check">✓</span> <strong style="color:var(--w1)">No app</strong></span>
+      <span class="nac"><span class="nac-check">✓</span> <strong style="color:var(--w1)">No download</strong></span>
+      <span class="nac"><span class="nac-check">✓</span> <strong style="color:var(--w1)">No new behavior required</strong></span>
+      <span style="color:var(--w3)">Any phone · 40+ languages</span>
+    </div>
+  </div>
+
+  <!-- Phone mockup -->
+  <div class="hero-card reveal" style="animation-delay:.12s">
+    <div class="phone">
+      <div class="phone-bar">
+        <div class="phone-av">O</div>
+        <div>
+          <div class="phone-name">Orivo Health</div>
+          <div class="phone-online">● Always on</div>
+        </div>
+      </div>
+      <div class="msgs" id="heroMsgs">
+        <div class="m mp" id="hm1">I can't make my appointment tomorrow — I don't have a ride</div>
+        <div class="dots-wrap" id="hd1"><div class="dot-p"></div><div class="dot-p"></div><div class="dot-p"></div></div>
+        <div class="m ma" id="hm2">Your Medicaid plan covers free rides. Call 1-800-977-3237 — mention your member ID and they'll schedule for tomorrow morning.</div>
+        <div class="m mp" id="hm3">Also — my chest feels tight since I started the new blood pressure med</div>
+        <div class="dots-wrap" id="hd2"><div class="dot-p"></div><div class="dot-p"></div><div class="dot-p"></div></div>
+        <div class="m ma" id="hm4">Flagging this as priority. Sending a brief to your pharmacist now. If tightness worsens, call 911.</div>
+      </div>
+    </div>
+    <div class="brief-card" id="heroBrief">
+      <div class="brief-ey">! Aevo Clinical Brief — Priority</div>
+      <div class="brief-row"><div class="brief-dot"></div><div class="brief-txt"><strong style="color:var(--w1)">SDoH:</strong> Transportation barrier detected · NEMT benefit connected</div></div>
+      <div class="brief-row"><div class="brief-dot"></div><div class="brief-txt"><strong style="color:var(--w1)">Symptom:</strong> Chest tightness (Day 3 Lisinopril) · Possible ACE-inhibitor reaction</div></div>
+      <div class="brief-row"><div class="brief-dot"></div><div class="brief-txt"><strong style="color:var(--w1)">Action:</strong> Pharmacist review within 2 hrs · Consider ARB switch</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ── STATS ── -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat">
+      <div class="stat-n">50%</div>
+      <div class="stat-l">of prescriptions never taken as directed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">125K</div>
+      <div class="stat-l">preventable deaths/yr from non-adherence</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">$3.5B</div>
+      <div class="stat-l">annual CMS spend on preventable ADEs</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">12%</div>
+      <div class="stat-l">of patients understand discharge instructions</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── NO-APP ── -->
+<div class="sec-alt">
+<div class="sec reveal">
+  <div class="eyebrow">The accessibility insight</div>
+  <h2>Everyone else built an app.<br><em style="color:var(--teal);font-style:normal">We didn't. That's the point.</em></h2>
+  <p class="lead">The patients who need help most are exactly the ones every patient app leaves behind. Orivo meets patients where they already are.</p>
+  <div class="nap-grid">
+    <div class="nap-col nap-bad">
+      <div class="nap-head" style="color:var(--coral)">Every other patient health app</div>
+      <div class="nap-item"><span class="nap-ico">✗</span>Requires a smartphone — locks out elderly, rural, low-income patients</div>
+      <div class="nap-item"><span class="nap-ico">✗</span>Needs download, account creation, onboarding steps</div>
+      <div class="nap-item"><span class="nap-ico">✗</span>Demands digital literacy the highest-risk patients don't have</div>
+      <div class="nap-item"><span class="nap-ico">✗</span>Requires behavior change — charged phone, remembered login, learned UI</div>
+      <div class="nap-item"><span class="nap-ico">✗</span>~80% abandonment within 30 days of install</div>
+      <div class="nap-item"><span class="nap-ico">✗</span>Reaches patients who are already engaged — the ones who need it least</div>
+    </div>
+    <div class="nap-col nap-good">
+      <div class="nap-head" style="color:var(--teal)">Orivo</div>
+      <div class="nap-item"><span class="nap-ico">✓</span>Works on <strong style="color:var(--w1)">any phone</strong> — flip phone, feature phone, or smartphone</div>
+      <div class="nap-item"><span class="nap-ico">✓</span>Zero download. Zero onboarding. Zero new behavior required.</div>
+      <div class="nap-item"><span class="nap-ico">✓</span>Patients already know how to text — we meet them there</div>
+      <div class="nap-item"><span class="nap-ico">✓</span>Works in 40+ languages without switching apps or settings</div>
+      <div class="nap-item"><span class="nap-ico">✓</span>Built for Medicare/Medicaid — the highest-risk, most underserved</div>
+      <div class="nap-item"><span class="nap-ico">✓</span>Same infrastructure serves rural Mississippi and rural Lagos</div>
+    </div>
+  </div>
+  <div class="nas-row">
+    <div class="nas"><div class="nas-n">97%</div><div class="nas-l">of Americans over 65 can send and receive a text message</div></div>
+    <div class="nas"><div class="nas-n">41%</div><div class="nas-l">of Medicare patients don't own a smartphone — but every one has SMS</div></div>
+    <div class="nas"><div class="nas-n">0</div><div class="nas-l">New behaviors required from a patient to use Orivo</div></div>
+  </div>
+</div>
+</div>
+
+<!-- ── HOW IT WORKS ── -->
+<div id="how-it-works">
+<div class="sec reveal">
+  <div class="eyebrow">How Orivo works</div>
+  <h2>Listen. Translate. Connect.</h2>
+  <p class="lead">Three steps. Any phone. Any language. The patient finally has something in their corner — and the care team has the context to act.</p>
+  <div class="steps">
+    <div class="step" data-n="1">
+      <div class="step-ico">💬</div>
+      <div class="step-t">Patient speaks naturally</div>
+      <div class="step-b">Via SMS, voice, or app — no forms, no portals, no jargon. Symptoms, questions, barriers, in their own words. Orivo loads their specific insurance benefits automatically.</div>
+    </div>
+    <div class="step hi" data-n="2">
+      <div class="step-ico">🧠</div>
+      <div class="step-t">Aevo translates &amp; enriches</div>
+      <div class="step-b">Extracts symptoms, flags urgency, checks medication history, identifies ADEs, surfaces SDoH barriers, maps the patient to every resource their insurance provides — in under 4 seconds.</div>
+    </div>
+    <div class="step" data-n="3">
+      <div class="step-ico">🤝</div>
+      <div class="step-t">Patient is heard. Team can act.</div>
+      <div class="step-b">The patient gets clear plain-language responses with specific next steps. The care team gets a structured clinical brief. Both sides feel supported, not overwhelmed.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── PRODUCTS ── -->
+<div class="sec-alt3" id="products">
+<div class="sec reveal">
+  <div class="eyebrow">Product suite</div>
+  <h2>Five products. One compounding platform.</h2>
+  <p class="lead">Each product is independently valuable. Together they build a moat no one else can replicate — running on longitudinal, conversational patient data that compounds with every interaction.</p>
+  <div class="prod-grid">
+    <div class="pc">
+      <div class="pc-ico" style="background:rgba(0,200,150,.12);border:1px solid rgba(0,200,150,.2)">💬</div>
+      <div class="pc-name">Aevo Relay</div>
+      <div class="pc-desc">Bidirectional patient ↔ clinical language translation via SMS, voice, or app</div>
+      <div class="pc-tag" style="color:var(--teal)">H1 · Core</div>
+    </div>
+    <div class="pc">
+      <div class="pc-ico" style="background:rgba(74,158,255,.12);border:1px solid rgba(74,158,255,.2)">💊</div>
+      <div class="pc-name">Aevo Rx</div>
+      <div class="pc-desc">Medication reconciliation — what patients actually take vs. what's prescribed</div>
+      <div class="pc-tag" style="color:var(--blue)">H1–H2</div>
+    </div>
+    <div class="pc">
+      <div class="pc-ico" style="background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.2)">🛡️</div>
+      <div class="pc-name">Aevo Shield</div>
+      <div class="pc-desc">ADE prevention + passive drug interaction monitoring + readmission risk</div>
+      <div class="pc-tag" style="color:var(--coral)">H2</div>
+    </div>
+    <div class="pc">
+      <div class="pc-ico" style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2)">📊</div>
+      <div class="pc-name">Aevo Intel</div>
+      <div class="pc-desc">SDoH capture, Z-code documentation, population health data for payers</div>
+      <div class="pc-tag" style="color:var(--purple)">H3</div>
+    </div>
+    <div class="pc">
+      <div class="pc-ico" style="background:rgba(232,184,75,.1);border:1px solid rgba(232,184,75,.2)">🔐</div>
+      <div class="pc-name">Aevo Trust</div>
+      <div class="pc-desc">AI drift detection, semantic consistency, fraud signals, immutable audit trail</div>
+      <div class="pc-tag" style="color:var(--amber)">H2–H3</div>
+    </div>
+  </div>
+  <div class="hor-row">
+    <div class="hor" style="border-color:var(--teal-b);background:var(--teal-lo)">
+      <div class="hor-badge" style="color:var(--teal);border-color:var(--teal-b);background:rgba(0,200,150,.06)"><span class="hor-dot" style="background:var(--teal)"></span>H1 · Seed $2M</div>
+      <div class="hor-label">The wedge</div>
+      <div class="hor-body">3 health system pilots · 200+ patients each · HIPAA-aligned · Aevo Relay + Rx live</div>
+      <div class="hor-arr" style="color:var(--teal)">$300K ARR</div>
+    </div>
+    <div class="hor" style="border-color:var(--blue-b);background:var(--blue-lo)">
+      <div class="hor-badge" style="color:var(--blue);border-color:var(--blue-b);background:rgba(74,158,255,.06)"><span class="hor-dot" style="background:var(--blue)"></span>H2 · Series A $8–12M</div>
+      <div class="hor-label">The platform</div>
+      <div class="hor-body">Provider dashboard · ADE prevention · Pharmacy distribution · SOC 2 Type II</div>
+      <div class="hor-arr" style="color:var(--blue)">$3M ARR</div>
+    </div>
+    <div class="hor" style="border-color:var(--purple-b);background:var(--purple-lo)">
+      <div class="hor-badge" style="color:var(--purple);border-color:var(--purple-b);background:rgba(167,139,250,.06)"><span class="hor-dot" style="background:var(--purple)"></span>H3 · Series B $30M+</div>
+      <div class="hor-label">The moat</div>
+      <div class="hor-body">Population health data platform · Voice AI · International (NHS, Canada, Africa)</div>
+      <div class="hor-arr" style="color:var(--purple)">$20M+ ARR</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── FOR PROVIDERS ── -->
+<div id="for-providers">
+<div class="sec reveal">
+  <div class="eyebrow">For providers &amp; pharmacists</div>
+  <h2>Your patients. Full context. Every time.</h2>
+  <p class="lead">AI-generated clinical briefs, medication flags, SDoH alerts — updated in real time. No portal login required for routine check-ins.</p>
+  <div class="prov-grid">
+    <div class="prov-card">
+      <div class="prov-ico">🏥</div>
+      <div class="prov-t">Physician / Provider</div>
+      <div class="prov-b">Receive structured clinical briefs the moment a patient reaches out. Full medication history, urgency score, SDoH flags — before you pick up the phone.</div>
+      <div class="prov-feats">
+        <div class="pf"><span class="pf-dot"></span>AI-generated clinical briefs</div>
+        <div class="pf"><span class="pf-dot"></span>Real-time urgency flags</div>
+        <div class="pf"><span class="pf-dot"></span>EHR integration (Epic / Cerner)</div>
+        <div class="pf"><span class="pf-dot"></span>Z-code documentation</div>
+      </div>
+      <a class="prov-btn" href="/provider-login.html">Physician portal &nbsp;→</a>
+    </div>
+    <div class="prov-card">
+      <div class="prov-ico">💊</div>
+      <div class="prov-t">Pharmacist / Pharmacy</div>
+      <div class="prov-b">Triage patient questions before they arrive at the counter. Medication reconciliation, adherence tracking, and ADE alerts in one counseling queue.</div>
+      <div class="prov-feats">
+        <div class="pf"><span class="pf-dot"></span>Medication reconciliation briefs</div>
+        <div class="pf"><span class="pf-dot"></span>Adherence tracking dashboard</div>
+        <div class="pf"><span class="pf-dot"></span>Drug interaction flags</div>
+        <div class="pf"><span class="pf-dot"></span>Point-of-dispensing AI support</div>
+      </div>
+      <a class="prov-btn" href="/provider-login.html">Pharmacy portal &nbsp;→</a>
+    </div>
+    <div class="prov-card">
+      <div class="prov-ico">🏛️</div>
+      <div class="prov-t">Health System Admin</div>
+      <div class="prov-b">Manage pilots, review population-level outcomes, track adherence and readmission proxies. CMS Star Ratings alignment built in.</div>
+      <div class="prov-feats">
+        <div class="pf"><span class="pf-dot"></span>Pilot outcomes reporting</div>
+        <div class="pf"><span class="pf-dot"></span>Population health dashboard</div>
+        <div class="pf"><span class="pf-dot"></span>Team access management</div>
+        <div class="pf"><span class="pf-dot"></span>CMS Star Ratings alignment</div>
+      </div>
+      <a class="prov-btn" href="/provider-login.html">Admin portal &nbsp;→</a>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ── DEMOS / RESOURCES ── -->
+<div class="sec-alt" id="demos">
+<div class="sec reveal">
+  <div class="eyebrow">Resources &amp; demos</div>
+  <h2>Go deeper.</h2>
+  <p class="lead">Interactive demos, investor materials, and technical walkthroughs. All prototype pages — not live patient tools.</p>
+  <div class="res-grid">
+    <a class="res-card" href="/demo.html?v=2">
+      <div class="res-tag" style="color:var(--coral)">Product demo</div>
+      <div class="res-t">Patient + Provider Experience</div>
+      <div class="res-b">Two-sided view of the patient SMS journey and provider-side action queue in real time.</div>
+      <span class="res-arrow">Open demo →</span>
+    </a>
+    <a class="res-card" href="/pitch-deck.html">
+      <div class="res-tag" style="color:var(--teal)">Investor deck</div>
+      <div class="res-t">Orivo Health Investor Pitch Deck</div>
+      <div class="res-b">9-slide overview: vision, problem, the no-app insight, live demo, product suite, roadmap, and the ask.</div>
+      <span class="res-arrow">View deck →</span>
+    </a>
+    <a class="res-card" href="/why-invest.html">
+      <div class="res-tag" style="color:var(--amber)">Why invest</div>
+      <div class="res-t">Why Invest in Orivo Health</div>
+      <div class="res-b">Deep-dive investor case: market timing, competitive moat, team credentials, traction, and the data advantage.</div>
+      <span class="res-arrow">Read the case →</span>
+    </a>
+    <a class="res-card" href="/dual-pipeline.html">
+      <div class="res-tag" style="color:var(--teal)">AI architecture</div>
+      <div class="res-t">Aevo + Vera Dual Pipeline</div>
+      <div class="res-b">Patient AI routing and data AI validation — the two-AI architecture that eliminates hallucination risk in clinical contexts.</div>
+      <span class="res-arrow">Explore →</span>
+    </a>
+    <a class="res-card" href="/etl-pipeline.html">
+      <div class="res-tag" style="color:var(--purple)">Intelligence</div>
+      <div class="res-t">Aevo Intelligence Pipeline</div>
+      <div class="res-b">Animated walkthrough: patient message → extraction → benefit lookup → brief generation → validation → delivery.</div>
+      <span class="res-arrow">Watch pipeline →</span>
+    </a>
+    <a class="res-card" href="/engineering-stack.html">
+      <div class="res-tag" style="color:var(--blue)">Engineering</div>
+      <div class="res-t">Complete Engineering Stack — L0 to L6</div>
+      <div class="res-b">Every layer, every tool, every cost. ~$14K/month at seed volume. Full breakdown from infrastructure to analytics.</div>
+      <span class="res-arrow">View stack →</span>
+    </a>
+  </div>
+</div>
+</div>
+
+<!-- ── CTA ── -->
+<div class="cta-sec" id="contact">
+  <div class="cta-inner">
+    <div class="eyebrow">Get started</div>
+    <div class="cta-h reveal">Ready to put something<br>in the patient's corner?</div>
+    <p class="cta-sub reveal">Whether you're an investor, a health system, or an independent pharmacy — the conversation starts with a 30-minute call.</p>
+    <div class="cta-btns reveal">
+      <button class="btn-primary" onclick="openModal()">Book a conversation &nbsp;↗</button>
+      <a class="btn-ghost" href="/pitch-deck.html">View pitch deck</a>
+    </div>
+    <div class="cta-links reveal">
+      <a class="cta-link" href="mailto:hello@orivohealth.com">✉ hello@orivohealth.com</a>
+      <a class="cta-link" href="/provider-login.html">🔒 Provider portal</a>
+      <a class="cta-link" href="/why-invest.html">📄 Investor materials</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">orivo health</div>
+        <p class="foot-tag">AI that speaks patient and clinical. Any phone. Any language. No app required.</p>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-h">Product</div>
+        <a href="#how-it-works">How it works</a>
+        <a href="#products">Product suite</a>
+        <a href="/demo.html?v=2">Live demo</a>
+        <a href="/etl-pipeline.html">AI pipeline</a>
+        <a href="/dual-pipeline.html">Aevo + Vera</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-h">For providers</div>
+        <a href="/provider-login.html">Physician login</a>
+        <a href="/provider-login.html">Pharmacy login</a>
+        <a href="/provider-login.html">Admin login</a>
+        <a href="/provider-login.html#request">Request access</a>
+      </div>
+      <div class="foot-col">
+        <div class="foot-col-h">Investors</div>
+        <a href="/pitch-deck.html">Pitch deck</a>
+        <a href="/why-invest.html">Why invest</a>
+        <a href="/engineering-stack.html">Tech stack</a>
+        <a href="#contact" onclick="openModal();return false">Book a call</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-copy">© 2026 Orivo Health Inc. Prototype website. &nbsp;·&nbsp; <a href="/privacy.html" style="color:inherit;text-decoration:none">Privacy</a> &nbsp;·&nbsp; <a href="/terms.html" style="color:inherit;text-decoration:none">Terms</a> &nbsp;·&nbsp; <a href="/hipaa-notice.html" style="color:inherit;text-decoration:none">HIPAA Notice</a> &nbsp;·&nbsp; <a href="/accessibility.html" style="color:inherit;text-decoration:none">Accessibility</a></div>
+      <div class="foot-badges">
+        <div class="fbadge">🔒 HIPAA-aligned architecture</div>
+        <div class="fbadge">✓ SOC 2 Type I in progress</div>
+        <div class="fbadge">🛡 BAA available</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── BOOKING MODAL ── -->
+<div class="overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">orivo health</div>
+    <div class="modal-h">Let's talk.</div>
+    <div class="modal-sub">Choose how you'd like to connect. All conversations are confidential.</div>
+    <div class="modal-opts">
+      <!-- Replace YOUR-CAL-USERNAME with your Cal.com username after signing up at cal.com -->
+      <a class="mopt" href="https://cal.com/YOUR-CAL-USERNAME/investor-call" target="_blank" rel="noopener"
+         data-cal-link="YOUR-CAL-USERNAME/investor-call" data-cal-origin="https://cal.com">
+        <div class="mopt-ico">📅</div>
+        <div>
+          <div class="mopt-t">Schedule a 30-min investor call</div>
+          <div class="mopt-s">Zoom · Free · via Cal.com</div>
+        </div>
+      </a>
+      <a class="mopt" href="https://cal.com/YOUR-CAL-USERNAME/product-demo" target="_blank" rel="noopener"
+         data-cal-link="YOUR-CAL-USERNAME/product-demo" data-cal-origin="https://cal.com">
+        <div class="mopt-ico">🖥️</div>
+        <div>
+          <div class="mopt-t">Book a product demo</div>
+          <div class="mopt-s">45 min · For health systems &amp; pharmacies</div>
+        </div>
+      </a>
+    </div>
+    <div class="mdiv">
+      <div class="mdiv-line"></div>
+      <div class="mdiv-txt">or send a note directly</div>
+      <div class="mdiv-line"></div>
+    </div>
+    <div class="memail">
+      <input class="minput" type="email" placeholder="your@email.com" id="memail">
+      <button class="msend" onclick="sendNote()">Send →</button>
+    </div>
+    <div id="mconfirm">✓ We'll be in touch within 24 hours.</div>
+  </div>
+</div>
+
+<script>
+// ── Hero phone animation
+const heroSeq=[
+  {id:'hm1',d:600},{id:'hd1',d:1300,ti:1},
+  {id:'hm2',d:2500,ht:'hd1'},
+  {id:'hm3',d:3500},{id:'hd2',d:4200,ti:1},
+  {id:'hm4',d:5500,ht:'hd2'}
+];
+heroSeq.forEach(({id,d,ht})=>setTimeout(()=>{
+  if(ht)document.getElementById(ht).classList.remove('show');
+  document.getElementById(id).classList.add('show');
+},d));
+setTimeout(()=>document.getElementById('heroBrief').classList.add('show'),7000);
+
+// ── Modal
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(e){
+  if(!e||e.target===document.getElementById('modal'))
+    document.getElementById('modal').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function sendNote(){
+  const v=document.getElementById('memail').value.trim();
+  if(!v||!v.includes('@'))return;
+  document.getElementById('mconfirm').style.display='block';
+  document.getElementById('memail').disabled=true;
+  document.querySelector('.msend').disabled=true;
+  // In production, wire this to a form endpoint (Formspree, Netlify Forms, etc.)
+}
+
+// ── Mobile nav
+function toggleNav(){
+  const nl=document.getElementById('navlinks');
+  const open=nl.style.display==='flex';
+  nl.style.cssText=open?'':[
+    'display:flex','flex-direction:column','position:fixed',
+    'top:62px','left:0','right:0','background:rgba(5,10,20,.97)',
+    'border-bottom:1px solid rgba(240,242,255,.09)',
+    'padding:14px 18px','gap:2px','z-index:99'
+  ].join(';');
+  document.getElementById('ham').textContent=open?'☰':'✕';
+}
+document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('navlinks').style.cssText='';
+  document.getElementById('ham').textContent='☰';
+}));
+
+// ── Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
