@@ -1,0 +1,42 @@
+/* Orivo top navigation readability patch
+   Paste this near the bottom of your <style> block, after existing nav styles. */
+
+.site-nav a,
+.nav-links a,
+.nav-menu a,
+.navbar a,
+.desktop-nav a,
+.header-nav a,
+.orivo-nav-home,
+.orivo-nav-right a:not(.orivo-nav-book),
+header nav a:not(.btn):not(.button) {
+  color: rgba(240,242,255,.68) !important;
+  font-size: 13.5px !important;
+  letter-spacing: .01em;
+}
+
+.site-nav a:hover,
+.nav-links a:hover,
+.nav-menu a:hover,
+.navbar a:hover,
+.desktop-nav a:hover,
+.header-nav a:hover,
+.orivo-nav-home:hover,
+.orivo-nav-right a:not(.orivo-nav-book):hover,
+header nav a:not(.btn):not(.button):hover {
+  color: rgba(240,242,255,.92) !important;
+}
+
+@media (max-width: 900px) {
+  .site-nav a,
+  .nav-links a,
+  .nav-menu a,
+  .navbar a,
+  .desktop-nav a,
+  .header-nav a,
+  .orivo-nav-home,
+  .orivo-nav-right a:not(.orivo-nav-book),
+  header nav a:not(.btn):not(.button) {
+    font-size: 13px !important;
+  }
+}
