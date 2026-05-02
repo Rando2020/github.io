@@ -1,7 +1,125 @@
-# Orivo Health GitHub Pages Site
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terms of Use — Orivo Health</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C896;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.22);
+  --amber:#F5A623;--amber-lo:rgba(245,166,35,.08);--amber-b:rgba(245,166,35,.22);
+  --w1:#F0F2FF;--w2:rgba(240,242,255,.72);--w3:rgba(240,242,255,.36);--w4:rgba(240,242,255,.06);
+  --border:rgba(240,242,255,.09);--bg:#050A14;--bg2:#07101A;
+  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+body{background:var(--bg);color:var(--w2);font-family:var(--sans);font-size:15px;line-height:1.7}
+nav{position:sticky;top:0;z-index:100;background:rgba(5,10,20,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);height:58px;padding:0 44px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:var(--serif);font-size:20px;color:var(--teal);text-decoration:none}
+.nav-r{display:flex;gap:10px;align-items:center}
+.nav-back{font-size:12.5px;color:var(--w3);text-decoration:none;padding:6px 13px;border-radius:7px;border:1px solid var(--border);transition:all .15s}
+.nav-back:hover{color:var(--w2);border-color:rgba(240,242,255,.18)}
+.crumb{font-size:12px;color:var(--w3)}
+.wrap{max-width:760px;margin:0 auto;padding:64px 44px 96px}
+.page-ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+h1{font-family:var(--serif);font-size:44px;line-height:1.07;color:var(--w1);margin-bottom:12px}
+.meta{font-size:12.5px;color:var(--w3);margin-bottom:48px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+h2{font-family:var(--serif);font-size:22px;color:var(--w1);margin:40px 0 12px}
+p{margin-bottom:16px;color:var(--w2)}
+ul{margin:0 0 16px 20px;color:var(--w2)}
+ul li{margin-bottom:6px}
+.callout{background:var(--amber-lo);border:1px solid var(--amber-b);border-radius:12px;padding:20px 22px;margin:28px 0}
+.callout p{margin:0;font-size:14px}
+.warning{background:rgba(255,107,107,.06);border:1px solid rgba(255,107,107,.18);border-radius:12px;padding:20px 22px;margin:28px 0}
+.warning p{margin:0;font-size:14px}
+a{color:var(--teal);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 44px;text-align:center;font-size:12px;color:var(--w3)}
+footer a{color:var(--w3);text-decoration:none;margin:0 10px}
+footer a:hover{color:var(--teal)}
+@media(max-width:700px){nav{padding:0 18px}.wrap{padding:40px 20px 72px}h1{font-size:32px}footer{padding:24px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="/">orivo health</a>
+  <div class="nav-r">
+    <span class="crumb">Terms of Use</span>
+    <a class="nav-back" href="/">← Home</a>
+  </div>
+</nav>
+<div class="wrap">
+  <div class="page-ey">Legal</div>
+  <h1>Terms of Use</h1>
+  <div class="meta">Last updated: May 2026 &nbsp;·&nbsp; Orivo Health Inc. &nbsp;·&nbsp; <a href="mailto:hello@orivohealth.com">hello@orivohealth.com</a></div>
 
-Static website package for orivohealth.com.
+  <div class="warning">
+    <p><strong style="color:#FF6B6B">This is a prototype demonstration website — not a medical service.</strong> Nothing on this site constitutes medical advice. Do not use this site in an emergency. If you are experiencing a medical emergency, call 911 or go to your nearest emergency room immediately.</p>
+  </div>
 
-Deploy by uploading these files to the root of the GitHub Pages repository. Confirm Settings > Pages publishes from `main` and `/root`, custom domain is `orivohealth.com`, and Enforce HTTPS is enabled.
+  <div class="callout">
+    <p><strong style="color:var(--amber)">Plain-language summary:</strong> This site is a concept demonstration for investors, pharmacists, and health system partners. It is not a patient portal, not a health app, and not a covered medical service. The demos shown are illustrative prototypes using synthetic data.</p>
+  </div>
 
-Do not collect PHI on GitHub Pages. Use a separate HIPAA-appropriate backend for live patient workflows.
+  <h2>Acceptance of terms</h2>
+  <p>By accessing orivohealth.com, you agree to these Terms of Use. If you do not agree, please do not use this site. These terms apply to the public prototype website only — not to any future secure pilot or patient-facing services, which will be governed by separate agreements.</p>
+
+  <h2>Nature of this site</h2>
+  <p>Orivohealth.com is a prototype marketing and demonstration site. It is:</p>
+  <ul>
+    <li>A concept demonstration for potential pilot partners, investors, and pharmacists</li>
+    <li>A static site hosted on GitHub Pages — not a live patient workflow or health service</li>
+    <li>Not a telehealth service, patient portal, prescription service, or pharmacy</li>
+    <li>Not a covered entity or business associate under HIPAA in its current form</li>
+  </ul>
+  <p>All patient scenarios, demos, and workflow examples shown on this site use <strong style="color:var(--w1)">synthetic, fictional data only</strong>. They do not represent real patients, real prescriptions, or real clinical events.</p>
+
+  <h2>No medical advice</h2>
+  <p>Nothing on this site constitutes medical advice, diagnosis, or treatment. Nothing on this site creates a patient-provider relationship, a pharmacist-patient relationship, or any clinical relationship of any kind.</p>
+  <p>If you have questions about medications, symptoms, or your health, consult a licensed healthcare provider or pharmacist. In an emergency, call 911.</p>
+
+  <h2>No patient services on this site</h2>
+  <p>This site does not accept patient enrollment, medication questions, symptom reports, insurance information, or any protected health information. Do not submit any personal health information through contact forms or email addresses on this site.</p>
+  <p>If you are a patient seeking medication help and believe you reached this site in error, please contact your pharmacy or care team directly.</p>
+
+  <h2>Investor and partner materials</h2>
+  <p>Financial projections, market estimates, and roadmap information on this site are forward-looking planning assumptions and hypotheses, not promises or guarantees. They are provided for informational purposes to potential pilot partners and investors only. Actual outcomes may differ materially.</p>
+  <p>Investor materials and product roadmaps should be treated as confidential. Please do not redistribute them without permission.</p>
+
+  <h2>Intellectual property</h2>
+  <p>All content on this site — including but not limited to text, product names, workflow diagrams, and design — is the property of Orivo Health Inc. or its licensors. You may not reproduce, distribute, or create derivative works from this content without written permission.</p>
+  <p>"Orivo," "Aevo," "Vera," and "Orivo Health" are trademarks of Orivo Health Inc.</p>
+
+  <h2>Disclaimer of warranties</h2>
+  <p>This site is provided "as is" without warranties of any kind, express or implied. Orivo Health Inc. does not warrant that the site will be uninterrupted, error-free, or free of harmful components. All demo content is illustrative only.</p>
+
+  <h2>Limitation of liability</h2>
+  <p>To the fullest extent permitted by law, Orivo Health Inc. shall not be liable for any direct, indirect, incidental, special, or consequential damages arising from your use of this site or reliance on its content.</p>
+
+  <h2>External links</h2>
+  <p>This site may link to third-party websites. We are not responsible for the content, privacy practices, or accuracy of those sites.</p>
+
+  <h2>Changes to these terms</h2>
+  <p>We may update these terms from time to time. Continued use of the site after changes constitutes acceptance of the updated terms. The "Last updated" date at the top of this page will reflect any revisions.</p>
+
+  <h2>Governing law</h2>
+  <p>These terms are governed by the laws of the United States and the state of incorporation of Orivo Health Inc., without regard to conflict of law principles.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about these terms: <a href="mailto:hello@orivohealth.com">hello@orivohealth.com</a></p>
+</div>
+<footer>
+  <div style="margin-bottom:10px">
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/hipaa-notice.html">PHI &amp; Safety Notice</a>
+    <a href="/accessibility.html">Accessibility</a>
+  </div>
+  © 2026 Orivo Health Inc. Prototype site — not for patient use.
+</footer>
+</body>
+</html>

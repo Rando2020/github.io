@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page Not Found — Orivo Health</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C896;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.22);
+  --w1:#F0F2FF;--w2:rgba(240,242,255,.72);--w3:rgba(240,242,255,.36);--w4:rgba(240,242,255,.06);
+  --border:rgba(240,242,255,.09);--bg:#050A14;--bg2:#07101A;
+  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html,body{height:100%}
+body{background:var(--bg);color:var(--w2);font-family:var(--sans);font-size:15px;display:flex;flex-direction:column}
+nav{position:sticky;top:0;z-index:100;background:rgba(5,10,20,.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);height:58px;padding:0 44px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.brand{font-family:var(--serif);font-size:20px;color:var(--teal);text-decoration:none}
+.nav-back{font-size:12.5px;color:var(--w3);text-decoration:none;padding:6px 13px;border-radius:7px;border:1px solid var(--border);transition:all .15s}
+.nav-back:hover{color:var(--w2);border-color:rgba(240,242,255,.18)}
+.main{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px;position:relative;overflow:hidden}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(0,200,150,.04);pointer-events:none;animation:spin var(--d,55s) linear infinite var(--r,normal)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.inner{text-align:center;position:relative;z-index:1;max-width:500px}
+.code{font-family:var(--serif);font-size:120px;color:var(--teal);line-height:1;margin-bottom:8px;opacity:.18}
+.h{font-family:var(--serif);font-size:36px;color:var(--w1);margin-bottom:14px;line-height:1.1}
+.sub{font-size:15px;color:var(--w3);line-height:1.65;margin-bottom:36px;max-width:380px;margin-left:auto;margin-right:auto}
+.ctas{display:flex;gap:11px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.btn-p{display:inline-flex;align-items:center;gap:7px;background:var(--teal);color:#030C0A;padding:11px 22px;border-radius:9px;font-size:13.5px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-p:hover{background:#009E75;transform:translateY(-1px)}
+.btn-g{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--w2);padding:10px 20px;border-radius:9px;font-size:13.5px;text-decoration:none;border:1px solid var(--border);transition:all .15s}
+.btn-g:hover{border-color:rgba(240,242,255,.2);color:var(--w1)}
+.links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.links a{font-size:12.5px;color:var(--w3);text-decoration:none;transition:color .15s}
+.links a:hover{color:var(--teal)}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:22px 44px;text-align:center;font-size:12px;color:var(--w3);flex-shrink:0}
+footer a{color:var(--w3);text-decoration:none;margin:0 8px}
+footer a:hover{color:var(--teal)}
+@media(max-width:600px){nav{padding:0 18px}.code{font-size:80px}.h{font-size:26px}footer{padding:18px 20px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="brand" href="/">orivo health</a>
+  <a class="nav-back" href="/">← Home</a>
+</nav>
+<div class="main">
+  <div class="ring" style="width:500px;height:500px;top:50%;left:50%;margin:-250px 0 0 -250px;--d:65s"></div>
+  <div class="ring" style="width:300px;height:300px;top:50%;left:50%;margin:-150px 0 0 -150px;--d:38s;--r:reverse"></div>
+  <div class="inner">
+    <div class="code">404</div>
+    <div class="h">This page doesn't exist.</div>
+    <p class="sub">The link you followed may be outdated or the page may have moved. You can head back to the homepage or explore the demos below.</p>
+    <div class="ctas">
+      <a class="btn-p" href="/">Go to homepage</a>
+      <a class="btn-g" href="/demo.html">See the demo</a>
+    </div>
+    <div class="links">
+      <a href="/pitch-deck.html">Pitch deck</a>
+      <a href="/why-invest.html">Why invest</a>
+      <a href="/provider-login.html">Provider login</a>
+      <a href="/dual-pipeline.html">AI pipeline</a>
+      <a href="mailto:hello@orivohealth.com">Contact us</a>
+    </div>
+  </div>
+</div>
+<footer>
+  <div style="margin-bottom:8px">
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/hipaa-notice.html">PHI &amp; Safety Notice</a>
+    <a href="/accessibility.html">Accessibility</a>
+  </div>
+  © 2026 Orivo Health Inc.
+</footer>
+</body>
+</html>
