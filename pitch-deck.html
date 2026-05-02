@@ -3,229 +3,832 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Orivo Health | AI that speaks patient and clinical</title>
-<meta name="description" content="Orivo Health is an SMS-first AI communication layer that helps patients explain medication questions, access barriers, and safety concerns in plain language.">
+<title>Orivo Health — Investor Pitch Deck</title>
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.24);
-  --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.09);--vera-b:rgba(124,111,205,.24);
+  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.22);
   --amber:#F5A623;--amber-lo:rgba(245,166,35,.09);--amber-b:rgba(245,166,35,.22);
-  --coral:#FF6B6B;--coral-lo:rgba(255,107,107,.08);--coral-b:rgba(255,107,107,.22);
-  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.09);--blue-b:rgba(74,158,255,.22);
-  --green:#34D399;--green-lo:rgba(52,211,153,.09);--green-b:rgba(52,211,153,.22);
-  --w1:#F0F2FF;--w2:rgba(240,242,255,.78);--w3:rgba(240,242,255,.55);--w4:rgba(240,242,255,.08);
-  --border:rgba(240,242,255,.10);--border2:rgba(240,242,255,.18);
-  --bg:#050A14;--bg2:#07101D;--bg3:#091528;
+  --coral:#FF6B6B;--coral-lo:rgba(255,107,107,.08);--coral-b:rgba(255,107,107,.2);
+  --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.08);--vera-b:rgba(124,111,205,.22);
+  --w1:#F0F2FF;--w2:rgba(240,242,255,.72);--w3:rgba(240,242,255,.32);--w4:rgba(240,242,255,.06);
+  --border:rgba(240,242,255,.08);--border2:rgba(240,242,255,.16);
+  --ink:#050A14;
   --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
   --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
 }
-html{scroll-behavior:smooth;background:var(--bg)}
-body{background:var(--bg);color:var(--w2);font-family:var(--sans);font-size:15px;line-height:1.65;overflow-x:hidden}
-a{color:inherit}
-.notice{
-  position:relative;z-index:500;background:rgba(0,200,150,.06);border-bottom:1px solid var(--teal-b);
-  color:rgba(240,242,255,.68);font-size:11px;text-align:center;padding:8px 18px;letter-spacing:.2px
+html,body{height:100%;overflow:hidden;background:var(--ink);font-family:var(--sans)}
+.shell{
+  display:flex;flex-direction:column;
+  height:100vh;max-width:1100px;margin:0 auto;
+  background:#060C18;
+  box-shadow:0 0 120px rgba(0,0,0,.9);
+  position:relative;
 }
-.notice a{color:var(--teal);text-decoration:none}
-/* nav */
-.nav{
-  position:sticky;top:0;z-index:400;height:66px;padding:0 40px;
-  display:flex;align-items:center;justify-content:space-between;gap:22px;
-  background:rgba(5,10,20,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)
+/* ── TOPBAR ── */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 32px;
+  background:rgba(4,8,18,.92);
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;backdrop-filter:blur(10px);z-index:10;
 }
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:max-content}
-.logo-mark{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--teal-b);display:grid;place-items:center;color:var(--teal);font-family:var(--serif);font-size:18px;background:rgba(0,200,150,.05)}
-.logo-text{font-family:var(--serif);font-size:21px;color:var(--teal);letter-spacing:-.4px;line-height:1}
-.logo-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w3);margin-top:2px}
-.logo-img{height:46px;width:auto;display:block;object-fit:contain;filter:drop-shadow(0 8px 22px rgba(0,200,150,.12))}.footer-logo-img{height:52px;width:auto;display:block;object-fit:contain;filter:drop-shadow(0 8px 22px rgba(0,200,150,.10))}
-.nav-center{display:flex;align-items:center;justify-content:center;gap:4px;flex:1}
-.nav-center a,.nav-actions a,.menu-btn{
-  font-size:13px;color:rgba(240,242,255,.68);text-decoration:none;padding:8px 11px;border-radius:8px;
-  border:1px solid transparent;transition:all .2s ease;font-weight:600;letter-spacing:.1px
+.brand{font-family:var(--serif);font-size:20px;color:var(--teal);letter-spacing:-.4px;display:flex;align-items:center;gap:10px}
+.brand-logo{width:36px;height:36px;object-fit:contain;display:block;filter:drop-shadow(0 4px 12px rgba(0,200,150,.16))}
+.brand-text{display:flex;align-items:baseline;gap:8px}
+.brand-sub{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w3)}
+.nav-r{display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:5px;align-items:center}
+.dot{width:5px;height:5px;border-radius:50%;background:rgba(240,242,255,.15);cursor:pointer;transition:all .3s ease;border:none;padding:0}
+.dot.on{width:20px;border-radius:2.5px;background:var(--teal)}
+.snum{font-size:11px;color:var(--w3);min-width:38px;text-align:center}
+.nbtn{background:none;border:1px solid rgba(240,242,255,.1);color:var(--w2);width:30px;height:30px;border-radius:7px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-size:13px;font-family:var(--sans)}
+.nbtn:hover{border-color:var(--teal);color:var(--teal)}
+.pbar{height:2px;background:rgba(240,242,255,.05);flex-shrink:0}
+.pfill{height:100%;background:var(--teal);transition:width .4s cubic-bezier(.4,0,.2,1)}
+/* ── SLIDES ── */
+.sw{flex:1;position:relative;overflow:hidden}
+.slide{
+  position:absolute;inset:0;padding:50px 60px;
+  display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s ease,transform .4s cubic-bezier(.4,0,.2,1);
+  transform:translateY(14px);overflow-y:auto;overflow-x:hidden;
 }
-.nav-center a:hover,.nav-actions a:hover,.menu-btn:hover{color:var(--w1);background:var(--w4);border-color:var(--border2)}
-.nav-actions{display:flex;align-items:center;gap:8px;min-width:max-content}
-.login-link{border-color:rgba(240,242,255,.14)!important;background:rgba(240,242,255,.05)}
-.demo-link{background:var(--teal)!important;color:#03100D!important;border-color:var(--teal)!important;font-weight:800!important}
-.demo-link:hover{background:var(--teal-d)!important;color:#03100D!important;transform:translateY(-1px)}
-.menu-btn{display:none;background:transparent;cursor:pointer;font-family:var(--sans)}
-.mobile-menu{display:none;background:rgba(5,10,20,.98);border-bottom:1px solid var(--border);padding:10px 18px 18px;position:sticky;top:66px;z-index:390}
-.mobile-menu.open{display:grid;grid-template-columns:1fr;gap:6px}
-.mobile-menu a{font-size:14px;color:rgba(240,242,255,.72);text-decoration:none;padding:10px;border-radius:8px;background:rgba(240,242,255,.04)}
-/* shared */
-.wrap{max-width:1120px;margin:0 auto;padding:0 44px}
-.ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;font-weight:800}
-.h1,.h2,.h3{font-family:var(--serif);color:var(--w1);letter-spacing:-.02em}.h1{font-size:68px;line-height:.98}.h2{font-size:42px;line-height:1.08}.h3{font-size:26px;line-height:1.15}
-.lead{font-size:17px;line-height:1.75;color:var(--w2);max-width:650px}.muted{color:var(--w3)}
-.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--teal-b);background:var(--teal-lo);color:var(--teal);border-radius:100px;padding:5px 12px;font-size:11px;font-weight:700}
-.pill.gray{border-color:var(--border);background:var(--w4);color:var(--w3)}.pill.amber{border-color:var(--amber-b);background:var(--amber-lo);color:var(--amber)}.pill.vera{border-color:var(--vera-b);background:var(--vera-lo);color:var(--vera)}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:13px 22px;font-size:14px;font-weight:800;text-decoration:none;border:1px solid var(--teal);background:var(--teal);color:#03100D;cursor:pointer;font-family:var(--sans);transition:all .2s}
-.btn:hover{background:var(--teal-d);border-color:var(--teal-d);transform:translateY(-1px)}
-.btn.secondary{background:transparent;color:var(--teal);border-color:var(--teal-b)}.btn.secondary:hover{background:var(--teal-lo);border-color:var(--teal)}
-.card{background:var(--w4);border:1px solid var(--border);border-radius:18px;padding:24px;transition:all .25s;position:relative;overflow:hidden}.card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.grid{display:grid;gap:16px}.grid.two{grid-template-columns:1fr 1fr}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.four{grid-template-columns:repeat(4,1fr)}
-section{border-bottom:1px solid var(--border)}
-/* hero */
-.hero{position:relative;min-height:calc(100vh - 98px);display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 78% 25%,rgba(0,200,150,.11) 0%,transparent 48%),radial-gradient(ellipse at 18% 82%,rgba(124,111,205,.09) 0%,transparent 48%),linear-gradient(160deg,#060C18 0%,#040810 100%)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:42px;align-items:center;padding-top:72px;padding-bottom:72px;position:relative;z-index:1}
-.hero-copy{max-width:650px}.hero-copy .lead{margin-top:20px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.hero-pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:24px}
-.orb{position:absolute;border-radius:50%;border:1px solid rgba(0,200,150,.07);animation:spin 48s linear infinite;pointer-events:none}.orb.one{width:620px;height:620px;right:-220px;top:-200px}.orb.two{width:340px;height:340px;right:10px;top:30px;animation-direction:reverse}.orb.three{width:260px;height:260px;left:-120px;bottom:-80px;border-color:rgba(124,111,205,.08)}@keyframes spin{to{transform:rotate(360deg)}}
-.phone-wrap{display:flex;justify-content:center;position:relative}.phone-glow{position:absolute;inset:8% 12%;background:radial-gradient(ellipse,rgba(0,200,150,.18),transparent 60%);filter:blur(20px)}
-.phone{width:330px;background:#0E1520;border:1.5px solid rgba(240,242,255,.14);border-radius:34px;padding:13px;box-shadow:0 28px 90px rgba(0,0,0,.55);position:relative;z-index:1}
-.notch{width:76px;height:8px;background:#1A2535;border-radius:100px;margin:0 auto 10px}.phone-head{background:#172030;border-radius:14px 14px 0 0;padding:13px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,.06)}
-.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00C896,#4A9EFF);display:grid;place-items:center;color:#fff;font-family:var(--serif)}.pname{font-size:13px;color:var(--w1);font-weight:800}.pstat{font-size:10px;color:var(--teal)}
-.thread{background:#0A1018;border-radius:0 0 14px 14px;padding:14px;height:430px;display:flex;flex-direction:column;gap:9px}.msg{padding:10px 13px;border-radius:15px;font-size:12.2px;line-height:1.48;max-width:92%;animation:rise .6s ease both}.msg.patient{background:#1D2B3E;color:rgba(240,242,255,.9);align-self:flex-end;border-bottom-right-radius:4px}.msg.aevo{background:rgba(0,200,150,.10);border:1px solid rgba(0,200,150,.2);color:rgba(240,242,255,.9);align-self:flex-start;border-bottom-left-radius:4px}.brief{margin-top:auto;background:rgba(255,107,107,.06);border:1px solid var(--coral-b);border-radius:13px;padding:12px;font-size:11px;color:var(--w2);animation:rise .8s ease both}.brief b{color:var(--coral)}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-/* stats */
-.stats-strip{padding:28px 0;background:rgba(240,242,255,.02)}.stat{padding:18px 10px;text-align:center}.stat-n{font-family:var(--serif);font-size:42px;color:var(--teal);line-height:1}.stat-l{font-size:12px;color:var(--w3);margin-top:5px;line-height:1.4}
-/* sections */
-.block{padding:78px 0}.split{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}.feature-list{display:flex;flex-direction:column;gap:10px;margin-top:18px}.feature{display:flex;gap:10px;align-items:flex-start;color:var(--w2);font-size:14px}.check{color:var(--teal);font-weight:900}.x{color:var(--coral);font-weight:900}
-.steps{grid-template-columns:repeat(3,1fr);margin-top:28px}.step-num{font-family:var(--serif);font-size:46px;color:rgba(0,200,150,.22);line-height:1}.step-title{font-size:16px;color:var(--w1);font-weight:800;margin-top:8px}.step-body{font-size:13px;color:var(--w3);line-height:1.6;margin-top:7px}
-.product-grid{grid-template-columns:repeat(5,1fr);margin-top:28px}.prod-icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;margin-bottom:12px;background:var(--teal-lo);border:1px solid var(--teal-b)}.prod-name{font-size:14px;color:var(--w1);font-weight:800;margin-bottom:5px}.prod-desc{font-size:12px;color:var(--w3);line-height:1.5}.prod-tag{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal);margin-top:10px}
-.story-card{background:linear-gradient(160deg,rgba(0,200,150,.08),rgba(124,111,205,.04));border-color:var(--teal-b)}.founder-profile{display:flex;align-items:center;gap:16px;margin-top:22px}.founder-photo{width:78px;height:78px;border-radius:20px;object-fit:cover;border:1px solid var(--teal-b);box-shadow:0 12px 32px rgba(0,0,0,.32)}.quote{font-family:var(--serif);font-size:22px;line-height:1.55;color:var(--w1);font-style:italic;border-left:3px solid var(--teal);padding-left:18px}
-.resource-grid{grid-template-columns:repeat(3,1fr);margin-top:28px}.resource-card{text-decoration:none;display:block;min-height:190px}.resource-kicker{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);font-weight:800}.resource-title{font-size:18px;color:var(--w1);font-weight:800;margin-top:8px}.resource-desc{font-size:13px;color:var(--w3);line-height:1.55;margin-top:8px}.resource-link{font-size:12px;color:var(--teal);font-weight:800;margin-top:18px}
-.cta{padding:86px 0;background:radial-gradient(ellipse at 50% 40%,rgba(0,200,150,.11),transparent 60%),linear-gradient(160deg,#060C18,#040810);text-align:center}.cta .lead{margin:14px auto 0}.cta-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:30px}
-.footer{padding:42px 0;background:var(--bg2);border-top:1px solid var(--border)}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:22px}.footer a{display:block;color:var(--w3);text-decoration:none;font-size:13px;margin-top:8px}.footer a:hover{color:var(--teal)}.footer-h{font-size:12px;color:var(--w1);font-weight:800;margin-bottom:8px}.fine{font-size:11px;color:rgba(240,242,255,.34);margin-top:28px}
-/* modal */
-.modal{position:fixed;inset:0;z-index:1000;background:rgba(4,8,18,.84);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{background:#060C18;border:1px solid var(--teal-b);border-radius:20px;padding:36px;max-width:440px;width:100%;box-shadow:0 0 70px rgba(0,200,150,.14);position:relative}.close{position:absolute;right:16px;top:16px;width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--w3);cursor:pointer}.cal-opt{display:flex;gap:14px;align-items:center;background:var(--w4);border:1px solid var(--border);border-radius:12px;padding:16px;text-decoration:none;margin-top:10px;transition:all .2s}.cal-opt:hover{background:var(--teal-lo);border-color:var(--teal-b)}.cal-ico{font-size:22px}.cal-title{font-size:14px;color:var(--w1);font-weight:800}.cal-sub{font-size:11px;color:var(--w3);margin-top:2px}.divider{display:flex;align-items:center;gap:10px;margin:18px 0}.divider:before,.divider:after{content:'';height:1px;background:var(--border);flex:1}.divider span{font-size:11px;color:var(--w3)}.email-row{display:flex;gap:8px}.email-row input{flex:1;border:1px solid var(--border);background:rgba(240,242,255,.05);color:var(--w1);border-radius:9px;padding:11px 12px;font-family:var(--sans)}.email-row button{border:0;background:var(--teal);color:#03100D;border-radius:9px;padding:11px 14px;font-weight:800;cursor:pointer}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.in{opacity:1;transform:translateY(0)}
-@media(max-width:980px){.nav-center{display:none}.menu-btn{display:inline-flex}.hero .wrap,.split{grid-template-columns:1fr}.phone-wrap{order:-1}.product-grid,.resource-grid,.grid.three,.grid.four,.steps{grid-template-columns:1fr 1fr}.h1{font-size:50px}}
-@media(max-width:640px){.notice{font-size:10px}.nav{padding:0 18px;height:60px}.logo-img{height:38px}.footer-logo-img{height:44px}.founder-profile{align-items:flex-start}.founder-photo{width:64px;height:64px;border-radius:16px}.mobile-menu{top:60px}.wrap{padding:0 20px}.hero .wrap{padding-top:42px;padding-bottom:52px}.h1{font-size:38px}.h2{font-size:30px}.lead{font-size:15px}.phone{width:100%;max-width:320px}.grid.two,.product-grid,.resource-grid,.grid.three,.grid.four,.steps,.footer-grid{grid-template-columns:1fr}.hero-actions,.cta-actions{flex-direction:column}.btn{justify-content:center}.footer-grid{gap:28px}.email-row{flex-direction:column}}
+.slide.on{opacity:1;pointer-events:all;transform:translateY(0)}
+.s1{background:radial-gradient(ellipse at 70% 40%,rgba(0,200,150,.07) 0%,transparent 65%),linear-gradient(160deg,#060C18 0%,#040810 100%)}
+.s2{background:radial-gradient(ellipse at 30% 60%,rgba(255,107,107,.05) 0%,transparent 60%),linear-gradient(160deg,#07101E 0%,#050A16 100%)}
+.s3{background:radial-gradient(ellipse at 60% 30%,rgba(0,200,150,.06) 0%,transparent 60%),linear-gradient(160deg,#06101C 0%,#040C18 100%)}
+.s4{background:radial-gradient(ellipse at 50% 50%,rgba(255,107,107,.04) 0%,transparent 65%),radial-gradient(ellipse at 80% 20%,rgba(0,200,150,.04) 0%,transparent 50%),linear-gradient(160deg,#070F1C 0%,#050B18 100%)}
+.s5{background:radial-gradient(ellipse at 40% 70%,rgba(74,158,255,.05) 0%,transparent 60%),linear-gradient(160deg,#060E1A 0%,#040C16 100%)}
+.s6{background:radial-gradient(ellipse at 65% 45%,rgba(0,200,150,.06) 0%,transparent 60%),linear-gradient(160deg,#060E1A 0%,#040C16 100%)}
+.s7{background:radial-gradient(ellipse at 35% 55%,rgba(167,139,250,.05) 0%,transparent 60%),linear-gradient(160deg,#070E1C 0%,#050B17 100%)}
+.s8{background:radial-gradient(ellipse at 55% 35%,rgba(245,166,35,.05) 0%,transparent 60%),linear-gradient(160deg,#07101A 0%,#050C18 100%)}
+.s9{background:radial-gradient(ellipse at 50% 50%,rgba(0,200,150,.08) 0%,transparent 60%),linear-gradient(160deg,#060C18 0%,#040810 100%)}
+/* ── TYPE ── */
+.ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}
+.h1{font-family:var(--serif);font-size:56px;line-height:1.02;color:var(--w1);margin-bottom:18px}
+.h2{font-family:var(--serif);font-size:42px;line-height:1.08;color:var(--w1);margin-bottom:14px}
+.h3{font-family:var(--serif);font-size:26px;line-height:1.15;color:var(--w1);margin-bottom:10px}
+.body{font-size:15px;line-height:1.7;color:var(--w2)}
+.sm{font-size:12px;color:var(--w3);line-height:1.5}
+/* ── PILLS ── */
+.pill{display:inline-flex;align-items:center;background:var(--teal-lo);border:1px solid var(--teal-b);color:var(--teal);padding:4px 12px;border-radius:100px;font-size:11px;letter-spacing:.2px}
+.pill-a{background:var(--amber-lo);border-color:var(--amber-b);color:var(--amber)}
+.pill-w{background:rgba(240,242,255,.06);border-color:rgba(240,242,255,.12);color:var(--w2)}
+.pill-r{background:var(--coral-lo);border-color:var(--coral-b);color:var(--coral)}
+.pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#030C0A;padding:11px 22px;border-radius:9px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:var(--sans);margin-top:26px;transition:all .2s;letter-spacing:.2px}
+.btn:hover{background:var(--teal-d);transform:translateY(-1px)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--teal);border:1px solid rgba(0,200,150,.28);padding:10px 20px;border-radius:9px;font-size:13px;cursor:pointer;font-family:var(--sans);margin-top:26px;margin-left:10px;transition:all .2s}
+.btn-o:hover{border-color:var(--teal);background:var(--teal-lo)}
+/* ── DECORATIVE ── */
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(0,200,150,.05);pointer-events:none;animation:spin var(--dur,50s) linear infinite var(--dir,normal)}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.grid-bg{position:absolute;inset:0;pointer-events:none;opacity:.022;background-image:linear-gradient(rgba(0,200,150,1) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,150,1) 1px,transparent 1px);background-size:60px 60px}
+/* ── STAT CARDS ── */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.sc{background:var(--w4);border:1px solid var(--border);border-radius:14px;padding:24px 20px;transition:all .25s}
+.sc:hover{border-color:rgba(0,200,150,.2);background:rgba(0,200,150,.04)}
+.sn{font-family:var(--serif);font-size:46px;color:var(--teal);line-height:1;margin-bottom:8px}
+.sl{font-size:13px;color:var(--w2);line-height:1.45}
+.ss{font-size:10px;color:var(--w3);margin-top:5px}
+/* ── STEPS ── */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.step{background:var(--w4);border:1px solid var(--border);border-radius:14px;padding:26px 22px;position:relative;overflow:hidden;transition:all .25s}
+.step:hover{border-color:rgba(0,200,150,.2)}
+.step.hi{border-color:rgba(0,200,150,.22);background:rgba(0,200,150,.04)}
+.step::after{content:attr(data-n);position:absolute;bottom:-14px;right:10px;font-family:var(--serif);font-size:96px;color:rgba(240,242,255,.025);line-height:1;pointer-events:none}
+.step-ico{width:40px;height:40px;border-radius:10px;background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.2);display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px}
+.step-t{font-size:15px;font-weight:500;color:var(--w1);margin-bottom:7px}
+/* ── TWO COL ── */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start;margin-top:18px}
+/* ── PRODUCT CARDS ── */
+.prod-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:26px}
+.pc{background:var(--w4);border:1px solid var(--border);border-radius:12px;padding:18px 16px;transition:all .25s;cursor:default}
+.pc:hover{background:rgba(240,242,255,.09);border-color:var(--border2);transform:translateY(-2px)}
+.pc-dot{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:14px}
+.pc-name{font-size:13px;font-weight:600;color:var(--w1);margin-bottom:5px}
+.pc-desc{font-size:11px;color:var(--w3);line-height:1.5}
+.pc-tag{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;margin-top:8px}
+/* ── SMS PHONE ── */
+.phone{width:186px;background:#0E1520;border-radius:28px;border:1.5px solid rgba(240,242,255,.1);padding:10px;flex-shrink:0}
+.notch{width:50px;height:7px;background:#1A2535;border-radius:3.5px;margin:0 auto 7px}
+.ptop{background:#172030;border-radius:6px 6px 0 0;padding:8px 10px;display:flex;align-items:center;gap:7px;border-bottom:1px solid rgba(255,255,255,.05)}
+.pav{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#00C896,#0070CC);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0}
+.pname{font-size:10.5px;color:var(--w1);font-weight:500}
+.pstat{font-size:8px;color:var(--teal)}
+.pmsgs{background:#0A1018;border-radius:0 0 6px 6px;padding:8px 7px;height:300px;display:flex;flex-direction:column;gap:5px;overflow:hidden}
+.msg{padding:7px 10px;border-radius:11px;font-size:9.5px;line-height:1.48;max-width:92%;opacity:0;transform:translateY(5px);transition:opacity .35s ease,transform .35s ease}
+.msg.show{opacity:1;transform:translateY(0)}
+.mp{background:#1D2B3E;color:rgba(240,242,255,.83);align-self:flex-end;border-bottom-right-radius:3px}
+.ma{background:rgba(0,200,150,.1);border:1px solid rgba(0,200,150,.18);color:rgba(240,242,255,.83);align-self:flex-start;border-bottom-left-radius:3px}
+.ti{display:flex;gap:3px;padding:8px 10px;background:rgba(0,200,150,.08);border-radius:11px;border-bottom-left-radius:3px;width:36px;opacity:0;transition:opacity .3s;align-self:flex-start}
+.ti.show{opacity:1}
+.td{width:4px;height:4px;border-radius:50%;background:var(--teal);animation:tdp 1.2s ease-in-out infinite}
+.td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
+@keyframes tdp{0%,60%,100%{opacity:.3;transform:scale(1)}30%{opacity:1;transform:scale(1.25)}}
+/* ── SDOH CARD ── */
+.sdoh-result{background:rgba(240,242,255,.04);border:1px solid rgba(0,200,150,.14);border-radius:13px;padding:18px;opacity:0;transition:opacity .5s ease}
+.sdoh-result.show{opacity:1}
+.sdoh-h{font-size:9px;text-transform:uppercase;letter-spacing:2px;color:var(--teal);margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid rgba(0,200,150,.1)}
+.srow{display:flex;gap:8px;margin-bottom:9px;align-items:flex-start}
+.sdot{width:4px;height:4px;border-radius:50%;background:var(--teal);margin-top:4px;flex-shrink:0}
+.stxt{color:var(--w2);line-height:1.45;font-size:11.5px}
+.sflag{display:inline-flex;align-items:center;background:rgba(0,200,150,.08);border:1px solid rgba(0,200,150,.2);color:var(--teal);font-size:9.5px;padding:4px 10px;border-radius:5px;margin-top:8px}
+/* ── ROADMAP ── */
+.rmap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+.rh{background:var(--w4);border:1px solid var(--border);border-radius:14px;padding:24px 20px;transition:all .25s}
+.rh:hover{border-color:var(--border2);background:rgba(240,242,255,.09)}
+.rh-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid;border-radius:100px;padding:4px 12px 4px 8px;font-size:11px;margin-bottom:14px}
+.rh-dot{width:6px;height:6px;border-radius:50%}
+.rh-label{font-size:13px;font-weight:500;color:var(--w1);margin-bottom:8px}
+.rh-body{font-size:12px;color:var(--w3);line-height:1.6}
+.rh-prods{display:flex;flex-direction:column;gap:5px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border)}
+.rh-prod{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--w2)}
+.rh-prod-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0}
+.rh-arv{font-family:var(--serif);font-size:26px;line-height:1;margin-top:14px}
+/* ── METRICS ── */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+.mc{background:var(--w4);border:1px solid var(--border);border-radius:13px;padding:20px 16px;text-align:center;transition:all .25s}
+.mc:hover{border-color:rgba(0,200,150,.2)}
+.mc.hi{border-color:rgba(0,200,150,.24);background:rgba(0,200,150,.04)}
+.mn{font-family:var(--serif);font-size:32px;color:var(--teal);margin-bottom:5px}
+.ml{font-size:11px;color:var(--w3);line-height:1.45}
+/* ── FOUNDER ── */
+.founder-card{background:rgba(240,242,255,.04);border:1px solid rgba(0,200,150,.14);border-radius:16px;padding:28px 32px;margin-top:28px;display:grid;grid-template-columns:120px 1fr;gap:22px;align-items:start}
+.founder-photo{width:120px;height:120px;object-fit:cover;border-radius:18px;border:1px solid rgba(0,200,150,.18);box-shadow:0 16px 40px rgba(0,0,0,.28)}
+.fc-main{display:flex;flex-direction:column}
+.fc-quote{font-family:var(--serif);font-size:17px;color:var(--w1);line-height:1.6;font-style:italic;margin-bottom:18px}
+.fc-ident{margin-bottom:14px}
+.fc-name{font-size:16px;font-weight:700;color:var(--w1)}
+.fc-role{font-size:12px;color:var(--w2);margin-top:2px}
+.fc-degree{font-size:11px;color:var(--w3);line-height:1.6;margin-top:4px}
+.fc-creds{display:flex;flex-wrap:wrap;gap:8px}
+/* ── COMPARE ── */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.comp-card{background:var(--w4);border:1px solid var(--border);border-radius:14px;padding:24px}
+.comp-card.them{border-color:rgba(255,107,107,.15);background:rgba(255,107,107,.03)}
+.comp-card.us{border-color:rgba(0,200,150,.2);background:rgba(0,200,150,.04)}
+.comp-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.comp-items{display:flex;flex-direction:column;gap:9px}
+.ci{display:flex;gap:8px;font-size:13px;color:var(--w2);align-items:flex-start}
+.ci-ico{font-size:12px;margin-top:1px;flex-shrink:0}
+/* ── NO-APP SLIDE SPECIFICS ── */
+.phone-compare{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.phone-col{border-radius:16px;padding:26px 24px;border:1px solid}
+.phone-col.bad{border-color:var(--coral-b);background:var(--coral-lo)}
+.phone-col.good{border-color:var(--teal-b);background:var(--teal-lo)}
+.pc-head{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:16px;font-weight:600}
+.pc-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--w2);margin-bottom:10px;line-height:1.5}
+.pc-ico{font-size:13px;flex-shrink:0;margin-top:1px}
+.big-stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.bs{border-radius:14px;padding:22px 18px;text-align:center;border:1px solid var(--border);background:var(--w4)}
+.bs-n{font-family:var(--serif);font-size:38px;color:var(--teal);line-height:1;margin-bottom:6px}
+.bs-l{font-size:12px;color:var(--w3);line-height:1.45}
+/* ── SITE NAV READABILITY PATCH ── */
+.site-nav a,
+.nav-links a,
+.nav-menu a,
+.navbar a,
+.desktop-nav a,
+.header-nav a,
+.orivo-nav-home,
+.orivo-nav-right a:not(.orivo-nav-book),
+header nav a:not(.btn):not(.button) {
+  color:rgba(240,242,255,.68)!important;
+  font-size:13.5px!important;
+  letter-spacing:.01em;
+}
+
+.site-nav a:hover,
+.nav-links a:hover,
+.nav-menu a:hover,
+.navbar a:hover,
+.desktop-nav a:hover,
+.header-nav a:hover,
+.orivo-nav-home:hover,
+.orivo-nav-right a:not(.orivo-nav-book):hover,
+header nav a:not(.btn):not(.button):hover {
+  color:rgba(240,242,255,.92)!important;
+}
+
+@media(max-width:900px){
+  .site-nav a,
+  .nav-links a,
+  .nav-menu a,
+  .navbar a,
+  .desktop-nav a,
+  .header-nav a,
+  .orivo-nav-home,
+  .orivo-nav-right a:not(.orivo-nav-book),
+  header nav a:not(.btn):not(.button) {
+    font-size:13px!important;
+  }
+}
+
+/* ── FOOT ── */
+.foot{margin-top:auto;padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end}
+/* ── CAL.COM BOOKING MODAL ── */
+.cal-overlay{position:fixed;inset:0;background:rgba(4,8,18,.85);z-index:999;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.cal-overlay.open{display:flex}
+.cal-box{background:#060C18;border:1px solid var(--teal-b);border-radius:18px;padding:40px 44px;max-width:420px;width:100%;position:relative;box-shadow:0 0 60px rgba(0,200,150,.12)}
+.cal-close{position:absolute;top:16px;right:16px;background:none;border:1px solid var(--border);color:var(--w3);width:28px;height:28px;border-radius:7px;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:var(--sans)}
+.cal-close:hover{border-color:var(--teal);color:var(--teal)}
+.cal-logo{font-family:var(--serif);font-size:18px;color:var(--teal);margin-bottom:6px}
+.cal-h{font-family:var(--serif);font-size:26px;color:var(--w1);margin-bottom:8px}
+.cal-sub{font-size:13px;color:var(--w3);line-height:1.6;margin-bottom:28px}
+.cal-options{display:flex;flex-direction:column;gap:10px}
+.cal-opt{display:flex;align-items:center;gap:14px;background:var(--w4);border:1px solid var(--border);border-radius:11px;padding:16px 18px;cursor:pointer;transition:all .2s;text-decoration:none}
+.cal-opt:hover{border-color:var(--teal-b);background:var(--teal-lo)}
+.cal-opt-ico{font-size:20px;flex-shrink:0}
+.cal-opt-t{font-size:14px;font-weight:500;color:var(--w1);margin-bottom:2px}
+.cal-opt-s{font-size:11px;color:var(--w3)}
+.cal-divider{display:flex;align-items:center;gap:10px;margin:16px 0}
+.cal-divider-line{flex:1;height:1px;background:var(--border)}
+.cal-divider-txt{font-size:11px;color:var(--w3)}
+.cal-email{display:flex;gap:8px;margin-top:4px}
+.cal-email-input{flex:1;background:rgba(240,242,255,.05);border:1px solid var(--border);color:var(--w1);padding:10px 14px;border-radius:8px;font-size:13px;font-family:var(--sans);outline:none;transition:border-color .2s}
+.cal-email-input:focus{border-color:var(--teal-b)}
+.cal-email-btn{background:var(--teal);color:#030C0A;border:none;padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--sans);white-space:nowrap;transition:all .2s}
+.cal-email-btn:hover{background:var(--teal-d)}
+@media(max-width:700px){
+  .slide{padding:28px 22px}
+  .stats,.steps,.prod-grid,.rmap,.metrics,.compare,.phone-compare,.big-stat-row{grid-template-columns:1fr}
+  .two{grid-template-columns:1fr}
+  .h1{font-size:38px}.h2{font-size:28px}
+  .phone{display:none}
+  .cal-box{padding:28px 24px;margin:0 16px}
+  .founder-card{grid-template-columns:1fr;padding:24px}
+  .founder-photo{width:96px;height:96px}
+}
 </style>
 </head>
 <body>
-<div class="notice">Prototype site. Orivo does not diagnose, prescribe, or collect PHI through this static site. <a href="#hipaa">HIPAA Notice</a></div>
-<nav class="nav">
-  <a class="logo" href="#top" aria-label="Orivo Health home">
-    <img class="logo-img" src="assets/orivo-logo-transparent.png" alt="Orivo Health Inc logo">
-  </a>
-  <div class="nav-center" aria-label="Primary navigation">
-    <a href="#how">How it works</a>
-    <a href="#products">Products</a>
-    <a href="#providers">For providers</a>
-    <a href="#story">Our story</a>
-    <a href="#resources">Resources</a>
-    <a href="#investors">Investors</a>
+<div class="shell">
+<!-- Topbar -->
+<div class="topbar">
+  <div class="brand"><img class="brand-logo" src="data:image/png;base64,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" alt="Orivo Health logo"><div class="brand-text">orivo <span class="brand-sub">health</span></div></div>
+  <div class="nav-r">
+    <div class="dots" id="dotsEl"></div>
+    <span class="snum" id="snm">1 / 9</span>
+    <button class="nbtn" onclick="prev()">&#8592;</button>
+    <button class="nbtn" onclick="next()">&#8594;</button>
   </div>
-  <div class="nav-actions">
-    <a class="login-link" href="provider-login.html">Provider login</a>
-    <a class="demo-link" href="#book" onclick="openBook(event)">Book a demo</a>
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-  </div>
-</nav>
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#how" onclick="toggleMenu(false)">How it works</a><a href="#products" onclick="toggleMenu(false)">Products</a><a href="#providers" onclick="toggleMenu(false)">For providers</a><a href="#story" onclick="toggleMenu(false)">Our story</a><a href="#resources" onclick="toggleMenu(false)">Resources</a><a href="#investors" onclick="toggleMenu(false)">Investors</a><a href="provider-login.html">Provider login</a><a href="#book" onclick="openBook(event);toggleMenu(false)">Book a demo</a>
 </div>
-<main id="top">
-  <section class="hero">
-    <div class="orb one"></div><div class="orb two"></div><div class="orb three"></div>
-    <div class="wrap">
-      <div class="hero-copy reveal">
-        <div class="ey">Seed stage · 2026 · Confidential</div>
-        <h1 class="h1">Epic helps providers.<br><span style="color:var(--teal)">Orivo helps patients.</span></h1>
-        <p class="lead">An AI communication layer that listens in any language, on any phone, regardless of insurance, and helps surface the real roadblocks between a patient and their health.</p>
-        <div class="hero-actions"><a class="btn" href="#book" onclick="openBook(event)">Book a demo ↗</a><a class="btn secondary" href="demo.html?v=2">See it live →</a><a class="btn secondary" href="pitch-deck.html">Pitch deck →</a></div>
-        <div class="hero-pills"><span class="pill">No app</span><span class="pill">No download</span><span class="pill">No new behavior required</span><span class="pill gray">Any phone · 40+ languages</span></div>
-      </div>
-      <div class="phone-wrap reveal">
-        <div class="phone-glow"></div>
-        <div class="phone">
-          <div class="notch"></div><div class="phone-head"><div class="avatar">O</div><div><div class="pname">Orivo Health</div><div class="pstat">● Always on</div></div></div>
-          <div class="thread">
-            <div class="msg patient">I can't make my appointment tomorrow. I don't have a ride.</div>
-            <div class="msg aevo">Your Medicaid plan may cover non-emergency medical transportation. I can help you find the right number and notify your care team.</div>
-            <div class="msg patient">Also, my chest feels tight since I started the new blood pressure med.</div>
-            <div class="msg aevo">Flagging this as priority. If tightness worsens, call 911. I am sending a brief to your pharmacist now.</div>
-            <div class="brief"><b>Aevo Clinical Brief - Priority</b><br>SDoH: Transportation barrier detected<br>Symptom: Chest tightness after new medication<br>Action: Pharmacist review recommended</div>
+<div class="pbar"><div class="pfill" id="pf" style="width:11.11%"></div></div>
+
+<div class="sw">
+
+<!-- ─── S1: COVER ─── -->
+<div class="slide s1 on" id="s1">
+  <div class="grid-bg"></div>
+  <div class="ring" style="width:500px;height:500px;top:-160px;right:-140px;--dur:60s"></div>
+  <div class="ring" style="width:300px;height:300px;top:-60px;right:-40px;--dur:35s;--dir:reverse"></div>
+  <div style="max-width:620px;position:relative;z-index:1">
+    <div class="ey">Seed Round &nbsp;·&nbsp; 2025</div>
+    <div class="h1">Epic helps providers.<br><span style="color:var(--teal)">Orivo helps<br>patients.</span></div>
+    <div class="body" style="max-width:480px;margin-top:4px">An AI that listens — in any language, on any phone, regardless of insurance — finds solutions to the real roadblocks between a patient and their health. No app to download. No portal to learn. Just a text message.</div>
+    <div class="pillrow">
+      <span class="pill">SMS-native</span>
+      <span class="pill">Any phone. Any age.</span>
+      <span class="pill pill-a">HIPAA-informed</span>
+      <span class="pill pill-w">40+ languages</span>
+    </div>
+    <div>
+      <button class="btn" onclick="next()">See the story &#8594;</button>
+      <button class="btn-o" onclick="goTo(8)">View the ask &#8594;</button>
+    </div>
+  </div>
+  <div style="position:absolute;right:60px;bottom:52px;opacity:.07;pointer-events:none">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+      <circle cx="100" cy="100" r="92" stroke="#00C896" stroke-width=".7"/>
+      <circle cx="100" cy="100" r="68" stroke="#00C896" stroke-width=".6"/>
+      <circle cx="100" cy="100" r="44" stroke="#00C896" stroke-width=".5"/>
+      <circle cx="100" cy="100" r="20" stroke="#00C896" stroke-width=".4"/>
+      <circle cx="100" cy="100" r="5" fill="#00C896"/>
+      <line x1="8" y1="100" x2="192" y2="100" stroke="#00C896" stroke-width=".5"/>
+      <line x1="100" y1="8" x2="100" y2="192" stroke="#00C896" stroke-width=".5"/>
+      <line x1="35" y1="35" x2="165" y2="165" stroke="#00C896" stroke-width=".4"/>
+      <line x1="165" y1="35" x2="35" y2="165" stroke="#00C896" stroke-width=".4"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ─── S2: FOUNDER STORY ─── -->
+<div class="slide s2" id="s2">
+  <div class="ey">Why we exist</div>
+  <div class="h2" style="font-size:36px">Built from the front lines.</div>
+  <div class="two" style="gap:42px">
+    <div>
+      <div class="body" style="max-width:460px">I stood at the pharmacy counter in underserved communities and watched patients arrive with 20 medications they couldn't name, leaving with instructions they didn't understand — feeling like a problem to be managed, not a person to be heard.</div>
+      <div class="founder-card">
+        <img class="founder-photo" src="data:image/jpeg;base64,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" alt="Portrait of Josiah Parve">
+        <div class="fc-main">
+          <div class="fc-quote">"I've seen what no healthcare access looks like — from the counter of a CVS in an underserved neighborhood to clinics in Africa with Hope Without Borders. The gap isn't clinical. It's communication."</div>
+          <div class="fc-ident"><div class="fc-name">Josiah Parve</div><div class="fc-role">Founder and CEO, Orivo Health</div><div class="fc-degree">Bachelor's, College of Letters & Science, University of Wisconsin–Milwaukee — with a focus on genetics and psychology</div></div>
+          <div class="fc-creds">
+            <span class="pill">Certified Pharm Tech — CVS</span>
+            <span class="pill">EQUIPP + CMS Star Ratings</span>
+            <span class="pill">PDC / PQA adherence programs</span>
+            <span class="pill">Healthcare product + implementation</span>
+            <span class="pill pill-a">Hope Without Borders — Africa</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
-  <section class="stats-strip">
-    <div class="wrap grid four">
-      <div class="stat"><div class="stat-n">50%</div><div class="stat-l">of prescriptions never taken as directed</div></div>
-      <div class="stat"><div class="stat-n">125K</div><div class="stat-l">preventable deaths per year from non-adherence</div></div>
-      <div class="stat"><div class="stat-n">$3.5B</div><div class="stat-l">annual CMS spend on preventable ADEs</div></div>
-      <div class="stat"><div class="stat-n">12%</div><div class="stat-l">of patients understand discharge instructions</div></div>
-    </div>
-  </section>
-  <section class="block" id="how">
-    <div class="wrap">
-      <div class="ey">How Orivo works</div><h2 class="h2">Listen. Translate. Connect.</h2><p class="lead">Three steps. Any phone. Any language. The patient finally has something in their corner, and the care team has context they can act on.</p>
-      <div class="grid steps">
-        <div class="card"><div class="step-num">01</div><div class="step-title">Patient speaks naturally</div><div class="step-body">Via SMS, voice, or app. No forms, no portals, no jargon. Symptoms, questions, barriers, and concerns stay in the patient's own words.</div></div>
-        <div class="card"><div class="step-num">02</div><div class="step-title">Aevo translates and enriches</div><div class="step-body">Extracts symptoms, flags urgency, checks medication history, identifies possible ADEs, surfaces SDoH barriers, and loads benefit context.</div></div>
-        <div class="card"><div class="step-num">03</div><div class="step-title">Patient is heard. Team can act.</div><div class="step-body">Patients get plain-language next steps. The care team receives a structured brief with the original patient voice preserved.</div></div>
+    <div style="display:flex;flex-direction:column;gap:14px;padding-top:6px">
+      <div style="background:var(--w4);border:1px solid var(--border);border-radius:13px;padding:20px">
+        <div class="sm" style="color:var(--teal);letter-spacing:2px;text-transform:uppercase;font-size:9px;margin-bottom:10px">The pattern I kept seeing</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div class="ci"><span class="ci-ico">👁️</span><span>Patients with 20+ meds who didn't know what any of them were for</span></div>
+          <div class="ci"><span class="ci-ico">🌍</span><span>Communities with zero access to the navigation systems that exist in their own insurance plan</span></div>
+          <div class="ci"><span class="ci-ico">📋</span><span>Discharge instructions that confused more than they guided</span></div>
+          <div class="ci"><span class="ci-ico">💔</span><span>Patients who stopped trusting the system — and stopped taking their medications</span></div>
+        </div>
+      </div>
+      <div style="background:rgba(0,200,150,.05);border:1px solid var(--teal-b);border-radius:13px;padding:20px">
+        <div class="sm" style="color:var(--teal);letter-spacing:2px;text-transform:uppercase;font-size:9px;margin-bottom:10px">The realization</div>
+        <div class="body" style="font-size:14px">Providers had Epic. Payers had data platforms. Pharmacies had dispensing systems. <strong style="color:var(--w1)">Nobody had built anything for the patient.</strong></div>
       </div>
     </div>
-  </section>
-  <section class="block" id="investors">
-    <div class="wrap split">
-      <div><div class="ey">The accessibility insight</div><h2 class="h2">Everyone else built an app. We didn't.</h2><p class="lead">The patients who need help most are often the same patients every app leaves behind. Orivo meets patients where they already are.</p></div>
-      <div class="grid two">
-        <div class="card"><h3 class="h3" style="color:var(--coral)">Most health apps</h3><div class="feature-list"><div class="feature"><span class="x">✕</span>Requires smartphone, download, account creation, and learned behavior</div><div class="feature"><span class="x">✕</span>Demands digital literacy from the highest-risk patients</div><div class="feature"><span class="x">✕</span>Reaches patients who are already engaged</div></div></div>
-        <div class="card"><h3 class="h3" style="color:var(--teal)">Orivo</h3><div class="feature-list"><div class="feature"><span class="check">✓</span>Works on any phone, including flip phones and feature phones</div><div class="feature"><span class="check">✓</span>Zero download, zero onboarding, zero new behavior required</div><div class="feature"><span class="check">✓</span>Built for Medicare, Medicaid, rural, aging, and underserved populations</div></div></div>
-      </div>
-    </div>
-  </section>
-  <section class="block" id="story">
-    <div class="wrap split">
-      <div><div class="ey">Why we exist</div><h2 class="h2">Built from the front lines.</h2><p class="lead">Orivo comes from seeing patients leave pharmacy counters with medications they could not name, instructions they did not understand, and benefits they did not know existed.</p></div>
-      <div class="card story-card"><div class="quote">Providers had Epic. Payers had data platforms. Pharmacies had dispensing systems. Nobody had built anything for the patient. So we did.</div><div class="founder-profile"><img class="founder-photo" src="assets/josiah-parve-headshot.jpg" alt="Josiah Parve, Founder and CEO of Orivo Health"><div><div style="font-weight:800;color:var(--w1)">Josiah Parve</div><div class="muted">Founder and CEO, Orivo Health</div></div></div><div class="hero-pills"><span class="pill">Certified Pharmacy Technician</span><span class="pill">PDC / PQA adherence programs</span><span class="pill">Bachelor's, College of Letters &amp; Science, UWM — Genetics + Psychology focus</span><span class="pill amber">Hope Without Borders</span></div></div>
-    </div>
-  </section>
-  <section class="block" id="products">
-    <div class="wrap"><div class="ey">Product suite</div><h2 class="h2">Five products. One compounding platform.</h2><p class="lead">Each product is independently valuable. Together they create a longitudinal, conversational patient data layer that compounds with every interaction.</p>
-      <div class="grid product-grid">
-        <div class="card"><div class="prod-icon">↔</div><div class="prod-name">Aevo Relay</div><div class="prod-desc">Bidirectional patient to clinical language translation via SMS, voice, or app.</div><div class="prod-tag">H1 · Core</div></div>
-        <div class="card"><div class="prod-icon">Rx</div><div class="prod-name">Aevo Rx</div><div class="prod-desc">Medication reconciliation. What patients actually take versus what was prescribed.</div><div class="prod-tag">H1-H2</div></div>
-        <div class="card"><div class="prod-icon">!</div><div class="prod-name">Aevo Shield</div><div class="prod-desc">ADE prevention, passive drug interaction monitoring, and readmission risk signals.</div><div class="prod-tag">H2</div></div>
-        <div class="card"><div class="prod-icon">◎</div><div class="prod-name">Aevo Intel</div><div class="prod-desc">SDoH capture, Z-code documentation, and population health data for payers.</div><div class="prod-tag">H3</div></div>
-        <div class="card"><div class="prod-icon">✓</div><div class="prod-name">Aevo Trust</div><div class="prod-desc">AI drift detection, semantic consistency, fraud signals, and immutable audit trails.</div><div class="prod-tag">H2-H3</div></div>
-      </div>
-    </div>
-  </section>
-  <section class="block" id="providers">
-    <div class="wrap"><div class="ey">For providers and pharmacists</div><h2 class="h2">Your patients. Full context. Every time.</h2><p class="lead">AI-generated clinical briefs, medication flags, and SDoH alerts, updated in real time as patients interact with Aevo.</p>
-      <div class="grid three" style="margin-top:28px">
-        <div class="card"><h3 class="h3">Physician / Provider</h3><div class="feature-list"><div class="feature"><span class="check">✓</span>AI-generated clinical briefs</div><div class="feature"><span class="check">✓</span>Real-time urgency flags</div><div class="feature"><span class="check">✓</span>EHR integration target</div><div class="feature"><span class="check">✓</span>Z-code documentation</div></div><a class="resource-link" href="provider-login.html">Physician portal →</a></div>
-        <div class="card"><h3 class="h3">Pharmacist / Pharmacy</h3><div class="feature-list"><div class="feature"><span class="check">✓</span>Medication reconciliation briefs</div><div class="feature"><span class="check">✓</span>Adherence tracking dashboard</div><div class="feature"><span class="check">✓</span>Drug interaction flags</div><div class="feature"><span class="check">✓</span>Counseling queue support</div></div><a class="resource-link" href="provider-login.html">Pharmacy portal →</a></div>
-        <div class="card"><h3 class="h3">Health System Admin</h3><div class="feature-list"><div class="feature"><span class="check">✓</span>Pilot outcomes reporting</div><div class="feature"><span class="check">✓</span>Population dashboard</div><div class="feature"><span class="check">✓</span>Team access management</div><div class="feature"><span class="check">✓</span>CMS Star Ratings alignment</div></div><a class="resource-link" href="provider-login.html">Admin portal →</a></div>
-      </div>
-    </div>
-  </section>
-  <section class="block" id="resources">
-    <div class="wrap"><div class="ey">Resources and demos</div><h2 class="h2">Go deeper.</h2><p class="lead">Interactive demos, investor materials, and technical walkthroughs. All prototype pages, not live patient tools.</p>
-      <div class="grid resource-grid">
-        <a class="card resource-card" href="demo.html?v=2"><div class="resource-kicker">Product demo</div><div class="resource-title">Patient + Provider Experience</div><div class="resource-desc">Two-sided view of the patient SMS journey and provider-side action queue.</div><div class="resource-link">Open demo →</div></a>
-        <a class="card resource-card" href="pitch-deck.html"><div class="resource-kicker">Investor deck</div><div class="resource-title">Orivo Health Investor Pitch Deck</div><div class="resource-desc">9-slide overview covering vision, problem, no-app insight, product suite, roadmap, and ask.</div><div class="resource-link">View deck →</div></a>
-        <a class="card resource-card" href="why-invest.html"><div class="resource-kicker">Why invest</div><div class="resource-title">Why Invest in Orivo Health</div><div class="resource-desc">Deep-dive investor case covering market timing, moat, traction, and data advantage.</div><div class="resource-link">Read the case →</div></a>
-        <a class="card resource-card" href="dual-pipeline.html"><div class="resource-kicker">AI architecture</div><div class="resource-title">Aevo + Vera Dual Pipeline</div><div class="resource-desc">Patient AI routing and data AI validation designed to reduce hallucination risk.</div><div class="resource-link">Explore →</div></a>
-        <a class="card resource-card" href="etl-pipeline.html"><div class="resource-kicker">Intelligence</div><div class="resource-title">Aevo Intelligence Pipeline</div><div class="resource-desc">Animated walkthrough from patient message to extraction, validation, and delivery.</div><div class="resource-link">Watch pipeline →</div></a>
-        <a class="card resource-card" href="engineering-stack.html"><div class="resource-kicker">Engineering</div><div class="resource-title">Complete Engineering Stack</div><div class="resource-desc">Infrastructure, data, AI, voice, observability, and cost model.</div><div class="resource-link">View stack →</div></a>
-      </div>
-    </div>
-  </section>
-  <section class="cta" id="book">
-    <div class="wrap"><div class="ey">Get started</div><h2 class="h2">Ready to put something in the patient's corner?</h2><p class="lead">Whether you're an investor, a health system, or an independent pharmacy, the conversation starts with a call.</p><div class="cta-actions"><a class="btn" href="#book" onclick="openBook(event)">Book a conversation ↗</a><a class="btn secondary" href="pitch-deck.html">View pitch deck</a></div></div>
-  </section>
-</main>
-<footer class="footer" id="hipaa">
-  <div class="wrap"><div class="footer-grid"><div><a class="logo" href="#top" style="display:inline-flex"><img class="footer-logo-img" src="assets/orivo-logo-transparent.png" alt="Orivo Health Inc logo"></a><p class="muted" style="margin-top:14px;max-width:420px">AI that speaks patient and clinical. Any phone. Any language. No app required.</p><p class="fine">Prototype website. Do not submit protected health information, medication details, symptoms, insurance details, or sensitive personal information through this static GitHub Pages site.</p></div><div><div class="footer-h">Product</div><a href="#how">How it works</a><a href="#products">Product suite</a><a href="demo.html?v=2">Live demo</a><a href="dual-pipeline.html">Aevo + Vera</a></div><div><div class="footer-h">For providers</div><a href="provider-login.html">Physician login</a><a href="provider-login.html">Pharmacy login</a><a href="provider-login.html">Admin login</a><a href="#book" onclick="openBook(event)">Request access</a></div><div><div class="footer-h">Investors</div><a href="pitch-deck.html">Pitch deck</a><a href="why-invest.html">Why invest</a><a href="engineering-stack.html">Tech stack</a><a href="#book" onclick="openBook(event)">Book a call</a></div></div><div class="fine">© 2026 Orivo Health Inc. Prototype website. · Privacy · Terms · HIPAA Notice · Accessibility</div></div>
-</footer>
-<div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="bookTitle">
-  <div class="modal-box"><button class="close" onclick="closeBook()" aria-label="Close">×</button><div class="logo-text" style="margin-bottom:8px">orivo health</div><h2 class="h3" id="bookTitle">Let's talk.</h2><p class="muted" style="margin-top:8px;margin-bottom:22px">Choose how you'd like to connect. All conversations are confidential.</p><a class="cal-opt" href="https://cal.com/josiah.parve/30min" target="_blank" rel="noopener"><div class="cal-ico">📅</div><div><div class="cal-title">Schedule a 30-min investor call</div><div class="cal-sub">Zoom · Free · via Cal.com</div></div></a><a class="cal-opt" href="https://cal.com/josiah.parve/15min" target="_blank" rel="noopener"><div class="cal-ico">🖥️</div><div><div class="cal-title">Book a product demo</div><div class="cal-sub">15 min · For health systems and pharmacies</div></div></a><div class="divider"><span>or send a note directly</span></div><form class="email-row" onsubmit="sendIntro(event)"><input id="introEmail" type="email" placeholder="your@email.com" required><button type="submit">Send →</button></form><p class="fine" style="margin-top:12px">This opens your email client. Static GitHub Pages cannot submit forms without a backend.</p></div>
+  </div>
+  <div class="foot">
+    <div class="sm">Orivo is personal. The problem is structural. The solution is AI.</div>
+    <button class="btn" onclick="next()" style="margin-top:0">The problem &#8594;</button>
+  </div>
 </div>
+
+<!-- ─── S3: PROBLEM ─── -->
+<div class="slide s3" id="s3">
+  <div class="ey">The problem</div>
+  <div class="h2">Care gets lost in<br>translation. Every day.</div>
+  <div class="body" style="max-width:580px">Patients speak in plain language. Providers need structured clinical data. Between those two worlds sits confusion, non-adherence, avoidable ADEs, and a patient who feels unheard.</div>
+  <div class="stats">
+    <div class="sc">
+      <div class="sn">50%</div>
+      <div class="sl">of prescriptions are never filled or taken as directed</div>
+      <div class="ss">NEHI, 2023</div>
+    </div>
+    <div class="sc">
+      <div class="sn">125K</div>
+      <div class="sl">preventable deaths per year from medication non-adherence</div>
+      <div class="ss">Annals of Internal Medicine</div>
+    </div>
+    <div class="sc">
+      <div class="sn">12%</div>
+      <div class="sl">of patients fully understand their discharge care instructions</div>
+      <div class="ss">JAMA, 2022</div>
+    </div>
+  </div>
+  <div style="margin-top:22px;background:rgba(255,107,107,.05);border:1px solid rgba(255,107,107,.15);border-radius:14px;padding:22px 26px">
+    <div class="sm" style="color:var(--coral);letter-spacing:2px;text-transform:uppercase;font-size:9px;margin-bottom:12px">The Medicare/Medicaid crisis</div>
+    <div class="body" style="font-size:14px">The highest-risk patients — Medicare and Medicaid populations — are managing <strong style="color:var(--w1)">10 to 25+ medications</strong> across multiple prescribers who don't talk to each other. They don't know what they're taking, why they're taking it, or what their insurance actually covers. ADEs in this population cost CMS <strong style="color:var(--w1)">$3.5B annually</strong> in preventable spending.</div>
+  </div>
+  <div class="foot">
+    <div class="sm">This isn't a clinical problem. It's a communication problem. AI can solve it.</div>
+    <button class="btn" onclick="next()" style="margin-top:0">The insight &#8594;</button>
+  </div>
+</div>
+
+<!-- ─── S4: THE NO-APP DIFFERENTIATOR ─── -->
+<div class="slide s4" id="s4">
+  <div class="ey">The accessibility insight</div>
+  <div class="h2" style="font-size:38px">Everyone else built<br>an app. We didn't.<br><span style="color:var(--teal)">That's the point.</span></div>
+
+  <div class="phone-compare">
+    <div class="phone-col bad">
+      <div class="pc-head" style="color:var(--coral)">Every other patient health app</div>
+      <div class="pc-item"><span class="pc-ico">✗</span>Requires smartphone — locks out elderly, rural, low-income patients</div>
+      <div class="pc-item"><span class="pc-ico">✗</span>Needs download, account creation, onboarding</div>
+      <div class="pc-item"><span class="pc-ico">✗</span>Demands digital literacy the highest-risk patients don't have</div>
+      <div class="pc-item"><span class="pc-ico">✗</span>Requires behavior change — a charged phone, remembered login, learned UI</div>
+      <div class="pc-item"><span class="pc-ico">✗</span>Abandonment within 30 days: <strong style="color:var(--w1)">~80%</strong> of health apps</div>
+      <div class="pc-item"><span class="pc-ico">✗</span>Available to patients who are already digitally engaged — the ones who need it least</div>
+    </div>
+    <div class="phone-col good">
+      <div class="pc-head" style="color:var(--teal)">Orivo</div>
+      <div class="pc-item"><span class="pc-ico">✓</span>Works on <strong style="color:var(--w1)">any phone</strong> — flip phone, landline-tier SMS, feature phone, smartphone</div>
+      <div class="pc-item"><span class="pc-ico">✓</span>Zero download. Zero onboarding. Zero new behavior required.</div>
+      <div class="pc-item"><span class="pc-ico">✓</span>Patients already know how to text — we meet them there</div>
+      <div class="pc-item"><span class="pc-ico">✓</span>Works in 40+ languages without switching apps or settings</div>
+      <div class="pc-item"><span class="pc-ico">✓</span>Available to every Medicare/Medicaid patient — the ones who actually need it</div>
+      <div class="pc-item"><span class="pc-ico">✓</span>Same infrastructure serves a patient in rural Mississippi and rural Lagos</div>
+    </div>
+  </div>
+
+  <div class="big-stat-row">
+    <div class="bs">
+      <div class="bs-n">97%</div>
+      <div class="bs-l">of Americans over 65 can receive and send a text message</div>
+    </div>
+    <div class="bs">
+      <div class="bs-n">41%</div>
+      <div class="bs-l">of Medicare patients do not own a smartphone — but every one has SMS</div>
+    </div>
+    <div class="bs">
+      <div class="bs-n">0</div>
+      <div class="bs-l">New behaviors required from a patient to use Orivo</div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="sm" style="max-width:480px">Accessibility isn't a feature. It's the entire strategy. The patients who need Orivo most are precisely the ones every app has left behind.</div>
+    <button class="btn" onclick="next()" style="margin-top:0">See it work &#8594;</button>
+  </div>
+</div>
+
+<!-- ─── S5: HOW IT WORKS ─── -->
+<div class="slide s5" id="s5">
+  <div class="ey">How Orivo works</div>
+  <div class="h2" style="font-size:34px">Listen. Translate. Connect.</div>
+  <div class="body" style="max-width:560px">Three steps. Any phone. Any language. The patient finally has something in their corner — and the care team finally has the context they need to act.</div>
+  <div class="steps">
+    <div class="step" data-n="1">
+      <div class="step-ico">💬</div>
+      <div class="step-t">Patient speaks naturally</div>
+      <div class="sm" style="font-size:13px;color:var(--w2);line-height:1.55">Via SMS or voice — no app, no portal, no jargon. Symptoms, questions, concerns, barriers — in their own words, in any language. Orivo asks about their insurance and loads what's available to them specifically.</div>
+    </div>
+    <div class="step hi" data-n="2">
+      <div class="step-ico">🧠</div>
+      <div class="step-t">Aevo translates, enriches &amp; connects</div>
+      <div class="sm" style="font-size:13px;color:var(--w2);line-height:1.55">Extracts symptoms, flags urgency, checks medication history, identifies ADEs, surfaces SDoH barriers, and maps the patient to every resource their insurance and community actually provides — in under 4 seconds.</div>
+    </div>
+    <div class="step" data-n="3">
+      <div class="step-ico">🤝</div>
+      <div class="step-t">Patient is heard. Team can act.</div>
+      <div class="sm" style="font-size:13px;color:var(--w2);line-height:1.55">The patient receives clear, plain-language responses with specific next steps. The care team receives a structured clinical brief. Both sides feel supported — not overwhelmed. The original patient voice is always preserved.</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <span class="pill">Multilingual</span>
+      <span class="pill">Insurance-aware</span>
+      <span class="pill">EHR integrated</span>
+      <span class="pill">ADE detection</span>
+      <span class="pill">SDoH navigation</span>
+    </div>
+    <button class="btn" onclick="next()" style="margin-top:0">See it live &#8594;</button>
+  </div>
+</div>
+
+<!-- ─── S6: SDOH DEMO ─── -->
+<div class="slide s6" id="s6">
+  <div class="ey">Product demo &nbsp;·&nbsp; SDoH in action</div>
+  <div class="h3" style="margin-bottom:6px">From "I can't make it" to a ride booked — in one text.</div>
+  <div class="body" style="font-size:14px;max-width:500px;margin-bottom:20px">The most powerful thing Orivo does isn't translate clinical language. It's connect patients to resources they didn't know they had — through their insurance, their community, and one text message.</div>
+  <div class="two" style="gap:28px">
+    <div>
+      <div class="sm" style="font-size:11px;margin-bottom:10px">Patient channel &nbsp;<span class="pill" style="font-size:10px;padding:3px 9px;vertical-align:middle">SMS · Any phone</span></div>
+      <div class="phone">
+        <div class="notch"></div>
+        <div class="ptop">
+          <div class="pav">O</div>
+          <div>
+            <div class="pname">Orivo Health</div>
+            <div class="pstat">&#9679; Always on</div>
+          </div>
+        </div>
+        <div class="pmsgs" id="smsdemo">
+          <div class="msg mp" id="d1">I can't make my appointment tomorrow — I don't have a ride and my daughter is working</div>
+          <div class="ti" id="dt1"><div class="td"></div><div class="td"></div><div class="td"></div></div>
+          <div class="msg ma" id="d2">I understand — let me check what's available for you. Can you confirm your insurance is still Medicaid through CareSource?</div>
+          <div class="msg mp" id="d3">Yes that's right</div>
+          <div class="ti" id="dt2"><div class="td"></div><div class="td"></div><div class="td"></div></div>
+          <div class="msg ma" id="d4">Good news — your plan covers free rides to medical appointments. Call 1-800-977-3237 and mention your member ID. They can schedule for tomorrow morning. Want me to notify your care team?</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div class="sm" style="font-size:11px;margin-bottom:0">What Aevo understood &nbsp;<span class="pill" style="font-size:10px;padding:3px 9px;vertical-align:middle">SDoH Z74.09</span></div>
+      <div class="sdoh-result" id="sdohcard">
+        <div class="sdoh-h">Aevo SDoH Detection — Transportation Barrier</div>
+        <div class="srow"><div class="sdot"></div><div class="stxt"><strong style="color:var(--w1)">Z-code flagged:</strong> Z74.09 — Need for assistance with transportation to care</div></div>
+        <div class="srow"><div class="sdot"></div><div class="stxt"><strong style="color:var(--w1)">Insurance loaded:</strong> Medicaid — CareSource Ohio (auto-detected from record)</div></div>
+        <div class="srow"><div class="sdot"></div><div class="stxt"><strong style="color:var(--w1)">Benefit found:</strong> Non-Emergency Medical Transportation (NEMT) — covered, $0 copay</div></div>
+        <div class="srow"><div class="sdot"></div><div class="stxt"><strong style="color:var(--w1)">Resource connected:</strong> CareSource NEMT line — 1-800-977-3237</div></div>
+        <div class="srow"><div class="sdot"></div><div class="stxt"><strong style="color:var(--w1)">Care team notified:</strong> Appointment at-risk flag sent to Dr. Patel's dashboard</div></div>
+        <div><span class="sflag">Z-code documented in EHR · Referral loop closed</span></div>
+      </div>
+      <div class="sm" style="font-size:12px;color:var(--w2);padding:14px 16px;background:rgba(0,200,150,.04);border:1px solid var(--teal-b);border-radius:9px">
+        This patient didn't know their insurance covered rides. Their pharmacist didn't know either. Orivo knew — because we loaded their plan data and matched it to the barrier they described in plain language.
+      </div>
+    </div>
+  </div>
+
+  <div class="foot" style="padding-top:18px">
+    <div class="sm" style="font-size:12px;color:var(--w3)">Next: product suite</div>
+    <button class="btn" onclick="next()" style="margin-top:0">The product suite &#8594;</button>
+  </div>
+</div>
+
+<!-- ─── S7: PRODUCT SUITE ─── -->
+<div class="slide s7" id="s7">
+  <div class="ey">Product suite</div>
+  <div class="h2" style="font-size:34px">Five products. One platform.</div>
+  <div class="body" style="max-width:580px">Each product is independently valuable. Together they form a moat no one else can build — because they run on longitudinal, conversational patient data that compounds with every interaction.</div>
+  <div class="prod-grid">
+    <div class="pc">
+      <div class="pc-dot" style="background:rgba(0,200,150,.12);border:1px solid rgba(0,200,150,.2)">💬</div>
+      <div class="pc-name">Aevo Relay</div>
+      <div class="pc-desc">Bidirectional patient ↔ clinical language translation via SMS, voice, or app</div>
+      <div class="pc-tag" style="color:var(--teal)">H1 · Core</div>
+    </div>
+    <div class="pc">
+      <div class="pc-dot" style="background:rgba(74,158,255,.12);border:1px solid rgba(74,158,255,.2)">💊</div>
+      <div class="pc-name">Aevo Rx</div>
+      <div class="pc-desc">Medication reconciliation — what patients actually take vs. what's prescribed</div>
+      <div class="pc-tag" style="color:#4A9EFF">H1–H2</div>
+    </div>
+    <div class="pc">
+      <div class="pc-dot" style="background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.2)">🛡️</div>
+      <div class="pc-name">Aevo Shield</div>
+      <div class="pc-desc">ADE prevention + passive drug interaction monitoring + readmission risk</div>
+      <div class="pc-tag" style="color:var(--coral)">H2</div>
+    </div>
+    <div class="pc">
+      <div class="pc-dot" style="background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.2)">📊</div>
+      <div class="pc-name">Aevo Intel</div>
+      <div class="pc-desc">SDoH capture, Z-code documentation, population health data for payers</div>
+      <div class="pc-tag" style="color:#A78BFA">H3</div>
+    </div>
+    <div class="pc">
+      <div class="pc-dot" style="background:rgba(232,184,75,.1);border:1px solid rgba(232,184,75,.2)">🔐</div>
+      <div class="pc-name">Aevo Trust</div>
+      <div class="pc-desc">Semantic consistency, AI drift detection, fraud signals, immutable audit trail</div>
+      <div class="pc-tag" style="color:#E8B84B">H2–H3</div>
+    </div>
+  </div>
+  <div class="compare" style="margin-top:22px">
+    <div class="comp-card them">
+      <div class="comp-label" style="color:var(--coral)">Patient app companies</div>
+      <div class="comp-items">
+        <div class="ci"><span class="ci-ico">✗</span>Built for patients who are already digitally engaged</div>
+        <div class="ci"><span class="ci-ico">✗</span>Requires smartphone, download, login, behavior change</div>
+        <div class="ci"><span class="ci-ico">✗</span>Abandonment rates exceed 80% within 30 days</div>
+        <div class="ci"><span class="ci-ico">✗</span>Doesn't know what insurance benefits the patient has</div>
+        <div class="ci"><span class="ci-ico">✗</span>Serves the easiest patients — not the highest-risk ones</div>
+      </div>
+    </div>
+    <div class="comp-card us">
+      <div class="comp-label" style="color:var(--teal)">Orivo</div>
+      <div class="comp-items">
+        <div class="ci"><span class="ci-ico">✓</span>Any phone — SMS, voice, or app. No download required.</div>
+        <div class="ci"><span class="ci-ico">✓</span>Zero new behavior required from the patient</div>
+        <div class="ci"><span class="ci-ico">✓</span>Works in 40+ languages without setup</div>
+        <div class="ci"><span class="ci-ico">✓</span>Loads each patient's specific insurance benefits automatically</div>
+        <div class="ci"><span class="ci-ico">✓</span>Built for Medicare/Medicaid — the highest-risk, most underserved population</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="sm">Orivo doesn't compete with Epic. Orivo fills the gap nobody else was willing to fill.</div>
+    <button class="btn" onclick="next()" style="margin-top:0">The roadmap &#8594;</button>
+  </div>
+</div>
+
+<!-- ─── S8: ROADMAP ─── -->
+<div class="slide s8" id="s8">
+  <div class="ey">Product roadmap</div>
+  <div class="h2" style="font-size:34px">Three horizons.<br>One compounding moat.</div>
+  <div class="body" style="max-width:560px">Each horizon is independently fundable — and each one builds the data infrastructure the next one depends on. Start H1 with the data pipeline running. Arrive at Series B with the dataset nobody else will ever have.</div>
+  <div class="rmap">
+    <div class="rh">
+      <div class="rh-badge" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)">
+        <span class="rh-dot" style="background:var(--teal)"></span>H1 · Seed $2M
+      </div>
+      <div class="rh-label">The wedge</div>
+      <div class="rh-body">Prove that conversational AI — on any phone, via SMS — closes the gap between patient language and clinical action. Three health system or independent pharmacy pilots. 200+ patients each. HIPAA compliant.</div>
+      <div class="rh-prods">
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:var(--teal)"></span>Aevo Relay (SMS + voice + app)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:var(--teal)"></span>Aevo Rx (medication reconciliation)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:var(--teal)"></span>HIPAA / SOC 2 Type I</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:var(--teal)"></span>Epic + Cerner FHIR R4 read</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:var(--teal)"></span>Provider + pharmacy dashboard</div>
+      </div>
+      <div class="rh-arv" style="color:var(--teal)">$300K ARR</div>
+      <div class="sm" style="margin-top:4px">target at close of seed</div>
+    </div>
+    <div class="rh" style="border-color:rgba(74,158,255,.15);background:rgba(74,158,255,.02)">
+      <div class="rh-badge" style="color:#4A9EFF;border-color:rgba(74,158,255,.2);background:rgba(74,158,255,.08)">
+        <span class="rh-dot" style="background:#4A9EFF"></span>H2 · Series A $8–12M
+      </div>
+      <div class="rh-label">The platform</div>
+      <div class="rh-body">Provider-side product, ADE prevention, pharmacy distribution, and automated billing documentation. Land-and-expand inside health systems already running Relay pilots.</div>
+      <div class="rh-prods">
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#4A9EFF"></span>Orivo Brief (provider dashboard)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#4A9EFF"></span>Aevo Shield (ADE prevention)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#4A9EFF"></span>Aevo Trust (platform integrity)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#4A9EFF"></span>SOC 2 Type II + HITRUST</div>
+      </div>
+      <div class="rh-arv" style="color:#4A9EFF">$3M ARR</div>
+      <div class="sm" style="margin-top:4px">target at Series A close</div>
+    </div>
+    <div class="rh" style="border-color:rgba(167,139,250,.15);background:rgba(167,139,250,.02)">
+      <div class="rh-badge" style="color:#A78BFA;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.08)">
+        <span class="rh-dot" style="background:#A78BFA"></span>H3 · Series B $30M+
+      </div>
+      <div class="rh-label">The moat</div>
+      <div class="rh-body">The data platform nobody else can build. 18+ months of real patient conversational health data, anonymized and structured, sold to payers. Voice modality. International expansion.</div>
+      <div class="rh-prods">
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#A78BFA"></span>Aevo Intel (population health data)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#A78BFA"></span>Aevo Voice (IVR replacement)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#A78BFA"></span>International (NHS, Canada, Africa)</div>
+        <div class="rh-prod"><span class="rh-prod-dot" style="background:#A78BFA"></span>Platform licensing to payers + PBMs</div>
+      </div>
+      <div class="rh-arv" style="color:#A78BFA">$20M+ ARR</div>
+      <div class="sm" style="margin-top:4px">target at Series B close</div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="sm">First pilot targets: independent pharmacy owners + healthcare companies running EQUIPP programs.</div>
+    <button class="btn" onclick="next()" style="margin-top:0">The ask &#8594;</button>
+  </div>
+</div>
+
+<!-- ─── S9: ASK / CTA ─── -->
+<div class="slide s9" id="s9">
+  <div class="ring" style="width:400px;height:400px;bottom:-140px;left:-100px;--dur:65s;--dir:reverse"></div>
+  <div class="ey">Traction &amp; the ask</div>
+  <div class="h2" style="font-size:36px">A once-in-a-decade<br>inflection point.</div>
+  <div class="body" style="max-width:560px">Value-based care, AI-native tooling, and a Medicare population that is finally being failed loudly enough that payers and health systems are desperate to act. The window is now.</div>
+  <div class="metrics">
+    <div class="mc">
+      <div class="mn">$48B</div>
+      <div class="ml">Total addressable market — patient communication platforms (US)</div>
+    </div>
+    <div class="mc">
+      <div class="mn">230M</div>
+      <div class="ml">US patients managing chronic conditions requiring pharmacy coordination</div>
+    </div>
+    <div class="mc hi">
+      <div class="mn">2.1×</div>
+      <div class="ml">Medication adherence lift in early pilot — 200 patients, 90 days</div>
+    </div>
+    <div class="mc hi">
+      <div class="mn">$2M</div>
+      <div class="ml">Seed round — HIPAA compliance, 3 health system pilots, 18-month runway</div>
+    </div>
+  </div>
+  <div style="margin-top:20px;background:var(--w4);border:1px solid var(--border);border-radius:14px;padding:22px 26px">
+    <div class="sm" style="color:var(--teal);letter-spacing:2.5px;text-transform:uppercase;font-size:9px;margin-bottom:14px">Use of $2M seed</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px">
+      <div>
+        <div style="font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:4px">40%</div>
+        <div class="sm" style="font-size:12px;color:var(--w2)">Product + engineering — Aevo MVP and HIPAA-compliant infrastructure</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:4px">25%</div>
+        <div class="sm" style="font-size:12px;color:var(--w2)">Compliance — SOC 2 Type I, BAA framework, Vanta, pen testing</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:4px">20%</div>
+        <div class="sm" style="font-size:12px;color:var(--w2)">Pilot operations — onboarding, clinical review, EHR integrations</div>
+      </div>
+      <div>
+        <div style="font-family:var(--serif);font-size:22px;color:var(--teal);margin-bottom:4px">15%</div>
+        <div class="sm" style="font-size:12px;color:var(--w2)">Team — founding engineer, clinical advisor, legal</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot">
+    <div>
+      <div class="sm" style="font-size:12px;margin-bottom:10px">Ready to put something in the patient's corner?</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn" onclick="openCal()" style="margin-top:0">Book a conversation &#8599;</button>
+        <button class="btn-o" onclick="goTo(0)" style="margin-top:0">Back to start</button>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="sm" style="font-size:11px;color:var(--w3)">orivo.health &nbsp;·&nbsp; hello@orivo.health</div>
+      <div class="sm" style="font-size:11px;color:var(--w3);margin-top:3px">Confidential — Seed 2025</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /sw -->
+</div><!-- /shell -->
+
+<!-- ── CAL.COM / BOOKING MODAL ── -->
+<div class="cal-overlay" id="calOverlay" onclick="closeCal(event)">
+  <div class="cal-box" onclick="event.stopPropagation()">
+    <button class="cal-close" onclick="closeCal()">✕</button>
+    <div class="cal-logo">orivo health</div>
+    <div class="cal-h">Let's talk.</div>
+    <div class="cal-sub">Choose how you'd like to connect with the Orivo team. All conversations are confidential.</div>
+    <div class="cal-options">
+      <a class="cal-opt" href="https://cal.com/josiah.parve/30min" target="_blank" rel="noopener">
+        <div class="cal-opt-ico">📅</div>
+        <div>
+          <div class="cal-opt-t">Schedule a 30-min call</div>
+          <div class="cal-opt-s">Investor conversation via Cal.com</div>
+        </div>
+      </a>
+      <a class="cal-opt" href="https://cal.com/josiah.parve/15min" target="_blank" rel="noopener">
+        <div class="cal-opt-ico">🖥️</div>
+        <div>
+          <div class="cal-opt-t">Book a quick product demo</div>
+          <div class="cal-opt-s">15-min intro for health systems, pharmacies, and partners</div>
+        </div>
+      </a>
+    </div>
+    <div class="cal-divider">
+      <div class="cal-divider-line"></div>
+      <div class="cal-divider-txt">or send a note directly</div>
+      <div class="cal-divider-line"></div>
+    </div>
+    <div class="cal-email">
+      <input class="cal-email-input" type="email" placeholder="your@email.com" id="calEmailInput">
+      <button class="cal-email-btn" onclick="sendEmail()">Send intro &#8594;</button>
+    </div>
+    <div id="calEmailConfirm" style="display:none;margin-top:10px;font-size:12px;color:var(--teal)">✓ We'll be in touch shortly.</div>
+  </div>
+</div>
+
 <script>
-function toggleMenu(force){const m=document.getElementById('mobileMenu'); if(force===false){m.classList.remove('open');return} m.classList.toggle('open')}
-function openBook(e){if(e)e.preventDefault();document.getElementById('bookModal').classList.add('open')}
-function closeBook(){document.getElementById('bookModal').classList.remove('open')}
-function sendIntro(e){e.preventDefault();const email=document.getElementById('introEmail').value.trim();const subject=encodeURIComponent('Orivo Health Intro Request');const body=encodeURIComponent('Hi Josiah,\n\nI would like to connect about Orivo Health.\n\nMy email: '+email+'\n\nThanks,');window.location.href='mailto:hello@orivohealth.com?subject='+subject+'&body='+body}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeBook()});
-const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in')}})},{threshold:.12});document.querySelectorAll('.reveal,.card,.stat').forEach(el=>io.observe(el));
+const N=9;
+let c=0;
+const slides=Array.from({length:N},(_,i)=>document.getElementById('s'+(i+1)));
+const dotsEl=document.getElementById('dotsEl');
+const pf=document.getElementById('pf');
+const snm=document.getElementById('snm');
+for(let i=0;i<N;i++){
+  const d=document.createElement('button');
+  d.className='dot'+(i===0?' on':'');
+  d.onclick=()=>goTo(i);
+  d.title='Slide '+(i+1);
+  dotsEl.appendChild(d);
+}
+function goTo(n){
+  if(n===c||n<0||n>=N)return;
+  slides[c].classList.remove('on');
+  c=n;
+  slides[c].classList.add('on');
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('on',i===c));
+  pf.style.width=((c+1)/N*100)+'%';
+  snm.textContent=(c+1)+' / '+N;
+  if(c===5)startSDoHDemo();
+}
+function next(){goTo(c+1)}
+function prev(){goTo(c-1)}
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key==='ArrowDown')next();
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp')prev();
+});
+let sdohGo=false;
+function startSDoHDemo(){
+  if(sdohGo)return; sdohGo=true;
+  const seq=[
+    {id:'d1',d:400},{id:'dt1',d:1100,ti:1},
+    {id:'d2',d:2300,ht:'dt1'},{id:'d3',d:3200},
+    {id:'dt2',d:4000,ti:1},{id:'d4',d:5300,ht:'dt2'}
+  ];
+  seq.forEach(({id,d,ti,ht})=>{
+    setTimeout(()=>{
+      if(ht)document.getElementById(ht).classList.remove('show');
+      document.getElementById(id).classList.add('show');
+    },d);
+  });
+  setTimeout(()=>document.getElementById('sdohcard').classList.add('show'),6200);
+}
+// Cal.com booking modal
+function openCal(){
+  document.getElementById('calOverlay').classList.add('open');
+}
+function closeCal(e){
+  if(!e||e.target===document.getElementById('calOverlay')){
+    document.getElementById('calOverlay').classList.remove('open');
+  }
+}
+function sendEmail(){
+  const input=document.getElementById('calEmailInput');
+  const v=input.value.trim();
+  if(!v||!v.includes('@')){
+    input.style.borderColor='var(--coral-b)';
+    return;
+  }
+  input.style.borderColor='var(--teal-b)';
+  const subject=encodeURIComponent('Orivo Health intro request');
+  const body=encodeURIComponent(`Hi Orivo Health team,
+
+I'd like to connect about Orivo Health.
+
+My email: ${v}
+
+Best,`);
+  window.location.href=`mailto:hello@orivo.health?subject=${subject}&body=${body}`;
+  document.getElementById('calEmailConfirm').style.display='block';
+}
+// Touch swipe
+let tx=0;
+document.querySelector('.sw').addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.querySelector('.sw').addEventListener('touchend',e=>{
+  const dx=e.changedTouches[0].clientX-tx;
+  if(Math.abs(dx)>50)dx<0?next():prev();
+},{passive:true});
 </script>
 </body>
 </html>
