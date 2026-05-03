@@ -280,12 +280,18 @@ body.orivo-motion-premium .hero .h1{
 
   function addFlowLines(){
     if(reduced) return;
-    qsa(".ai-pillars,.phone-compare,.compare,.split,.two").slice(0,2).forEach(el=>{
-      if(el.nextElementSibling && el.nextElementSibling.classList && el.nextElementSibling.classList.contains("om-flow-line")) return;
-      const flow=document.createElement("div");
-      flow.className="om-flow-line";
-      el.insertAdjacentElement("afterend",flow);
-    });
+    // NOTE: previous version used '.two' which also matched '.orb.two' inside .hero,
+    // injecting a full-width flex item that broke hero centering. Use '.grid.two'
+    // and explicitly skip anything that's a child of .hero or a positioned decoration.
+    qsa(".ai-pillars,.phone-compare,.compare,.split,.grid.two")
+      .filter(el=>!el.closest('.hero') && getComputedStyle(el).position!=='absolute')
+      .slice(0,2)
+      .forEach(el=>{
+        if(el.nextElementSibling && el.nextElementSibling.classList && el.nextElementSibling.classList.contains("om-flow-line")) return;
+        const flow=document.createElement("div");
+        flow.className="om-flow-line";
+        el.insertAdjacentElement("afterend",flow);
+      });
   }
 
   function addMiniPipeline(){
@@ -365,17 +371,19 @@ body.orivo-motion-premium .hero .h1{
     const isHome = location.pathname === "/" || location.pathname.endsWith("/index.html") || document.querySelector(".hero .phone, .hero .thread");
     if(!isHome) return;
 
+    const LOGO_SRC = '/assets/orivo-logo-transparent.png';
+
     const logoCandidates = qsa('a.logo');
     logoCandidates.forEach((logo, idx) => {
       if(logo.querySelector('img.logo-img')) return;
       const img = document.createElement('img');
       img.className = 'logo-img';
       img.alt = 'Orivo Health logo';
-      img.src = '/assets/logo.png';
+      img.src = LOGO_SRC;
       img.onerror = function(){
-        if(this.dataset.fallback === 'root') return;
-        this.dataset.fallback = 'root';
-        this.src = '/logo.png';
+        // If the asset is missing, hide the broken image and let the text fallback render.
+        this.style.display = 'none';
+        logo.classList.remove('has-image');
       };
       logo.classList.add('has-image');
       logo.prepend(img);
@@ -386,11 +394,10 @@ body.orivo-motion-premium .hero .h1{
       const img = document.createElement('img');
       img.className = 'logo-img';
       img.alt = 'Orivo Health logo';
-      img.src = '/assets/logo.png';
+      img.src = LOGO_SRC;
       img.onerror = function(){
-        if(this.dataset.fallback === 'root') return;
-        this.dataset.fallback = 'root';
-        this.src = '/logo.png';
+        this.style.display = 'none';
+        footerLogo.classList.remove('has-image');
       };
       footerLogo.classList.add('has-image');
       footerLogo.prepend(img);
