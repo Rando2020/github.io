@@ -279,19 +279,11 @@ body.orivo-motion-premium .hero .h1{
   }
 
   function addFlowLines(){
-    if(reduced) return;
-    // NOTE: previous version used '.two' which also matched '.orb.two' inside .hero,
-    // injecting a full-width flex item that broke hero centering. Use '.grid.two'
-    // and explicitly skip anything that's a child of .hero or a positioned decoration.
-    qsa(".ai-pillars,.phone-compare,.compare,.split,.grid.two")
-      .filter(el=>!el.closest('.hero') && getComputedStyle(el).position!=='absolute')
-      .slice(0,2)
-      .forEach(el=>{
-        if(el.nextElementSibling && el.nextElementSibling.classList && el.nextElementSibling.classList.contains("om-flow-line")) return;
-        const flow=document.createElement("div");
-        flow.className="om-flow-line";
-        el.insertAdjacentElement("afterend",flow);
-      });
+    // Disabled: each <section> already has a border-bottom that serves as the
+    // visual divider. Injecting an extra animated line on top of that and the
+    // adjacent card borders read as 2-3 stacked strokes. Also clean up any
+    // flow lines that may have been injected by an older cached version.
+    qsa('.om-flow-line').forEach(el=>el.remove());
   }
 
   function addMiniPipeline(){
