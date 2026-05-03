@@ -396,6 +396,94 @@ body.orivo-motion-premium .hero .h1{
     }
   }
 
+  /* Shared footer — renders the same footer on every scrollable page so we only
+     have one source of truth. Skip slide-style pages (body overflow:hidden) and
+     the homepage's own custom footer (which already has the right markup). */
+  function renderSharedFooter(){
+    if(getComputedStyle(document.body).overflow==='hidden') return;
+    if(document.querySelector('footer[data-orivo-shared]')) return;
+
+    const FOOTER_CSS=`
+      footer[data-orivo-shared]{padding:42px 0;background:var(--bg2,#07101D);border-top:1px solid var(--border,rgba(240,242,255,.10));font-family:var(--sans,'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif);color:rgba(240,242,255,.55);font-size:13px;line-height:1.55;position:relative;z-index:2}
+      footer[data-orivo-shared] *{box-sizing:border-box}
+      footer[data-orivo-shared] .of-wrap{max-width:1120px;margin:0 auto;padding:0 44px}
+      footer[data-orivo-shared] .of-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:22px}
+      footer[data-orivo-shared] .of-brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+      footer[data-orivo-shared] .of-brand img{width:36px;height:36px;object-fit:contain;display:block;filter:drop-shadow(0 4px 12px rgba(0,200,150,.16))}
+      footer[data-orivo-shared] .of-logo-text{font-family:var(--serif,'DM Serif Display',Georgia,serif);font-size:21px;color:var(--teal,#00C896);letter-spacing:-.4px;line-height:1}
+      footer[data-orivo-shared] .of-logo-sub{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(240,242,255,.55);margin-top:2px}
+      footer[data-orivo-shared] .of-h{font-size:12px;color:#F0F2FF;font-weight:800;margin-bottom:8px;text-transform:none;letter-spacing:0}
+      footer[data-orivo-shared] a{display:block;color:rgba(240,242,255,.55);text-decoration:none;font-size:13px;margin-top:8px;transition:color .15s ease}
+      footer[data-orivo-shared] a:hover{color:var(--teal,#00C896)}
+      footer[data-orivo-shared] .of-tagline{margin-top:14px;max-width:420px;color:rgba(240,242,255,.55)}
+      footer[data-orivo-shared] .of-fine{font-size:11px;color:rgba(240,242,255,.34);margin-top:28px;line-height:1.6}
+      footer[data-orivo-shared] .of-fine a{display:inline;color:rgba(240,242,255,.34);margin:0}
+      footer[data-orivo-shared] .of-fine a:hover{color:var(--teal,#00C896)}
+      @media(max-width:780px){
+        footer[data-orivo-shared] .of-grid{grid-template-columns:1fr;gap:28px}
+        footer[data-orivo-shared] .of-wrap{padding:0 20px}
+      }`;
+
+    if(!document.getElementById('orivo-shared-footer-style')){
+      const s=document.createElement('style');
+      s.id='orivo-shared-footer-style';
+      s.textContent=FOOTER_CSS;
+      document.head.appendChild(s);
+    }
+
+    const html=`
+      <div class="of-wrap">
+        <div class="of-grid">
+          <div>
+            <a class="of-brand" href="/">
+              <img src="/assets/orivo-logo-transparent.png" alt="Orivo Health logo" onerror="this.style.display='none'">
+              <span><span class="of-logo-text">orivo health</span><span class="of-logo-sub" style="display:block">care ai</span></span>
+            </a>
+            <p class="of-tagline">AI that speaks patient and clinical. Any phone. Any language. No app required.</p>
+            <p class="of-fine">Prototype website. Do not submit protected health information, medication details, symptoms, insurance details, or sensitive personal information through this static GitHub Pages site.</p>
+          </div>
+          <div>
+            <div class="of-h">Product</div>
+            <a href="/#how">How it works</a>
+            <a href="/#products">Product suite</a>
+            <a href="/patient-provider-demo.html">Live demo</a>
+            <a href="/dual-pipeline.html">Aevo + Vera</a>
+          </div>
+          <div>
+            <div class="of-h">For providers</div>
+            <a href="/provider-login.html">Physician login</a>
+            <a href="/provider-login.html">Pharmacy login</a>
+            <a href="/provider-login.html">Admin login</a>
+            <a href="/#book">Request access</a>
+          </div>
+          <div>
+            <div class="of-h">Investors</div>
+            <a href="/pitch-deck.html">Pitch deck</a>
+            <a href="/why-invest.html">Why invest</a>
+            <a href="/engineering-stack.html">Tech stack</a>
+            <a href="/evidence.html">Evidence &amp; Claims</a>
+            <a href="/#book">Book a call</a>
+          </div>
+        </div>
+        <div class="of-fine">© 2026 Orivo Health Inc. Prototype website. · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/hipaa-notice.html">HIPAA Notice</a> · <a href="/accessibility.html">Accessibility</a></div>
+      </div>`;
+
+    // Replace any existing <footer> on the page so we have one canonical version.
+    const existing=document.querySelector('footer');
+    let footer;
+    if(existing){
+      footer=existing;
+      footer.innerHTML=html;
+    } else {
+      footer=document.createElement('footer');
+      footer.innerHTML=html;
+      document.body.appendChild(footer);
+    }
+    footer.setAttribute('data-orivo-shared','');
+    // Strip any classes that older inline CSS might style (we have our own scoped styles)
+    footer.className='';
+  }
+
   function init(){
     injectStyles();
     document.body.classList.add("orivo-motion-premium");
@@ -410,6 +498,7 @@ body.orivo-motion-premium .hero .h1{
     spotlight();
     gradientKeyWords();
     safetyBanner();
+    renderSharedFooter();
   }
 
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init,{once:true}); else init();
