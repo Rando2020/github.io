@@ -484,6 +484,82 @@ body.orivo-motion-premium .hero .h1{
     footer.className='';
   }
 
+  /* Citation markers — small superscript footnotes that link to /evidence.html#cite-N.
+     Used like: <sup class="cite" data-cite="2">2</sup>
+     The data-cite attribute lets us auto-build the link and lookup the source title
+     for a hover tooltip. */
+  const CITE_SOURCES = {
+    1: 'CDC MMWR & WHO — ~50% of long-term meds not taken as prescribed',
+    2: 'Public Health Reports / JAMA — ~125,000 preventable deaths/yr from nonadherence',
+    3: 'HHS Healthy People 2030 — $3.5B/yr excess medical costs from ADEs',
+    4: 'NCBI / AHRQ — only 12% of U.S. adults have proficient health literacy',
+    5: 'NASPA / Watanabe et al. — $528.4B/yr non-optimized medication therapy',
+    6: 'Pew Research — 98% U.S. cellphone, 91% smartphone ownership',
+    7: 'PQA — PDC is the standard adherence methodology (80% threshold)',
+    8: 'CMS — Part D Star Ratings include adherence measures',
+    9: 'CMS / Medicaid — recognized HRSN categories',
+    10: 'Twilio — HIPAA-eligible messaging when configured correctly',
+    11: 'NLM RxNorm — normalized clinical drug naming'
+  };
+
+  function injectCitationStyles(){
+    if(document.getElementById('orivo-cite-style')) return;
+    const s=document.createElement('style');
+    s.id='orivo-cite-style';
+    s.textContent=`
+      sup.cite{font-size:.62em;line-height:1;margin-left:1px;vertical-align:super;font-weight:700;font-feature-settings:'tnum'}
+      sup.cite a{color:var(--teal,#00C896);text-decoration:none;padding:0 2px;border-radius:3px;transition:background .15s ease,color .15s ease;cursor:pointer}
+      sup.cite a:hover,sup.cite a:focus{background:rgba(0,200,150,.18);color:var(--teal,#00C896);outline:none}
+      .orivo-cite-tip{position:absolute;z-index:9999;max-width:300px;padding:10px 12px;background:#0B1424;color:#F0F2FF;border:1px solid rgba(0,200,150,.4);border-radius:10px;font:500 12px/1.45 var(--sans,'DM Sans',Arial,sans-serif);box-shadow:0 12px 32px rgba(0,0,0,.45);pointer-events:none;opacity:0;transform:translateY(4px);transition:opacity .15s ease,transform .15s ease}
+      .orivo-cite-tip.show{opacity:1;transform:translateY(0)}
+      .orivo-cite-tip::after{content:'';position:absolute;left:14px;top:-6px;width:10px;height:10px;background:#0B1424;border-left:1px solid rgba(0,200,150,.4);border-top:1px solid rgba(0,200,150,.4);transform:rotate(45deg)}
+      @media(prefers-reduced-motion:reduce){.orivo-cite-tip{transition:none}}
+    `;
+    document.head.appendChild(s);
+  }
+
+  function wireCitations(){
+    injectCitationStyles();
+    // Auto-populate <sup class="cite" data-cite="N"> markers: build link if missing
+    qsa('sup.cite').forEach(el=>{
+      const n=el.dataset.cite || el.textContent.trim();
+      if(!n) return;
+      el.dataset.cite=n;
+      // If it's not already a link, wrap the number text in an anchor
+      if(!el.querySelector('a')){
+        const label=el.textContent.trim()||n;
+        el.innerHTML='<a href="/evidence.html#cite-'+n+'" aria-label="See citation '+n+'">'+label+'</a>';
+      }
+    });
+    // Hover tooltip — single shared element
+    let tip=document.querySelector('.orivo-cite-tip');
+    if(!tip){tip=document.createElement('div');tip.className='orivo-cite-tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);}
+    function show(el){
+      const n=el.closest('sup.cite').dataset.cite;
+      const text=CITE_SOURCES[n] || ('Source '+n);
+      tip.textContent='['+n+'] '+text;
+      const r=el.getBoundingClientRect();
+      tip.style.left=(r.left+window.scrollX)+'px';
+      tip.style.top=(r.bottom+window.scrollY+8)+'px';
+      tip.classList.add('show');
+    }
+    function hide(){tip.classList.remove('show');}
+    document.addEventListener('mouseenter',e=>{
+      const a=e.target.closest && e.target.closest('sup.cite a');
+      if(a) show(a);
+    },true);
+    document.addEventListener('mouseleave',e=>{
+      if(e.target.closest && e.target.closest('sup.cite a')) hide();
+    },true);
+    document.addEventListener('focusin',e=>{
+      const a=e.target.closest && e.target.closest('sup.cite a');
+      if(a) show(a);
+    });
+    document.addEventListener('focusout',e=>{
+      if(e.target.closest && e.target.closest('sup.cite a')) hide();
+    });
+  }
+
   function init(){
     injectStyles();
     document.body.classList.add("orivo-motion-premium");
@@ -499,6 +575,7 @@ body.orivo-motion-premium .hero .h1{
     gradientKeyWords();
     safetyBanner();
     renderSharedFooter();
+    wireCitations();
   }
 
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",init,{once:true}); else init();
