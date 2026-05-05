@@ -1,33 +1,18 @@
 export async function onRequest(context) {
   const request = context.request;
-  const url = new URL(request.url);
-
-  const configuredPassword = context.env.ENGINEERING_STACK_PASSWORD;
-
-  if (!configuredPassword) {
-    return new Response(
-      renderAccessError('Engineering stack access is not configured yet.', 'Set ENGINEERING_STACK_PASSWORD in Cloudflare Pages environment variables.'),
-      {
-        status: 503,
-        headers: {
-          'content-type': 'text/html; charset=utf-8',
-          'cache-control': 'no-store, no-cache, must-revalidate, max-age=0',
-          'x-robots-tag': 'noindex, nofollow, noarchive'
-        }
-      }
-    );
-  }
+  const configuredPasswordHash = context.env.ENGINEERING_STACK_PASSWORD_HASH || '6a075a92b07100578f80621665298545b74d04d96b8816b8d0bea8f36397ff2b';
 
   if (request.method === 'POST') {
     const form = await request.formData();
     const password = String(form.get('password') || '');
+    const submittedHash = await makePasswordHash(password);
 
-    if (safeEqual(password, configuredPassword)) {
+    if (safeEqual(submittedHash, configuredPasswordHash)) {
       const response = await context.next();
       const headers = new Headers(response.headers);
       headers.set('cache-control', 'private, no-store, no-cache, must-revalidate, max-age=0');
       headers.set('x-robots-tag', 'noindex, nofollow, noarchive');
-      headers.set('set-cookie', makeAccessCookie(request, configuredPassword));
+      headers.set('set-cookie', await makeAccessCookie(request, configuredPasswordHash));
       return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
     }
 
@@ -38,7 +23,7 @@ export async function onRequest(context) {
   }
 
   const cookie = request.headers.get('cookie') || '';
-  const expectedToken = await makeToken(configuredPassword);
+  const expectedToken = await makeToken(configuredPasswordHash);
 
   if (cookie.includes(`orivo_stack_access=${expectedToken}`)) {
     const response = await context.next();
@@ -64,14 +49,22 @@ function secureHeaders() {
   };
 }
 
-async function makeAccessCookie(request, password) {
-  const token = await makeToken(password);
+async function makeAccessCookie(request, passwordHash) {
+  const token = await makeToken(passwordHash);
   const secure = new URL(request.url).protocol === 'https:' ? '; Secure' : '';
   return `orivo_stack_access=${token}; Path=/engineering-stack.html; HttpOnly; SameSite=Lax${secure}; Max-Age=21600`;
 }
 
-async function makeToken(password) {
-  const input = new TextEncoder().encode(`orivo-engineering-stack:${password}`);
+async function makePasswordHash(password) {
+  return digestHex(`orivo-engineering-stack:${password}`);
+}
+
+async function makeToken(passwordHash) {
+  return digestHex(`orivo-stack-cookie:${passwordHash}`);
+}
+
+async function digestHex(value) {
+  const input = new TextEncoder().encode(value);
   const digest = await crypto.subtle.digest('SHA-256', input);
   return Array.from(new Uint8Array(digest)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
@@ -118,17 +111,14 @@ body{display:grid;place-items:center;padding:28px;overflow:hidden}
         <div class="err">${escapeHtml(error)}</div>
         <button type="submit">Unlock page</button>
       </form>
-      <p class="note">Access expires after 6 hours on this browser. This protects the public page at the edge when deployed through Cloudflare Pages.</p>
+      <p class="note">Access expires after 6 hours on this browser. For stronger protection later, move the hash into a Cloudflare environment variable named ENGINEERING_STACK_PASSWORD_HASH.</p>
     </div>
   </main>
 </body>
 </html>`;
 }
 
-function renderAccessError(title, body) {
-  return `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Configuration Needed</title><meta name="robots" content="noindex,nofollow"></head><body style="font-family:Arial,sans-serif;background:#050A14;color:#F0F2FF;padding:40px"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(body)}</p></body></html>`;
-}
-
 function escapeHtml(value) {
-  return String(value).replace(/[&<>'"]/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\'': '&#39;', '"': '&quot;' }[char]));
+  const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' };
+  return String(value).replace(/[&<>'"]/g, char => map[char]);
 }
