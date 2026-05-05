@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Health Plans | Orivo Health</title>
+<meta name="description" content="How Orivo Health helps payers surface medication access barriers, transportation patterns, adherence risk, and de-identified member voice signals.">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<link rel="stylesheet" href="/orivo-sector.css">
+</head>
+<body>
+<div class="notice">Prototype page. Visuals use illustrative data only. Orivo does not diagnose, prescribe, or collect PHI through this static site. <a href="/evidence.html">Evidence</a></div>
+<nav class="nav">
+  <a class="logo" href="/"><img src="/assets/orivo-logo-transparent.png" alt="Orivo Health logo" onerror="this.style.display='none'"><div><div class="logo-text">orivo health</div><div class="logo-sub">payer intelligence</div></div></a>
+  <div class="nav-links"><a href="/for-payers.html" class="active">Health plans</a><a href="/for-pharmacies.html">Pharmacies</a><a href="/for-providers.html">Providers</a><a href="/for-patients.html">Patients</a><a href="/vision.html">Vision</a><a href="/evidence.html">Evidence</a><a class="nav-cta" href="/#book">Book demo</a></div>
+</nav>
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="ey">For health plans and payers</div>
+      <h1 class="h1">See the barrier before it becomes a failed fill, missed visit, or avoidable escalation.</h1>
+      <p class="lead">Orivo turns plain-language member texts into benefit-aware, de-identified access and adherence intelligence: transportation patterns, medication confusion, affordability friction, and unresolved care barriers.</p>
+      <div class="actions"><a class="btn" href="#dashboard">View payer dashboard</a><a class="btn secondary" href="/patient-provider-demo.html">See patient-to-care demo</a></div>
+      <div class="pill-row"><span class="pill">90-day barrier patterns</span><span class="pill">ZIP-level hotspots</span><span class="pill amber">HRSN signal capture</span><span class="pill vera">Quality-program ready</span></div>
+    </div>
+    <div class="dashboard" id="dashboard" aria-label="Illustrative health plan dashboard">
+      <div class="dash-top"><div><div class="dash-title">Orivo Intel · Member Barrier Patterns</div><div class="dash-sub">Illustrative 90-day view · Medicaid population · de-identified</div></div><div class="tabs"><span class="tab active">90D</span><span class="tab">County</span><span class="tab">ZIP</span></div></div>
+      <div class="grid three">
+        <div class="card teal"><div class="big-metric">+38%</div><div class="metric-label">ride-related messages</div></div>
+        <div class="card amber"><div class="big-metric">412</div><div class="metric-label">members with access barrier</div></div>
+        <div class="card vera"><div class="big-metric">67%</div><div class="metric-label">barriers before missed care</div></div>
+      </div>
+      <div class="grid two" style="margin-top:14px">
+        <div class="card"><div class="kicker">Barrier mix</div>
+          <div class="bar-row"><div class="bar-label">Rides</div><div class="bar"><div class="fill amber" style="width:72%"></div></div><div class="bar-val">+38%</div></div>
+          <div class="bar-row"><div class="bar-label">Cost</div><div class="bar"><div class="fill" style="width:56%"></div></div><div class="bar-val">+19%</div></div>
+          <div class="bar-row"><div class="bar-label">Confusion</div><div class="bar"><div class="fill" style="width:48%"></div></div><div class="bar-val">+14%</div></div>
+          <div class="bar-row"><div class="bar-label">Food</div><div class="bar"><div class="fill" style="width:31%"></div></div><div class="bar-val">+8%</div></div>
+        </div>
+        <div class="card"><div class="kicker">ZIP hotspots</div><div class="heat"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="ey">One member message</div><h2 class="h2">The payer does not need another survey. It needs the pattern hiding inside patient language.</h2>
+    <div class="scenario" style="margin-top:24px">
+      <div class="message">“I stopped taking the new blood pressure pill because it made me dizzy, and I missed my follow-up because I didn’t have a ride.”</div>
+      <div class="flow">
+        <div class="flow-step"><div class="step-num">01</div><div class="step-title">Barrier detected</div><div class="step-body">Transportation issue and medication concern captured from natural language.</div></div>
+        <div class="flow-step"><div class="step-num">02</div><div class="step-title">Benefit checked</div><div class="step-body">Vera determines whether NEMT, MTM, care management, or plan resource routing may apply.</div></div>
+        <div class="flow-step"><div class="step-num">03</div><div class="step-title">Human routed</div><div class="step-body">Pharmacist or care team receives structured brief with original patient words preserved.</div></div>
+        <div class="flow-step"><div class="step-num">04</div><div class="step-title">Pattern learned</div><div class="step-body">De-identified signal rolls into payer analytics by ZIP, barrier type, medication class, and time window.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="ey">Payer product modules</div><h2 class="h2">Simple enough for executives. Useful enough for quality teams.</h2>
+    <div class="grid three" style="margin-top:24px">
+      <div class="card teal"><div class="kicker">Barrier heatmap</div><h3 class="h3">Where access is breaking</h3><p class="small">ZIP-level pattern views for rides, medication cost, food access, language friction, and benefit confusion.</p></div>
+      <div class="card"><div class="kicker">Adherence risk queue</div><h3 class="h3">Who is slipping early</h3><p class="small">Flags members whose own words suggest med discontinuation, side effects, refill confusion, or affordability barriers.</p></div>
+      <div class="card vera"><div class="kicker">Benefit mismatch</div><h3 class="h3">What exists but is not used</h3><p class="small">Surfaces cases where transportation, MTM, care management, or pharmacy support may be available but unknown to the member.</p></div>
+      <div class="card"><div class="kicker">Member voice</div><h3 class="h3">What members actually say</h3><p class="small">De-identified themes, sample language, and barrier clusters that help teams design better outreach.</p></div>
+      <div class="card amber"><div class="kicker">HRSN trends</div><h3 class="h3">Signals beyond claims</h3><p class="small">Health-related social need trends before they fully show up in claims, complaints, or missed quality windows.</p></div>
+      <div class="card"><div class="kicker">Network signal</div><h3 class="h3">Which pharmacies need support</h3><p class="small">Patterning by pharmacy, county, route, benefit category, and unresolved member barrier type.</p></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="ey">Illustrative action queue</div><h2 class="h2">From dashboard to intervention.</h2>
+    <div class="card" style="margin-top:22px;overflow-x:auto">
+      <table class="table">
+        <thead><tr><th>Pattern</th><th>ZIP</th><th>90-day change</th><th>Likely action</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td>Ride requests before BP follow-up</td><td>53206</td><td><span class="tag red">+41%</span></td><td>NEMT education + care manager routing</td><td>Medicaid ops</td></tr>
+          <tr><td>Statin side-effect confusion</td><td>53215</td><td><span class="tag amber">+22%</span></td><td>Pharmacist callback queue</td><td>Pharmacy quality</td></tr>
+          <tr><td>Diabetes med affordability messages</td><td>53204</td><td><span class="tag amber">+18%</span></td><td>Benefit review + formulary education</td><td>Plan pharmacy</td></tr>
+          <tr><td>Missed appointment due to transport</td><td>53218</td><td><span class="tag red">+37%</span></td><td>Transportation vendor performance review</td><td>Population health</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="source-note">Evidence context: CMS describes health-related social needs as social and economic needs that affect health and health care use, including transportation. See <a href="/evidence.html#hrsn-sdoh">Evidence: HRSN / SDOH</a>.</div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap two grid">
+    <div><div class="ey">Pilot KPIs</div><h2 class="h2">What a payer pilot should prove.</h2><p class="lead">Do not start by promising Star Ratings lift. Start by proving Orivo can capture barriers earlier, route them safely, and generate useful de-identified patterns.</p></div>
+    <div class="card amber"><div class="list"><div class="li"><span class="check">✓</span>Member activation and response rate</div><div class="li"><span class="check">✓</span>Barrier category capture rate</div><div class="li"><span class="check">✓</span>Percent of issues routed to the right human team</div><div class="li"><span class="check">✓</span>Ride, affordability, and med confusion trend detection</div><div class="li"><span class="check">✓</span>Resolution follow-up completion</div><div class="li"><span class="check">✓</span>De-identified pattern usefulness for quality teams</div></div></div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap"><div class="callout"><strong>Claims boundary:</strong> Orivo is prototype-stage. This page describes intended payer workflows and illustrative analytics, not validated health plan outcomes. Outcomes such as PDC lift, Star Ratings improvement, ADE reduction, or utilization reduction require pilot validation.</div></div>
+</section>
+</main>
+<footer class="footer"><div class="wrap">© Orivo Health · <a href="/evidence.html">Evidence</a> · <a href="/vision.html">Vision</a> · <a href="/">Home</a></div></footer>
+<script src="/orivo-motion.js" defer></script>
+</body>
+</html>
