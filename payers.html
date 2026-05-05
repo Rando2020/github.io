@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orivo Health for Health Plans</title>
+<meta name="description" content="Orivo Health helps health plans turn member SMS and voice interactions into benefit-aware navigation, adherence support, SDoH signals, medication safety flags, and care-team routing.">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.24);
+  --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.09);--vera-b:rgba(124,111,205,.25);
+  --amber:#F5A623;--amber-lo:rgba(245,166,35,.09);--amber-b:rgba(245,166,35,.24);
+  --coral:#FF6B6B;--coral-lo:rgba(255,107,107,.08);--coral-b:rgba(255,107,107,.23);
+  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.08);--blue-b:rgba(74,158,255,.22);
+  --green:#34D399;--green-lo:rgba(52,211,153,.08);--green-b:rgba(52,211,153,.22);
+  --w1:#F0F2FF;--w2:rgba(240,242,255,.76);--w3:rgba(240,242,255,.42);--w4:rgba(240,242,255,.065);
+  --border:rgba(240,242,255,.10);--border2:rgba(240,242,255,.18);
+  --bg:#050A14;--bg2:#07101A;--bg3:#091322;
+  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:radial-gradient(ellipse at 70% 10%,rgba(0,200,150,.11),transparent 42%),linear-gradient(160deg,#050A14,#07101A 62%,#050A14);color:var(--w2);font-family:var(--sans);font-size:15px;line-height:1.65;overflow-x:hidden}
+a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+nav{position:sticky;top:0;z-index:200;background:rgba(5,10,20,.94);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);height:60px;padding:0 42px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--serif);font-size:20px;color:var(--teal);letter-spacing:-.3px}.logo span{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w3);margin-left:8px}.navlinks{display:flex;gap:4px;align-items:center}.nl{font-size:11px;color:var(--w3);padding:7px 11px;border-radius:8px;border:1px solid transparent}.nl:hover{color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo);text-decoration:none}.cta-sm{background:var(--teal);color:#03100C!important;font-weight:800;border-color:var(--teal);margin-left:6px}.cta-sm:hover{background:var(--teal-d);text-decoration:none}
+.wrap{max-width:1140px;margin:0 auto}.hero{padding:82px 42px 54px;display:grid;grid-template-columns:1.08fr .92fr;gap:44px;align-items:center}.ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:14px}.h1{font-family:var(--serif);font-size:58px;line-height:1.02;color:var(--w1);letter-spacing:-1.2px;margin-bottom:18px}.sub{font-size:17px;color:var(--w2);max-width:610px;line-height:1.72;margin-bottom:28px}.pillrow{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid;border-radius:999px;padding:5px 12px;font-size:11px}.pill-t{color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)}.pill-v{color:var(--vera);border-color:var(--vera-b);background:var(--vera-lo)}.pill-a{color:var(--amber);border-color:var(--amber-b);background:var(--amber-lo)}.pill-w{color:var(--w3);border-color:var(--border);background:var(--w4)}
+.console{background:rgba(7,16,26,.72);border:1px solid var(--border);border-radius:22px;padding:18px;box-shadow:0 32px 100px rgba(0,0,0,.45);position:relative;overflow:hidden}.console:before{content:'';position:absolute;inset:-1px;background:linear-gradient(135deg,rgba(0,200,150,.14),transparent 40%,rgba(124,111,205,.11));pointer-events:none}.console-in{position:relative;z-index:1}.c-head{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 14px;border-bottom:1px solid var(--border);margin-bottom:14px}.c-title{font-size:12px;color:var(--w1);font-weight:700}.live{display:flex;align-items:center;gap:6px;font-size:10px;color:var(--teal)}.dot{width:6px;height:6px;border-radius:50%;background:var(--teal);box-shadow:0 0 18px var(--teal)}.route{display:flex;flex-direction:column;gap:9px}.step{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;background:var(--w4);border:1px solid var(--border);border-radius:13px;padding:12px 13px;opacity:.74;transition:.35s}.step.active{opacity:1;border-color:var(--teal-b);background:rgba(0,200,150,.055);transform:translateX(3px)}.num{width:34px;height:34px;border-radius:10px;background:rgba(0,200,150,.09);border:1px solid var(--teal-b);display:flex;align-items:center;justify-content:center;color:var(--teal);font-family:var(--serif);font-size:17px}.st-t{font-size:13px;color:var(--w1);font-weight:600}.st-s{font-size:11px;color:var(--w3);line-height:1.4}.tag{font-size:9px;border:1px solid var(--border);color:var(--w3);border-radius:5px;padding:3px 7px;white-space:nowrap}.tag.ok{color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)}.tag.warn{color:var(--amber);border-color:var(--amber-b);background:var(--amber-lo)}
+.section{padding:70px 42px;border-top:1px solid var(--border)}.section.alt{background:rgba(240,242,255,.018)}.h2{font-family:var(--serif);font-size:40px;line-height:1.08;color:var(--w1);margin-bottom:13px}.lead{font-size:16px;color:var(--w2);max-width:760px;line-height:1.72}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}.card{background:var(--w4);border:1px solid var(--border);border-radius:17px;padding:24px 22px;transition:.25s;position:relative;overflow:hidden}.card:hover{border-color:var(--border2);transform:translateY(-2px);background:rgba(240,242,255,.085)}.card.hi{border-color:var(--teal-b);background:rgba(0,200,150,.045)}.ico{font-size:25px;margin-bottom:12px}.ct{font-size:16px;color:var(--w1);font-weight:700;margin-bottom:8px}.cb{font-size:13px;color:var(--w3);line-height:1.62}.stat{font-family:var(--serif);font-size:34px;color:var(--teal);line-height:1;margin-top:16px}.stat-l{font-size:11px;color:var(--w3);line-height:1.35;margin-top:5px}
+.matrix{margin-top:32px;border:1px solid var(--border);border-radius:18px;overflow:hidden;background:rgba(240,242,255,.03)}.row{display:grid;grid-template-columns:1.1fr 1.1fr .9fr;border-bottom:1px solid var(--border)}.row:last-child{border-bottom:0}.cell{padding:18px 20px;border-right:1px solid var(--border)}.cell:last-child{border-right:0}.th{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--w3);font-weight:800;background:rgba(240,242,255,.04)}.cell h3{font-size:14px;color:var(--w1);margin-bottom:6px}.cell p{font-size:12.5px;color:var(--w3);line-height:1.55}.metric{display:inline-flex;margin-top:8px;font-size:10px;border:1px solid var(--teal-b);background:var(--teal-lo);color:var(--teal);border-radius:5px;padding:3px 8px}
+.flow{margin-top:34px;display:grid;grid-template-columns:repeat(6,1fr);gap:8px}.flow-card{border:1px solid var(--border);background:var(--w4);border-radius:15px;padding:16px 14px;text-align:center;position:relative}.flow-card:not(:last-child):after{content:'>';position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--teal);font-weight:800}.flow-ico{font-size:22px;margin-bottom:8px}.flow-t{font-size:12px;color:var(--w1);font-weight:700;line-height:1.3}.flow-s{font-size:10.5px;color:var(--w3);line-height:1.35;margin-top:5px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:32px}.list{display:flex;flex-direction:column;gap:10px}.li{display:flex;gap:10px;background:rgba(240,242,255,.045);border:1px solid var(--border);border-radius:12px;padding:13px 15px}.li-dot{width:7px;height:7px;border-radius:50%;background:var(--teal);margin-top:7px;flex-shrink:0}.li strong{color:var(--w1);font-size:13px}.li div{font-size:12.5px;color:var(--w3);line-height:1.55}
+.pilot{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:32px}.phase{background:linear-gradient(160deg,rgba(0,200,150,.06),rgba(124,111,205,.035));border:1px solid var(--border);border-radius:18px;padding:24px 22px}.phase-n{font-size:10px;color:var(--teal);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}.phase-t{font-size:17px;color:var(--w1);font-weight:800;margin-bottom:8px}.phase ul{padding-left:18px;color:var(--w3);font-size:12.5px;line-height:1.7}
+.guard{border:1px solid var(--amber-b);background:rgba(245,166,35,.045);border-radius:18px;padding:24px 26px;margin-top:32px}.guard h3{color:var(--amber);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px}.guard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.gitem{font-size:12.5px;color:var(--w2);line-height:1.55}.gitem b{color:var(--w1)}
+.sources{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:32px}.src{border:1px solid var(--border);background:var(--w4);border-radius:14px;padding:18px}.src-k{font-size:9px;letter-spacing:1.7px;text-transform:uppercase;color:var(--teal);margin-bottom:8px}.src-t{font-size:13px;color:var(--w1);font-weight:700;margin-bottom:7px}.src p{font-size:12px;color:var(--w3);line-height:1.5}.src a{font-size:11px;display:inline-block;margin-top:10px}
+.cta{padding:72px 42px 86px;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(0,200,150,.10),transparent 58%)}.cta h2{font-family:var(--serif);font-size:44px;color:var(--w1);line-height:1.08;margin-bottom:12px}.cta p{font-size:15px;color:var(--w3);max-width:620px;margin:0 auto 26px;line-height:1.7}.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--teal);color:#03100C;font-weight:900;border-radius:11px;padding:13px 24px;text-decoration:none;transition:.2s}.btn:hover{background:var(--teal-d);transform:translateY(-1px);text-decoration:none}.btn-o{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:transparent;color:var(--teal);border:1px solid var(--teal-b);border-radius:11px;padding:12px 22px;margin-left:8px}.btn-o:hover{background:var(--teal-lo);text-decoration:none}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}.reveal.in{opacity:1;transform:translateY(0)}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.grid3,.pilot,.sources,.guard-grid{grid-template-columns:1fr}.row{grid-template-columns:1fr}.cell{border-right:0;border-bottom:1px solid var(--border)}.row .cell:last-child{border-bottom:0}.flow{grid-template-columns:1fr}.flow-card:after{display:none}.two{grid-template-columns:1fr}.navlinks{display:none}.h1{font-size:40px}.h2{font-size:30px}nav,.hero,.section,.cta{padding-left:20px;padding-right:20px}}
+@media(prefers-reduced-motion:reduce){.reveal,.step,.card{transition:none!important}.reveal{opacity:1!important;transform:none!important}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="logo">orivo health <span>for health plans</span></a>
+  <div class="navlinks">
+    <a class="nl" href="#why">Why plans</a>
+    <a class="nl" href="#use-cases">Use cases</a>
+    <a class="nl" href="#workflow">Workflow</a>
+    <a class="nl" href="#pilot">Pilot</a>
+    <a class="nl" href="#sources">Sources</a>
+    <a class="nl cta-sm" href="mailto:hello@orivohealth.com?subject=Orivo%20payer%20pilot">Talk to Orivo</a>
+  </div>
+</nav>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="reveal">
+      <div class="ey">Health-plan operating layer</div>
+      <h1 class="h1">A member access layer for payers.</h1>
+      <p class="sub">Orivo helps health plans turn plain-language member texts and voice calls into benefit-aware navigation, adherence support, SDoH signals, medication safety flags, and care-team routing. The goal is not to replace plan systems. The goal is to make the benefits already paid for easier to use.</p>
+      <div class="pillrow">
+        <span class="pill pill-t">Medicare Advantage</span>
+        <span class="pill pill-v">Medicaid managed care</span>
+        <span class="pill pill-a">PBM and pharmacy programs</span>
+        <span class="pill pill-w">Commercial plans</span>
+      </div>
+    </div>
+    <div class="console reveal" aria-label="Animated payer workflow graphic">
+      <div class="console-in">
+        <div class="c-head"><div class="c-title">Member signal console</div><div class="live"><span class="dot"></span>live demo</div></div>
+        <div class="route" id="route">
+          <div class="step active"><div class="num">1</div><div><div class="st-t">Member texts in</div><div class="st-s">I missed my visit. I did not have a ride.</div></div><span class="tag ok">SMS</span></div>
+          <div class="step"><div class="num">2</div><div><div class="st-t">Plan context loads</div><div class="st-s">Eligibility, benefit type, pharmacy, care team, SDoH history.</div></div><span class="tag">lookup</span></div>
+          <div class="step"><div class="num">3</div><div><div class="st-t">Vera safety check</div><div class="st-s">No diagnosis. No medication change. Escalate when needed.</div></div><span class="tag warn">guardrail</span></div>
+          <div class="step"><div class="num">4</div><div><div class="st-t">Right route selected</div><div class="st-s">NEMT help, care manager, pharmacist review, provider follow-up.</div></div><span class="tag ok">routed</span></div>
+          <div class="step"><div class="num">5</div><div><div class="st-t">Outcome logged</div><div class="st-s">Reason, resource offered, escalation, resolution status, follow-up needed.</div></div><span class="tag ok">auditable</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="section alt reveal">
+    <div class="ey">Why payers care</div>
+    <h2 class="h2">The plan already pays for many resources. Members still struggle to find and use them.</h2>
+    <p class="lead">The payer problem is not only whether benefits exist. It is whether members can understand them at the exact moment they are deciding whether to fill a medication, attend a visit, call a nurse line, request transportation, or abandon the process entirely.</p>
+    <div class="grid3">
+      <div class="card hi"><div class="ico">⭐</div><div class="ct">Quality and Stars pressure</div><div class="cb">CMS Star Ratings measure quality across Medicare Advantage and Part D contracts, including Part C and Part D performance areas. Orivo should be positioned as a member-facing workflow that supports measurable quality operations, not as a guaranteed Star improvement.</div><div class="stat">40</div><div class="stat-l">up to 40 MA-PD quality and performance measures in 2025 CMS Stars materials</div></div>
+      <div class="card"><div class="ico">💊</div><div class="ct">Adherence and medication access</div><div class="cb">Medication adherence problems are clinical, operational, and financial. Orivo can collect the member's stated barrier, route medication concerns to pharmacists, and preserve an auditable trail of what was offered.</div><div class="stat">125K</div><div class="stat-l">estimated annual deaths tied to nonadherence in published public-health literature</div></div>
+      <div class="card"><div class="ico">🚗</div><div class="ct">SDoH and benefit navigation</div><div class="cb">Transportation is a required Medicaid benefit area, but members often do not know where to start. Orivo can detect ride barriers and route the member toward the plan-specific next step.</div><div class="stat">NEMT</div><div class="stat-l">Medicaid transportation coverage is addressed in federal Medicaid guidance</div></div>
+    </div>
+  </section>
+
+  <section id="use-cases" class="section reveal">
+    <div class="ey">Use-case map</div>
+    <h2 class="h2">Turn payer goals into member-level actions.</h2>
+    <p class="lead">The payer page should speak in program language: quality, adherence, care gaps, member experience, avoidable utilization, benefit activation, and auditability.</p>
+    <div class="matrix">
+      <div class="row th"><div class="cell">Plan pressure</div><div class="cell">Orivo workflow</div><div class="cell">What to measure in pilot</div></div>
+      <div class="row"><div class="cell"><h3>Medication adherence risk</h3><p>Member says they stopped, skipped, cannot afford, forgot, or felt side effects.</p></div><div class="cell"><p>Aevo captures the barrier, checks plan and pharmacy context, gives safe education, and routes medication concerns to pharmacist or care team when required.</p></div><div class="cell"><span class="metric">PDC movement</span><span class="metric">pharmacist callbacks</span><span class="metric">barrier reason mix</span></div></div>
+      <div class="row"><div class="cell"><h3>Transportation and missed visits</h3><p>Member cannot attend a visit because of ride, caregiver, mobility, or distance barriers.</p></div><div class="cell"><p>Orivo identifies transportation intent, checks plan type and routing rules, and directs the member to the correct NEMT or care management path.</p></div><div class="cell"><span class="metric">appointment salvage</span><span class="metric">NEMT route completion</span><span class="metric">missed visit reason</span></div></div>
+      <div class="row"><div class="cell"><h3>Benefit confusion</h3><p>Member does not know if telehealth, home delivery, OTC, pharmacy support, or ride support exists.</p></div><div class="cell"><p>Orivo translates the question, loads the member's configured benefit pathways, and explains the next step in plain language.</p></div><div class="cell"><span class="metric">benefit activation</span><span class="metric">self-service completion</span><span class="metric">call deflection hypothesis</span></div></div>
+      <div class="row"><div class="cell"><h3>Medication safety concern</h3><p>Member mentions dizziness, chest tightness, swelling, bleeding, confusion, or other possible adverse effects.</p></div><div class="cell"><p>Orivo uses safety boundaries, advises urgent resources when needed, and sends a structured brief for clinical review instead of making medication decisions.</p></div><div class="cell"><span class="metric">safety escalations</span><span class="metric">time to review</span><span class="metric">closed-loop status</span></div></div>
+    </div>
+  </section>
+
+  <section id="workflow" class="section alt reveal">
+    <div class="ey">Operating workflow</div>
+    <h2 class="h2">A payer-safe loop from member message to measurable signal.</h2>
+    <p class="lead">This is the story we should show health plans: Orivo does not just chat. It captures structured intervention evidence, routes risk, and helps population health teams understand why members fall out of care.</p>
+    <div class="flow">
+      <div class="flow-card"><div class="flow-ico">📩</div><div class="flow-t">Member message</div><div class="flow-s">SMS, voice, or lightweight web intake</div></div>
+      <div class="flow-card"><div class="flow-ico">🧠</div><div class="flow-t">Aevo extraction</div><div class="flow-s">Barrier, intent, urgency, confidence</div></div>
+      <div class="flow-card"><div class="flow-ico">🧾</div><div class="flow-t">Plan context</div><div class="flow-s">Eligibility, benefits, PBM, pharmacy, care team</div></div>
+      <div class="flow-card"><div class="flow-ico">🛡️</div><div class="flow-t">Vera validation</div><div class="flow-s">Safety, scope, evidence, escalation rules</div></div>
+      <div class="flow-card"><div class="flow-ico">🤝</div><div class="flow-t">Action route</div><div class="flow-s">Member answer, pharmacist, care manager, provider</div></div>
+      <div class="flow-card"><div class="flow-ico">📊</div><div class="flow-t">Payer signal</div><div class="flow-s">Closed-loop status and reporting layer</div></div>
+    </div>
+    <div class="two">
+      <div class="card"><div class="ct">Integration inputs</div><div class="list"><div class="li"><span class="li-dot"></span><div><strong>Eligibility and coverage</strong><br>Member status, line of business, plan type, benefit package.</div></div><div class="li"><span class="li-dot"></span><div><strong>Claims and pharmacy context</strong><br>Medication fills, PDC flags, pharmacy relationship, adherence programs.</div></div><div class="li"><span class="li-dot"></span><div><strong>Care management routing</strong><br>Care team assignment, escalation queues, preferred channels.</div></div></div></div>
+      <div class="card"><div class="ct">Reporting outputs</div><div class="list"><div class="li"><span class="li-dot"></span><div><strong>Barrier taxonomy</strong><br>Cost, transport, side effect, literacy, language, trust, food, housing, appointment access.</div></div><div class="li"><span class="li-dot"></span><div><strong>Action and outcome log</strong><br>Resource offered, escalation sent, callback needed, member response, status.</div></div><div class="li"><span class="li-dot"></span><div><strong>Quality program view</strong><br>Adherence, care gap, safety, experience, and SDoH operating reports.</div></div></div></div>
+    </div>
+  </section>
+
+  <section id="pilot" class="section reveal">
+    <div class="ey">Pilot structure</div>
+    <h2 class="h2">A payer pilot should prove workflow lift before claiming outcomes.</h2>
+    <p class="lead">Bluntly: we should not claim Orivo reduces readmissions, improves Stars, or cuts cost until a pilot proves it. The site now frames those as measurable hypotheses.</p>
+    <div class="pilot">
+      <div class="phase"><div class="phase-n">30 days</div><div class="phase-t">Configure</div><ul><li>Select population: MA, D-SNP, Medicaid, or adherence cohort.</li><li>Load benefit pathways and escalation rules.</li><li>Define safety boundaries and reporting taxonomy.</li></ul></div>
+      <div class="phase"><div class="phase-n">60 days</div><div class="phase-t">Run</div><ul><li>Launch SMS and voice intake for a defined cohort.</li><li>Route adherence, transportation, and medication safety signals.</li><li>Review weekly barrier and escalation reports.</li></ul></div>
+      <div class="phase"><div class="phase-n">90 days</div><div class="phase-t">Evaluate</div><ul><li>Compare engagement, route completion, callbacks, and closed-loop status.</li><li>Assess directionality for adherence and care-gap signals.</li><li>Decide whether to expand, narrow, or stop.</li></ul></div>
+    </div>
+    <div class="guard"><h3>Claims guardrail</h3><div class="guard-grid"><div class="gitem"><b>Say:</b> designed to support adherence operations. <br><b>Do not say:</b> proven to improve adherence.</div><div class="gitem"><b>Say:</b> detects transportation barriers and routes members to plan-specific next steps. <br><b>Do not say:</b> guarantees ride completion.</div><div class="gitem"><b>Say:</b> can generate auditable member-interaction signals for plan review. <br><b>Do not say:</b> certified Stars improvement engine.</div></div></div>
+  </section>
+
+  <section id="sources" class="section alt reveal">
+    <div class="ey">Cited evidence</div>
+    <h2 class="h2">Payer claims tied to public sources.</h2>
+    <p class="lead">These sources support the problem framing. They do not prove Orivo outcomes. Pilot results should be added later as separate Orivo-specific evidence.</p>
+    <div class="sources">
+      <div class="src"><div class="src-k">CMS Stars</div><div class="src-t">2025 Medicare Advantage and Part D Star Ratings</div><p>CMS describes annual Star Ratings and notes MA-PD contracts are rated on up to 40 quality and performance measures.</p><a href="https://www.cms.gov/newsroom/fact-sheets/2025-medicare-advantage-and-part-d-star-ratings" target="_blank" rel="noopener">Open source</a></div>
+      <div class="src"><div class="src-k">HEDIS</div><div class="src-t">NCQA HEDIS measures and technical resources</div><p>NCQA publishes HEDIS technical specifications and medication list resources used by health plans.</p><a href="https://www.ncqa.org/hedis/measures/" target="_blank" rel="noopener">Open source</a></div>
+      <div class="src"><div class="src-k">Medicaid transport</div><div class="src-t">Medicaid assurance of transportation</div><p>Medicaid.gov describes transportation assurance and NEMT requirements in federal Medicaid guidance.</p><a href="https://www.medicaid.gov/medicaid/benefits/assurance-of-transportation" target="_blank" rel="noopener">Open source</a></div>
+      <div class="src"><div class="src-k">Medicaid benefits</div><div class="src-t">Mandatory and optional Medicaid benefits</div><p>Medicaid.gov lists transportation to medical care among mandatory benefit references.</p><a href="https://www.medicaid.gov/medicaid/benefits/mandatory-optional-medicaid-benefits" target="_blank" rel="noopener">Open source</a></div>
+      <div class="src"><div class="src-k">Medication use</div><div class="src-t">IQVIA medicine use in the US 2025</div><p>IQVIA reports prescription medicine use, access barriers, and medicine spending trends.</p><a href="https://www.iqvia.com/insights/the-iqvia-institute/reports-and-publications/reports/understanding-the-use-of-medicines-in-the-us-2025" target="_blank" rel="noopener">Open source</a></div>
+      <div class="src"><div class="src-k">Nonadherence</div><div class="src-t">Public Health Reports medication adherence commentary</div><p>Published public-health literature cites estimates of approximately 125,000 deaths per year tied to medication nonadherence.</p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3234383/" target="_blank" rel="noopener">Open source</a></div>
+    </div>
+  </section>
+
+  <section class="cta reveal">
+    <h2>Give plans a member signal they can actually act on.</h2>
+    <p>Start with one cohort, one workflow, and one measurable hypothesis: adherence barrier detection, transportation navigation, medication concern escalation, or benefit activation.</p>
+    <a class="btn" href="mailto:hello@orivohealth.com?subject=Orivo%20health%20plan%20pilot">Discuss payer pilot</a>
+    <a class="btn-o" href="/">Back to homepage</a>
+  </section>
+</main>
+
+<script>
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const steps=[...document.querySelectorAll('.step')];let i=0;setInterval(()=>{steps.forEach(s=>s.classList.remove('active'));steps[i%steps.length].classList.add('active');i++;},1500);
+</script>
+</body>
+</html>
