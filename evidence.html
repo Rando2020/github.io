@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Evidence & Claims | Orivo Health</title>
-<meta name="description" content="Public sources supporting Orivo Health's medication adherence, health literacy, SMS-first access, PDC, HRSN, and technical roadmap rationale.">
+<meta name="description" content="Public sources supporting Orivo Health's medication adherence, pharmacist documentation, health literacy, SMS-first access, PDC, HRSN, and technical roadmap rationale.">
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
 <style>
@@ -38,11 +38,12 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
 .card{background:var(--w4);border:1px solid var(--border);border-radius:18px;padding:22px;position:relative;overflow:hidden;scroll-margin-top:90px}
 .card.feature{border-color:var(--teal-b);background:rgba(0,200,150,.04)}
 .card.tech{border-color:var(--vera-b);background:rgba(124,111,205,.045)}
+.card.amber{border-color:var(--amber-b);background:rgba(245,166,35,.05)}
 .card:target{box-shadow:0 0 0 2px var(--teal),0 0 30px rgba(0,200,150,.25);border-color:var(--teal);animation:targetPulse 1.6s ease-in-out}
 @keyframes targetPulse{0%{box-shadow:0 0 0 2px var(--teal),0 0 50px rgba(0,200,150,.45)}100%{box-shadow:0 0 0 2px var(--teal),0 0 30px rgba(0,200,150,.25)}}
 .cite-num{position:absolute;top:14px;right:18px;font-family:var(--serif);font-size:32px;color:rgba(0,200,150,.35);line-height:1}
 .tag{display:inline-flex;align-items:center;border:1px solid var(--teal-b);background:var(--teal-lo);color:var(--teal);border-radius:100px;padding:4px 10px;font-size:10px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;margin-bottom:12px}
-.tag.vera{border-color:var(--vera-b);background:var(--vera-lo);color:var(--vera)}
+.tag.vera{border-color:var(--vera-b);background:var(--vera-lo);color:var(--vera)}.tag.amber{border-color:var(--amber-b);background:var(--amber-lo);color:var(--amber)}
 .claim{font-size:16px;color:var(--w1);font-weight:800;margin-bottom:8px;padding-right:36px}
 .body{font-size:13px;color:var(--w3);line-height:1.6}
 .source{font-size:12px;margin-top:13px;color:var(--w2)}.source a{display:inline-block;margin-right:8px}
@@ -58,8 +59,9 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
   <div class="logo">orivo health <span>evidence</span></div>
   <div class="nav-links">
     <a href="/">Home</a>
+    <a href="/for-pharmacies.html">Pharmacies</a>
+    <a href="/pharmacist-value-gap.html">Value gap</a>
     <a href="/patient-provider-demo.html">Demo</a>
-    <a href="/walkthrough.html">Walkthrough</a>
   </div>
 </nav>
 
@@ -68,8 +70,8 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
   <div class="wrap">
     <div class="ey">Evidence-backed claims · Public source register</div>
     <h1 class="h1">The research behind the Orivo pitch.</h1>
-    <p class="lead">This page documents public research and official guidance used to support Orivo Health's market problem, product rationale, and technical design direction. Each numbered card matches a citation marker (¹ ² ³) elsewhere on the site.</p>
-    <div class="notice"><strong>Context:</strong> Orivo is pre-seed and prototype-stage. These sources support the healthcare problem space and product rationale. They do not represent Orivo-specific clinical outcomes, pilot results, or production deployment claims.</div>
+    <p class="lead">This page documents public research and official guidance used to support Orivo Health's market problem, product rationale, pharmacist documentation thesis, and technical design direction. Each numbered card matches a citation marker elsewhere on the site.</p>
+    <div class="notice"><strong>Context:</strong> Orivo is pre-seed and prototype-stage. These sources support the healthcare problem space and product rationale. They do not represent Orivo-specific clinical outcomes, pilot results, reimbursement guarantees, or production deployment claims.</div>
   </div>
 </section>
 
@@ -97,7 +99,7 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
         <span class="cite-num">3</span>
         <div class="tag">Adverse drug events</div>
         <div class="claim">Adverse drug events cause roughly $3.5B in excess U.S. medical costs each year.</div>
-        <div class="body">Each year in the U.S., adverse drug events (ADEs) are linked to approximately 1.5 million emergency department visits, 500,000 hospitalizations, and $3.5B in excess medical costs — many of which are considered preventable. Tracked under HHS's Healthy People 2030 Medical Product Safety workgroup.</div>
+        <div class="body">Each year in the U.S., adverse drug events (ADEs) are linked to approximately 1.5 million emergency department visits, 500,000 hospitalizations, and $3.5B in excess medical costs. Tracked under HHS's Healthy People 2030 Medical Product Safety workgroup.</div>
         <div class="source"><a href="https://odphp.health.gov/healthypeople/about/workgroups/medical-product-safety-workgroup">HHS Healthy People 2030</a></div>
       </div>
       <div class="card feature" id="cite-4">
@@ -131,27 +133,22 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
     <h2 class="h2">The wedge connects to pharmacy and payer quality economics.</h2>
     <p class="sub">Orivo's product direction is designed around adherence workflows, PDC-tracked medication classes, pharmacist review, and health-related social needs that can interfere with medication use.</p>
     <div class="grid three">
-      <div class="card" id="cite-7">
-        <span class="cite-num">7</span>
-        <div class="tag">PDC</div>
-        <div class="claim">PDC is a standard adherence methodology.</div>
-        <div class="body">PQA describes Proportion of Days Covered as its preferred method for adherence measures and describes the common 80% threshold for many chronic medication classes.</div>
-        <div class="source"><a href="https://www.pqaalliance.org/adherence-measures">PQA Adherence Measures</a></div>
-      </div>
-      <div class="card" id="cite-8">
-        <span class="cite-num">8</span>
-        <div class="tag">Star Ratings</div>
-        <div class="claim">Medication adherence is part of Medicare Part D Star Ratings.</div>
-        <div class="body">CMS includes Part D adherence measures for diabetes medications, hypertension/RAS antagonists, and statins in Star Ratings reporting.</div>
-        <div class="source"><a href="https://www.cms.gov/newsroom/fact-sheets/2025-medicare-advantage-and-part-d-star-ratings">CMS Star Ratings Fact Sheet</a></div>
-      </div>
-      <div class="card" id="cite-9">
-        <span class="cite-num">9</span>
-        <div class="tag">HRSN</div>
-        <div class="claim">Transportation, food access, housing, utilities, and financial strain can affect care use.</div>
-        <div class="body">CMS defines health-related social needs as individual social and economic needs affecting health and health care use, including food, housing, utilities, health care access, and transportation.</div>
-        <div class="source"><a href="https://www.cms.gov/priorities/innovation/key-concepts/social-drivers-health-and-health-related-social-needs">CMS SDOH/HRSN</a><a href="https://www.medicaid.gov/medicaid/section-1115-demonstrations/health-related-social-needs">Medicaid.gov HRSN</a></div>
-      </div>
+      <div class="card" id="cite-7"><span class="cite-num">7</span><div class="tag">PDC</div><div class="claim">PDC is a standard adherence methodology.</div><div class="body">PQA describes Proportion of Days Covered as its preferred method for adherence measures and describes the common 80% threshold for many chronic medication classes.</div><div class="source"><a href="https://www.pqaalliance.org/adherence-measures">PQA Adherence Measures</a></div></div>
+      <div class="card" id="cite-8"><span class="cite-num">8</span><div class="tag">Star Ratings</div><div class="claim">Medication adherence is part of Medicare Part D Star Ratings.</div><div class="body">CMS includes Part D adherence measures for diabetes medications, hypertension/RAS antagonists, and statins in Star Ratings reporting.</div><div class="source"><a href="https://www.cms.gov/newsroom/fact-sheets/2025-medicare-advantage-and-part-d-star-ratings">CMS Star Ratings Fact Sheet</a></div></div>
+      <div class="card" id="cite-9"><span class="cite-num">9</span><div class="tag">HRSN</div><div class="claim">Transportation, food access, housing, utilities, and financial strain can affect care use.</div><div class="body">CMS defines health-related social needs as individual social and economic needs affecting health and health care use, including food, housing, utilities, health care access, and transportation.</div><div class="source"><a href="https://www.cms.gov/priorities/innovation/key-concepts/social-drivers-health-and-health-related-social-needs">CMS SDOH/HRSN</a><a href="https://www.medicaid.gov/medicaid/section-1115-demonstrations/health-related-social-needs">Medicaid.gov HRSN</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="ey">Pharmacist value gap</div>
+    <h2 class="h2">The pharmacist reimbursement argument needs stronger proof of clinical reasoning.</h2>
+    <p class="sub">These sources support Orivo's careful positioning: the product can support documentation specificity and care-team handoffs, but should not claim to enable direct pharmacist billing today.</p>
+    <div class="grid three">
+      <div class="card amber" id="cite-12"><span class="cite-num">12</span><div class="tag amber">Provider status</div><div class="claim">ASHP states pharmacists are not currently recognized as Medicare Part B qualified health professionals.</div><div class="body">ASHP's incident-to billing guidance says pharmacists may support physician-billed services under certain pathways, but direct recognition under Medicare Part B remains a policy gap.</div><div class="source"><a href="https://www.ashp.org/Advocacy-and-Issues/Key-Issues/incident-to-billing">ASHP Incident-to Billing</a></div></div>
+      <div class="card amber" id="cite-13"><span class="cite-num">13</span><div class="tag amber">Incident-to rules</div><div class="claim">CMS incident-to services have specific treatment, setting, and supervision requirements.</div><div class="body">CMS describes incident-to services and supplies under the Physician Fee Schedule. Orivo should therefore frame its role as documentation and coordination support, not autonomous billing.</div><div class="source"><a href="https://www.cms.gov/medicare/payment/fee-schedules/physician-fee-schedule/advanced-practice-nonphysician-practitioners/incident-services-supplies">CMS Incident-to Services</a></div></div>
+      <div class="card amber" id="cite-14"><span class="cite-num">14</span><div class="tag amber">Deprescribing</div><div class="claim">CMS guidance on supervised medication deprescribing emphasizes care planning, monitoring, communication, coordination, and pharmacist involvement.</div><div class="body">The guidance supports Orivo's argument that the work must be specific and auditable: patient symptoms, care plan linkage, pharmacist involvement, communication, and coordination should be documented carefully.</div><div class="source"><a href="https://www.cms.gov/files/document/billing-supervised-medication-deprescribing-services-under-pfs.pdf">CMS Deprescribing Guidance PDF</a></div></div>
     </div>
   </div>
 </section>
@@ -161,20 +158,8 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
     <div class="ey">Technical direction</div>
     <h2 class="h2">The architecture is designed to start narrow and mature responsibly.</h2>
     <div class="grid two">
-      <div class="card tech" id="cite-10">
-        <span class="cite-num">10</span>
-        <div class="tag vera">Messaging infrastructure</div>
-        <div class="claim">Twilio can support HIPAA-eligible workflows when configured correctly.</div>
-        <div class="body">Twilio's public HIPAA guidance supports the plan to use eligible products, execute a Business Associate Addendum, and implement customer-side safeguards before handling PHI.</div>
-        <div class="source"><a href="https://www.twilio.com/en-us/hipaa">Twilio HIPAA</a><a href="https://help.twilio.com/articles/360059959413-Building-HIPAA-Compliant-Messaging-Applications-with-Twilio">Twilio Help Center</a></div>
-      </div>
-      <div class="card tech" id="cite-11">
-        <span class="cite-num">11</span>
-        <div class="tag vera">Medication normalization</div>
-        <div class="claim">RxNorm is a credible foundation for medication normalization.</div>
-        <div class="body">The National Library of Medicine states RxNorm provides normalized names for clinical drugs and links to vocabularies used in pharmacy management and drug interaction software.</div>
-        <div class="source"><a href="https://www.nlm.nih.gov/research/umls/rxnorm/index.html">NLM RxNorm</a><a href="https://www.nlm.nih.gov/research/umls/rxnorm/overview.html">RxNorm Overview</a></div>
-      </div>
+      <div class="card tech" id="cite-10"><span class="cite-num">10</span><div class="tag vera">Messaging infrastructure</div><div class="claim">Twilio can support HIPAA-eligible workflows when configured correctly.</div><div class="body">Twilio's public HIPAA guidance supports the plan to use eligible products, execute a Business Associate Addendum, and implement customer-side safeguards before handling PHI.</div><div class="source"><a href="https://www.twilio.com/en-us/hipaa">Twilio HIPAA</a><a href="https://help.twilio.com/articles/360059959413-Building-HIPAA-Compliant-Messaging-Applications-with-Twilio">Twilio Help Center</a></div></div>
+      <div class="card tech" id="cite-11"><span class="cite-num">11</span><div class="tag vera">Medication normalization</div><div class="claim">RxNorm is a credible foundation for medication normalization.</div><div class="body">The National Library of Medicine states RxNorm provides normalized names for clinical drugs and links to vocabularies used in pharmacy management and drug interaction software.</div><div class="source"><a href="https://www.nlm.nih.gov/research/umls/rxnorm/index.html">NLM RxNorm</a><a href="https://www.nlm.nih.gov/research/umls/rxnorm/overview.html">RxNorm Overview</a></div></div>
     </div>
   </div>
 </section>
@@ -185,10 +170,10 @@ a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
       <div class="ey">Claims boundary</div>
       <h3>What the sources support, and what they do not.</h3>
       <ul>
-        <li>The sources support the need for better medication communication, adherence support, health-literacy-aware education, and patient-reported barrier capture.</li>
+        <li>The sources support the need for better medication communication, adherence support, health-literacy-aware education, patient-reported barrier capture, and pharmacist documentation specificity.</li>
         <li>The sources support Orivo's product rationale, not Orivo-specific outcomes.</li>
-        <li>Until pilots generate data, Orivo should describe itself as designed to support adherence workflows, pharmacist review, and patient-reported concern capture.</li>
-        <li>Orivo should not publicly claim it improves PDC, reduces adverse drug events, improves Star Ratings, or is HIPAA compliant in production until those claims are validated.</li>
+        <li>Until pilots generate data, Orivo should describe itself as designed to support adherence workflows, pharmacist review, patient-reported concern capture, medication optimization documentation, and care-team routing.</li>
+        <li>Orivo should not publicly claim it improves PDC, reduces adverse drug events, improves Star Ratings, enables direct pharmacist reimbursement, or is HIPAA compliant in production until those claims are validated.</li>
       </ul>
     </div>
   </div>
