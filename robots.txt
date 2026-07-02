@@ -1,3 +1,9 @@
-# Orivo Health — confidential prototype site
+# Orivo Health — public prototype site
+# Public pages are crawlable. Archived and internal material is not.
+
 User-agent: *
-Disallow: /
+Disallow: /_archive/
+Disallow: /provider-login.html
+Allow: /
+
+Sitemap: https://orivohealth.com/sitemap.xml
