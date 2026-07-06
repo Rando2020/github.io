@@ -2,884 +2,423 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Orivo Health - Complete Engineering Stack</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Approach | Orivo Health</title>
+<meta name="description" content="What Orivo has actually built, the six compliance gates that must clear before any real patient is texted, and what gets added at each milestone — no fiction.">
+<link rel="icon" href="/assets/orivo-logo-transparent.png" type="image/png">
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.08);--teal-b:rgba(0,200,150,.22);
-  --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.08);--vera-b:rgba(124,111,205,.24);
-  --amber:#F5A623;--amber-lo:rgba(245,166,35,.08);--amber-b:rgba(245,166,35,.22);
-  --coral:#FF6B6B;--coral-lo:rgba(255,107,107,.07);--coral-b:rgba(255,107,107,.22);
-  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.08);--blue-b:rgba(74,158,255,.2);
-  --green:#34D399;--green-lo:rgba(52,211,153,.08);--green-b:rgba(52,211,153,.22);
-  --pink:#F472B6;--pink-lo:rgba(244,114,182,.08);--pink-b:rgba(244,114,182,.2);
-  --gold:#E8B84B;--gold-lo:rgba(232,184,75,.08);--gold-b:rgba(232,184,75,.2);
-  --sky:#38BDF8;--sky-lo:rgba(56,189,248,.08);--sky-b:rgba(56,189,248,.2);
-  --w1:#F0F2FF;--w2:rgba(240,242,255,.7);--w3:rgba(240,242,255,.32);--w4:rgba(240,242,255,.06);
-  --border:rgba(240,242,255,.08);--border2:rgba(240,242,255,.15);
-  --bg:#050A14;--bg2:#07101A;
+  --bg:#050A14;--bg2:#060E1E;--panel:#0A1426;
+  --border:rgba(240,242,255,.10);--border-hi:rgba(240,242,255,.16);
+  --text:#EDF0FA;--dim:#9AA3BC;--faint:#6B7490;
+  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.24);
+  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.09);--blue-b:rgba(74,158,255,.24);
+  --amber:#F5A623;--amber-lo:rgba(245,166,35,.09);--amber-b:rgba(245,166,35,.22);
+  --coral:#FF6B6B;
+  --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.09);--vera-b:rgba(124,111,205,.24);
   --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
-  --sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
+  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
+*{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--w2);font-family:var(--sans);font-size:15px;line-height:1.65;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
 
-/* ── NAV ── */
-nav{
-  position:sticky;top:0;z-index:200;
-  background:rgba(5,10,20,.96);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-  padding:0 40px;height:54px;
-  display:flex;align-items:center;justify-content:space-between;
+.disclaimer{background:var(--amber-lo);border-bottom:1px solid var(--amber-b);padding:9px 24px;text-align:center;font-size:12.5px;color:var(--dim)}
+.disclaimer strong{color:var(--amber);font-weight:600}
+.disclaimer a{color:var(--amber);text-decoration:underline;text-underline-offset:2px}
+
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(5,10,20,.86);backdrop-filter:blur(12px);z-index:50}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-img{height:30px;width:auto;display:block}
+.logo-text{font-family:var(--serif);font-size:20px}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:14px;color:var(--dim)}
+.nav-links a:hover{color:var(--text)}
+.nav-links a[aria-current]{color:var(--teal)}
+.nav-cta{background:var(--teal);color:#03110C;padding:8px 18px;border-radius:8px;font-weight:600;transition:opacity .2s}
+.nav-cta:hover{opacity:.85;color:#03110C}
+.menu{display:none;background:none;border:1px solid var(--border);color:var(--text);font-size:18px;padding:6px 12px;border-radius:8px;cursor:pointer}
+#mobile{display:none;flex-direction:column;gap:4px;padding:12px 24px 20px;border-bottom:1px solid var(--border);background:var(--bg2)}
+#mobile a{padding:10px 4px;font-size:15px;color:var(--dim);border-bottom:1px solid var(--border)}
+#mobile a:last-child{border-bottom:none}
+#mobile.open{display:flex}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+.section{padding:84px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--teal)}
+h1{font-family:var(--serif);font-size:clamp(34px,5vw,54px);line-height:1.1;font-weight:400}
+h2{font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);line-height:1.16;font-weight:400;margin-bottom:14px}
+.lead{font-size:17px;color:var(--dim);max-width:660px;margin-top:20px}
+.sub{font-size:15.5px;color:var(--dim);max-width:640px;margin-bottom:40px}
+
+.hero{padding:96px 0 80px;border-bottom:1px solid var(--border);
+  background:radial-gradient(820px 400px at 12% -10%, rgba(74,158,255,.08), transparent 60%),
+             radial-gradient(700px 380px at 92% 0%, rgba(0,200,150,.09), transparent 60%),var(--bg)}
+.hero-note{margin-top:36px;border-left:2px solid var(--teal);padding:6px 0 6px 20px;max-width:620px;font-size:15px;color:var(--dim)}
+.hero-note strong{color:var(--text)}
+
+/* built inventory */
+.inv{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.inv-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px 22px}
+.inv-chip{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:4px 11px;border-radius:999px;margin-bottom:14px;background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
+.inv-card h3{font-size:15.5px;font-weight:600;margin-bottom:8px}
+.inv-card p{font-size:13.5px;color:var(--dim)}
+.inv-card code{font-family:var(--mono);font-size:12px;color:var(--blue);background:var(--blue-lo);border:1px solid var(--blue-b);border-radius:5px;padding:1px 7px}
+
+/* ── six gates (signature) ── */
+.gates-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.gate-track{position:relative;display:flex;flex-direction:column;gap:0}
+.gate{
+  display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:start;
+  padding:26px 0;border-bottom:1px solid var(--border);position:relative;
 }
-.logo{font-family:var(--serif);font-size:19px;color:var(--teal);letter-spacing:-.3px}
-.logo span{font-family:var(--sans);font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--w3);margin-left:8px}
-.nav-r{display:flex;align-items:center;gap:14px}
-.nav-total{font-family:var(--serif);font-size:22px;color:var(--teal)}
-.nav-total-l{font-size:10px;color:var(--w3)}
-
-/* ── HERO ── */
-.hero{
-  padding:60px 40px 52px;
-  max-width:1060px;margin:0 auto;
-  border-bottom:1px solid var(--border);
+.gate:last-child{border-bottom:none}
+.gate-marker{
+  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:18px;position:relative;z-index:1;
 }
-.hero-eye{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
-.hero-h{font-family:var(--serif);font-size:44px;color:var(--w1);line-height:1.06;margin-bottom:14px}
-.hero-sub{font-size:15px;color:var(--w3);max-width:600px;line-height:1.7;margin-bottom:32px}
-
-/* ── COST SUMMARY TOP ── */
-.cost-overview{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
-  max-width:1060px;margin:0 auto;
-  padding:0 40px 48px;
+.gate::before{
+  content:"";position:absolute;left:21px;top:70px;bottom:-26px;width:2px;
+  background:linear-gradient(180deg,var(--border-hi),var(--border));
 }
-.co-card{
-  background:var(--w4);border:1px solid var(--border);
-  border-radius:13px;padding:20px 18px;text-align:center;
-  transition:all .25s;
+.gate:last-child::before{display:none}
+.g-built .gate-marker{background:var(--teal-lo);border:1px solid var(--teal-b);color:var(--teal)}
+.g-progress .gate-marker{background:var(--amber-lo);border:1px solid var(--amber-b);color:var(--amber)}
+.g-pending .gate-marker{background:rgba(240,242,255,.03);border:1px solid var(--border-hi);color:var(--faint)}
+.gate-body h3{font-size:16.5px;font-weight:600;margin-bottom:6px}
+.gate-body p{font-size:14px;color:var(--dim);max-width:560px}
+.gate-status{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap;margin-top:4px}
+.g-built .gate-status{background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
+.g-progress .gate-status{background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-b)}
+.g-pending .gate-status{background:rgba(240,242,255,.03);color:var(--faint);border:1px solid var(--border-hi)}
+.gates-note{
+  margin-top:30px;border:1px dashed var(--border-hi);border-radius:12px;padding:18px 22px;
+  font-size:13.5px;color:var(--dim);
 }
-.co-card:hover{border-color:var(--border2)}
-.co-n{font-family:var(--serif);font-size:30px;line-height:1;margin-bottom:5px}
-.co-l{font-size:11px;color:var(--w3);line-height:1.4}
+.gates-note strong{color:var(--text)}
 
-/* ── SECTION ── */
-.section{max-width:1060px;margin:0 auto;padding:0 40px 0}
-.section+.section{margin-top:0}
+/* principles */
+.prin{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.prin-card{border:1px solid var(--border);border-radius:12px;padding:24px;background:rgba(240,242,255,.02)}
+.prin-card h3{font-size:15px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.prin-card h3::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--teal)}
+.prin-card p{font-size:13.5px;color:var(--dim)}
 
-/* ── LAYER BLOCK ── */
-.layer-block{margin-bottom:3px}
+/* build ladder */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rung{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden}
+.rung::after{content:"";position:absolute;inset:0 0 auto 0;height:2px}
+.rung.r1::after{background:linear-gradient(90deg,var(--teal),transparent 70%)}
+.rung.r2::after{background:linear-gradient(90deg,var(--blue),transparent 70%)}
+.rung.r3::after{background:linear-gradient(90deg,var(--vera),transparent 70%)}
+.rung-gate{font-family:var(--serif);font-size:15px;margin-bottom:4px}
+.rung.r1 .rung-gate{color:var(--teal)}
+.rung.r2 .rung-gate{color:var(--blue)}
+.rung.r3 .rung-gate{color:var(--vera)}
+.rung-when{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.rung h3{font-size:16.5px;font-weight:600;margin-bottom:12px}
+.rung ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.rung li{font-size:13.5px;color:var(--dim);padding-left:17px;position:relative}
+.rung li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--faint)}
+.rung.r1 li::before{background:var(--teal-d)}
+.rung .why{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--faint);font-style:italic}
 
-.layer-header{
-  display:grid;grid-template-columns:64px 1fr auto;
-  align-items:center;
-  background:var(--w4);border:1px solid var(--border);
-  border-radius:14px;cursor:pointer;
-  transition:all .22s;overflow:hidden;
-  user-select:none;
-}
-.layer-header:hover{background:rgba(240,242,255,.09);border-color:var(--border2)}
-.layer-block.open .layer-header{border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom-color:transparent}
+footer{border-top:1px solid var(--border);padding:44px 0;font-size:13.5px;color:var(--faint)}
+.foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-links{display:flex;flex-wrap:wrap;gap:20px}
+.foot-links a:hover{color:var(--text)}
 
-.lh-num{
-  width:64px;height:62px;
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:26px;
-  border-right:1px solid var(--border);flex-shrink:0;
-}
-.lh-info{padding:16px 20px}
-.lh-title{font-size:15px;font-weight:500;color:var(--w1);margin-bottom:2px}
-.lh-sub{font-size:11px;color:var(--w3)}
-.lh-right{padding:16px 20px;display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
-.lh-cost{font-size:15px;font-weight:600;white-space:nowrap}
-.lh-toggle{font-size:10px;color:var(--w3);transition:color .2s}
-.layer-block.open .lh-toggle{color:var(--teal)}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
 
-/* ── LAYER BODY ── */
-.layer-body{
-  display:none;
-  background:rgba(0,0,0,.25);
-  border:1px solid var(--border);
-  border-top:none;
-  border-bottom-left-radius:14px;
-  border-bottom-right-radius:14px;
-  padding:20px;
-}
-.layer-block.open .layer-body{display:block}
-
-/* ── TOOL GRID ── */
-.tool-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:11px;margin-bottom:14px}
-
-.tool-card{
-  background:rgba(240,242,255,.04);border:1px solid var(--border);
-  border-radius:12px;padding:16px 18px;
-  transition:all .2s;
-}
-.tool-card:hover{border-color:var(--border2);background:rgba(240,242,255,.07)}
-.tool-card.featured{border-width:1.5px}
-.tc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:7px;gap:8px}
-.tc-name{font-size:14px;font-weight:500;color:var(--w1);line-height:1.3}
-.tc-cost-tag{font-size:11px;font-weight:600;white-space:nowrap;margin-top:2px}
-.tc-desc{font-size:12px;color:var(--w3);line-height:1.5;margin-bottom:8px}
-.tc-why{
-  font-size:11px;color:var(--w3);line-height:1.45;
-  border-top:1px solid var(--border);padding-top:8px;
-}
-.tc-why b{color:var(--teal)}
-.tc-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
-.tc-tag{font-size:9px;padding:2px 7px;border-radius:4px;border:1px solid;display:inline-flex}
-
-/* ── LAYER NOTE ── */
-.layer-note{
-  padding:13px 16px;
-  background:rgba(0,200,150,.05);border:1px solid var(--teal-b);
-  border-radius:9px;font-size:12.5px;color:var(--w2);line-height:1.55;
-  margin-top:0;
-}
-.layer-note.warn{background:rgba(245,166,35,.05);border-color:var(--amber-b)}
-.layer-note.vera{background:rgba(124,111,205,.05);border-color:var(--vera-b)}
-.layer-note.coral{background:rgba(255,107,107,.05);border-color:var(--coral-b)}
-
-/* ── VOICE FLOW ── */
-.voice-flow{
-  background:rgba(240,242,255,.03);border:1px solid var(--border);
-  border-radius:12px;padding:20px;margin-bottom:14px;
-  overflow-x:auto;
-}
-.vf-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:16px}
-.vf-steps{display:flex;align-items:center;gap:0;min-width:580px}
-.vf-step{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;position:relative}
-.vf-step+.vf-step::before{content:'→';position:absolute;left:-14px;top:16px;color:var(--w3);font-size:14px}
-.vf-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;border:1px solid var(--border);background:var(--w4)}
-.vf-name{font-size:11px;color:var(--w2);text-align:center;line-height:1.35;max-width:90px}
-.vf-tool{font-size:9px;color:var(--w3);text-align:center;max-width:90px}
-.vf-cost{font-size:9px;padding:1px 7px;border-radius:3px;border:1px solid var(--teal-b);color:var(--teal);margin-top:2px}
-
-/* ── COST BAR ── */
-.cost-bar-section{
-  max-width:1060px;margin:40px auto 0;
-  padding:0 40px 60px;
-}
-.cb-title{font-family:var(--serif);font-size:26px;color:var(--w1);margin-bottom:6px}
-.cb-sub{font-size:13px;color:var(--w3);margin-bottom:24px}
-.cb-rows{display:flex;flex-direction:column;gap:9px}
-.cb-row{display:flex;align-items:center;gap:12px}
-.cb-label{font-size:13px;color:var(--w2);width:200px;flex-shrink:0}
-.cb-track{flex:1;height:6px;background:rgba(240,242,255,.07);border-radius:3px;overflow:hidden}
-.cb-fill{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-.cb-val{font-size:13px;font-weight:500;color:var(--w1);min-width:80px;text-align:right}
-.cb-total{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-top:20px;padding-top:18px;border-top:1px solid var(--border);
-}
-.cb-total-l{font-size:14px;font-weight:500;color:var(--w1)}
-.cb-total-v{font-family:var(--serif);font-size:32px;color:var(--teal)}
-.cb-scale-note{
-  margin-top:16px;padding:14px 18px;
-  background:rgba(0,200,150,.04);border:1px solid var(--teal-b);
-  border-radius:10px;
-}
-
-/* ── SCALE TABLE ── */
-.scale-table{width:100%;border-collapse:collapse;margin-top:16px}
-.scale-table th{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--w3);padding:9px 13px;text-align:left;border-bottom:1px solid var(--border);font-weight:500}
-.scale-table td{padding:10px 13px;font-size:13px;border-bottom:1px solid var(--border);color:var(--w2);transition:all .3s}
-.scale-table tr:last-child td{border-bottom:none}
-.scale-table tr:hover td{background:var(--w4)}
-.highlight-row td{color:var(--teal)!important;background:rgba(0,200,150,.03)!important}
-
-/* ── PILLS ── */
-.pill{display:inline-flex;align-items:center;border-radius:100px;padding:3px 10px;font-size:10px;border:1px solid}
-
-/* ── PHASE BADGE ── */
-.phase{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border-radius:4px;border:1px solid;display:inline-flex}
-
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
-.reveal.in{opacity:1;transform:translateY(0)}
-
-/* ── FOOTER ── */
-footer{background:var(--bg2);border-top:1px solid var(--border);padding:48px 40px;text-align:center}
-
-@media(max-width:720px){
-  nav{padding:0 18px}
-  .hero,.section,.cost-bar-section,.cost-overview{padding-left:18px;padding-right:18px}
-  .cost-overview{grid-template-columns:1fr 1fr}
-  .tool-grid{grid-template-columns:1fr}
-  .hero-h{font-size:30px}
-  .lh-num{width:48px;height:52px;font-size:20px}
-  .cb-label{width:130px;font-size:11px}
+@media(max-width:960px){.inv{grid-template-columns:1fr 1fr}.ladder{grid-template-columns:1fr}.prin{grid-template-columns:1fr}}
+@media(max-width:680px){
+  .nav{padding:14px 20px}.nav-links{display:none}.menu{display:block}
+  .wrap{padding:0 22px}.section{padding:60px 0}
+  .inv{grid-template-columns:1fr}
+  .gate{grid-template-columns:44px 1fr}
+  .gate-status{grid-column:2;justify-self:start}
 }
 </style>
 </head>
 <body>
-<div style="position:fixed;left:12px;bottom:12px;z-index:9999;max-width:380px;background:rgba(5,10,20,.92);border:1px solid rgba(0,200,150,.24);color:rgba(240,242,255,.72);font-family:Arial,sans-serif;font-size:11px;line-height:1.45;padding:10px 12px;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.35)">Prototype demo. Not medical advice. Not a live clinical system. No PHI should be entered on this static GitHub Pages site.</div>
 
+<div class="disclaimer">
+  <strong>Prototype site.</strong> This page describes prototype work and planned architecture. Not a live clinical system. No PHI should be entered on this static site. <a href="/hipaa-notice.html">HIPAA Notice</a>
+</div>
 
-<nav>
-  <div class="logo">orivo health <span>engineering stack</span></div>
-  <div class="nav-r">
-    <div>
-      <div class="nav-total">~$26K</div>
-      <div class="nav-total-l">/ month at seed</div>
-    </div>
+<nav class="nav">
+  <a class="logo" href="/" aria-label="Orivo Health home">
+    <img class="logo-img" src="/assets/orivo-logo-transparent.png" alt="Orivo Health logo" onerror="this.style.display='none'">
+    <div class="logo-text">orivo health</div>
+  </a>
+  <div class="nav-links">
+    <a href="/for-pharmacies.html">Pharmacies</a>
+    <a href="/pharmacy-pilot.html">Pilot program</a>
+    <a href="/dual-pipeline.html">Aevo + Vera</a>
+    <a href="/evidence.html">Evidence</a>
+    <a class="nav-cta" href="/patient-provider-demo.html">Demo</a>
   </div>
+  <button class="menu" aria-label="Open menu" onclick="document.getElementById('mobile').classList.toggle('open')">☰</button>
 </nav>
-
-<!-- HERO -->
-<div class="hero reveal">
-  <div class="hero-eye">Complete engineering stack - L0 through L7</div>
-  <div class="hero-h">Every tool. Every cost.<br>Every decision explained.</div>
-  <div class="hero-sub">Eight layers from cloud infrastructure to voice AI. Designed around HIPAA-conscious architecture from day one. Designed to scale from 3 pilots to 50,000 patients without rebuilding anything. Click any layer to expand the full tool breakdown.</div>
-
-  <div style="display:flex;gap:10px;flex-wrap:wrap">
-    <span class="pill" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)">Aevo - Patient AI</span>
-    <span class="pill" style="color:var(--vera);border-color:var(--vera-b);background:var(--vera-lo)">Vera - Data AI</span>
-    <span class="pill" style="color:var(--amber);border-color:var(--amber-b);background:var(--amber-lo)">ElevenLabs Voice</span>
-    <span class="pill" style="color:var(--blue);border-color:var(--blue-b);background:var(--blue-lo)">HIPAA-eligible stack</span>
-    <span class="pill" style="color:var(--w3);border-color:var(--border)">Seed → Series B</span>
-  </div>
+<div id="mobile">
+  <a href="/for-pharmacies.html">Pharmacies</a>
+  <a href="/pharmacy-pilot.html">Pilot program</a>
+  <a href="/dual-pipeline.html">Aevo + Vera</a>
+  <a href="/evidence.html">Evidence</a>
+  <a href="/patient-provider-demo.html">Demo</a>
 </div>
 
-<!-- COST OVERVIEW CARDS -->
-<div class="cost-overview reveal">
-  <div class="co-card">
-    <div class="co-n" style="color:var(--teal)">~$26K</div>
-    <div class="co-l">Total monthly at seed (~10K patients, 3 pilots)</div>
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">Engineering approach</div>
+    <h1 class="reveal">Built boring<br>on purpose.</h1>
+    <p class="lead reveal">
+      In a clinical-adjacent system, the impressive move is restraint. Orivo's prototype
+      stack is small, inspectable, and gated — because the first real patient message
+      deserves infrastructure that can be audited, not admired.
+    </p>
+    <div class="hero-note reveal">
+      <strong>What you won't find here:</strong> cost projections, patient-volume forecasts,
+      or a list of enterprise services we haven't deployed. This page describes what exists,
+      what's required before a live pilot, and what gets built at each milestone — in that order.
+    </div>
   </div>
-  <div class="co-card">
-    <div class="co-n" style="color:var(--teal)">$2.60</div>
-    <div class="co-l">Cost per active patient per month at seed</div>
-  </div>
-  <div class="co-card">
-    <div class="co-n" style="color:var(--green)">$0.62</div>
-    <div class="co-l">Cost per patient at Series A (50K patients)</div>
-  </div>
-  <div class="co-card">
-    <div class="co-n" style="color:var(--vera)">8</div>
-    <div class="co-l">Stack layers - L0 infrastructure to L7 voice AI</div>
-  </div>
-</div>
+</header>
 
-<!-- LAYERS -->
-<div class="section">
+<!-- ═══════════ WHAT EXISTS ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Prototype inventory</div>
+    <h2 class="reveal">What exists today.</h2>
+    <p class="sub reveal">
+      A deliberately small footprint: enough to run a real non-PHI SMS workflow end to end,
+      and nothing that would need to be un-built later.
+    </p>
+    <div class="inv">
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>SMS webhook handler</h3>
+        <p>Inbound message endpoint for <code>Twilio</code> with request signature validation
+        on every call — spoofed webhooks are rejected before any processing happens.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Deterministic triage engine</h3>
+        <p>Keyword and pattern rules that classify each message into a response tier.
+        Every classification is reproducible and inspectable — see it traced on the
+        <a href="/dual-pipeline.html" style="color:var(--teal)">Aevo + Vera page</a>.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Bilingual message templates</h3>
+        <p>Pharmacist-reviewable response templates in English and Spanish. Templates are
+        versioned so a pilot's approved language is a fixed, auditable artifact.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Human approval queue</h3>
+        <p>The structural gate: clinical-tier drafts enter a review queue and cannot reach
+        a patient until a pharmacist releases them. There is no bypass path in the workflow.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>API + data layer</h3>
+        <p><code>FastAPI</code> service with a lightweight database for prototype work.
+        Small on purpose: the non-PHI prototype doesn't need — and shouldn't have —
+        production PHI infrastructure it can't yet justify.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Consent + STOP handling</h3>
+        <p>Opt-in state tracking with immediate STOP compliance and HELP responses,
+        designed to the TCPA healthcare-messaging consent template from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-<!-- ── L0: INFRASTRUCTURE ── -->
-<div class="layer-block reveal" id="lb0">
-  <div class="layer-header" onclick="toggle('lb0')">
-    <div class="lh-num" style="color:#60A5FA">L0</div>
-    <div class="lh-info">
-      <div class="lh-title">Infrastructure &amp; Cloud</div>
-      <div class="lh-sub">Compute · Networking · Containers · CDN · DNS · IaC · FHIR storage</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:#60A5FA">~$1,800/mo</div>
-      <div class="lh-toggle" id="t0">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:#60A5FA40">
-        <div class="tc-top"><div class="tc-name">AWS (primary cloud)</div><div class="tc-cost-tag" style="color:#60A5FA">~$1,200/mo</div></div>
-        <div class="tc-desc">ECS Fargate for containerized API services. RDS Multi-AZ Postgres. ElastiCache Redis. S3 for storage. CloudWatch. US-East-1 primary, US-West-2 DR. All HIPAA-eligible with BAA.</div>
-        <div class="tc-why"><b>Why AWS:</b> HIPAA-eligible services, BAA available on everything, most health systems already use it - procurement conversations are faster. Largest healthcare-specific compliance tooling library.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA-eligible</span><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">BAA available</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">AWS HealthLake</div><div class="tc-cost-tag" style="color:#60A5FA">~$400/mo</div></div>
-        <div class="tc-desc">HIPAA-eligible FHIR R4 data store. Stores inbound patient data from EHR integrations in a standards-compliant format. Purpose-built for PHI. Avoids building a custom FHIR server.</div>
-        <div class="tc-why"><b>Why HealthLake:</b> Native FHIR query layer means less custom code to audit. Fewer attack surfaces - critical for SOC 2 velocity.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">FHIR R4</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">PHI-native</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Cloudflare</div><div class="tc-cost-tag" style="color:#60A5FA">~$200/mo</div></div>
-        <div class="tc-desc">CDN, DDoS protection, WAF, DNS, Zero Trust networking for internal tooling. Workers for edge rate-limiting on SMS and voice webhook endpoints. Catches injection attacks before they reach the API.</div>
-        <div class="tc-why"><b>Why Cloudflare:</b> Essential WAF layer for any patient-facing API. Protects the SMS webhook surface - a high-volume, public-facing endpoint that needs rate limiting and injection defense.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Terraform + GitHub Actions</div><div class="tc-cost-tag" style="color:#60A5FA">Free</div></div>
-        <div class="tc-desc">Infrastructure as code. Every environment reproducible from git. Prevents config drift between staging and production. SOC 2 auditors require IaC - starting here saves a painful migration later.</div>
-        <div class="tc-why"><b>Why IaC from day one:</b> SOC 2 Type I requires documented, version-controlled infrastructure. Starting with Terraform means H1 compliance work doesn't require rebuilding.</div>
-      </div>
-    </div>
-    <div class="layer-note">⚡ Seed decision: Stay single-cloud (AWS) through Series A. Multi-cloud adds DevOps complexity that kills velocity at this stage. Revisit at Series B when you have dedicated infrastructure headcount.</div>
-  </div>
-</div>
-
-<!-- ── L1: DATA ── -->
-<div class="layer-block reveal" id="lb1">
-  <div class="layer-header" onclick="toggle('lb1')">
-    <div class="lh-num" style="color:#34D399">L1</div>
-    <div class="lh-info">
-      <div class="lh-title">Data &amp; Storage</div>
-      <div class="lh-sub">Databases · Caching · Queues · Object storage · Audit logs · Analytics warehouse</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:#34D399">~$900/mo</div>
-      <div class="lh-toggle" id="t1">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:#34D39940">
-        <div class="tc-top"><div class="tc-name">PostgreSQL (AWS RDS)</div><div class="tc-cost-tag" style="color:#34D399">~$300/mo</div></div>
-        <div class="tc-desc">Primary relational store for users, sessions, care briefs, medication records, audit events. Multi-AZ. Encrypted at rest with AWS KMS. PITR enabled. Row-level security for multi-tenant health system data.</div>
-        <div class="tc-why"><b>Why Postgres:</b> Row-level security is critical for multi-tenant health systems. JSONB handles variably-structured EHR payloads. Battle-tested for healthcare with excellent audit tooling.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">AES-256</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">Multi-AZ</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Redis (ElastiCache)</div><div class="tc-cost-tag" style="color:#34D399">~$120/mo</div></div>
-        <div class="tc-desc">Session caching, rate limiting, conversation state for active SMS and voice threads. Holds context across multiple patient messages without a DB round-trip. Cluster mode with encryption in transit.</div>
-        <div class="tc-why"><b>Why Redis:</b> SMS and voice conversations are stateful. Redis keeps response latency under 500ms - critical for voice interactions where delays feel unnatural to the patient.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">AWS SQS + SNS</div><div class="tc-cost-tag" style="color:#34D399">~$80/mo</div></div>
-        <div class="tc-desc">Message queuing for async AI processing jobs, notification fanout to pharmacists and physicians, dead-letter queues for failed deliveries. Decouples patient intake from AI processing.</div>
-        <div class="tc-why"><b>Why queuing:</b> If the Claude API goes down, patient messages don't get lost - they queue. This is table stakes for healthcare reliability. Also critical for voice call transcription jobs.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">AWS S3 + Macie</div><div class="tc-cost-tag" style="color:#34D399">~$200/mo</div></div>
-        <div class="tc-desc">Object storage for conversation transcripts, voice call recordings, clinical briefs, audit exports. Macie provides automated PHI detection across all buckets. Lifecycle policies for 7-year HIPAA retention.</div>
-        <div class="tc-why"><b>Why Macie:</b> HIPAA requires knowing where PHI lives at all times. Voice call transcripts contain PHI - Macie catches unexpected PHI leakage automatically.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">Voice transcripts</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">7yr retention</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Snowflake (H2+)</div><div class="tc-cost-tag" style="color:#34D399">~$200/mo H2</div></div>
-        <div class="tc-desc">De-identified analytics warehouse. Separate from operational Postgres. Powers Vera Intel in H3. PHI never enters Snowflake - de-identification enforced at pipeline boundary. Start loading from day one.</div>
-        <div class="tc-why"><b>Why separate:</b> Analytics queries on operational data tanks performance. The separation also enforces the PHI boundary - Vera's population health data stays clean and auditable.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Vera data layer</span><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">No PHI</span></div>
-      </div>
-    </div>
-    <div class="layer-note">🔒 HIPAA rule: PHI encrypted at rest (AES-256) and in transit (TLS 1.2+). Every tool here meets this with default AWS KMS. Voice recordings stored in S3 are encrypted at rest and access-logged - every play event is auditable.</div>
-  </div>
-</div>
-
-<!-- ── L2: AI ── -->
-<div class="layer-block open reveal" id="lb2">
-  <div class="layer-header" onclick="toggle('lb2')">
-    <div class="lh-num" style="color:var(--teal)">L2</div>
-    <div class="lh-info">
-      <div class="lh-title">AI &amp; Intelligence - Aevo + Vera</div>
-      <div class="lh-sub">LLMs · NLP extraction · Urgency scoring · Clinical knowledge · RAG · Drift monitoring</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:var(--teal)">~$3,400/mo</div>
-      <div class="lh-toggle" id="t2">▲ collapse</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:var(--teal-b)">
-        <div class="tc-top"><div class="tc-name">Anthropic Claude API</div><div class="tc-cost-tag" style="color:var(--teal)">~$2,000/mo</div></div>
-        <div class="tc-desc">Aevo's core translation engine. Claude Sonnet 4.6 for production - patient message interpretation, symptom extraction, clinical brief generation, multi-turn conversation, benefit-grounded responses. Claude Haiku for urgency pre-scoring (fast, cheap, runs on every message).</div>
-        <div class="tc-why"><b>Why Claude:</b> Best-in-class structured clinical output. Constitutional AI reduces hallucination risk on clinical claims - critical for healthcare. Anthropic offers BAA-compatible enterprise agreements. Sonnet 4.6 is the current production model.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">Aevo core</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">BAA available</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">Sonnet 4.6</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">OpenAI API (fallback)</div><div class="tc-cost-tag" style="color:var(--teal)">~$400/mo</div></div>
-        <div class="tc-desc">Secondary LLM for redundancy and A/B evaluation. Text-embedding-3-small for semantic similarity in Vera's consistency checking. If Claude API degrades, patient messages still process. Never a single point of AI failure.</div>
-        <div class="tc-why"><b>Why a fallback:</b> Healthcare requires 99.9%+ reliability thinking. Having a fallback isn't a preference - it's a clinical safety requirement for a system patients depend on.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">LangChain / LangGraph</div><div class="tc-cost-tag" style="color:var(--teal)">Free (OSS)</div></div>
-        <div class="tc-desc">Orchestration layer for Aevo's multi-step pipeline: intake → extraction → knowledge lookup → brief generation → urgency scoring. LangGraph manages stateful conversation graphs for multi-turn SMS and voice flows.</div>
-        <div class="tc-why"><b>Why orchestration:</b> The AI pipeline has 7+ steps with branching logic. Orchestration makes each step testable and swappable - replace the LLM provider without rewriting business logic.</div>
-      </div>
-      <div class="tool-card featured" style="border-color:var(--vera-b)">
-        <div class="tc-top"><div class="tc-name">LangSmith (Vera drift monitoring)</div><div class="tc-cost-tag" style="color:var(--vera)">~$400/mo</div></div>
-        <div class="tc-desc">LLM observability for Vera - trace every AI call, log inputs and outputs, monitor latency, track token usage. Weekly automated evals against a golden test set of 500 validated clinical conversations. Vera's drift detection lives here.</div>
-        <div class="tc-why"><b>Why observability:</b> In healthcare, you must explain every AI output to an auditor. LangSmith provides a full trace for every brief ever generated - critical for liability defense and HIPAA alignment.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Vera</span><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Drift detection</span></div>
-      </div>
-      <div class="tool-card featured" style="border-color:var(--vera-b)">
-        <div class="tc-top"><div class="tc-name">Pinecone (Vera RAG)</div><div class="tc-cost-tag" style="color:var(--vera)">~$400/mo</div></div>
-        <div class="tc-desc">Vector database for Vera's clinical knowledge base - drug interactions (First Databank), dosing guidelines, symptom-condition mappings, benefit structures, SDoH resource data. Semantic search grounds every Aevo output in verified information.</div>
-        <div class="tc-why"><b>Why RAG:</b> An LLM making ungrounded clinical claims is a liability. RAG ensures every drug interaction statement cites a source. Vera validates every RAG-grounded claim before delivery.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Vera knowledge</span><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">First Databank</span></div>
-      </div>
-    </div>
-    <div class="layer-note vera">🧠 AI cost at scale: 10K patients × 2 messages/day = 20K Claude API calls/day. At ~$0.003/1K tokens (Sonnet 4.6) that's ~$2,000/mo. This drops per-patient as volume scales - a key investor efficiency story. Haiku handles urgency pre-scoring at ~$0.0001/call, adding ~$60/mo.</div>
-  </div>
-</div>
-
-<!-- ── L3: SMS ── -->
-<div class="layer-block reveal" id="lb3">
-  <div class="layer-header" onclick="toggle('lb3')">
-    <div class="lh-num" style="color:var(--amber)">L3</div>
-    <div class="lh-info">
-      <div class="lh-title">SMS Delivery &amp; Channels</div>
-      <div class="lh-sub">Twilio SMS · TCPA compliance · Pharmacist notification · Global reach · Push · Email</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:var(--amber)">~$10,200/mo</div>
-      <div class="lh-toggle" id="t3">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:var(--amber-b)">
-        <div class="tc-top"><div class="tc-name">Twilio SMS</div><div class="tc-cost-tag" style="color:var(--amber)">~$9,500/mo</div></div>
-        <div class="tc-desc">Core SMS infrastructure. Inbound $0.0075/msg · outbound $0.0079/msg · long-code $1/mo · toll-free $2/mo. Handles patient messages, pharmacist notifications, physician alerts. TCPA opt-out management built in. Delivery receipts logged for audit.</div>
-        <div class="tc-why"><b>Why Twilio:</b> HIPAA-eligible with BAA. 99.95% SLA. Built-in TCPA compliance. NPI + carrier verification for recipient authentication - essential for HIPAA routing. Works globally - same API, every country.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA + BAA</span><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">$0.0079/msg</span><span class="tc-tag" style="color:var(--green);border-color:var(--green-b)">Global</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Twilio Lookup</div><div class="tc-cost-tag" style="color:var(--amber)">~$200/mo</div></div>
-        <div class="tc-desc">Phone number verification and carrier lookup. Confirms every recipient number's carrier, line type (mobile/landline/VoIP), and reputation score before any PHI-containing notification is sent. Core of the HIPAA routing fence.</div>
-        <div class="tc-why"><b>Why Lookup:</b> This is how we know a pharmacist's number is actually a mobile phone at a registered pharmacy and not a spoofed or unknown line. Cross-referenced with NPI registry for role verification.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--coral);border-color:var(--coral-b)">HIPAA fence</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Firebase Cloud Messaging</div><div class="tc-cost-tag" style="color:var(--amber)">Free</div></div>
-        <div class="tc-desc">Push notifications for the iOS and Android Orivo app. Alerts patients when a care team member responds. Silent push for medication reminders. Free under quota - upgrade to OneSignal at Series A for richer segmentation.</div>
-        <div class="tc-why"><b>Why FCM:</b> Free at seed scale. Reliable cross-platform delivery. One SDK handles both iOS and Android. Integrates with React Native in a single implementation.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Postmark (email)</div><div class="tc-cost-tag" style="color:var(--amber)">~$400/mo</div></div>
-        <div class="tc-desc">Transactional email for care team notifications, brief delivery confirmations, provider weekly digests. HIPAA-aligned with BAA available. Better deliverability than SendGrid for healthcare domains. BAA process simpler at seed stage.</div>
-        <div class="tc-why"><b>Why Postmark:</b> BAA available. Healthcare-specific deliverability tuning means provider notification emails don't land in spam - critical when a pharmacist needs to act within 2 hours.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA + BAA</span></div>
-      </div>
-    </div>
-    <div class="layer-note warn">📡 SMS is your biggest variable cost. At 10K patients × 4 msg/day = 40K msg/day = ~$9,500/mo. At 50K patients this hits ~$47K/mo before Twilio volume discounts kick in. Volume pricing at 500K+ msg/mo drops this to ~$0.005/msg - model this in your Series A unit economics proactively.</div>
-  </div>
-</div>
-
-<!-- ── L4: VOICE ── -->
-<div class="layer-block reveal" id="lb4">
-  <div class="layer-header" onclick="toggle('lb4')">
-    <div class="lh-num" style="color:var(--coral)">L4</div>
-    <div class="lh-info">
-      <div class="lh-title">Voice AI Stack - ElevenLabs + Twilio + Deepgram</div>
-      <div class="lh-sub">Patient voice calls · Pharmacist alerts · Speech synthesis · Transcription · Global telephony</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:var(--coral)">~$400/mo seed · scales with H3</div>
-      <div class="lh-toggle" id="t4">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <!-- Voice flow diagram -->
-    <div class="voice-flow">
-      <div class="vf-label">Complete voice interaction flow - $0.07 per 3-minute patient call</div>
-      <div class="vf-steps">
-        <div class="vf-step">
-          <div class="vf-ico" style="background:rgba(255,107,107,.08);border-color:var(--coral-b)">📞</div>
-          <div class="vf-name">Orivo initiates call</div>
-          <div class="vf-tool">Twilio Voice</div>
-          <div class="vf-cost">$0.013/min</div>
+<!-- ═══════════ SIX GATES (signature) ═══════════ -->
+<section class="section gates-section">
+  <div class="wrap">
+    <div class="eyebrow reveal">The line we won't cross early</div>
+    <h2 class="reveal">Six gates before any real patient is texted.</h2>
+    <p class="sub reveal">
+      These aren't aspirations — they're preconditions. Until all six clear, the system
+      runs on synthetic data only. Publishing them is deliberate: pilot partners should
+      be able to hold us to this list.
+    </p>
+    <div class="gate-track reveal">
+      <div class="gate g-built">
+        <div class="gate-marker">1</div>
+        <div class="gate-body">
+          <h3>Webhook signature validation</h3>
+          <p>Every inbound request cryptographically verified as genuinely from Twilio before processing. Protects the single public-facing surface of the system.</p>
         </div>
-        <div class="vf-step">
-          <div class="vf-ico" style="background:rgba(245,166,35,.08);border-color:var(--amber-b)">🔊</div>
-          <div class="vf-name">Warm AI voice plays</div>
-          <div class="vf-tool">ElevenLabs TTS</div>
-          <div class="vf-cost">$0.02/call</div>
+        <span class="gate-status">Built</span>
+      </div>
+      <div class="gate g-progress">
+        <div class="gate-marker">2</div>
+        <div class="gate-body">
+          <h3>TCPA-compliant consent flow</h3>
+          <p>Documented opt-in with plain-language disclosure, instant STOP, HELP support, and logged consent state. Designed and drafted; finalized with the pilot partner's pharmacist-in-charge.</p>
         </div>
-        <div class="vf-step">
-          <div class="vf-ico" style="background:rgba(74,158,255,.08);border-color:var(--blue-b)">🎙️</div>
-          <div class="vf-name">Patient responds</div>
-          <div class="vf-tool">Twilio captures audio</div>
-          <div class="vf-cost">included</div>
+        <span class="gate-status">In progress</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">3</div>
+        <div class="gate-body">
+          <h3>A2P 10DLC registration</h3>
+          <p>Carrier-level business messaging registration so pilot SMS traffic is properly identified and deliverable — not filtered as spam mid-pilot.</p>
         </div>
-        <div class="vf-step">
-          <div class="vf-ico" style="background:rgba(0,200,150,.08);border-color:var(--teal-b)">📝</div>
-          <div class="vf-name">Speech → text</div>
-          <div class="vf-tool">Deepgram real-time</div>
-          <div class="vf-cost">$0.0043/min</div>
+        <span class="gate-status">Before pilot</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">4</div>
+        <div class="gate-body">
+          <h3>Twilio business associate agreement</h3>
+          <p>PHI touches the messaging layer only under a signed BAA on a Twilio edition that supports one. The non-PHI prototype runs today precisely so this gate isn't rushed.</p>
         </div>
-        <div class="vf-step">
-          <div class="vf-ico" style="background:rgba(0,200,150,.08);border-color:var(--teal-b)">🧠</div>
-          <div class="vf-name">Aevo processes</div>
-          <div class="vf-tool">Claude API</div>
-          <div class="vf-cost">~$0.003</div>
+        <span class="gate-status">Before pilot</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">5</div>
+        <div class="gate-body">
+          <h3>HIPAA-eligible hosting with audit logging</h3>
+          <p>Production workloads move to BAA-covered infrastructure with encrypted storage and an append-only event log before the first enrolled patient.</p>
         </div>
-        <div class="vf-step">
-          <div class="vf-ico" style="background:rgba(124,111,205,.08);border-color:var(--vera-b)">✓</div>
-          <div class="vf-name">Vera validates</div>
-          <div class="vf-tool">Verafy check</div>
-          <div class="vf-cost">included</div>
+        <span class="gate-status">Before pilot</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">6</div>
+        <div class="gate-body">
+          <h3>Signed pilot agreement</h3>
+          <p>Roles, data handling, escalation responsibilities, and exit terms agreed in writing with the pharmacy — including the patient's right to export or deletion.</p>
         </div>
-        <div class="vf-step">
-          <div class="vf-ico" style="background:rgba(245,166,35,.08);border-color:var(--amber-b)">🔊</div>
-          <div class="vf-name">Aevo responds</div>
-          <div class="vf-tool">ElevenLabs TTS</div>
-          <div class="vf-cost">loop</div>
-        </div>
+        <span class="gate-status">Before pilot</span>
       </div>
     </div>
+    <div class="gates-note reveal">
+      <strong>Why publish an unfinished checklist?</strong> Because the honest state of a
+      pilot-stage company is "some gates cleared, some ahead." A page claiming all six were
+      done before a partner existed would tell you more about our marketing than our engineering.
+    </div>
+  </div>
+</section>
 
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:var(--amber-b)">
-        <div class="tc-top"><div class="tc-name">ElevenLabs</div><div class="tc-cost-tag" style="color:var(--amber)">$22-$99/mo</div></div>
-        <div class="tc-desc">Patient-facing voice synthesis. Warm, natural, human-quality audio - critical for patient trust and accessibility. Creator plan ($22/mo · 100K chars) sufficient at seed. Pro plan ($99/mo · 500K chars) for pilot scale. Custom Orivo voice possible at Series A.</div>
-        <div class="tc-why"><b>Why ElevenLabs:</b> A clinical alert voice (Twilio TTS) is fine for pharmacists. A patient who is anxious about their medications needs to feel heard and supported - ElevenLabs is the difference between a robot and a presence. This is a brand decision as much as a technical one.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">$0.02/call</span><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">Custom voice H2</span><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">Streaming API</span></div>
+<!-- ═══════════ PRINCIPLES ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Operating principles</div>
+    <h2 class="reveal">Four rules that shape every build decision.</h2>
+    <div class="prin" style="margin-top:32px">
+      <div class="prin-card reveal">
+        <h3>Auditable beats impressive</h3>
+        <p>Deterministic triage over a language model, versioned templates over free
+        generation, append-only logs over mutable state. Anything a pilot partner's
+        compliance reviewer asks about should have a line-by-line answer.</p>
       </div>
-      <div class="tool-card featured" style="border-color:var(--coral-b)">
-        <div class="tc-top"><div class="tc-name">Twilio Voice</div><div class="tc-cost-tag" style="color:var(--coral)">~$50/mo seed</div></div>
-        <div class="tc-desc">Outbound call infrastructure for pharmacist and physician notifications. Programmatic calls to pharmacy lines - structured TTS alert, patient ID, flag type, callback instructions. Also handles inbound patient voice calls in H3. TwiML orchestration. Global reach - works on any phone line anywhere.</div>
-        <div class="tc-why"><b>Why Twilio Voice:</b> Same infrastructure as SMS. One BAA, one integration, one vendor. Outbound notification calls to a pharmacy cost $0.013/min - a 90-second urgent alert costs $0.02. Essentially free at seed. Global coverage is critical for the Africa/international H3 roadmap.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--coral);border-color:var(--coral-b)">$0.013/min</span><span class="tc-tag" style="color:var(--green);border-color:var(--green-b)">Global</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA + BAA</span></div>
+      <div class="prin-card reveal">
+        <h3>Complexity is earned by milestones</h3>
+        <p>Infrastructure gets added when a milestone requires it — not when a funding
+        round makes it affordable. A component that exists before its workload is a
+        liability with a monthly bill.</p>
       </div>
-      <div class="tool-card featured" style="border-color:var(--blue-b)">
-        <div class="tc-top"><div class="tc-name">Deepgram</div><div class="tc-cost-tag" style="color:var(--blue)">~$100/mo seed</div></div>
-        <div class="tc-desc">Real-time speech-to-text transcription. Processes patient voice responses in under 300ms - fast enough for natural conversation. Medical vocabulary model available (better accuracy on drug names, symptoms, clinical terms). HIPAA-eligible with BAA.</div>
-        <div class="tc-why"><b>Why Deepgram over Whisper:</b> Real-time streaming vs. batch processing. A patient can't wait 3 seconds for Whisper to process their response in a live call. Deepgram streams at &lt;300ms. Medical model accuracy on drug names is significantly better than generic STT.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">$0.0043/min</span><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">&lt;300ms latency</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA + BAA</span></div>
+      <div class="prin-card reveal">
+        <h3>The patient's phone sets the constraint</h3>
+        <p>Everything is designed backward from a basic phone on SMS. No app, no portal,
+        no login, no smartphone assumption — because the populations Orivo serves are
+        exactly the ones those assumptions exclude.</p>
       </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Twilio TTS (pharmacist alerts)</div><div class="tc-cost-tag" style="color:var(--coral)">Included</div></div>
-        <div class="tc-desc">Built-in TTS for pharmacist and physician notification calls. Clinical and clear - the pharmacist wants information fast, not warmth. Reads a structured alert: patient ID, flag type, severity, callback number. No separate cost - included in Twilio Voice pricing.</div>
-        <div class="tc-why"><b>Two-tier voice strategy:</b> ElevenLabs for patients (warmth, trust, accessibility). Twilio TTS for providers (speed, clarity, reliability). Different relationships require different voices.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--w3);border-color:var(--border)">Provider-only</span></div>
+      <div class="prin-card reveal">
+        <h3>Human approval is load-bearing</h3>
+        <p>The pharmacist review queue isn't a feature that could be deprioritized —
+        it's the architecture the rest of the system hangs on. See how it's enforced on
+        the <a href="/dual-pipeline.html" style="color:var(--teal)">Aevo + Vera page</a>.</p>
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Per-call cost breakdown -->
-    <div style="background:rgba(240,242,255,.04);border:1px solid var(--border);border-radius:11px;padding:16px 20px;margin-bottom:14px">
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--coral);margin-bottom:12px">Cost per interaction type</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
-        <div>
-          <div style="font-size:11px;color:var(--w3);margin-bottom:4px">Patient check-in call (3 min)</div>
-          <div style="font-family:var(--serif);font-size:22px;color:var(--teal)">$0.07</div>
-          <div style="font-size:10px;color:var(--w3)">vs $15-40 nurse call</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--w3);margin-bottom:4px">Pharmacist alert call (90 sec)</div>
-          <div style="font-family:var(--serif);font-size:22px;color:var(--teal)">$0.02</div>
-          <div style="font-size:10px;color:var(--w3)">Twilio TTS only</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--w3);margin-bottom:4px">Full voice session (10 min)</div>
-          <div style="font-family:var(--serif);font-size:22px;color:var(--teal)">$0.22</div>
-          <div style="font-size:10px;color:var(--w3)">ElevenLabs + Twilio + Deepgram</div>
-        </div>
-        <div>
-          <div style="font-size:11px;color:var(--w3);margin-bottom:4px">1,000 patient calls/month</div>
-          <div style="font-family:var(--serif);font-size:22px;color:var(--teal)">~$70</div>
-          <div style="font-size:10px;color:var(--w3)">At 3 min avg per call</div>
-        </div>
+<!-- ═══════════ BUILD LADDER ═══════════ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow reveal">Sequencing</div>
+    <h2 class="reveal">What gets built when — tied to milestones, not fantasies.</h2>
+    <p class="sub reveal">
+      Each stage adds only what the next milestone demands. Capability sequencing is
+      published here; costs and forecasts are not, because published numbers should be
+      earned numbers.
+    </p>
+    <div class="ladder">
+      <div class="rung r1 reveal">
+        <div class="rung-gate">Stage 1 · Now</div>
+        <div class="rung-when">Discovery &amp; validation</div>
+        <h3>Prove the workflow on synthetic data</h3>
+        <ul>
+          <li>Non-PHI prototype exercised end to end</li>
+          <li>Triage rules tested against a growing synthetic message set</li>
+          <li>Consent and template language reviewed with pharmacists during discovery interviews</li>
+          <li>Pilot scorecard instrumentation defined before the pilot, not after</li>
+        </ul>
+        <div class="why">Exit: a pharmacy partner signed and gates 2–6 in motion.</div>
       </div>
-    </div>
-    <div class="layer-note coral">🌍 Voice is the global superpower. SMS and voice can reduce access barriers for patients who do not use portals or apps. International, landline, and community-health-worker workflows require local telecom, regulatory, and partner implementation before deployment.</div>
-  </div>
-</div>
-
-<!-- ── L5: INTEGRATIONS ── -->
-<div class="layer-block reveal" id="lb5">
-  <div class="layer-header" onclick="toggle('lb5')">
-    <div class="lh-num" style="color:var(--blue)">L5</div>
-    <div class="lh-info">
-      <div class="lh-title">EHR &amp; Clinical Integrations</div>
-      <div class="lh-sub">Epic FHIR R4 · Cerner · Particle Health · Medicare Part D · Surescripts · First Databank</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:var(--blue)">~$800/mo + negotiated</div>
-      <div class="lh-toggle" id="t5">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:var(--blue-b)">
-        <div class="tc-top"><div class="tc-name">Epic FHIR R4 API</div><div class="tc-cost-tag" style="color:var(--blue)">Free dev / negotiated</div></div>
-        <div class="tc-desc">Read-only access to patient medication lists, allergy records, problem lists, recent labs. Epic's on.epic.com sandbox is free for development. Production access negotiated per health system pilot. Write-back in H2 for clinical brief documentation and Z-code entry.</div>
-        <div class="tc-why"><b>Why start here:</b> Epic covers 35% of US hospital beds. One solid Epic integration unlocks the majority of pilot health systems. The sandbox is free - start building on day one.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">35% of US hospitals</span><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">FHIR R4</span></div>
+      <div class="rung r2 reveal">
+        <div class="rung-gate">Stage 2 · First pilot</div>
+        <div class="rung-when">One pharmacy · live patients</div>
+        <h3>Harden for PHI, keep the footprint small</h3>
+        <ul>
+          <li>BAA-covered messaging and HIPAA-eligible hosting (gates 3–5 cleared)</li>
+          <li>Production database with encryption and backups replacing the prototype store</li>
+          <li>Append-only audit log for every message, classification, approval, and send</li>
+          <li>CSV roster enrollment tooling for the pharmacy — integration-free by design</li>
+        </ul>
+        <div class="why">Exit: 90 days of honest scorecard data from real patients.</div>
       </div>
-      <div class="tool-card featured" style="border-color:var(--blue-b)">
-        <div class="tc-top"><div class="tc-name">Particle Health</div><div class="tc-cost-tag" style="color:var(--blue)">~$600/mo</div></div>
-        <div class="tc-desc">Network-level patient data access across 300M+ patient records from thousands of EHRs without individual integrations. Single API surfaces medication history from community hospitals, small practices, and labs - including EHRs that don't have FHIR APIs.</div>
-        <div class="tc-why"><b>Why Particle:</b> Your pilots will include patients whose community clinic runs on a legacy EHR with no API. Particle is the shortcut - one integration accesses nearly every EHR in the US. Critical for medication reconciliation accuracy.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">300M+ records</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">First Databank (FDB)</div><div class="tc-cost-tag" style="color:var(--blue)">~$500/mo</div></div>
-        <div class="tc-desc">Clinical drug database - drug interactions, contraindications, dosing guidelines, side effect profiles. Powers Vera's RAG knowledge layer for ADE detection. The source of truth that every Aevo drug interaction claim is grounded against before delivery.</div>
-        <div class="tc-why"><b>Why FDB:</b> This is the industry-standard clinical decision support database. Pharmacists and physicians trust it. Grounding Aevo's drug interaction claims in FDB is the difference between a liability and a defense.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Vera RAG source</span><span class="tc-tag" style="color:var(--coral);border-color:var(--coral-b)">ADE detection</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Surescripts</div><div class="tc-cost-tag" style="color:var(--blue)">Negotiated</div></div>
-        <div class="tc-desc">Real-time pharmacy benefit check - formulary lookup, prior authorization requirements, patient copay by plan. Enables Aevo Rx to instantly surface the actual cost to the patient for their specific plan, not a generic estimate.</div>
-        <div class="tc-why"><b>Why Surescripts:</b> Connecting patients to cost barriers requires real benefit data. Surescripts is how Orivo knows a patient's actual copay, not an approximation. Covers 95% of US pharmacies.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Medicare Part D API</div><div class="tc-cost-tag" style="color:var(--blue)">Free (CMS)</div></div>
-        <div class="tc-desc">CMS-provided API for Medicare Part D formulary data, LIS/Extra Help eligibility, and coverage gap information. Free to access. Critical for the Medicare population - surfaces whether a patient qualifies for Extra Help on their medication costs.</div>
-        <div class="tc-why"><b>Why Part D API:</b> Your primary patient population is Medicare/Medicaid. Knowing whether a patient has Extra Help (LIS) can reduce their drug cost to $0. This API makes that lookup instant.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">Free · CMS</span><span class="tc-tag" style="color:var(--blue);border-color:var(--blue-b)">Medicare/Medicaid</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Unite Us + FindHelp</div><div class="tc-cost-tag" style="color:var(--blue)">~$300/mo</div></div>
-        <div class="tc-desc">Community resource networks for SDoH referrals. When Vera detects a transportation, food, or housing barrier, these APIs surface available resources by zip code - food banks, NEMT providers, LIHEAP, social services - with closed-loop referral tracking.</div>
-        <div class="tc-why"><b>Why both:</b> Unite Us handles closed-loop referral tracking (you know if the patient received the resource). FindHelp (Aunt Bertha) has broader coverage in rural areas. Together they cover nearly every US zip code.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Vera SDoH layer</span></div>
-      </div>
-    </div>
-    <div class="layer-note">🔗 Integration strategy: Start with Epic sandbox + Particle Health. These two together give you EHR access for structured health systems AND every small clinic without an API. Add Cerner (Oracle Health) at H2 - they share FHIR patterns with Epic, so the implementation is largely reusable.</div>
-  </div>
-</div>
-
-<!-- ── L6: APPLICATION ── -->
-<div class="layer-block reveal" id="lb6">
-  <div class="layer-header" onclick="toggle('lb6')">
-    <div class="lh-num" style="color:var(--pink)">L6</div>
-    <div class="lh-info">
-      <div class="lh-title">Application Layer</div>
-      <div class="lh-sub">Mobile app · Provider dashboard · API backend · Real-time · Design system</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:var(--pink)">~$800/mo</div>
-      <div class="lh-toggle" id="t6">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:var(--pink-b)">
-        <div class="tc-top"><div class="tc-name">React Native + Expo</div><div class="tc-cost-tag" style="color:var(--pink)">Free (OSS)</div></div>
-        <div class="tc-desc">Patient-facing iOS and Android app (Orivo app). Expo managed workflow for OTA updates without App Store review delays. EAS for CI/CD build pipeline. Single codebase, two platforms. Critical for healthcare: if you find a data handling bug, you ship a fix in hours not weeks.</div>
-        <div class="tc-why"><b>Why React Native + Expo:</b> One team builds for both platforms. OTA updates are a clinical safety requirement - App Store review takes 1-3 days. A critical bug fix can't wait. Expo OTA solves this completely.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--pink);border-color:var(--pink-b)">iOS + Android</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">OTA updates</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Next.js + Vercel (provider dashboard)</div><div class="tc-cost-tag" style="color:var(--pink)">~$200/mo</div></div>
-        <div class="tc-desc">Orivo Brief - web dashboard for pharmacists and physicians. SSR for fast initial loads - brief data loads before the pharmacist sees the page. Preview deployments for every PR. Orivo Intel analytics dashboard built in the same stack.</div>
-        <div class="tc-why"><b>Why Next.js for providers:</b> Server rendering means no loading spinners when triaging an urgent patient flag. A pharmacist who needs to act within 2 hours can't wait for a client-side data fetch.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Node.js + Fastify (API)</div><div class="tc-cost-tag" style="color:var(--pink)">AWS compute (L0)</div></div>
-        <div class="tc-desc">Core REST + WebSocket API. Fastify for high-throughput webhook processing - handles Twilio SMS inbound, Twilio Voice webhooks, Deepgram transcription callbacks simultaneously. TypeScript throughout. Zod for runtime schema validation.</div>
-        <div class="tc-why"><b>Why Fastify:</b> 3× higher throughput than Express. Twilio SMS webhooks must respond within 5 seconds or Twilio retries. Voice webhooks need to respond within 1 second for natural conversation flow. Fastify's low overhead keeps p99 well under both thresholds.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">Voice webhooks</span><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">SMS webhooks</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Ably (real-time)</div><div class="tc-cost-tag" style="color:var(--pink)">~$400/mo</div></div>
-        <div class="tc-desc">WebSocket infrastructure for live brief delivery to provider dashboards. When a clinical brief is generated, the pharmacist's dashboard updates in real time without polling. HIPAA-eligible with BAA available - rare for real-time providers.</div>
-        <div class="tc-why"><b>Why Ably:</b> Building WebSocket infrastructure from scratch is a distraction at seed. Ably has a BAA - almost no other real-time provider does. This matters when PHI flows through the WebSocket channel.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA + BAA</span></div>
-      </div>
-    </div>
-    <div class="layer-note">📱 The Orivo app and the Orivo Brief dashboard are both H1 deliverables. The app serves the patient. The dashboard serves the pharmacist and physician. Both need to be production-ready before your first pilot signs - health systems evaluate the full experience.</div>
-  </div>
-</div>
-
-<!-- ── L7: SECURITY ── -->
-<div class="layer-block reveal" id="lb7">
-  <div class="layer-header" onclick="toggle('lb7')">
-    <div class="lh-num" style="color:var(--coral)">L7</div>
-    <div class="lh-info">
-      <div class="lh-title">Security, Compliance &amp; Identity</div>
-      <div class="lh-sub">HIPAA · SOC 2 · Identity · Secrets · Pen testing · SIEM · Audit trail</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:var(--coral)">~$3,500/mo</div>
-      <div class="lh-toggle" id="t7">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:var(--coral-b)">
-        <div class="tc-top"><div class="tc-name">Vanta</div><div class="tc-cost-tag" style="color:var(--coral)">~$1,200/mo</div></div>
-        <div class="tc-desc">SOC 2 Type I and II automation. HIPAA risk assessment. Vendor management. Continuous control monitoring across AWS, GitHub, Vercel, and every connected tool. Generates audit-ready reports. Fastest path to SOC 2 Type I in 4-6 months vs. 12-18 months without it.</div>
-        <div class="tc-why"><b>Why Vanta first:</b> Without Vanta or Drata, SOC 2 is 12-18 months of manual work. With Vanta, Type I in 4-6 months. This is the single highest-ROI compliance spend - it unlocks every health system pilot conversation.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--coral);border-color:var(--coral-b)">Must-have H1</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">SOC 2 Type I</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Auth0 / Okta</div><div class="tc-cost-tag" style="color:var(--coral)">~$600/mo</div></div>
-        <div class="tc-desc">Authentication for all user types: patients (SMS OTP + app biometrics), pharmacists (SSO + MFA), physicians (SSO + MFA), admins (hardware MFA). HIPAA-eligible. Role-based access control with audit logging. NPI-verified roles for care team members.</div>
-        <div class="tc-why"><b>Why not build auth:</b> Authentication bugs are the leading cause of PHI breaches. Auth0 has been penetration-tested by thousands of enterprise customers. Don't build this wheel - it's a liability surface, not a product differentiator.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--coral);border-color:var(--coral-b)">NPI role verification</span><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">AWS Secrets Manager + KMS</div><div class="tc-cost-tag" style="color:var(--coral)">~$200/mo</div></div>
-        <div class="tc-desc">Central secrets management for all API keys - Twilio, ElevenLabs, Deepgram, Claude, Epic tokens. Automatic password rotation. KMS for envelope encryption of all PHI fields. No secrets in environment variables or code - SOC 2 requires this.</div>
-        <div class="tc-why"><b>Why secrets manager:</b> ElevenLabs API key, Claude API key, Twilio auth token - if any of these leak, the blast radius is significant. Secrets Manager with rotation closes this surface and satisfies the SOC 2 control automatically.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">HackerOne + Burp Suite</div><div class="tc-cost-tag" style="color:var(--coral)">~$1,000/mo</div></div>
-        <div class="tc-desc">Annual penetration testing via HackerOne managed bug bounty. Quarterly automated scanning with Burp Suite Enterprise. Health system procurement requires a recent pen test report from a recognized firm - this is the difference between a signed pilot and a passed one.</div>
-        <div class="tc-why"><b>Why pen testing at seed:</b> Every health system you approach will ask for your most recent pen test report. "We haven't done one yet" ends the conversation. One pen test report from a recognized firm unlocks all three pilots.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--coral);border-color:var(--coral-b)">Pilot requirement</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Datadog SIEM</div><div class="tc-cost-tag" style="color:var(--coral)">~$500/mo</div></div>
-        <div class="tc-desc">Security information and event management. Detects anomalous access patterns, generates HIPAA audit logs, alerts on bulk PHI export or off-hours access. HIPAA's breach notification rule requires fast detection. Without SIEM you may not know you've been breached until it's too late.</div>
-        <div class="tc-why"><b>Why SIEM at seed:</b> The 60-day HIPAA breach notification clock starts when you discover the breach - not when it happened. SIEM compresses discovery time from weeks to hours.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--teal);border-color:var(--teal-b)">HIPAA breach rule</span><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Vera audit</span></div>
-      </div>
-    </div>
-    <div class="layer-note coral">⚠️ L7 is the layer you cannot defer. Health systems will not sign a pilot agreement without HIPAA readiness review, BAA, SOC 2 Type I, and a recent pen test. Budget $3,500/mo and treat it as cost of goods sold - it's what makes every other layer legally deployable.</div>
-  </div>
-</div>
-
-<!-- ── L8: ANALYTICS ── -->
-<div class="layer-block reveal" id="lb8">
-  <div class="layer-header" onclick="toggle('lb8')">
-    <div class="lh-num" style="color:var(--vera)">L8</div>
-    <div class="lh-info">
-      <div class="lh-title">Analytics, Outcomes &amp; Vera Intelligence</div>
-      <div class="lh-sub">Product analytics · Clinical outcomes · dbt pipeline · BI · Error tracking · APM</div>
-    </div>
-    <div class="lh-right">
-      <div class="lh-cost" style="color:var(--vera)">~$1,000/mo</div>
-      <div class="lh-toggle" id="t8">▼ expand</div>
-    </div>
-  </div>
-  <div class="layer-body">
-    <div class="tool-grid">
-      <div class="tool-card featured" style="border-color:var(--vera-b)">
-        <div class="tc-top"><div class="tc-name">dbt + Airbyte</div><div class="tc-cost-tag" style="color:var(--vera)">~$300/mo</div></div>
-        <div class="tc-desc">Vera's data pipeline. Airbyte syncs de-identified interaction data from Postgres to Snowflake. dbt transforms raw events into clinical outcome models - adherence rates, ADE prevention scores, SDoH resolution rates, voice interaction quality. The foundation of Orivo Intel in H3.</div>
-        <div class="tc-why"><b>Why build the pipeline now:</b> Orivo Intel requires 18+ months of clean structured data. Start the pipeline in H1 and you arrive at Series B with a real dataset. Not starting now means arriving at Series B with a promise instead of proof.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--vera);border-color:var(--vera-b)">Vera Intel foundation</span></div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Mixpanel</div><div class="tc-cost-tag" style="color:var(--vera)">~$200/mo</div></div>
-        <div class="tc-desc">Product analytics for the Orivo app and Brief dashboard. Track conversation completion rates, voice call durations, SMS response times, brief open rates, pharmacist acknowledgment times. HIPAA-eligible with BAA. Drives AI prompt improvement directly.</div>
-        <div class="tc-why"><b>Why Mixpanel:</b> Funnel analysis shows where patients drop out of the care conversation. Voice call drop-off points show where ElevenLabs audio needs adjustment. This data directly improves adherence outcomes - your core pilot metric.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Metabase</div><div class="tc-cost-tag" style="color:var(--vera)">~$250/mo</div></div>
-        <div class="tc-desc">Internal BI for the clinical outcomes dashboard - the monthly report you send pilot health system partners. Adherence lift, ADE flags resolved, SDoH referrals completed, pharmacist response times, voice interaction quality. Connects directly to Snowflake.</div>
-        <div class="tc-why"><b>Why Metabase not Looker:</b> Looker costs $3K+/mo and requires a data engineer. Metabase is 90% of the value at 8% of the cost. Switch at Series A when you hire a data analyst.</div>
-      </div>
-      <div class="tool-card">
-        <div class="tc-top"><div class="tc-name">Sentry + Datadog APM</div><div class="tc-cost-tag" style="color:var(--vera)">~$250/mo</div></div>
-        <div class="tc-desc">Sentry catches code errors across the API, app, and dashboard. Datadog APM traces the full SMS-to-brief and voice-to-response pipelines. Latency alerting if brief generation exceeds 10 seconds or voice response exceeds 1 second - both are clinical safety thresholds.</div>
-        <div class="tc-why"><b>Why both:</b> Sentry catches code errors. Datadog catches performance degradation. A patient reporting chest pain needs a response in seconds - both types of failure must be caught independently and immediately.</div>
-        <div class="tc-tags"><span class="tc-tag" style="color:var(--amber);border-color:var(--amber-b)">Voice latency alerts</span></div>
+      <div class="rung r3 reveal">
+        <div class="rung-gate">Stage 3 · After proof</div>
+        <div class="rung-when">Multi-site · payer conversations</div>
+        <h3>Expand only what the data justifies</h3>
+        <ul>
+          <li>Multi-pharmacy tenancy and role-based access</li>
+          <li>LLM-assisted drafting introduced behind the existing approval gate — the gate stays</li>
+          <li>Standards-based integrations (pharmacy systems, FHIR) as partners require them</li>
+          <li>Additional languages and voice channels driven by pilot population needs</li>
+        </ul>
+        <div class="why">Exit criteria set with partners — not preannounced here.</div>
       </div>
     </div>
   </div>
-</div>
-
-</div><!-- /section -->
-
-<!-- COST SUMMARY BAR -->
-<div class="cost-bar-section reveal">
-  <div class="cb-title">Monthly cost breakdown</div>
-  <div class="cb-sub">At seed volume - ~10,000 active patients, 3 health system pilots. Excludes headcount.</div>
-  <div class="cb-rows">
-    <div class="cb-row"><div class="cb-label">L0 - Infrastructure</div><div class="cb-track"><div class="cb-fill" style="width:7%;background:#60A5FA"></div></div><div class="cb-val" style="color:#60A5FA">$1,800</div></div>
-    <div class="cb-row"><div class="cb-label">L1 - Data &amp; Storage</div><div class="cb-track"><div class="cb-fill" style="width:3.5%;background:#34D399"></div></div><div class="cb-val" style="color:#34D399">$900</div></div>
-    <div class="cb-row"><div class="cb-label">L2 - AI (Aevo + Vera)</div><div class="cb-track"><div class="cb-fill" style="width:13%;background:var(--teal)"></div></div><div class="cb-val" style="color:var(--teal)">$3,400</div></div>
-    <div class="cb-row"><div class="cb-label">L3 - SMS delivery</div><div class="cb-track"><div class="cb-fill" style="width:39%;background:var(--amber)"></div></div><div class="cb-val" style="color:var(--amber)">$10,200</div></div>
-    <div class="cb-row"><div class="cb-label">L4 - Voice AI stack</div><div class="cb-track"><div class="cb-fill" style="width:1.5%;background:var(--coral)"></div></div><div class="cb-val" style="color:var(--coral)">$400</div></div>
-    <div class="cb-row"><div class="cb-label">L5 - EHR integrations</div><div class="cb-track"><div class="cb-fill" style="width:3%;background:var(--blue)"></div></div><div class="cb-val" style="color:var(--blue)">$800</div></div>
-    <div class="cb-row"><div class="cb-label">L6 - Application</div><div class="cb-track"><div class="cb-fill" style="width:3%;background:var(--pink)"></div></div><div class="cb-val" style="color:var(--pink)">$800</div></div>
-    <div class="cb-row"><div class="cb-label">L7 - Security &amp; compliance</div><div class="cb-track"><div class="cb-fill" style="width:13.5%;background:var(--coral)"></div></div><div class="cb-val" style="color:var(--coral)">$3,500</div></div>
-    <div class="cb-row"><div class="cb-label">L8 - Analytics &amp; Vera</div><div class="cb-track"><div class="cb-fill" style="width:4%;background:var(--vera)"></div></div><div class="cb-val" style="color:var(--vera)">$1,000</div></div>
-  </div>
-  <div class="cb-total">
-    <div>
-      <div class="cb-total-l">Total monthly infrastructure</div>
-      <div style="font-size:12px;color:var(--w3);margin-top:3px">Excluding headcount. SMS is 39% of total cost - scales with patient volume.</div>
-    </div>
-    <div class="cb-total-v">~$22,800/mo</div>
-  </div>
-
-  <!-- Scale table -->
-  <div class="cb-scale-note">
-    <div style="font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:14px">Cost per patient as you scale - the efficiency story for investors</div>
-    <div style="overflow-x:auto">
-      <table class="scale-table">
-        <thead>
-          <tr>
-            <th>Stage</th>
-            <th>Active patients</th>
-            <th>Monthly infra cost</th>
-            <th>Cost per patient</th>
-            <th>SMS cost</th>
-            <th>Voice cost</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>🌱 Seed</td>
-            <td>10,000</td>
-            <td>~$22,800</td>
-            <td style="color:var(--amber)">$2.28</td>
-            <td>$9,500</td>
-            <td>$400</td>
-            <td style="color:var(--w3)">Standard Twilio pricing</td>
-          </tr>
-          <tr class="highlight-row">
-            <td>📈 Series A</td>
-            <td>50,000</td>
-            <td>~$58,000</td>
-            <td>$1.16</td>
-            <td>$47,000</td>
-            <td>$2,000</td>
-            <td>Twilio volume discount kicks in</td>
-          </tr>
-          <tr>
-            <td>🚀 Series B</td>
-            <td>250,000</td>
-            <td>~$180,000</td>
-            <td style="color:var(--teal)">$0.72</td>
-            <td>$120,000</td>
-            <td>$15,000</td>
-            <td style="color:var(--w3)">Negotiated SMS rates + ElevenLabs Pro</td>
-          </tr>
-          <tr>
-            <td>🌍 Scale</td>
-            <td>1,000,000</td>
-            <td>~$480,000</td>
-            <td style="color:var(--teal)">$0.48</td>
-            <td>$300,000</td>
-            <td>$60,000</td>
-            <td style="color:var(--w3)">Enterprise contracts + international SMS</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
+</section>
 
 <footer>
-  <div style="font-family:var(--serif);font-size:24px;color:var(--w1);margin-bottom:8px">Built to scale. Built to comply. Built for the patient.</div>
-  <div style="font-size:13px;color:var(--w3);max-width:500px;margin:0 auto 20px">Eight layers. One mission. Every tool chosen for HIPAA-conscious design targets, clinical workflow reliability, and low-friction patient communication.</div>
-  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-    <span class="pill" style="color:var(--teal);border-color:var(--teal-b);background:var(--teal-lo)">Aevo - Access · Equity · Voice · Outcomes</span>
-    <span class="pill" style="color:var(--vera);border-color:var(--vera-b);background:var(--vera-lo)">Vera - Validate · Educate · Reach · Advocate</span>
+  <div class="wrap foot-row">
+    <div>
+      <div class="logo-text" style="font-size:17px;margin-bottom:6px">orivo health</div>
+      © 2026 Orivo Health Inc. Prototype website.
+    </div>
+    <div class="foot-links">
+      <a href="/pharmacy-pilot.html">Pilot program</a>
+      <a href="/dual-pipeline.html">Aevo + Vera</a>
+      <a href="/patient-provider-demo.html">Demo</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/hipaa-notice.html">HIPAA Notice</a>
+      <a href="/accessibility.html">Accessibility</a>
+    </div>
   </div>
 </footer>
 
 <script>
-function toggle(id){
-  const el=document.getElementById(id);
-  const open=el.classList.toggle('open');
-  const tNum=id.replace('lb','t');
-  const tog=document.getElementById(tNum);
-  if(tog)tog.textContent=open?'▲ collapse':'▼ expand';
-}
-
-// Scroll reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')});
-},{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Animate cost bars on scroll
-const barObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.cb-fill').forEach(fill=>{
-        const w=fill.style.width;
-        fill.style.width='0';
-        setTimeout(()=>fill.style.width=w,100);
-      });
-      barObs.unobserve(e.target);
-    }
-  });
-},{threshold:.3});
-const barSection=document.querySelector('.cb-rows');
-if(barSection)barObs.observe(barSection);
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
-  <script src="/orivo-motion.js?v=premium2" defer></script>
 </body>
 </html>
