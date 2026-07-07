@@ -178,6 +178,24 @@ h2{font-family:var(--serif);font-size:clamp(27px,3.6vw,38px);line-height:1.15;fo
 .sc-foot{padding:16px 22px;font-size:13px;color:var(--dim)}
 .sc-foot strong{color:var(--text);font-weight:600}
 
+/* ── today vs pilot split ── */
+.split-today{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.today-panel{border-radius:16px;padding:30px 28px;border:1px solid var(--border);background:var(--panel);position:relative;overflow:hidden}
+.today-panel::after{content:"";position:absolute;inset:0 0 auto 0;height:3px}
+.today-panel.now::after{background:linear-gradient(90deg,var(--teal),transparent 75%)}
+.today-panel.later::after{background:linear-gradient(90deg,var(--amber),transparent 75%)}
+.tp-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border-radius:999px;margin-bottom:16px}
+.today-panel.now .tp-tag{background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
+.today-panel.later .tp-tag{background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-b)}
+.today-panel h3{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:16px}
+.today-panel ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+.today-panel li{font-size:14px;color:var(--dim);padding-left:20px;position:relative}
+.today-panel li strong{color:var(--text);font-weight:600}
+.today-panel li a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
+.today-panel.now li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
+.today-panel.later li::before{content:"◌";position:absolute;left:0;color:var(--amber);font-weight:700}
+.split-note{margin-top:20px;border:1px dashed var(--border-hi);border-radius:12px;padding:18px 24px;font-size:14px;color:var(--dim);text-align:center}
+
 /* ── two column give/get ── */
 .split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:30px 28px}
@@ -223,7 +241,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
 
 @media(max-width:900px){
   .grid3,.phases{grid-template-columns:1fr}
-  .split{grid-template-columns:1fr}
+  .split,.split-today{grid-template-columns:1fr}
   .rails{grid-template-columns:1fr 1fr}
   .sc-grid{grid-template-columns:1fr 1fr}
   .sc-cell:nth-child(3n){border-right:1px solid var(--border)}
@@ -289,7 +307,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
       side effects, cost barriers, refill confusion, rides that never came.
     </p>
     <div class="hero-cta-row reveal">
-      <a class="btn btn-solid" href="mailto:hello@orivohealth.com?subject=Pharmacy%20pilot%20conversation">Start a pilot conversation →</a>
+      <a class="btn btn-solid" href="mailto:josiah.parve@orivohealth.com?subject=Pharmacy%20pilot%20conversation">Start a pilot conversation →</a>
       <a class="btn btn-ghost" href="/patient-provider-demo.html">See the workflow demo</a>
     </div>
     <div class="hero-tags reveal">
@@ -428,6 +446,45 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
   </div>
 </section>
 
+<!-- ═══════════ TODAY vs PILOT (honest split) ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">The honest split</div>
+    <h2 class="reveal">What we can hand you today.<br>What only a pilot can prove.</h2>
+    <p class="sub reveal">
+      Most vendors blur this line. We keep these two lists separate on purpose —
+      because trust is the product.
+    </p>
+    <div class="split-today">
+      <div class="today-panel now reveal">
+        <div class="tp-tag">Deliverable today</div>
+        <h3>On the table before you sign anything</h3>
+        <ul>
+          <li><strong>A working prototype</strong> — the SMS intake, deterministic triage, and pharmacist review queue, running end to end on synthetic data. You can watch it work in the <a href="/patient-provider-demo.html">demo</a>.</li>
+          <li><strong>A structured pilot model</strong> — the 90-day plan above, with defined phases, a defined exit, and a joint decision at the readout.</li>
+          <li><strong>A BAA-ready legal framework</strong> — pilot agreement structure, consent flow, and the compliance gates published on our <a href="/engineering-stack.html">engineering page</a>, prepared so BAA execution is a signature, not a scramble.</li>
+          <li><strong>A 90-day measurement plan</strong> — the six scorecard metrics above, with methodology defined before the pilot starts, not fitted to the results after.</li>
+        </ul>
+      </div>
+      <div class="today-panel later reveal">
+        <div class="tp-tag">Requires a pilot to prove</div>
+        <h3>Claims you will not find on this site — yet</h3>
+        <ul>
+          <li><strong>Outcome improvements</strong> — whether surfaced barriers actually change what happens at the counter.</li>
+          <li><strong>Adherence lift</strong> — any movement in refill pickup or continuation belongs to measured pilot data, not marketing copy.</li>
+          <li><strong>Star Rating impact</strong> — adherence measures feed CMS quality programs, but claiming impact before evidence would tell you how we handle every other claim.</li>
+          <li><strong>Clinical workflow efficiency</strong> — whether the review queue saves your pharmacists time is measured in your pharmacy, on your workflow.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="split-note reveal">
+      When a vendor's website already knows the answers before the first patient is enrolled,
+      that tells you something. Ours will publish these numbers when a pilot earns them —
+      and if they disappoint, that gets published too.
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════ GIVE / GET ═══════════ -->
 <section class="section">
   <div class="wrap">
@@ -481,7 +538,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
       A 30-minute conversation is enough to know if your pharmacy is a fit.
       Bring your hardest abandoned-prescription story — that's usually where we start.
     </p>
-    <a class="btn btn-solid reveal" href="mailto:hello@orivohealth.com?subject=Pharmacy%20pilot%20conversation">Email hello@orivohealth.com →</a>
+    <a class="btn btn-solid reveal" href="mailto:josiah.parve@orivohealth.com?subject=Pharmacy%20pilot%20conversation">Email josiah.parve@orivohealth.com →</a>
   </div>
 </section>
 
@@ -495,6 +552,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
       <a href="/for-pharmacies.html">Pharmacies</a>
       <a href="/patient-provider-demo.html">Demo</a>
       <a href="/evidence.html">Evidence</a>
+      <a href="/walkthrough.html">Walkthrough</a>
       <a href="/privacy.html">Privacy</a>
       <a href="/terms.html">Terms</a>
       <a href="/hipaa-notice.html">HIPAA Notice</a>
