@@ -1,571 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pharmacy Pilot Program | Orivo Health</title>
-<meta name="description" content="Run a 90-day SMS medication-communication pilot with Orivo Health. Built for independent pharmacies. Honest metrics, human review, no app required for patients.">
-<link rel="icon" href="/assets/orivo-logo-transparent.png" type="image/png">
-<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
-<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
-<style>
-:root{
-  --bg:#050A14;
-  --bg2:#060E1E;
-  --panel:#0A1426;
-  --border:rgba(240,242,255,.10);
-  --border-hi:rgba(240,242,255,.16);
-  --text:#EDF0FA;
-  --dim:#9AA3BC;
-  --faint:#6B7490;
-  --teal:#00C896;
-  --teal-d:#009E75;
-  --teal-lo:rgba(0,200,150,.09);
-  --teal-b:rgba(0,200,150,.24);
-  --blue:#4A9EFF;
-  --amber:#F5A623;
-  --amber-lo:rgba(245,166,35,.09);
-  --amber-b:rgba(245,166,35,.22);
-  --coral:#FF6B6B;
-  --vera:#7C6FCD;
-  --vera-lo:rgba(124,111,205,.09);
-  --vera-b:rgba(124,111,205,.24);
-  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
-  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-img{max-width:100%}
+# Orivo GitHub Cleanup & Link Checklist
+Repo: github.com/Rando2020/github.io · Everything here is doable from the GitHub website (no terminal).
+Legend: 🔴 do first · 🟡 soon · 🟢 optional
 
-/* ── disclaimer bar ── */
-.disclaimer{
-  background:var(--amber-lo);border-bottom:1px solid var(--amber-b);
-  padding:9px 24px;text-align:center;font-size:12.5px;color:var(--dim);
-}
-.disclaimer strong{color:var(--amber);font-weight:600}
-.disclaimer a{color:var(--amber);text-decoration:underline;text-underline-offset:2px}
+## A. Upload (Add file → Upload files, drag everything from the upgrade zip)
+- [ ] `assets/orivo-theme.css` and `assets/orivo-theme.js` (light/dark toggle system)
+- [ ] `pharmacy-pilot.html` (today-vs-pilot section + theme toggle)
+- [ ] `dual-pipeline.html` (6-case severity demo with Aevo clarifying questions + theme toggle)
+- [ ] `engineering-stack.html` (theme toggle)
+- [ ] Everything from the earlier `orivo-site-fixes.zip` if not yet uploaded
+      (fixed index, walkthrough, robots.txt, sitemap.xml, favicons on all pages,
+      the `_archive/` folder, email routing → josiah.parve@orivohealth.com)
 
-/* ── nav ── */
-.nav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px 32px;border-bottom:1px solid var(--border);
-  position:sticky;top:0;background:rgba(5,10,20,.86);backdrop-filter:blur(12px);z-index:50;
-}
-.logo{display:flex;align-items:center;gap:10px}
-.logo-img{height:30px;width:auto;display:block}
-.logo-text{font-family:var(--serif);font-size:20px;letter-spacing:.2px}
-.nav-links{display:flex;align-items:center;gap:26px;font-size:14px;color:var(--dim)}
-.nav-links a:hover{color:var(--text)}
-.nav-links a[aria-current]{color:var(--teal)}
-.nav-cta{
-  background:var(--teal);color:#03110C;padding:8px 18px;border-radius:8px;
-  font-weight:600;transition:opacity .2s;
-}
-.nav-cta:hover{opacity:.85;color:#03110C}
-.menu{display:none;background:none;border:1px solid var(--border);color:var(--text);
-  font-size:18px;padding:6px 12px;border-radius:8px;cursor:pointer}
-#mobile{display:none;flex-direction:column;gap:4px;padding:12px 24px 20px;
-  border-bottom:1px solid var(--border);background:var(--bg2)}
-#mobile a{padding:10px 4px;font-size:15px;color:var(--dim);border-bottom:1px solid var(--border)}
-#mobile a:last-child{border-bottom:none}
-#mobile.open{display:flex}
+## B. 🔴 Delete from repo ROOT (each: open file → trash icon → Commit)
+These now live in `_archive/`. Until the root copies are deleted, they are still public.
+Order matters — do the first two immediately:
+- [ ] why-invest.html          ← investor hype, crawlable
+- [ ] pitch-deck.html          ← full investor deck, crawlable
+- [ ] aevo-pitch-deck.html
+- [ ] pitch-deck-original.html
+- [ ] orivo_pitch_deck_v2_calcom.html
+- [ ] business-plan.html
+- [ ] swot.html
+- [ ] etl-pipeline.html
+- [ ] pilot.html               ← duplicate of pharmacy-pilot.html
+- [ ] payers.html              ← duplicate of for-payers.html
+- [ ] archive-index-old.html
+- [ ] archive-index-2026-05-05.html
+- [ ] ANIMATION_SCRIPT_TAG.html
+- [ ] animation-script-snippet.html
+- [ ] evidence-footer-snippet.html
+- [ ] homepage-care-loop-section.html
+- [ ] homepage-founder-card-snippet.html
+- [ ] shared-nav-snippet.html
 
-/* ── layout ── */
-.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
-.section{padding:88px 0}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--teal);margin-bottom:18px;
-}
-.eyebrow::before{content:"";width:22px;height:1px;background:var(--teal)}
-h1{font-family:var(--serif);font-size:clamp(36px,5.4vw,58px);line-height:1.08;font-weight:400;letter-spacing:-.01em}
-h2{font-family:var(--serif);font-size:clamp(27px,3.6vw,38px);line-height:1.15;font-weight:400;margin-bottom:14px}
-.lead{font-size:17.5px;color:var(--dim);max-width:640px;margin-top:20px}
-.sub{font-size:15.5px;color:var(--dim);max-width:620px;margin-bottom:44px}
+## C. 🟡 Internal docs to delete (public on the live site; robots.txt does NOT hide them)
+Keep local copies first if you want them — then delete from the repo:
+- [ ] CLAIMS_REVIEW.md
+- [ ] CLAIMS_REVIEW_AND_EVIDENCE.md
+- [ ] CLAIMS_REVIEW_INTERNAL.md   ← the word INTERNAL is in a public URL
+- [ ] CLAIMS_REVIEW_UPDATED.md
+- [ ] UPLOAD_INSTRUCTIONS.md
+- [ ] UPLOAD_INSTRUCTIONS_EVIDENCE.md
+- [ ] UPLOAD_INSTRUCTIONS_PUBLIC_EVIDENCE.md
+- [ ] README_UPLOAD.md / README_UPLOAD.txt
+- [ ] README_FOUNDER_HEADSHOT.md
+- [ ] ANIMATED_HTML_UPLOAD_README.md
+- [ ] ORIVO_MOTION_INSTALL.md / ORIVO_PREMIUM_ANIMATION_INSTALL.md
+- [ ] patch_site.py / patch_site_v2.py (superseded; never ran)
 
-/* ── hero ── */
-.hero{
-  padding:100px 0 84px;
-  background:
-    radial-gradient(900px 420px at 12% -10%, rgba(0,200,150,.10), transparent 60%),
-    radial-gradient(760px 420px at 92% 4%, rgba(74,158,255,.08), transparent 60%),
-    var(--bg);
-  border-bottom:1px solid var(--border);
-}
-.hero-cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
-.btn{
-  display:inline-flex;align-items:center;gap:9px;
-  padding:13px 26px;border-radius:10px;font-size:15px;font-weight:600;
-  transition:opacity .2s,border-color .2s;
-}
-.btn-solid{background:var(--teal);color:#03110C}
-.btn-solid:hover{opacity:.85}
-.btn-ghost{border:1px solid var(--border-hi);color:var(--text)}
-.btn-ghost:hover{border-color:var(--teal-b)}
-.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:38px}
-.tag{
-  font-size:12.5px;color:var(--dim);border:1px solid var(--border);
-  padding:6px 14px;border-radius:999px;background:rgba(240,242,255,.02);
-}
+## D. 🟡 Backend code — move to a private repo, then delete here
+No secrets found in these (scanned), but prototype source doesn't belong in the
+public webroot. Create a free private repo (e.g., `orivo-backend`), upload them
+there, then delete from this repo:
+- [ ] main.py · db.py · triage.py · replies.py · __init__.py
+- [ ] requirements.txt · env.example · wrangler.jsonc · functions/ folder
+- [ ] orivo-patient-pipeline.zip
 
-/* ── problem cards ── */
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{
-  background:var(--panel);border:1px solid var(--border);border-radius:14px;
-  padding:26px 24px;
-}
-.card h3{font-size:16.5px;font-weight:600;margin-bottom:9px}
-.card p{font-size:14.5px;color:var(--dim)}
-.card .glyph{
-  width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-  font-size:17px;margin-bottom:16px;background:var(--teal-lo);border:1px solid var(--teal-b);
-}
-.card.amber .glyph{background:var(--amber-lo);border-color:var(--amber-b)}
-.card.vera .glyph{background:var(--vera-lo);border-color:var(--vera-b)}
+## E. 🟢 Small stuff
+- [ ] Duplicate headshots at root: keep ONE (assets/ copy), delete
+      josiah-parve-headshot.JPG and josiah-parve-headshot.jpg from root
+      after confirming which one pages reference
+- [ ] founder-photo-css-snippet.css · orivo_nav_readability_patch.css —
+      merge into pages or delete if unused
+- [ ] docs/ and download/ folders — review contents; anything internal → private repo
 
-/* ── timeline ── */
-.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:phase}
-.phase{
-  background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px 24px;
-  position:relative;overflow:hidden;
-}
-.phase::after{
-  content:"";position:absolute;inset:0 0 auto 0;height:2px;
-  background:linear-gradient(90deg,var(--teal),transparent 70%);
-}
-.phase-num{
-  font-family:var(--serif);font-size:15px;color:var(--teal);
-  display:flex;align-items:baseline;gap:10px;margin-bottom:14px;
-}
-.phase-weeks{font-family:var(--sans);font-size:12px;color:var(--faint);letter-spacing:.06em;text-transform:uppercase}
-.phase h3{font-size:17px;font-weight:600;margin-bottom:10px}
-.phase ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.phase li{font-size:14px;color:var(--dim);padding-left:18px;position:relative}
-.phase li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--teal-d)}
+## F. Link map after cleanup (what links to what — verified)
+- index → all four audience pages, vision, evidence, demo, dual-pipeline,
+  engineering-stack, pharmacy-pilot, legal pages ✓
+- pharmacy-pilot → demo, walkthrough, engineering-stack, dual-pipeline (via nav), legal ✓
+- dual-pipeline ↔ engineering-stack cross-link ✓
+- walkthrough → pilot page (Deck link fixed) ✓
+- demo.html → redirect to patient-provider-demo (intentional) ✓
+- Zero links into _archive/ from any live page ✓
 
-/* ── scorecard (signature) ── */
-.scorecard-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.scorecard{
-  background:linear-gradient(180deg,rgba(10,20,38,.9),rgba(6,14,30,.9));
-  border:1px solid var(--border-hi);border-radius:18px;padding:8px;
-  box-shadow:0 24px 60px rgba(0,0,0,.35);
-}
-.sc-head{
-  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
-  padding:18px 22px;border-bottom:1px solid var(--border);
-}
-.sc-title{display:flex;align-items:center;gap:11px;font-size:14.5px;font-weight:600}
-.sc-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
-.sc-badge{
-  font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);
-  border:1px solid var(--border);border-radius:999px;padding:5px 13px;
-}
-.sc-grid{display:grid;grid-template-columns:repeat(3,1fr)}
-.sc-cell{
-  padding:26px 22px;border-right:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.sc-cell:nth-child(3n){border-right:none}
-.sc-cell:nth-child(n+4){border-bottom:none}
-.sc-metric{font-size:13px;color:var(--dim);margin-bottom:10px}
-.sc-value{
-  font-family:var(--serif);font-size:34px;color:var(--faint);line-height:1;
-  display:flex;align-items:baseline;gap:10px;
-}
-.sc-note{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-d)}
-.sc-foot{padding:16px 22px;font-size:13px;color:var(--dim)}
-.sc-foot strong{color:var(--text);font-weight:600}
-
-/* ── today vs pilot split ── */
-.split-today{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.today-panel{border-radius:16px;padding:30px 28px;border:1px solid var(--border);background:var(--panel);position:relative;overflow:hidden}
-.today-panel::after{content:"";position:absolute;inset:0 0 auto 0;height:3px}
-.today-panel.now::after{background:linear-gradient(90deg,var(--teal),transparent 75%)}
-.today-panel.later::after{background:linear-gradient(90deg,var(--amber),transparent 75%)}
-.tp-tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 13px;border-radius:999px;margin-bottom:16px}
-.today-panel.now .tp-tag{background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
-.today-panel.later .tp-tag{background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-b)}
-.today-panel h3{font-family:var(--serif);font-size:20px;font-weight:400;margin-bottom:16px}
-.today-panel ul{list-style:none;display:flex;flex-direction:column;gap:14px}
-.today-panel li{font-size:14px;color:var(--dim);padding-left:20px;position:relative}
-.today-panel li strong{color:var(--text);font-weight:600}
-.today-panel li a{color:var(--teal);text-decoration:underline;text-underline-offset:2px}
-.today-panel.now li::before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:700}
-.today-panel.later li::before{content:"◌";position:absolute;left:0;color:var(--amber);font-weight:700}
-.split-note{margin-top:20px;border:1px dashed var(--border-hi);border-radius:12px;padding:18px 24px;font-size:14px;color:var(--dim);text-align:center}
-
-/* ── two column give/get ── */
-.split{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:30px 28px}
-.panel h3{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:18px}
-.panel ul{list-style:none;display:flex;flex-direction:column;gap:13px}
-.panel li{font-size:14.5px;color:var(--dim);display:flex;gap:12px;align-items:flex-start}
-.panel li::before{content:"→";color:var(--teal);flex-shrink:0}
-.panel.needs li::before{content:"·";color:var(--blue);font-size:26px;line-height:.85}
-
-/* ── guardrails strip ── */
-.rails{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.rail{
-  border:1px solid var(--border);border-radius:12px;padding:18px;
-  font-size:13px;color:var(--dim);background:rgba(240,242,255,.02);
-}
-.rail strong{display:block;color:var(--text);font-size:13.5px;margin-bottom:5px;font-weight:600}
-
-/* ── cta ── */
-.cta-block{
-  text-align:center;padding:96px 0;
-  background:
-    radial-gradient(640px 320px at 50% 110%, rgba(0,200,150,.12), transparent 65%),
-    var(--bg);
-  border-top:1px solid var(--border);
-}
-.cta-block h2{margin-bottom:14px}
-.cta-block p{color:var(--dim);max-width:520px;margin:0 auto 32px;font-size:15.5px}
-
-/* ── footer ── */
-footer{border-top:1px solid var(--border);padding:44px 0;font-size:13.5px;color:var(--faint)}
-.foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
-.foot-links{display:flex;flex-wrap:wrap;gap:20px}
-.foot-links a:hover{color:var(--text)}
-
-/* ── reveal motion ── */
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  html{scroll-behavior:auto}
-}
-a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
-
-@media(max-width:900px){
-  .grid3,.phases{grid-template-columns:1fr}
-  .split,.split-today{grid-template-columns:1fr}
-  .rails{grid-template-columns:1fr 1fr}
-  .sc-grid{grid-template-columns:1fr 1fr}
-  .sc-cell:nth-child(3n){border-right:1px solid var(--border)}
-  .sc-cell:nth-child(2n){border-right:none}
-  .sc-cell{border-bottom:1px solid var(--border)}
-  .sc-cell:nth-child(n+5){border-bottom:none}
-}
-@media(max-width:680px){
-  .nav{padding:14px 20px}
-  .nav-links{display:none}
-  .menu{display:block}
-  .wrap{padding:0 22px}
-  .section{padding:64px 0}
-  .rails{grid-template-columns:1fr}
-  .sc-grid{grid-template-columns:1fr}
-  .sc-cell{border-right:none!important;border-bottom:1px solid var(--border)!important}
-  .sc-cell:last-child{border-bottom:none!important}
-}
-</style>
-</head>
-<body>
-
-<div class="disclaimer">
-  <strong>Prototype site.</strong> Orivo does not diagnose, prescribe, guarantee reimbursement, or collect protected health information through this static site. <a href="/hipaa-notice.html">HIPAA Notice</a>
-</div>
-
-<nav class="nav">
-  <a class="logo" href="/" aria-label="Orivo Health home">
-    <img class="logo-img" src="/assets/orivo-logo-transparent.png" alt="Orivo Health logo"
-         onerror="this.style.display='none'">
-    <div class="logo-text">orivo health</div>
-  </a>
-  <div class="nav-links">
-    <a href="/for-payers.html">Health plans</a>
-    <a href="/for-pharmacies.html">Pharmacies</a>
-    <a href="/for-providers.html">Providers</a>
-    <a href="/for-patients.html">Patients</a>
-    <a href="/pharmacy-pilot.html" aria-current="page">Pilot program</a>
-    <a href="/evidence.html">Evidence</a>
-    <a class="nav-cta" href="/patient-provider-demo.html">Demo</a>
-  </div>
-  <button class="menu" aria-label="Open menu" onclick="document.getElementById('mobile').classList.toggle('open')">☰</button>
-</nav>
-<div id="mobile">
-  <a href="/for-payers.html">Health plans</a>
-  <a href="/for-pharmacies.html">Pharmacies</a>
-  <a href="/for-providers.html">Providers</a>
-  <a href="/for-patients.html">Patients</a>
-  <a href="/pharmacy-pilot.html">Pilot program</a>
-  <a href="/evidence.html">Evidence</a>
-  <a href="/patient-provider-demo.html">Demo</a>
-</div>
-
-<!-- ═══════════ HERO ═══════════ -->
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow reveal">For independent pharmacies · Pilot program</div>
-    <h1 class="reveal">Ninety days.<br>One pharmacy. Honest numbers.</h1>
-    <p class="lead reveal">
-      Orivo runs a structured 90-day pilot with one independent pharmacy at a time.
-      Your patients text a plain number — no app, no portal, no login. Your pharmacists
-      get a triage queue of the concerns that today walk out the door unspoken:
-      side effects, cost barriers, refill confusion, rides that never came.
-    </p>
-    <div class="hero-cta-row reveal">
-      <a class="btn btn-solid" href="mailto:josiah.parve@orivohealth.com?subject=Pharmacy%20pilot%20conversation">Start a pilot conversation →</a>
-      <a class="btn btn-ghost" href="/patient-provider-demo.html">See the workflow demo</a>
-    </div>
-    <div class="hero-tags reveal">
-      <span class="tag">Works on any phone</span>
-      <span class="tag">Human review before every response</span>
-      <span class="tag">Founded by a certified pharmacy technician</span>
-      <span class="tag">CSV roster enrollment — no system integration required</span>
-    </div>
-  </div>
-</header>
-
-<!-- ═══════════ PROBLEMS ═══════════ -->
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow reveal">What the pilot targets</div>
-    <h2 class="reveal">The prescriptions you never hear about again.</h2>
-    <p class="sub reveal">
-      The pilot is scoped to three operational problems every independent pharmacy
-      recognizes — chosen because they are visible in your own workflow, not because
-      they need a claims feed to prove.
-    </p>
-    <div class="grid3">
-      <div class="card reveal">
-        <div class="glyph">⏸</div>
-        <h3>Abandoned prescriptions</h3>
-        <p>Filled, bagged, waiting on the shelf — then returned to stock. The patient never
-        said why. Orivo's SMS thread gives them a low-friction way to say
-        "I can't afford it" or "I don't understand what it's for" before the return-to-stock date.</p>
-      </div>
-      <div class="card amber reveal">
-        <div class="glyph">↻</div>
-        <h3>Lapsed refills</h3>
-        <p>Patients who quietly stop after a side effect, a confusing instruction, or a cost
-        change. The pilot surfaces the reason in the patient's own words and routes it to
-        your counter as a counseling opportunity, not a mystery.</p>
-      </div>
-      <div class="card vera reveal">
-        <div class="glyph">◍</div>
-        <h3>Undocumented barriers</h3>
-        <p>Transportation, food, language, benefit confusion — the context your pharmacists
-        hear at the counter but rarely have a place to record. Orivo captures it as
-        structured barrier intelligence you can act on and, with consent, share with care partners.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ TIMELINE ═══════════ -->
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="eyebrow reveal">How the 90 days run</div>
-    <h2 class="reveal">A pilot with a beginning, a middle, and a readout.</h2>
-    <p class="sub reveal">No open-ended engagement. Each phase has defined work and a defined exit.</p>
-    <div class="phases">
-      <div class="phase reveal">
-        <div class="phase-num">Phase 1 <span class="phase-weeks">Weeks 0–2 · Setup</span></div>
-        <h3>Consent and enrollment</h3>
-        <ul>
-          <li>You export a simple patient roster (CSV) — no pharmacy-system integration required</li>
-          <li>Every patient opts in through a documented, plain-language consent flow; STOP works instantly</li>
-          <li>Message templates reviewed and approved by your pharmacist-in-charge, in English and Spanish</li>
-          <li>Escalation rules agreed: what routes to your counter, what routes to 911 guidance</li>
-        </ul>
-      </div>
-      <div class="phase reveal">
-        <div class="phase-num">Phase 2 <span class="phase-weeks">Weeks 2–10 · Live</span></div>
-        <h3>Live SMS workflow</h3>
-        <ul>
-          <li>Enrolled patients text questions and concerns in their own words</li>
-          <li>Deterministic triage classifies each message — auditable rules, not a black box</li>
-          <li>Your pharmacists review a prioritized queue; nothing clinical goes out without human approval</li>
-          <li>Weekly 20-minute check-in to tune templates and routing</li>
-        </ul>
-      </div>
-      <div class="phase reveal">
-        <div class="phase-num">Phase 3 <span class="phase-weeks">Weeks 10–13 · Readout</span></div>
-        <h3>Scorecard and decision</h3>
-        <ul>
-          <li>You receive the full pilot scorecard — every metric below, measured, with methodology</li>
-          <li>Barrier report: what your patients said was stopping them, categorized</li>
-          <li>Joint decision: continue, expand, or stop — with your data either way</li>
-          <li>Your patient data is yours; export or deletion honored on request</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ SCORECARD (signature) ═══════════ -->
-<section class="section scorecard-section">
-  <div class="wrap">
-    <div class="eyebrow reveal">The pilot scorecard</div>
-    <h2 class="reveal">We publish no numbers we haven't earned.</h2>
-    <p class="sub reveal">
-      You will not find adherence percentages or ROI claims on this site — because we don't
-      have pilot data yet, and we won't invent it. These are the measures your pilot fills in.
-      Every value below is blank on purpose.
-    </p>
-    <div class="scorecard reveal">
-      <div class="sc-head">
-        <div class="sc-title"><span class="sc-dot"></span>Pilot scorecard · your pharmacy</div>
-        <div class="sc-badge">Awaiting pilot data</div>
-      </div>
-      <div class="sc-grid">
-        <div class="sc-cell">
-          <div class="sc-metric">Patient opt-in rate</div>
-          <div class="sc-value">—<span class="sc-note">Measured in pilot</span></div>
-        </div>
-        <div class="sc-cell">
-          <div class="sc-metric">First-response rate</div>
-          <div class="sc-value">—<span class="sc-note">Measured in pilot</span></div>
-        </div>
-        <div class="sc-cell">
-          <div class="sc-metric">Median time to pharmacist review</div>
-          <div class="sc-value">—<span class="sc-note">Measured in pilot</span></div>
-        </div>
-        <div class="sc-cell">
-          <div class="sc-metric">Barrier detection rate <span style="color:var(--faint)">(cost · side effect · access)</span></div>
-          <div class="sc-value">—<span class="sc-note">Measured in pilot</span></div>
-        </div>
-        <div class="sc-cell">
-          <div class="sc-metric">Intervention completion rate</div>
-          <div class="sc-value">—<span class="sc-note">Measured in pilot</span></div>
-        </div>
-        <div class="sc-cell">
-          <div class="sc-metric">Refill pickup / continuation proxy</div>
-          <div class="sc-value">—<span class="sc-note">Measured in pilot</span></div>
-        </div>
-      </div>
-      <div class="sc-foot">
-        <strong>Why these six:</strong> they map to the adherence-quality world your pharmacy already
-        lives in — the same PDC-style thinking behind CMS Star Ratings measures — but only claim
-        what a 90-day, single-site pilot can honestly observe.
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ TODAY vs PILOT (honest split) ═══════════ -->
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow reveal">The honest split</div>
-    <h2 class="reveal">What we can hand you today.<br>What only a pilot can prove.</h2>
-    <p class="sub reveal">
-      Most vendors blur this line. We keep these two lists separate on purpose —
-      because trust is the product.
-    </p>
-    <div class="split-today">
-      <div class="today-panel now reveal">
-        <div class="tp-tag">Deliverable today</div>
-        <h3>On the table before you sign anything</h3>
-        <ul>
-          <li><strong>A working prototype</strong> — the SMS intake, deterministic triage, and pharmacist review queue, running end to end on synthetic data. You can watch it work in the <a href="/patient-provider-demo.html">demo</a>.</li>
-          <li><strong>A structured pilot model</strong> — the 90-day plan above, with defined phases, a defined exit, and a joint decision at the readout.</li>
-          <li><strong>A BAA-ready legal framework</strong> — pilot agreement structure, consent flow, and the compliance gates published on our <a href="/engineering-stack.html">engineering page</a>, prepared so BAA execution is a signature, not a scramble.</li>
-          <li><strong>A 90-day measurement plan</strong> — the six scorecard metrics above, with methodology defined before the pilot starts, not fitted to the results after.</li>
-        </ul>
-      </div>
-      <div class="today-panel later reveal">
-        <div class="tp-tag">Requires a pilot to prove</div>
-        <h3>Claims you will not find on this site — yet</h3>
-        <ul>
-          <li><strong>Outcome improvements</strong> — whether surfaced barriers actually change what happens at the counter.</li>
-          <li><strong>Adherence lift</strong> — any movement in refill pickup or continuation belongs to measured pilot data, not marketing copy.</li>
-          <li><strong>Star Rating impact</strong> — adherence measures feed CMS quality programs, but claiming impact before evidence would tell you how we handle every other claim.</li>
-          <li><strong>Clinical workflow efficiency</strong> — whether the review queue saves your pharmacists time is measured in your pharmacy, on your workflow.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="split-note reveal">
-      When a vendor's website already knows the answers before the first patient is enrolled,
-      that tells you something. Ours will publish these numbers when a pilot earns them —
-      and if they disappoint, that gets published too.
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ GIVE / GET ═══════════ -->
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow reveal">The exchange</div>
-    <h2 class="reveal">What you bring. What you get.</h2>
-    <div class="split" style="margin-top:34px">
-      <div class="panel needs reveal">
-        <h3>What the pilot needs from you</h3>
-        <ul>
-          <li>One pharmacist-in-charge as clinical reviewer (queue review fits inside existing counseling workflow)</li>
-          <li>A patient roster export — CSV is enough; we map your columns</li>
-          <li>Willingness to offer opt-in at the counter or by bag insert</li>
-          <li>A weekly 20-minute check-in for the live phase</li>
-          <li>Candor at the readout — including telling us what didn't work</li>
-        </ul>
-      </div>
-      <div class="panel reveal">
-        <h3>What your pharmacy gets</h3>
-        <ul>
-          <li>A live triage queue of patient concerns you currently never hear</li>
-          <li>Documented barrier intelligence behind abandoned scripts and lapsed refills</li>
-          <li>A counseling-opportunity feed that supports the adherence measures your quality programs already track</li>
-          <li>The complete scorecard and methodology — yours to keep, whatever you decide</li>
-          <li>Founding-pilot pricing and a voice in what gets built next</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ GUARDRAILS ═══════════ -->
-<section class="section" style="padding-top:0">
-  <div class="wrap">
-    <div class="eyebrow reveal">Non-negotiables</div>
-    <h2 class="reveal">The rules the pilot runs on.</h2>
-    <div class="rails" style="margin-top:32px">
-      <div class="rail reveal"><strong>Human review, always</strong>No AI-generated clinical guidance reaches a patient without pharmacist approval. This is architecture, not policy.</div>
-      <div class="rail reveal"><strong>Auditable triage</strong>Message classification uses deterministic rules that can be inspected line by line — chosen deliberately over a black-box model for the pilot phase.</div>
-      <div class="rail reveal"><strong>Consent first</strong>TCPA-compliant opt-in, instant STOP handling, and no messaging to patients who haven't agreed. Consent state is logged.</div>
-      <div class="rail reveal"><strong>PHI handled properly</strong>No PHI touches this website. Live pilots run only on infrastructure covered by a business associate agreement, with audit logging.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ CTA ═══════════ -->
-<section class="cta-block">
-  <div class="wrap">
-    <div class="eyebrow reveal" style="justify-content:center;display:flex">Limited pilot slots</div>
-    <h2 class="reveal">We run one pilot at a time, on purpose.</h2>
-    <p class="reveal">
-      A 30-minute conversation is enough to know if your pharmacy is a fit.
-      Bring your hardest abandoned-prescription story — that's usually where we start.
-    </p>
-    <a class="btn btn-solid reveal" href="mailto:josiah.parve@orivohealth.com?subject=Pharmacy%20pilot%20conversation">Email josiah.parve@orivohealth.com →</a>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot-row">
-    <div>
-      <div class="logo-text" style="font-size:17px;margin-bottom:6px">orivo health</div>
-      © 2026 Orivo Health Inc. Prototype website.
-    </div>
-    <div class="foot-links">
-      <a href="/for-pharmacies.html">Pharmacies</a>
-      <a href="/patient-provider-demo.html">Demo</a>
-      <a href="/evidence.html">Evidence</a>
-      <a href="/walkthrough.html">Walkthrough</a>
-      <a href="/privacy.html">Privacy</a>
-      <a href="/terms.html">Terms</a>
-      <a href="/hipaa-notice.html">HIPAA Notice</a>
-      <a href="/accessibility.html">Accessibility</a>
-    </div>
-  </div>
-</footer>
-
-<script>
-const io=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
-},{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-</script>
-</body>
-</html>
+## G. After everything: verify live
+- [ ] orivohealth.com/why-invest.html → 404 page
+- [ ] orivohealth.com/pharmacy-pilot.html → has "The honest split" section + ☀/☾ toggle in nav
+- [ ] orivohealth.com/dual-pipeline.html → 6 severity buttons in the demo
+- [ ] Toggle works on mobile (tap ☀ in nav)

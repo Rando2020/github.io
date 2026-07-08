@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Engineering Approach | Orivo Health</title>
+<meta name="description" content="What Orivo has actually built, the six compliance gates that must clear before any real patient is texted, and what gets added at each milestone — no fiction.">
+<link rel="icon" href="/assets/orivo-logo-transparent.png" type="image/png">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<style>
+:root{
+  --bg:#050A14;--bg2:#060E1E;--panel:#0A1426;
+  --border:rgba(240,242,255,.10);--border-hi:rgba(240,242,255,.16);
+  --text:#EDF0FA;--dim:#9AA3BC;--faint:#6B7490;
+  --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.24);
+  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.09);--blue-b:rgba(74,158,255,.24);
+  --amber:#F5A623;--amber-lo:rgba(245,166,35,.09);--amber-b:rgba(245,166,35,.22);
+  --coral:#FF6B6B;
+  --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.09);--vera-b:rgba(124,111,205,.24);
+  --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
+  --sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+
+.disclaimer{background:var(--amber-lo);border-bottom:1px solid var(--amber-b);padding:9px 24px;text-align:center;font-size:12.5px;color:var(--dim)}
+.disclaimer strong{color:var(--amber);font-weight:600}
+.disclaimer a{color:var(--amber);text-decoration:underline;text-underline-offset:2px}
+
+.nav{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);position:sticky;top:0;background:rgba(5,10,20,.86);backdrop-filter:blur(12px);z-index:50}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-img{height:30px;width:auto;display:block}
+.logo-text{font-family:var(--serif);font-size:20px}
+.nav-links{display:flex;align-items:center;gap:26px;font-size:14px;color:var(--dim)}
+.nav-links a:hover{color:var(--text)}
+.nav-links a[aria-current]{color:var(--teal)}
+.nav-cta{background:var(--teal);color:#03110C;padding:8px 18px;border-radius:8px;font-weight:600;transition:opacity .2s}
+.nav-cta:hover{opacity:.85;color:#03110C}
+.menu{display:none;background:none;border:1px solid var(--border);color:var(--text);font-size:18px;padding:6px 12px;border-radius:8px;cursor:pointer}
+#mobile{display:none;flex-direction:column;gap:4px;padding:12px 24px 20px;border-bottom:1px solid var(--border);background:var(--bg2)}
+#mobile a{padding:10px 4px;font-size:15px;color:var(--dim);border-bottom:1px solid var(--border)}
+#mobile a:last-child{border-bottom:none}
+#mobile.open{display:flex}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+.section{padding:84px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--teal)}
+h1{font-family:var(--serif);font-size:clamp(34px,5vw,54px);line-height:1.1;font-weight:400}
+h2{font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);line-height:1.16;font-weight:400;margin-bottom:14px}
+.lead{font-size:17px;color:var(--dim);max-width:660px;margin-top:20px}
+.sub{font-size:15.5px;color:var(--dim);max-width:640px;margin-bottom:40px}
+
+.hero{padding:96px 0 80px;border-bottom:1px solid var(--border);
+  background:radial-gradient(820px 400px at 12% -10%, rgba(74,158,255,.08), transparent 60%),
+             radial-gradient(700px 380px at 92% 0%, rgba(0,200,150,.09), transparent 60%),var(--bg)}
+.hero-note{margin-top:36px;border-left:2px solid var(--teal);padding:6px 0 6px 20px;max-width:620px;font-size:15px;color:var(--dim)}
+.hero-note strong{color:var(--text)}
+
+/* built inventory */
+.inv{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.inv-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px 22px}
+.inv-chip{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:4px 11px;border-radius:999px;margin-bottom:14px;background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
+.inv-card h3{font-size:15.5px;font-weight:600;margin-bottom:8px}
+.inv-card p{font-size:13.5px;color:var(--dim)}
+.inv-card code{font-family:var(--mono);font-size:12px;color:var(--blue);background:var(--blue-lo);border:1px solid var(--blue-b);border-radius:5px;padding:1px 7px}
+
+/* ── six gates (signature) ── */
+.gates-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.gate-track{position:relative;display:flex;flex-direction:column;gap:0}
+.gate{
+  display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:start;
+  padding:26px 0;border-bottom:1px solid var(--border);position:relative;
+}
+.gate:last-child{border-bottom:none}
+.gate-marker{
+  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:18px;position:relative;z-index:1;
+}
+.gate::before{
+  content:"";position:absolute;left:21px;top:70px;bottom:-26px;width:2px;
+  background:linear-gradient(180deg,var(--border-hi),var(--border));
+}
+.gate:last-child::before{display:none}
+.g-built .gate-marker{background:var(--teal-lo);border:1px solid var(--teal-b);color:var(--teal)}
+.g-progress .gate-marker{background:var(--amber-lo);border:1px solid var(--amber-b);color:var(--amber)}
+.g-pending .gate-marker{background:rgba(240,242,255,.03);border:1px solid var(--border-hi);color:var(--faint)}
+.gate-body h3{font-size:16.5px;font-weight:600;margin-bottom:6px}
+.gate-body p{font-size:14px;color:var(--dim);max-width:560px}
+.gate-status{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap;margin-top:4px}
+.g-built .gate-status{background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
+.g-progress .gate-status{background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-b)}
+.g-pending .gate-status{background:rgba(240,242,255,.03);color:var(--faint);border:1px solid var(--border-hi)}
+.gates-note{
+  margin-top:30px;border:1px dashed var(--border-hi);border-radius:12px;padding:18px 22px;
+  font-size:13.5px;color:var(--dim);
+}
+.gates-note strong{color:var(--text)}
+
+/* principles */
+.prin{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.prin-card{border:1px solid var(--border);border-radius:12px;padding:24px;background:rgba(240,242,255,.02)}
+.prin-card h3{font-size:15px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+.prin-card h3::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--teal)}
+.prin-card p{font-size:13.5px;color:var(--dim)}
+
+/* build ladder */
+.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rung{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden}
+.rung::after{content:"";position:absolute;inset:0 0 auto 0;height:2px}
+.rung.r1::after{background:linear-gradient(90deg,var(--teal),transparent 70%)}
+.rung.r2::after{background:linear-gradient(90deg,var(--blue),transparent 70%)}
+.rung.r3::after{background:linear-gradient(90deg,var(--vera),transparent 70%)}
+.rung-gate{font-family:var(--serif);font-size:15px;margin-bottom:4px}
+.rung.r1 .rung-gate{color:var(--teal)}
+.rung.r2 .rung-gate{color:var(--blue)}
+.rung.r3 .rung-gate{color:var(--vera)}
+.rung-when{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.rung h3{font-size:16.5px;font-weight:600;margin-bottom:12px}
+.rung ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.rung li{font-size:13.5px;color:var(--dim);padding-left:17px;position:relative}
+.rung li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--faint)}
+.rung.r1 li::before{background:var(--teal-d)}
+.rung .why{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--faint);font-style:italic}
+
+footer{border-top:1px solid var(--border);padding:44px 0;font-size:13.5px;color:var(--faint)}
+.foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.foot-links{display:flex;flex-wrap:wrap;gap:20px}
+.foot-links a:hover{color:var(--text)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
+
+@media(max-width:960px){.inv{grid-template-columns:1fr 1fr}.ladder{grid-template-columns:1fr}.prin{grid-template-columns:1fr}}
+@media(max-width:680px){
+  .nav{padding:14px 20px}.nav-links{display:none}.menu{display:block}
+  .wrap{padding:0 22px}.section{padding:60px 0}
+  .inv{grid-template-columns:1fr}
+  .gate{grid-template-columns:44px 1fr}
+  .gate-status{grid-column:2;justify-self:start}
+}
+</style>
+<link rel="stylesheet" href="/assets/orivo-theme.css">
+<script src="/assets/orivo-theme.js"></script>
+</head>
+<body>
+
+<div class="disclaimer">
+  <strong>Prototype site.</strong> This page describes prototype work and planned architecture. Not a live clinical system. No PHI should be entered on this static site. <a href="/hipaa-notice.html">HIPAA Notice</a>
+</div>
+
+<nav class="nav">
+  <a class="logo" href="/" aria-label="Orivo Health home">
+    <img class="logo-img" src="/assets/orivo-logo-transparent.png" alt="Orivo Health logo" onerror="this.style.display='none'">
+    <div class="logo-text">orivo health</div>
+  </a>
+  <div class="nav-links">
+    <a href="/for-pharmacies.html">Pharmacies</a>
+    <a href="/pharmacy-pilot.html">Pilot program</a>
+    <a href="/dual-pipeline.html">Aevo + Vera</a>
+    <a href="/evidence.html">Evidence</a>
+    <a class="nav-cta" href="/patient-provider-demo.html">Demo</a>
+  </div>
+  <button class="menu" aria-label="Open menu" onclick="document.getElementById('mobile').classList.toggle('open')">☰</button>
+</nav>
+<div id="mobile">
+  <a href="/for-pharmacies.html">Pharmacies</a>
+  <a href="/pharmacy-pilot.html">Pilot program</a>
+  <a href="/dual-pipeline.html">Aevo + Vera</a>
+  <a href="/evidence.html">Evidence</a>
+  <a href="/patient-provider-demo.html">Demo</a>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow reveal">Engineering approach</div>
+    <h1 class="reveal">Built boring<br>on purpose.</h1>
+    <p class="lead reveal">
+      In a clinical-adjacent system, the impressive move is restraint. Orivo's prototype
+      stack is small, inspectable, and gated — because the first real patient message
+      deserves infrastructure that can be audited, not admired.
+    </p>
+    <div class="hero-note reveal">
+      <strong>What you won't find here:</strong> cost projections, patient-volume forecasts,
+      or a list of enterprise services we haven't deployed. This page describes what exists,
+      what's required before a live pilot, and what gets built at each milestone — in that order.
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════ WHAT EXISTS ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Prototype inventory</div>
+    <h2 class="reveal">What exists today.</h2>
+    <p class="sub reveal">
+      A deliberately small footprint: enough to run a real non-PHI SMS workflow end to end,
+      and nothing that would need to be un-built later.
+    </p>
+    <div class="inv">
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>SMS webhook handler</h3>
+        <p>Inbound message endpoint for <code>Twilio</code> with request signature validation
+        on every call — spoofed webhooks are rejected before any processing happens.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Deterministic triage engine</h3>
+        <p>Keyword and pattern rules that classify each message into a response tier.
+        Every classification is reproducible and inspectable — see it traced on the
+        <a href="/dual-pipeline.html" style="color:var(--teal)">Aevo + Vera page</a>.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Bilingual message templates</h3>
+        <p>Pharmacist-reviewable response templates in English and Spanish. Templates are
+        versioned so a pilot's approved language is a fixed, auditable artifact.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Human approval queue</h3>
+        <p>The structural gate: clinical-tier drafts enter a review queue and cannot reach
+        a patient until a pharmacist releases them. There is no bypass path in the workflow.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>API + data layer</h3>
+        <p><code>FastAPI</code> service with a lightweight database for prototype work.
+        Small on purpose: the non-PHI prototype doesn't need — and shouldn't have —
+        production PHI infrastructure it can't yet justify.</p>
+      </div>
+      <div class="inv-card reveal">
+        <span class="inv-chip">Built</span>
+        <h3>Consent + STOP handling</h3>
+        <p>Opt-in state tracking with immediate STOP compliance and HELP responses,
+        designed to the TCPA healthcare-messaging consent template from day one.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SIX GATES (signature) ═══════════ -->
+<section class="section gates-section">
+  <div class="wrap">
+    <div class="eyebrow reveal">The line we won't cross early</div>
+    <h2 class="reveal">Six gates before any real patient is texted.</h2>
+    <p class="sub reveal">
+      These aren't aspirations — they're preconditions. Until all six clear, the system
+      runs on synthetic data only. Publishing them is deliberate: pilot partners should
+      be able to hold us to this list.
+    </p>
+    <div class="gate-track reveal">
+      <div class="gate g-built">
+        <div class="gate-marker">1</div>
+        <div class="gate-body">
+          <h3>Webhook signature validation</h3>
+          <p>Every inbound request cryptographically verified as genuinely from Twilio before processing. Protects the single public-facing surface of the system.</p>
+        </div>
+        <span class="gate-status">Built</span>
+      </div>
+      <div class="gate g-progress">
+        <div class="gate-marker">2</div>
+        <div class="gate-body">
+          <h3>TCPA-compliant consent flow</h3>
+          <p>Documented opt-in with plain-language disclosure, instant STOP, HELP support, and logged consent state. Designed and drafted; finalized with the pilot partner's pharmacist-in-charge.</p>
+        </div>
+        <span class="gate-status">In progress</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">3</div>
+        <div class="gate-body">
+          <h3>A2P 10DLC registration</h3>
+          <p>Carrier-level business messaging registration so pilot SMS traffic is properly identified and deliverable — not filtered as spam mid-pilot.</p>
+        </div>
+        <span class="gate-status">Before pilot</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">4</div>
+        <div class="gate-body">
+          <h3>Twilio business associate agreement</h3>
+          <p>PHI touches the messaging layer only under a signed BAA on a Twilio edition that supports one. The non-PHI prototype runs today precisely so this gate isn't rushed.</p>
+        </div>
+        <span class="gate-status">Before pilot</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">5</div>
+        <div class="gate-body">
+          <h3>HIPAA-eligible hosting with audit logging</h3>
+          <p>Production workloads move to BAA-covered infrastructure with encrypted storage and an append-only event log before the first enrolled patient.</p>
+        </div>
+        <span class="gate-status">Before pilot</span>
+      </div>
+      <div class="gate g-pending">
+        <div class="gate-marker">6</div>
+        <div class="gate-body">
+          <h3>Signed pilot agreement</h3>
+          <p>Roles, data handling, escalation responsibilities, and exit terms agreed in writing with the pharmacy — including the patient's right to export or deletion.</p>
+        </div>
+        <span class="gate-status">Before pilot</span>
+      </div>
+    </div>
+    <div class="gates-note reveal">
+      <strong>Why publish an unfinished checklist?</strong> Because the honest state of a
+      pilot-stage company is "some gates cleared, some ahead." A page claiming all six were
+      done before a partner existed would tell you more about our marketing than our engineering.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PRINCIPLES ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">Operating principles</div>
+    <h2 class="reveal">Four rules that shape every build decision.</h2>
+    <div class="prin" style="margin-top:32px">
+      <div class="prin-card reveal">
+        <h3>Auditable beats impressive</h3>
+        <p>Deterministic triage over a language model, versioned templates over free
+        generation, append-only logs over mutable state. Anything a pilot partner's
+        compliance reviewer asks about should have a line-by-line answer.</p>
+      </div>
+      <div class="prin-card reveal">
+        <h3>Complexity is earned by milestones</h3>
+        <p>Infrastructure gets added when a milestone requires it — not when a funding
+        round makes it affordable. A component that exists before its workload is a
+        liability with a monthly bill.</p>
+      </div>
+      <div class="prin-card reveal">
+        <h3>The patient's phone sets the constraint</h3>
+        <p>Everything is designed backward from a basic phone on SMS. No app, no portal,
+        no login, no smartphone assumption — because the populations Orivo serves are
+        exactly the ones those assumptions exclude.</p>
+      </div>
+      <div class="prin-card reveal">
+        <h3>Human approval is load-bearing</h3>
+        <p>The pharmacist review queue isn't a feature that could be deprioritized —
+        it's the architecture the rest of the system hangs on. See how it's enforced on
+        the <a href="/dual-pipeline.html" style="color:var(--teal)">Aevo + Vera page</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ BUILD LADDER ═══════════ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow reveal">Sequencing</div>
+    <h2 class="reveal">What gets built when — tied to milestones, not fantasies.</h2>
+    <p class="sub reveal">
+      Each stage adds only what the next milestone demands. Capability sequencing is
+      published here; costs and forecasts are not, because published numbers should be
+      earned numbers.
+    </p>
+    <div class="ladder">
+      <div class="rung r1 reveal">
+        <div class="rung-gate">Stage 1 · Now</div>
+        <div class="rung-when">Discovery &amp; validation</div>
+        <h3>Prove the workflow on synthetic data</h3>
+        <ul>
+          <li>Non-PHI prototype exercised end to end</li>
+          <li>Triage rules tested against a growing synthetic message set</li>
+          <li>Consent and template language reviewed with pharmacists during discovery interviews</li>
+          <li>Pilot scorecard instrumentation defined before the pilot, not after</li>
+        </ul>
+        <div class="why">Exit: a pharmacy partner signed and gates 2–6 in motion.</div>
+      </div>
+      <div class="rung r2 reveal">
+        <div class="rung-gate">Stage 2 · First pilot</div>
+        <div class="rung-when">One pharmacy · live patients</div>
+        <h3>Harden for PHI, keep the footprint small</h3>
+        <ul>
+          <li>BAA-covered messaging and HIPAA-eligible hosting (gates 3–5 cleared)</li>
+          <li>Production database with encryption and backups replacing the prototype store</li>
+          <li>Append-only audit log for every message, classification, approval, and send</li>
+          <li>CSV roster enrollment tooling for the pharmacy — integration-free by design</li>
+        </ul>
+        <div class="why">Exit: 90 days of honest scorecard data from real patients.</div>
+      </div>
+      <div class="rung r3 reveal">
+        <div class="rung-gate">Stage 3 · After proof</div>
+        <div class="rung-when">Multi-site · payer conversations</div>
+        <h3>Expand only what the data justifies</h3>
+        <ul>
+          <li>Multi-pharmacy tenancy and role-based access</li>
+          <li>LLM-assisted drafting introduced behind the existing approval gate — the gate stays</li>
+          <li>Standards-based integrations (pharmacy systems, FHIR) as partners require them</li>
+          <li>Additional languages and voice channels driven by pilot population needs</li>
+        </ul>
+        <div class="why">Exit criteria set with partners — not preannounced here.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-row">
+    <div>
+      <div class="logo-text" style="font-size:17px;margin-bottom:6px">orivo health</div>
+      © 2026 Orivo Health Inc. Prototype website.
+    </div>
+    <div class="foot-links">
+      <a href="/pharmacy-pilot.html">Pilot program</a>
+      <a href="/dual-pipeline.html">Aevo + Vera</a>
+      <a href="/patient-provider-demo.html">Demo</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/terms.html">Terms</a>
+      <a href="/hipaa-notice.html">HIPAA Notice</a>
+      <a href="/accessibility.html">Accessibility</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

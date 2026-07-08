@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engineering Approach | Orivo Health</title>
-<meta name="description" content="What Orivo has actually built, the six compliance gates that must clear before any real patient is texted, and what gets added at each milestone — no fiction.">
+<title>Aevo + Vera Safety Architecture | Orivo Health</title>
+<meta name="description" content="How Orivo's two AI roles — Aevo and Vera — are designed around one rule: no AI-generated clinical guidance reaches a patient without human review.">
 <link rel="icon" href="/assets/orivo-logo-transparent.png" type="image/png">
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
 <link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
@@ -14,13 +14,12 @@
   --border:rgba(240,242,255,.10);--border-hi:rgba(240,242,255,.16);
   --text:#EDF0FA;--dim:#9AA3BC;--faint:#6B7490;
   --teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.24);
-  --blue:#4A9EFF;--blue-lo:rgba(74,158,255,.09);--blue-b:rgba(74,158,255,.24);
+  --blue:#4A9EFF;
   --amber:#F5A623;--amber-lo:rgba(245,166,35,.09);--amber-b:rgba(245,166,35,.22);
-  --coral:#FF6B6B;
+  --coral:#FF6B6B;--coral-lo:rgba(255,107,107,.08);--coral-b:rgba(255,107,107,.22);
   --vera:#7C6FCD;--vera-lo:rgba(124,111,205,.09);--vera-b:rgba(124,111,205,.24);
   --serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;
   --sans:'DM Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -37,7 +36,6 @@ a{color:inherit;text-decoration:none}
 .logo-text{font-family:var(--serif);font-size:20px}
 .nav-links{display:flex;align-items:center;gap:26px;font-size:14px;color:var(--dim)}
 .nav-links a:hover{color:var(--text)}
-.nav-links a[aria-current]{color:var(--teal)}
 .nav-cta{background:var(--teal);color:#03110C;padding:8px 18px;border-radius:8px;font-weight:600;transition:opacity .2s}
 .nav-cta:hover{opacity:.85;color:#03110C}
 .menu{display:none;background:none;border:1px solid var(--border);color:var(--text);font-size:18px;padding:6px 12px;border-radius:8px;cursor:pointer}
@@ -56,76 +54,87 @@ h2{font-family:var(--serif);font-size:clamp(26px,3.4vw,36px);line-height:1.16;fo
 .sub{font-size:15.5px;color:var(--dim);max-width:640px;margin-bottom:40px}
 
 .hero{padding:96px 0 80px;border-bottom:1px solid var(--border);
-  background:radial-gradient(820px 400px at 12% -10%, rgba(74,158,255,.08), transparent 60%),
-             radial-gradient(700px 380px at 92% 0%, rgba(0,200,150,.09), transparent 60%),var(--bg)}
-.hero-note{margin-top:36px;border-left:2px solid var(--teal);padding:6px 0 6px 20px;max-width:620px;font-size:15px;color:var(--dim)}
-.hero-note strong{color:var(--text)}
+  background:radial-gradient(820px 400px at 10% -10%, rgba(0,200,150,.09), transparent 60%),
+             radial-gradient(720px 400px at 95% 0%, rgba(124,111,205,.10), transparent 60%),var(--bg)}
+.rule-card{margin-top:38px;border:1px solid var(--border-hi);border-radius:14px;padding:22px 26px;max-width:640px;background:rgba(10,20,38,.6);font-size:16px}
+.rule-card strong{color:var(--teal)}
 
-/* built inventory */
-.inv{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.inv-card{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px 22px}
-.inv-chip{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:4px 11px;border-radius:999px;margin-bottom:14px;background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
-.inv-card h3{font-size:15.5px;font-weight:600;margin-bottom:8px}
-.inv-card p{font-size:13.5px;color:var(--dim)}
-.inv-card code{font-family:var(--mono);font-size:12px;color:var(--blue);background:var(--blue-lo);border:1px solid var(--blue-b);border-radius:5px;padding:1px 7px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ai-card{border-radius:16px;padding:32px 30px;border:1px solid var(--border);background:var(--panel);position:relative;overflow:hidden}
+.ai-card::after{content:"";position:absolute;inset:0 0 auto 0;height:3px}
+.ai-card.aevo::after{background:linear-gradient(90deg,var(--teal),transparent 75%)}
+.ai-card.vera::after{background:linear-gradient(90deg,var(--vera),transparent 75%)}
+.ai-name{font-family:var(--serif);font-size:26px;margin-bottom:4px}
+.ai-card.aevo .ai-name{color:var(--teal)}
+.ai-card.vera .ai-name{color:var(--vera)}
+.ai-acro{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.ai-card p{font-size:14.5px;color:var(--dim);margin-bottom:16px}
+.ai-card ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ai-card li{font-size:14px;color:var(--dim);padding-left:18px;position:relative}
+.ai-card.aevo li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--teal-d)}
+.ai-card.vera li::before{content:"";position:absolute;left:0;top:9px;width:6px;height:6px;border-radius:50%;background:var(--vera)}
 
-/* ── six gates (signature) ── */
-.gates-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.gate-track{position:relative;display:flex;flex-direction:column;gap:0}
-.gate{
-  display:grid;grid-template-columns:56px 1fr auto;gap:20px;align-items:start;
-  padding:26px 0;border-bottom:1px solid var(--border);position:relative;
-}
-.gate:last-child{border-bottom:none}
-.gate-marker{
-  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
-  font-family:var(--serif);font-size:18px;position:relative;z-index:1;
-}
-.gate::before{
-  content:"";position:absolute;left:21px;top:70px;bottom:-26px;width:2px;
-  background:linear-gradient(180deg,var(--border-hi),var(--border));
-}
-.gate:last-child::before{display:none}
-.g-built .gate-marker{background:var(--teal-lo);border:1px solid var(--teal-b);color:var(--teal)}
-.g-progress .gate-marker{background:var(--amber-lo);border:1px solid var(--amber-b);color:var(--amber)}
-.g-pending .gate-marker{background:rgba(240,242,255,.03);border:1px solid var(--border-hi);color:var(--faint)}
-.gate-body h3{font-size:16.5px;font-weight:600;margin-bottom:6px}
-.gate-body p{font-size:14px;color:var(--dim);max-width:560px}
-.gate-status{font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:6px 14px;border-radius:999px;white-space:nowrap;margin-top:4px}
-.g-built .gate-status{background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}
-.g-progress .gate-status{background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-b)}
-.g-pending .gate-status{background:rgba(240,242,255,.03);color:var(--faint);border:1px solid var(--border-hi)}
-.gates-note{
-  margin-top:30px;border:1px dashed var(--border-hi);border-radius:12px;padding:18px 22px;
-  font-size:13.5px;color:var(--dim);
-}
-.gates-note strong{color:var(--text)}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.tier{border:1px solid var(--border);border-radius:14px;padding:24px 20px;background:var(--panel)}
+.tier-chip{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+.tier-chip::before{content:"";width:8px;height:8px;border-radius:50%}
+.t-green .tier-chip{background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}.t-green .tier-chip::before{background:var(--teal)}
+.t-yellow .tier-chip{background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-b)}.t-yellow .tier-chip::before{background:var(--amber)}
+.t-orange .tier-chip{background:rgba(255,150,80,.09);color:#FF9650;border:1px solid rgba(255,150,80,.24)}.t-orange .tier-chip::before{background:#FF9650}
+.t-red .tier-chip{background:var(--coral-lo);color:var(--coral);border:1px solid var(--coral-b)}.t-red .tier-chip::before{background:var(--coral)}
+.tier h3{font-size:15.5px;font-weight:600;margin-bottom:8px}
+.tier p{font-size:13.5px;color:var(--dim)}
+.tier .route{margin-top:14px;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);border-top:1px solid var(--border);padding-top:12px}
 
-/* principles */
-.prin{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.prin-card{border:1px solid var(--border);border-radius:12px;padding:24px;background:rgba(240,242,255,.02)}
-.prin-card h3{font-size:15px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-.prin-card h3::before{content:"";width:8px;height:8px;border-radius:2px;background:var(--teal)}
-.prin-card p{font-size:13.5px;color:var(--dim)}
+/* interactive triage demo (signature) */
+.demo-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.triage{border:1px solid var(--border-hi);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(10,20,38,.92),rgba(6,14,30,.92));box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.triage-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:16px 22px;border-bottom:1px solid var(--border)}
+.triage-title{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600}
+.triage-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 10px var(--teal)}
+.triage-badge{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);border:1px solid var(--border);border-radius:999px;padding:5px 12px}
+.triage-body{display:grid;grid-template-columns:340px 1fr}
+.msg-list{border-right:1px solid var(--border);padding:18px;display:flex;flex-direction:column;gap:10px}
+.msg-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:4px}
+.msg-btn{text-align:left;background:rgba(240,242,255,.03);border:1px solid var(--border);border-radius:12px;padding:13px 15px;font-size:13.5px;color:var(--dim);cursor:pointer;font-family:var(--sans);line-height:1.5;transition:border-color .2s,color .2s}
+.msg-btn:hover{border-color:var(--teal-b);color:var(--text)}
+.msg-btn.active{border-color:var(--teal);color:var(--text);background:var(--teal-lo)}
+.sev{display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px}
+.sev.s1{color:var(--teal)}.sev.s2{color:var(--amber)}.sev.s3{color:#FF9650}.sev.s4{color:var(--coral)}
+.aevo-q{border:1px solid var(--teal-b);background:var(--teal-lo);border-radius:10px;padding:13px 16px;font-size:13.5px;color:var(--dim)}
+.aevo-q .q{color:var(--text);font-weight:600;display:block;margin-bottom:4px}
+.aevo-q .why-lang{display:block;margin-top:8px;padding-top:8px;border-top:1px solid var(--teal-b);font-size:12px;color:var(--faint);font-style:italic}
+.trace{padding:24px 26px;min-height:380px}
+.trace-empty{color:var(--faint);font-size:14px;padding-top:24px}
+.step{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s;margin-bottom:18px}
+.step.show{opacity:1;transform:none}
+.step-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}
+.step-box{border:1px solid var(--border);border-radius:10px;padding:13px 16px;font-size:13.5px;color:var(--dim);background:rgba(240,242,255,.02)}
+.kw{color:var(--text);background:var(--amber-lo);border:1px solid var(--amber-b);border-radius:5px;padding:1px 6px;font-weight:600}
+.rule-mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--vera)}
+.tier-result{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:14px;padding:8px 18px;border-radius:999px}
+.tier-result::before{content:"";width:9px;height:9px;border-radius:50%}
+.tr-green{background:var(--teal-lo);color:var(--teal);border:1px solid var(--teal-b)}.tr-green::before{background:var(--teal)}
+.tr-yellow{background:var(--amber-lo);color:var(--amber);border:1px solid var(--amber-b)}.tr-yellow::before{background:var(--amber)}
+.tr-orange{background:rgba(255,150,80,.09);color:#FF9650;border:1px solid rgba(255,150,80,.24)}.tr-orange::before{background:#FF9650}
+.tr-red{background:var(--coral-lo);color:var(--coral);border:1px solid var(--coral-b)}.tr-red::before{background:var(--coral)}
+.hold{border:1px dashed var(--vera-b);background:var(--vera-lo);border-radius:10px;padding:13px 16px;font-size:13.5px;color:var(--dim)}
+.hold strong{color:var(--vera)}
+.triage-foot{padding:14px 22px;border-top:1px solid var(--border);font-size:12.5px;color:var(--faint)}
 
-/* build ladder */
-.ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.rung{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:28px 24px;position:relative;overflow:hidden}
-.rung::after{content:"";position:absolute;inset:0 0 auto 0;height:2px}
-.rung.r1::after{background:linear-gradient(90deg,var(--teal),transparent 70%)}
-.rung.r2::after{background:linear-gradient(90deg,var(--blue),transparent 70%)}
-.rung.r3::after{background:linear-gradient(90deg,var(--vera),transparent 70%)}
-.rung-gate{font-family:var(--serif);font-size:15px;margin-bottom:4px}
-.rung.r1 .rung-gate{color:var(--teal)}
-.rung.r2 .rung-gate{color:var(--blue)}
-.rung.r3 .rung-gate{color:var(--vera)}
-.rung-when{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
-.rung h3{font-size:16.5px;font-weight:600;margin-bottom:12px}
-.rung ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.rung li{font-size:13.5px;color:var(--dim);padding-left:17px;position:relative}
-.rung li::before{content:"";position:absolute;left:0;top:9px;width:5px;height:5px;border-radius:50%;background:var(--faint)}
-.rung.r1 li::before{background:var(--teal-d)}
-.rung .why{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--faint);font-style:italic}
+.wn{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.wn-panel{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:30px 28px}
+.wn-panel h3{font-family:var(--serif);font-size:21px;font-weight:400;margin-bottom:18px}
+.wn-panel.never h3{color:var(--coral)}
+.wn-panel.will h3{color:var(--teal)}
+.wn-panel ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.wn-panel li{font-size:14px;color:var(--dim);display:flex;gap:11px;align-items:flex-start}
+.wn-panel.will li::before{content:"✓";color:var(--teal);flex-shrink:0;font-weight:700}
+.wn-panel.never li::before{content:"✕";color:var(--coral);flex-shrink:0;font-weight:700}
+
+.commits{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.commit{border:1px solid var(--border);border-radius:12px;padding:22px;background:rgba(240,242,255,.02);font-size:13.5px;color:var(--dim)}
+.commit strong{display:block;color:var(--text);font-size:14.5px;margin-bottom:7px;font-weight:600}
 
 footer{border-top:1px solid var(--border);padding:44px 0;font-size:13.5px;color:var(--faint)}
 .foot-row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
@@ -134,23 +143,31 @@ footer{border-top:1px solid var(--border);padding:44px 0;font-size:13.5px;color:
 
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
 .reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){
+  .reveal,.step{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
+}
 a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offset:2px;border-radius:6px}
 
-@media(max-width:960px){.inv{grid-template-columns:1fr 1fr}.ladder{grid-template-columns:1fr}.prin{grid-template-columns:1fr}}
+@media(max-width:960px){
+  .tiers{grid-template-columns:1fr 1fr}
+  .commits{grid-template-columns:1fr}
+  .triage-body{grid-template-columns:1fr}
+  .msg-list{border-right:none;border-bottom:1px solid var(--border)}
+}
 @media(max-width:680px){
   .nav{padding:14px 20px}.nav-links{display:none}.menu{display:block}
   .wrap{padding:0 22px}.section{padding:60px 0}
-  .inv{grid-template-columns:1fr}
-  .gate{grid-template-columns:44px 1fr}
-  .gate-status{grid-column:2;justify-self:start}
+  .duo,.wn,.tiers{grid-template-columns:1fr}
 }
 </style>
+<link rel="stylesheet" href="/assets/orivo-theme.css">
+<script src="/assets/orivo-theme.js"></script>
 </head>
 <body>
 
 <div class="disclaimer">
-  <strong>Prototype site.</strong> This page describes prototype work and planned architecture. Not a live clinical system. No PHI should be entered on this static site. <a href="/hipaa-notice.html">HIPAA Notice</a>
+  <strong>Prototype site.</strong> Illustrative design documentation with synthetic examples. Not a live clinical system. No PHI should be entered on this static site. <a href="/hipaa-notice.html">HIPAA Notice</a>
 </div>
 
 <nav class="nav">
@@ -161,7 +178,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
   <div class="nav-links">
     <a href="/for-pharmacies.html">Pharmacies</a>
     <a href="/pharmacy-pilot.html">Pilot program</a>
-    <a href="/dual-pipeline.html">Aevo + Vera</a>
+    <a href="/engineering-stack.html">Engineering</a>
     <a href="/evidence.html">Evidence</a>
     <a class="nav-cta" href="/patient-provider-demo.html">Demo</a>
   </div>
@@ -170,7 +187,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
 <div id="mobile">
   <a href="/for-pharmacies.html">Pharmacies</a>
   <a href="/pharmacy-pilot.html">Pilot program</a>
-  <a href="/dual-pipeline.html">Aevo + Vera</a>
+  <a href="/engineering-stack.html">Engineering</a>
   <a href="/evidence.html">Evidence</a>
   <a href="/patient-provider-demo.html">Demo</a>
 </div>
@@ -178,222 +195,190 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
 <!-- ═══════════ HERO ═══════════ -->
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow reveal">Engineering approach</div>
-    <h1 class="reveal">Built boring<br>on purpose.</h1>
+    <div class="eyebrow reveal">Aevo + Vera · Safety architecture</div>
+    <h1 class="reveal">Two AI roles.<br>One unbreakable rule.</h1>
     <p class="lead reveal">
-      In a clinical-adjacent system, the impressive move is restraint. Orivo's prototype
-      stack is small, inspectable, and gated — because the first real patient message
-      deserves infrastructure that can be audited, not admired.
+      Aevo talks with patients. Vera checks the work and routes it. Neither one is
+      allowed to make a clinical decision — and nothing clinical reaches a patient
+      without a licensed human approving it first.
     </p>
-    <div class="hero-note reveal">
-      <strong>What you won't find here:</strong> cost projections, patient-volume forecasts,
-      or a list of enterprise services we haven't deployed. This page describes what exists,
-      what's required before a live pilot, and what gets built at each milestone — in that order.
+    <div class="rule-card reveal">
+      <strong>The rule:</strong> AI classifies, drafts, and organizes. Humans decide.
+      This is enforced in the workflow's architecture — the send action for clinical
+      guidance does not exist without a pharmacist approval step in front of it.
     </div>
   </div>
 </header>
 
-<!-- ═══════════ WHAT EXISTS ═══════════ -->
+<!-- ═══════════ THE TWO ROLES ═══════════ -->
 <section class="section">
   <div class="wrap">
-    <div class="eyebrow reveal">Prototype inventory</div>
-    <h2 class="reveal">What exists today.</h2>
+    <div class="eyebrow reveal">The division of labor</div>
+    <h2 class="reveal">Aevo faces the patient. Vera faces the record.</h2>
     <p class="sub reveal">
-      A deliberately small footprint: enough to run a real non-PHI SMS workflow end to end,
-      and nothing that would need to be un-built later.
+      Splitting the system into two named roles isn't branding — it's separation of
+      concerns. The AI that talks to a vulnerable patient should never be the same
+      component that decides what's safe to say.
     </p>
-    <div class="inv">
-      <div class="inv-card reveal">
-        <span class="inv-chip">Built</span>
-        <h3>SMS webhook handler</h3>
-        <p>Inbound message endpoint for <code>Twilio</code> with request signature validation
-        on every call — spoofed webhooks are rejected before any processing happens.</p>
+    <div class="duo">
+      <div class="ai-card aevo reveal">
+        <div class="ai-name">Aevo</div>
+        <div class="ai-acro">Access · Equity · Voice · Outcomes</div>
+        <p>The patient-facing layer. Designed for plain language on any phone, starting with SMS in English and Spanish.</p>
+        <ul>
+          <li>Receives patient messages and asks clarifying questions in plain language</li>
+          <li>Preserves the patient's original words verbatim — the patient's voice is data, not noise</li>
+          <li>Drafts supportive, non-clinical responses from pharmacist-approved templates</li>
+          <li>Surfaces 911 guidance immediately when red-flag language is detected</li>
+          <li>Roadmap: additional languages and voice channels as pilots define the need</li>
+        </ul>
       </div>
-      <div class="inv-card reveal">
-        <span class="inv-chip">Built</span>
-        <h3>Deterministic triage engine</h3>
-        <p>Keyword and pattern rules that classify each message into a response tier.
-        Every classification is reproducible and inspectable — see it traced on the
-        <a href="/dual-pipeline.html" style="color:var(--teal)">Aevo + Vera page</a>.</p>
-      </div>
-      <div class="inv-card reveal">
-        <span class="inv-chip">Built</span>
-        <h3>Bilingual message templates</h3>
-        <p>Pharmacist-reviewable response templates in English and Spanish. Templates are
-        versioned so a pilot's approved language is a fixed, auditable artifact.</p>
-      </div>
-      <div class="inv-card reveal">
-        <span class="inv-chip">Built</span>
-        <h3>Human approval queue</h3>
-        <p>The structural gate: clinical-tier drafts enter a review queue and cannot reach
-        a patient until a pharmacist releases them. There is no bypass path in the workflow.</p>
-      </div>
-      <div class="inv-card reveal">
-        <span class="inv-chip">Built</span>
-        <h3>API + data layer</h3>
-        <p><code>FastAPI</code> service with a lightweight database for prototype work.
-        Small on purpose: the non-PHI prototype doesn't need — and shouldn't have —
-        production PHI infrastructure it can't yet justify.</p>
-      </div>
-      <div class="inv-card reveal">
-        <span class="inv-chip">Built</span>
-        <h3>Consent + STOP handling</h3>
-        <p>Opt-in state tracking with immediate STOP compliance and HELP responses,
-        designed to the TCPA healthcare-messaging consent template from day one.</p>
+      <div class="ai-card vera reveal">
+        <div class="ai-name">Vera</div>
+        <div class="ai-acro">Validate · Educate · Reach · Advocate</div>
+        <p>The clinical-side layer. Turns what patients say into what care teams need — and enforces the boundaries.</p>
+        <ul>
+          <li>Classifies each message with deterministic, inspectable rules — not a black box</li>
+          <li>Translates patient language into a structured pharmacist review brief</li>
+          <li>Tags barrier signals: cost, side effect, transportation, food, confusion</li>
+          <li>Holds every clinical draft in the approval queue until a pharmacist releases it</li>
+          <li>Writes the audit trail: what was received, classified, drafted, approved, and sent</li>
+        </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════ SIX GATES (signature) ═══════════ -->
-<section class="section gates-section">
-  <div class="wrap">
-    <div class="eyebrow reveal">The line we won't cross early</div>
-    <h2 class="reveal">Six gates before any real patient is texted.</h2>
-    <p class="sub reveal">
-      These aren't aspirations — they're preconditions. Until all six clear, the system
-      runs on synthetic data only. Publishing them is deliberate: pilot partners should
-      be able to hold us to this list.
-    </p>
-    <div class="gate-track reveal">
-      <div class="gate g-built">
-        <div class="gate-marker">1</div>
-        <div class="gate-body">
-          <h3>Webhook signature validation</h3>
-          <p>Every inbound request cryptographically verified as genuinely from Twilio before processing. Protects the single public-facing surface of the system.</p>
-        </div>
-        <span class="gate-status">Built</span>
-      </div>
-      <div class="gate g-progress">
-        <div class="gate-marker">2</div>
-        <div class="gate-body">
-          <h3>TCPA-compliant consent flow</h3>
-          <p>Documented opt-in with plain-language disclosure, instant STOP, HELP support, and logged consent state. Designed and drafted; finalized with the pilot partner's pharmacist-in-charge.</p>
-        </div>
-        <span class="gate-status">In progress</span>
-      </div>
-      <div class="gate g-pending">
-        <div class="gate-marker">3</div>
-        <div class="gate-body">
-          <h3>A2P 10DLC registration</h3>
-          <p>Carrier-level business messaging registration so pilot SMS traffic is properly identified and deliverable — not filtered as spam mid-pilot.</p>
-        </div>
-        <span class="gate-status">Before pilot</span>
-      </div>
-      <div class="gate g-pending">
-        <div class="gate-marker">4</div>
-        <div class="gate-body">
-          <h3>Twilio business associate agreement</h3>
-          <p>PHI touches the messaging layer only under a signed BAA on a Twilio edition that supports one. The non-PHI prototype runs today precisely so this gate isn't rushed.</p>
-        </div>
-        <span class="gate-status">Before pilot</span>
-      </div>
-      <div class="gate g-pending">
-        <div class="gate-marker">5</div>
-        <div class="gate-body">
-          <h3>HIPAA-eligible hosting with audit logging</h3>
-          <p>Production workloads move to BAA-covered infrastructure with encrypted storage and an append-only event log before the first enrolled patient.</p>
-        </div>
-        <span class="gate-status">Before pilot</span>
-      </div>
-      <div class="gate g-pending">
-        <div class="gate-marker">6</div>
-        <div class="gate-body">
-          <h3>Signed pilot agreement</h3>
-          <p>Roles, data handling, escalation responsibilities, and exit terms agreed in writing with the pharmacy — including the patient's right to export or deletion.</p>
-        </div>
-        <span class="gate-status">Before pilot</span>
-      </div>
-    </div>
-    <div class="gates-note reveal">
-      <strong>Why publish an unfinished checklist?</strong> Because the honest state of a
-      pilot-stage company is "some gates cleared, some ahead." A page claiming all six were
-      done before a partner existed would tell you more about our marketing than our engineering.
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ PRINCIPLES ═══════════ -->
-<section class="section">
-  <div class="wrap">
-    <div class="eyebrow reveal">Operating principles</div>
-    <h2 class="reveal">Four rules that shape every build decision.</h2>
-    <div class="prin" style="margin-top:32px">
-      <div class="prin-card reveal">
-        <h3>Auditable beats impressive</h3>
-        <p>Deterministic triage over a language model, versioned templates over free
-        generation, append-only logs over mutable state. Anything a pilot partner's
-        compliance reviewer asks about should have a line-by-line answer.</p>
-      </div>
-      <div class="prin-card reveal">
-        <h3>Complexity is earned by milestones</h3>
-        <p>Infrastructure gets added when a milestone requires it — not when a funding
-        round makes it affordable. A component that exists before its workload is a
-        liability with a monthly bill.</p>
-      </div>
-      <div class="prin-card reveal">
-        <h3>The patient's phone sets the constraint</h3>
-        <p>Everything is designed backward from a basic phone on SMS. No app, no portal,
-        no login, no smartphone assumption — because the populations Orivo serves are
-        exactly the ones those assumptions exclude.</p>
-      </div>
-      <div class="prin-card reveal">
-        <h3>Human approval is load-bearing</h3>
-        <p>The pharmacist review queue isn't a feature that could be deprioritized —
-        it's the architecture the rest of the system hangs on. See how it's enforced on
-        the <a href="/dual-pipeline.html" style="color:var(--teal)">Aevo + Vera page</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════ BUILD LADDER ═══════════ -->
+<!-- ═══════════ TIERS ═══════════ -->
 <section class="section" style="padding-top:0">
   <div class="wrap">
-    <div class="eyebrow reveal">Sequencing</div>
-    <h2 class="reveal">What gets built when — tied to milestones, not fantasies.</h2>
+    <div class="eyebrow reveal">Response tiers</div>
+    <h2 class="reveal">Every message is classified before anything happens.</h2>
+    <p class="sub reveal">The tier determines what Aevo may say, who gets notified, and how fast.</p>
+    <div class="tiers">
+      <div class="tier t-green reveal">
+        <span class="tier-chip">Green</span>
+        <h3>Inform &amp; connect</h3>
+        <p>Logistics, education requests, refill timing questions. No clinical concern detected.</p>
+        <div class="route">Template response · Logged</div>
+      </div>
+      <div class="tier t-yellow reveal">
+        <span class="tier-chip">Yellow</span>
+        <h3>Flag &amp; defer</h3>
+        <p>Medication question or mild concern. Supportive reply drafted; pharmacist notified for review.</p>
+        <div class="route">Pharmacist queue · Standard</div>
+      </div>
+      <div class="tier t-orange reveal">
+        <span class="tier-chip">Orange</span>
+        <h3>Escalate urgently</h3>
+        <p>Possible adverse reaction or significant symptom. Patient directed to pharmacist or care team promptly.</p>
+        <div class="route">Pharmacist queue · Priority</div>
+      </div>
+      <div class="tier t-red reveal">
+        <span class="tier-chip">Red</span>
+        <h3>Emergency guidance</h3>
+        <p>Red-flag language — chest pain, trouble breathing, severe reaction. Immediate 911 guidance, no drafting delay.</p>
+        <div class="route">911 guidance · Immediate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ TRIAGE DEMO (signature) ═══════════ -->
+<section class="section demo-section">
+  <div class="wrap">
+    <div class="eyebrow reveal">See the actual mechanism</div>
+    <h2 class="reveal">From routine to emergency — and how Aevo asks the next question.</h2>
     <p class="sub reveal">
-      Each stage adds only what the next milestone demands. Capability sequencing is
-      published here; costs and forecasts are not, because published numbers should be
-      earned numbers.
+      Pharmacists know the hardest part isn't the question a patient asks — it's the
+      information they don't volunteer. "The new pills make me feel funny" needs three
+      more questions before anyone can act. Pick a synthetic message across the severity
+      ladder and watch the deterministic rules classify it, then see the clarifying
+      questions Aevo is designed to ask — in the patient's own words, at the patient's
+      reading level, one question at a time.
     </p>
-    <div class="ladder">
-      <div class="rung r1 reveal">
-        <div class="rung-gate">Stage 1 · Now</div>
-        <div class="rung-when">Discovery &amp; validation</div>
-        <h3>Prove the workflow on synthetic data</h3>
-        <ul>
-          <li>Non-PHI prototype exercised end to end</li>
-          <li>Triage rules tested against a growing synthetic message set</li>
-          <li>Consent and template language reviewed with pharmacists during discovery interviews</li>
-          <li>Pilot scorecard instrumentation defined before the pilot, not after</li>
-        </ul>
-        <div class="why">Exit: a pharmacy partner signed and gates 2–6 in motion.</div>
+    <div class="triage reveal">
+      <div class="triage-head">
+        <div class="triage-title"><span class="triage-dot"></span>Triage engine · rule trace</div>
+        <div class="triage-badge">Synthetic examples · Illustrative</div>
       </div>
-      <div class="rung r2 reveal">
-        <div class="rung-gate">Stage 2 · First pilot</div>
-        <div class="rung-when">One pharmacy · live patients</div>
-        <h3>Harden for PHI, keep the footprint small</h3>
-        <ul>
-          <li>BAA-covered messaging and HIPAA-eligible hosting (gates 3–5 cleared)</li>
-          <li>Production database with encryption and backups replacing the prototype store</li>
-          <li>Append-only audit log for every message, classification, approval, and send</li>
-          <li>CSV roster enrollment tooling for the pharmacy — integration-free by design</li>
-        </ul>
-        <div class="why">Exit: 90 days of honest scorecard data from real patients.</div>
+      <div class="triage-body">
+        <div class="msg-list">
+          <div class="msg-label">Choose a synthetic patient message — routine → emergency</div>
+          <button class="msg-btn" data-case="0"><span class="sev s1">Routine</span>"When does the pharmacy close today? I want to pick up my refill."</button>
+          <button class="msg-btn" data-case="1"><span class="sev s2">Vague</span>"the new pills make me feel funny"</button>
+          <button class="msg-btn" data-case="2"><span class="sev s2">Cost barrier</span>"I stopped taking it. It's $85 now and I can't afford that this month."</button>
+          <button class="msg-btn" data-case="3"><span class="sev s2">Language + confusion</span>"Se me olvidan las pastillas y no entiendo las instrucciones del frasco."</button>
+          <button class="msg-btn" data-case="4"><span class="sev s3">Possible reaction</span>"I started the new blood pressure pill and I feel dizzy when I stand up."</button>
+          <button class="msg-btn" data-case="5"><span class="sev s4">Emergency</span>"My chest feels tight and it's hard to breathe since this morning."</button>
+        </div>
+        <div class="trace" id="trace">
+          <div class="trace-empty">Select a message to run the rule trace →</div>
+        </div>
       </div>
-      <div class="rung r3 reveal">
-        <div class="rung-gate">Stage 3 · After proof</div>
-        <div class="rung-when">Multi-site · payer conversations</div>
-        <h3>Expand only what the data justifies</h3>
-        <ul>
-          <li>Multi-pharmacy tenancy and role-based access</li>
-          <li>LLM-assisted drafting introduced behind the existing approval gate — the gate stays</li>
-          <li>Standards-based integrations (pharmacy systems, FHIR) as partners require them</li>
-          <li>Additional languages and voice channels driven by pilot population needs</li>
-        </ul>
-        <div class="why">Exit criteria set with partners — not preannounced here.</div>
+      <div class="triage-foot">
+        This trace mirrors the prototype's actual approach — keyword and pattern rules with
+        tier assignment — using synthetic data. No AI-generated clinical content is shown
+        because none is sent: clinical drafts wait for pharmacist approval.
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ WILL / WILL NEVER ═══════════ -->
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow reveal">The boundaries</div>
+    <h2 class="reveal">Designed to do less than it could.</h2>
+    <div class="wn" style="margin-top:34px">
+      <div class="wn-panel will reveal">
+        <h3>What the system is designed to do</h3>
+        <ul>
+          <li>Listen in the patient's own words and keep those words intact</li>
+          <li>Ask clarifying questions from approved, pharmacist-reviewed scripts</li>
+          <li>Classify concerns into tiers with auditable rules</li>
+          <li>Prepare structured review briefs for pharmacists</li>
+          <li>Capture barrier signals — cost, access, side effects — as structured data</li>
+          <li>Provide immediate 911 guidance on red-flag language</li>
+          <li>Log every step for audit</li>
+        </ul>
+      </div>
+      <div class="wn-panel never reveal">
+        <h3>What it will never do</h3>
+        <ul>
+          <li>Diagnose a condition — it informs, flags, and defers</li>
+          <li>Tell a patient to stop or change a medication — that requires a licensed provider</li>
+          <li>Tell a patient a concern is "not serious" — it never minimizes</li>
+          <li>Send clinical guidance a pharmacist hasn't approved</li>
+          <li>Message a patient who hasn't opted in, or ignore a STOP</li>
+          <li>Handle PHI outside BAA-covered, HIPAA-eligible infrastructure</li>
+          <li>Replace the judgment of the humans it serves</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ COMMITMENTS ═══════════ -->
+<section class="section" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow reveal">Why it's built this way</div>
+    <h2 class="reveal">Three deliberate engineering choices.</h2>
+    <div class="commits" style="margin-top:32px">
+      <div class="commit reveal"><strong>Deterministic before generative</strong>
+        The pilot triage engine uses inspectable rules instead of a language model.
+        In a clinical-adjacent workflow, "we can show you exactly why it routed that way"
+        beats a confidence score. Generative drafting arrives later — behind the same
+        human-approval gate, never in front of it.</div>
+      <div class="commit reveal"><strong>Human approval is structural</strong>
+        The approval queue isn't a policy that could be toggled off under pressure.
+        The workflow has no path from AI draft to patient without a pharmacist action
+        in between. Removing the gate would require rebuilding the system, not
+        reconfiguring it.</div>
+      <div class="commit reveal"><strong>The patient's words are the product</strong>
+        Most systems normalize patient language away. Orivo preserves it: "I feel weird
+        when I stand up" reaches the pharmacist alongside the structured brief, because
+        the original phrasing carries clinical signal that categories lose.</div>
     </div>
   </div>
 </section>
@@ -406,7 +391,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
     </div>
     <div class="foot-links">
       <a href="/pharmacy-pilot.html">Pilot program</a>
-      <a href="/dual-pipeline.html">Aevo + Vera</a>
+      <a href="/engineering-stack.html">Engineering stack</a>
       <a href="/patient-provider-demo.html">Demo</a>
       <a href="/privacy.html">Privacy</a>
       <a href="/terms.html">Terms</a>
@@ -419,6 +404,114 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--teal);outline-offse
 <script>
 const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const CASES=[
+  {
+    msg:'When does the pharmacy <span class="kw">close</span> today? I want to pick up my <span class="kw">refill</span>.',
+    lang:'Direct, specific question — no extraction needed.',
+    rule:'match: LOGISTICS_KEYWORDS ("close", "hours", "pick up", "refill") · no symptom terms · no cost terms',
+    tier:'green', tierLabel:'Green — Inform & connect',
+    clarify:null,
+    route:'Approved logistics template answers directly. No clinical content → no approval hold. Interaction logged.',
+    hold:false
+  },
+  {
+    msg:'the new pills make me <span class="kw">feel funny</span>',
+    lang:'Nonspecific wording, low detail — the classic counter moment where a pharmacist has to draw the real story out.',
+    rule:'match: VAGUE_SYMPTOM ("feel funny", "weird", "off") + NEW_MED_CONTEXT ("new pills") · insufficient detail flag set',
+    tier:'yellow', tierLabel:'Yellow — Flag & defer (pending clarification)',
+    clarify:{
+      qs:['Thanks for telling me. Can you say a little more about "funny" — is it your stomach, your head, or something else?',
+          'Did it start after you took the new pills?'],
+      why:'Aevo mirrors the patient\u2019s own word ("funny") instead of asking about "adverse effects," and asks one short question at a time. Answers are attached to the pharmacist brief — if they suggest a reaction, the tier escalates automatically.'
+    },
+    route:'Message + clarifying answers packaged into a structured brief. Pharmacist queue, standard priority — escalates to priority if answers match symptom rules.',
+    hold:true
+  },
+  {
+    msg:'I <span class="kw">stopped taking</span> it. It\u2019s <span class="kw">$85</span> now and I <span class="kw">can\u2019t afford</span> that this month.',
+    lang:'Clear barrier, but missing the one fact the pharmacist needs: which medication.',
+    rule:'match: DISCONTINUATION ("stopped taking") + COST_BARRIER ("$", "afford") · barrier tag: cost · med unidentified',
+    tier:'yellow', tierLabel:'Yellow — Flag & defer',
+    clarify:{
+      qs:['That\u2019s a real problem, and you\u2019re not the only one dealing with it. Which medicine is this — can you tell me the name on the bottle, or what it\u2019s for?'],
+      why:'No judgment language, and no assumption the patient knows the drug name — "what it\u2019s for" gives a second way to answer.'
+    },
+    route:'Cost-barrier signal captured as structured data with the identified medication. Counseling opportunity queued so the pharmacist can discuss alternatives, coupons, or plan options.',
+    hold:true
+  },
+  {
+    msg:'<span class="kw">Se me olvidan</span> las pastillas y <span class="kw">no entiendo</span> las instrucciones del frasco.',
+    lang:'Patient writes in Spanish — Aevo switches to the Spanish template set at the same plain-language register. ("I forget my pills and I don\u2019t understand the bottle\u2019s instructions.")',
+    rule:'match: LANG_ES detected + MISSED_DOSE ("se me olvidan") + CONFUSION ("no entiendo") · barrier tags: comprehension, adherence',
+    tier:'yellow', tierLabel:'Yellow — Flag & defer',
+    clarify:{
+      qs:['Gracias por contarme. ¿Cuál de sus medicinas le confunde más?',
+          '¿Le ayudaría que le expliquemos las instrucciones en palabras sencillas, paso a paso?'],
+      why:'Same language, same reading level, one question at a time. The pharmacist brief includes both the original Spanish and a translation — the patient\u2019s own words are never discarded.'
+    },
+    route:'Comprehension barrier documented. Pharmacist queue with bilingual counseling flag; approved Spanish templates used for any follow-up.',
+    hold:true
+  },
+  {
+    msg:'I started the <span class="kw">new</span> blood pressure pill and I feel <span class="kw">dizzy</span> when I stand up.',
+    lang:'Specific symptom + new medication — a possible adverse-reaction pattern a pharmacist would probe immediately.',
+    rule:'match: SYMPTOM_KEYWORDS ("dizzy") + NEW_MED_CONTEXT ("started", "new") + POSTURAL ("when I stand") · no red-flag terms',
+    tier:'orange', tierLabel:'Orange — Escalate urgently',
+    clarify:{
+      qs:['I want to make sure you\u2019re safe. Are you feeling dizzy right now?',
+          'Have you fallen, or almost fallen?'],
+      why:'Safety-scoped questions only — Aevo gathers what the pharmacist needs to act fast, and never suggests changing or stopping the medication.'
+    },
+    route:'Priority position in pharmacist queue: medication context, symptom pattern, fall-risk answers, and the patient\u2019s exact words. Pharmacist decides the intervention.',
+    hold:true
+  },
+  {
+    msg:'My <span class="kw">chest feels tight</span> and it\u2019s <span class="kw">hard to breathe</span> since this morning.',
+    lang:'Red-flag language — no clarifying questions, no drafting delay. Extraction stops; action starts.',
+    rule:'match: RED_FLAG_KEYWORDS ("chest", "tight", "breathe") · immediate branch, clarification and drafting skipped',
+    tier:'red', tierLabel:'Red — Emergency guidance',
+    clarify:null,
+    route:'Pre-approved 911 guidance sent immediately — this template is pharmacist-approved in advance, so no review delay stands between a red flag and the instruction to call 911. Pharmacy notified in parallel.',
+    hold:false
+  }
+];
+const TR={green:'tr-green',yellow:'tr-yellow',orange:'tr-orange',red:'tr-red'};
+const trace=document.getElementById('trace');
+document.querySelectorAll('.msg-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.msg-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const c=CASES[+btn.dataset.case];
+    let stepNum=4;
+    let clarifyHtml='';
+    if(c.clarify){
+      clarifyHtml=`<div class="step"><div class="step-label">4 · Aevo asks — meeting the patient\u2019s language</div>
+        <div class="aevo-q">${c.clarify.qs.map(q=>`<span class="q">\u201C${q}\u201D</span>`).join('')}
+        <span class="why-lang">${c.clarify.why}</span></div></div>`;
+      stepNum=5;
+    }
+    trace.innerHTML=`
+      <div class="step"><div class="step-label">1 · Message received (synthetic)</div>
+        <div class="step-box">${c.msg}</div></div>
+      <div class="step"><div class="step-label">Language read: ${c.lang}</div></div>
+      <div class="step"><div class="step-label">2 · Rule matched — inspectable, line by line</div>
+        <div class="step-box"><span class="rule-mono">${c.rule}</span></div></div>
+      <div class="step"><div class="step-label">3 · Tier assigned</div>
+        <div><span class="tier-result ${TR[c.tier]}">${c.tierLabel}</span></div></div>
+      ${clarifyHtml}
+      <div class="step"><div class="step-label">${stepNum} · Routing</div>
+        <div class="step-box">${c.route}</div></div>
+      ${c.hold?`<div class="step"><div class="step-label">${stepNum+1} · Where the AI stops</div>
+        <div class="hold"><strong>Held for pharmacist approval.</strong> Any clinical response to this
+        patient waits here. A licensed pharmacist reviews the brief, the answers, and the draft —
+        edits or rejects — and only then does anything send. This step cannot be skipped.</div></div>`:''}
+    `;
+    const steps=trace.querySelectorAll('.step');
+    const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    steps.forEach((s,i)=>{ reduced?s.classList.add('show'):setTimeout(()=>s.classList.add('show'),i*380); });
+  });
+});
 </script>
 </body>
 </html>
