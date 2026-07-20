@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Orivo Sustains Itself | Orivo Health</title>
+<meta name="description" content="Orivo Health is built to be self-sustaining, not extractive. Flat, transparent software fees. Partners keep 100% of the clinical and performance dollars our platform helps them earn.">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-serif-display@5.0.16/index.css">
+<link rel="stylesheet" href="https://unpkg.com/@fontsource/dm-sans@5.0.17/index.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:#050A14}
+:root{--teal:#00C896;--teal-d:#009E75;--teal-lo:rgba(0,200,150,.09);--teal-b:rgba(0,200,150,.24);--vera:#7C6FCD;--vera-lo:rgba(124,111,205,.09);--vera-b:rgba(124,111,205,.24);--amber:#F5A623;--amber-lo:rgba(245,166,35,.09);--amber-b:rgba(245,166,35,.22);--coral:#FF6B6B;--coral-lo:rgba(255,107,107,.08);--coral-b:rgba(255,107,107,.22);--blue:#4A9EFF;--w1:#F0F2FF;--w2:rgba(240,242,255,.78);--w3:rgba(240,242,255,.55);--w4:rgba(240,242,255,.08);--border:rgba(240,242,255,.10);--border2:rgba(240,242,255,.18);--bg:#050A14;--bg2:#07101D;--serif:'DM Serif Display','Palatino Linotype',Palatino,Georgia,serif;--sans:'DM Sans','Helvetica Neue',Helvetica,Arial,sans-serif}
+body{font-family:var(--sans);background:radial-gradient(ellipse at 75% 10%,rgba(0,200,150,.12),transparent 42%),radial-gradient(ellipse at 16% 90%,rgba(124,111,205,.10),transparent 44%),var(--bg);color:var(--w2);font-size:15px;line-height:1.65;overflow-x:hidden}
+a{color:inherit}
+
+.notice{background:rgba(0,200,150,.06);border-bottom:1px solid var(--teal-b);color:rgba(240,242,255,.68);font-size:11px;text-align:center;padding:8px 18px}
+.notice a{color:var(--teal);text-decoration:none}
+
+.nav{position:sticky;top:0;z-index:50;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;gap:18px;background:rgba(5,10,20,.92);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:max-content}
+.logo img{object-fit:contain;filter:drop-shadow(0 4px 14px rgba(0,200,150,.18))}
+.logo-img{width:clamp(180px,16vw,258px);height:auto;max-height:58px;display:block}
+.logo-text{font-family:var(--serif);font-size:22px;color:var(--teal);letter-spacing:-.4px;line-height:1}
+.logo.has-image .logo-fallback,.logo.has-image .logo-text{display:none!important}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{font-size:13px;color:rgba(240,242,255,.68);text-decoration:none;padding:8px 12px;border-radius:8px;border:1px solid transparent;font-weight:700}
+.nav-links a:hover{color:var(--w1);background:var(--w4);border-color:var(--border2)}
+.nav-links a.active{color:var(--teal)}
+.nav-cta{background:var(--teal)!important;color:#03100D!important;border-color:var(--teal)!important}
+.menu{display:none;color:var(--w2);background:transparent;border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+.mobile{display:none;padding:10px 18px 18px;background:rgba(5,10,20,.98);border-bottom:1px solid var(--border)}
+.mobile.open{display:grid;gap:7px}
+.mobile a{padding:10px;border-radius:8px;background:var(--w4);text-decoration:none;color:var(--w2);font-size:14px}
+
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px}
+.section{padding:80px 0;border-bottom:1px solid var(--border)}
+
+.ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal);margin-bottom:12px;font-weight:900}
+.h1,.h2,.h3{font-family:var(--serif);color:var(--w1);letter-spacing:-.02em}
+.h1{font-size:clamp(42px,5vw,72px);line-height:.99}
+.h2{font-size:clamp(30px,3.6vw,44px);line-height:1.06}
+.h3{font-size:21px;line-height:1.18}
+.lead{font-size:17px;line-height:1.75;color:var(--w2);max-width:720px;margin-top:18px}
+.body-copy{font-size:15px;line-height:1.75;color:var(--w2);max-width:720px;margin-top:16px}
+
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;padding:13px 22px;font-size:14px;font-weight:900;text-decoration:none;border:1px solid var(--teal);background:var(--teal);color:#03100D;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.btn:hover{transform:translateY(-2px);background:var(--teal-d);box-shadow:0 14px 36px rgba(0,200,150,.13)}
+.btn.secondary{background:transparent;color:var(--teal);border-color:var(--teal-b)}
+.btn.secondary:hover{background:var(--teal-lo)}
+
+.pill-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.pill{display:inline-flex;border:1px solid var(--teal-b);background:var(--teal-lo);color:var(--teal);border-radius:999px;padding:5px 11px;font-size:11px;font-weight:800}
+.pill.amber{border-color:var(--amber-b);background:var(--amber-lo);color:var(--amber)}
+
+.lever-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:40px}
+.lever{background:var(--w4);border:1px solid var(--border);border-radius:18px;padding:26px;position:relative}
+.lever.teal{border-color:var(--teal-b);background:linear-gradient(160deg,rgba(0,200,150,.07),rgba(240,242,255,.03))}
+.lever.vera{border-color:var(--vera-b);background:linear-gradient(160deg,rgba(124,111,205,.07),rgba(240,242,255,.03))}
+.lever.amber{border-color:var(--amber-b);background:linear-gradient(160deg,rgba(245,166,35,.06),rgba(240,242,255,.03))}
+.lever-tag{font-size:10px;letter-spacing:3px;text-transform:uppercase;font-weight:900;color:var(--teal);margin-bottom:10px}
+.lever.vera .lever-tag{color:var(--vera)}
+.lever.amber .lever-tag{color:var(--amber)}
+.lever-title{font-family:var(--serif);font-size:20px;color:var(--w1);margin-bottom:10px;line-height:1.2}
+.lever-body{font-size:13px;color:var(--w3);line-height:1.62}
+.lever-body b{color:var(--w2)}
+.lever-how{margin-top:14px;padding-top:12px;border-top:1px solid var(--border);font-size:12px;color:var(--w3);line-height:1.55}
+.lever-how b{color:var(--teal);font-size:10px;letter-spacing:2px;text-transform:uppercase;display:block;margin-bottom:4px}
+.lever.vera .lever-how b{color:var(--vera)}
+.lever.amber .lever-how b{color:var(--amber)}
+
+.no-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:36px}
+.no-card{border:1px solid var(--coral-b);background:var(--coral-lo);border-radius:16px;padding:20px}
+.no-title{color:var(--coral);font-weight:900;font-size:13px;margin-bottom:7px;letter-spacing:.3px}
+.no-body{font-size:12.5px;color:var(--w3);line-height:1.6}
+
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.split-card{background:var(--w4);border:1px solid var(--border);border-radius:18px;padding:26px}
+.split-card.hl{border-color:var(--teal-b)}
+.split-eyebrow{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--teal);font-weight:900;margin-bottom:8px}
+.split-card p{font-size:13px;color:var(--w3);line-height:1.62;margin-top:8px}
+.split-card p b{color:var(--w2)}
+
+.principle{display:flex;gap:16px;align-items:flex-start;margin-top:22px;max-width:760px}
+.principle-num{font-family:var(--serif);font-size:30px;color:rgba(0,200,150,.4);line-height:1;min-width:34px}
+.principle-text{font-size:14.5px;color:var(--w2);line-height:1.7}
+.principle-text b{color:var(--w1)}
+
+.callout{border:1px solid rgba(240,242,255,.12);background:rgba(240,242,255,.03);border-radius:18px;padding:22px;color:rgba(240,242,255,.6);font-size:13px;line-height:1.65;margin-top:40px}
+.callout b{color:var(--w2)}
+
+.cta-box{background:linear-gradient(160deg,rgba(0,200,150,.08),rgba(124,111,205,.06));border:1px solid var(--teal-b);border-radius:24px;padding:52px 40px;text-align:center}
+
+.footer{padding:42px 0;background:var(--bg2);color:rgba(240,242,255,.44);font-size:12px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:24px}
+.footer a{display:block;color:var(--w3);text-decoration:none;margin-top:8px}
+.footer a:hover{color:var(--teal)}
+.foot-h{font-weight:900;color:var(--w1);font-size:12px;margin-bottom:8px}
+.fine{margin-top:26px;font-size:11px;color:rgba(240,242,255,.35)}
+.small{font-size:13px;color:var(--w3);line-height:1.56;margin-top:8px}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .75s ease,transform .75s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:translateY(0)}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1!important;transform:none!important}}
+
+@media(max-width:980px){
+  .nav-links{display:none}.menu{display:inline-flex}
+  .lever-grid,.no-grid,.split{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:620px){
+  .nav{padding:0 18px}.wrap{padding:0 20px}
+  .h1{font-size:36px}.h2{font-size:27px}
+  .actions{flex-direction:column}.btn{width:100%;justify-content:center}
+  .footer-grid{grid-template-columns:1fr}
+  .cta-box{padding:36px 22px}
+  .logo-img{width:170px;max-height:48px}
+}
+</style>
+</head>
+<body>
+
+<div class="notice">Prototype · Not a clinical product · No PHI collected through this site · <a href="/hipaa-notice.html">HIPAA Notice</a></div>
+
+<nav class="nav">
+  <a class="logo has-image" href="/" aria-label="Orivo Health home">
+    <img class="logo-img" src="/assets/orivo-logo-transparent.png" alt="Orivo Health" onerror="this.style.display='none';this.closest('.logo').classList.remove('has-image')">
+    <div class="logo-fallback"><div class="logo-text">orivo health</div></div>
+  </a>
+  <div class="nav-links">
+    <a href="/#how-it-works">How it works</a>
+    <a href="/evidence.html">Evidence</a>
+    <a href="/patient-provider-demo.html">Demo</a>
+    <a class="active" href="/sustainability.html">Sustainability</a>
+    <a class="nav-cta" href="/pilot.html">Explore a pilot →</a>
+  </div>
+  <button class="menu" onclick="document.getElementById('mobile').classList.toggle('open')" aria-label="Open menu">☰</button>
+</nav>
+
+<div class="mobile" id="mobile">
+  <a href="/#how-it-works">How it works</a>
+  <a href="/evidence.html">Evidence</a>
+  <a href="/patient-provider-demo.html">Demo</a>
+  <a href="/sustainability.html">How we sustain</a>
+  <a href="/pilot.html">Explore a pilot</a>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="ey">How Orivo sustains itself</div>
+    <h1 class="h1">Built to last.<br>Not built to extract.</h1>
+    <p class="lead">Healthcare has enough middlemen taking a percentage of everything that moves. Orivo is designed around a simpler idea: we charge a flat, transparent fee for software that works — and our partners keep <b style="color:var(--w1)">100% of the clinical and performance dollars</b> the platform helps them earn.</p>
+    <div class="pill-row">
+      <span class="pill">Flat, transparent fees</span>
+      <span class="pill">No revenue skimming</span>
+      <span class="pill">No patient inducements</span>
+      <span class="pill amber">Pricing finalized with pilot partners</span>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="ey">Our operating philosophy</div>
+    <h2 class="h2">Revenue should be a symptom of closing care gaps — not the point of them.</h2>
+    <p class="body-copy">Orivo was founded from the pharmacy counter, watching patients abandon medications over cost, confusion, language, and transportation — and watching pharmacists lose money on the very performance measures those abandoned fills destroy. Our goal is a self-sustaining company: one where the economics stay simple enough that a pharmacy owner can understand exactly what they pay and exactly what they get.</p>
+
+    <div class="principle">
+      <div class="principle-num">1</div>
+      <div class="principle-text"><b>We sell software, not a cut of your reimbursement.</b> Pharmacies and health plans pay a predictable subscription. When adherence measures improve or performance penalties shrink, that value belongs entirely to the partner and the patient.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">2</div>
+      <div class="principle-text"><b>Fees are set at fair market value for the software delivered.</b> We deliberately avoid percentage-of-recovery, per-referral, and per-service-rendered pricing tied to federally reimbursed care. That structure keeps our incentives aligned with patients — and keeps our partners clear of arrangements that regulators scrutinize.</div>
+    </div>
+    <div class="principle">
+      <div class="principle-num">3</div>
+      <div class="principle-text"><b>Sustainability over scale-at-any-cost.</b> Our internal bar is a business that covers its own operating costs on a modest number of pharmacy partnerships — so we never have to compromise the product, the data ethics, or the mission to chase growth.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE LEVERS -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="ey">Where revenue comes from</div>
+    <h2 class="h2">Four levers. One pricing structure.</h2>
+    <p class="body-copy">Every lever below is charged the same way: a flat software fee, scaled to the size of the program. What changes is the value the partner unlocks.</p>
+
+    <div class="lever-grid">
+
+      <div class="lever teal">
+        <div class="lever-tag">Lever 01 · Core platform</div>
+        <div class="lever-title">SMS communication &amp; barrier surfacing</div>
+        <div class="lever-body">The Orivo Relay subscription: two-way, plain-language medication texting with human-in-the-loop pharmacist routing. Patients ask questions, surface cost and access barriers, and get routed to a real person — on any phone, with no app.</div>
+        <div class="lever-how"><b>How it's priced</b>Per-pharmacy monthly subscription, tiered by enrolled patients. The partner's ROI case: reduced abandoned fills, faster question resolution, and staff time returned to the counter.</div>
+      </div>
+
+      <div class="lever teal">
+        <div class="lever-tag">Lever 02 · Performance programs</div>
+        <div class="lever-title">Adherence &amp; quality-measure support</div>
+        <div class="lever-body">Pharmacy performance payments increasingly hinge on adherence measures like PDC. Orivo's outreach catches the refill gaps and new-start drop-offs that drag those scores down — plus preventive-care reminders such as vaccine outreach, delivered as education and scheduling help, never as patient payment or inducement.</div>
+        <div class="lever-how"><b>How it's priced</b>An add-on module at a flat fee. The pharmacy keeps every performance dollar. Orivo's pilots will measure the operational signals — response rates, gap closures, intervention completions — that make that value visible.</div>
+      </div>
+
+      <div class="lever vera">
+        <div class="lever-tag">Lever 03 · Documentation</div>
+        <div class="lever-title">Intervention &amp; social-need documentation</div>
+        <div class="lever-body">When a pharmacist resolves a barrier or intervenes on a medication, that work is usually invisible. Orivo structures it: timestamped intervention records, standards-aligned export (Pharmacist eCare Plan), and social-need barriers captured in a form partners can use to support their own SDOH documentation and coding — such as ICD-10 Z-code capture by their clinical teams.</div>
+        <div class="lever-how"><b>How it's priced</b>A documentation module fee. Orivo does not bill codes, does not code on a partner's behalf, and takes no share of any reimbursement — we make the pharmacist's work legible and portable.</div>
+      </div>
+
+      <div class="lever amber">
+        <div class="lever-tag">Lever 04 · Longer term</div>
+        <div class="lever-title">Health plan &amp; network partnerships</div>
+        <div class="lever-body">Once pharmacy pilots produce real operational evidence, the same platform serves health plans and pharmacy networks reaching Medicare and Medicaid members who are unreachable by app-based tools. Aggregate, de-identified barrier intelligence helps plans understand where their members actually get stuck.</div>
+        <div class="lever-how"><b>How it's priced</b>Per-member-per-month contracts and program licensing — negotiated after pilot evidence exists, never sold on projections we haven't earned.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE DON'T DO -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="ey">Guardrails</div>
+    <h2 class="h2">What we deliberately don't do</h2>
+    <p class="body-copy">A sustainable healthcare business is defined as much by the revenue it refuses as the revenue it accepts.</p>
+
+    <div class="no-grid">
+      <div class="no-card">
+        <div class="no-title">✕ No percentage of reimbursement</div>
+        <div class="no-body">We don't take a cut of performance payments, MTM fees, vaccine revenue, or recovered dollars. Percentage arrangements tied to federal healthcare program funds invite regulatory risk and misalign incentives.</div>
+      </div>
+      <div class="no-card">
+        <div class="no-title">✕ No patient inducements</div>
+        <div class="no-body">Reminders and education, yes. Paying or rewarding patients to receive care, no. Outreach is designed to inform and remove barriers — never to steer utilization for anyone's financial benefit.</div>
+      </div>
+      <div class="no-card">
+        <div class="no-title">✕ No selling patient data</div>
+        <div class="no-body">Patient-level information is never sold. Any future intelligence products use aggregate, de-identified insights, shared under contracts partners approve.</div>
+      </div>
+      <div class="no-card">
+        <div class="no-title">✕ No invented outcomes</div>
+        <div class="no-body">We're pilot-stage and we say so. Adherence, cost, and outcome claims appear on this site only after real pilots measure them.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDEPENDENTS VS CHAINS -->
+<section class="section">
+  <div class="wrap reveal">
+    <div class="ey">Who we serve first</div>
+    <h2 class="h2">Independents first. Networks and chains as we prove it.</h2>
+
+    <div class="split">
+      <div class="split-card hl">
+        <div class="split-eyebrow">Now · Independent &amp; community pharmacies</div>
+        <h3 class="h3">The first partners</h3>
+        <p>Independent pharmacies sit closest to the moments Orivo is built for — the fill that's late, the new start that's confusing, the patient who quietly stops picking up. Nearly 36% of retail pharmacies are independent, and Medicare and Medicaid account for the majority of their prescriptions.</p>
+        <p><b>Model:</b> direct, affordable subscriptions with fast setup — a roster export and SMS consent, not a year-long integration project. Pricing is being finalized with our first pilot partners.</p>
+      </div>
+      <div class="split-card">
+        <div class="split-eyebrow">Later · Networks, chains &amp; health plans</div>
+        <h3 class="h3">The scale path</h3>
+        <p>Community pharmacy networks offer a single-agreement path to thousands of locations once a workflow proves out. Regional chains and health plans follow — with enterprise licensing, deeper integration, and the security review that scale requires.</p>
+        <p><b>Model:</b> enterprise and per-member-per-month contracts, entered only when pilot evidence supports them.</p>
+      </div>
+    </div>
+
+    <div class="callout"><b>A note on what you're reading.</b> Orivo Health is a pilot-stage company. Nothing on this page is a price list, an outcome claim, or legal guidance — it's a statement of how we intend to build a durable business. Compensation arrangements in healthcare are governed by federal and state law, and Orivo structures its agreements with that framework in mind, with review by qualified counsel. Questions? <a href="mailto:josiah.parve@orivohealth.com" style="color:var(--teal)">josiah.parve@orivohealth.com</a></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="border-bottom:none">
+  <div class="wrap reveal">
+    <div class="cta-box">
+      <div class="ey" style="justify-content:center">Work with us</div>
+      <h2 class="h2">Simple economics. Serious mission.</h2>
+      <p class="lead" style="margin-left:auto;margin-right:auto;text-align:center">If you run a pharmacy and this is the kind of partner you've been looking for, we'd like to talk.</p>
+      <div class="actions" style="justify-content:center">
+        <a class="btn" href="/pilot.html">Explore a pilot →</a>
+        <a class="btn secondary" href="mailto:josiah.parve@orivohealth.com">Email the founder</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo has-image" href="/">
+          <img class="logo-img" src="/assets/orivo-logo-transparent.png" alt="Orivo Health" onerror="this.style.display='none';this.closest('.logo').classList.remove('has-image')">
+          <div class="logo-fallback"><div class="logo-text">orivo health</div></div>
+        </a>
+        <p class="small" style="margin-top:12px">SMS-first medication communication for pharmacies and health systems. Any phone. No app required.</p>
+      </div>
+      <div>
+        <div class="foot-h">Product</div>
+        <a href="/patient-provider-demo.html">Demo</a>
+        <a href="/pilot.html">Pilot program</a>
+        <a href="/evidence.html">Evidence</a>
+        <a href="/for-pharmacies.html">Pharmacies</a>
+        <a href="/for-payers.html">Health plans</a>
+      </div>
+      <div>
+        <div class="foot-h">Company</div>
+        <a href="/vision.html">Vision</a>
+        <a href="/sustainability.html">How we sustain</a>
+        <a href="/for-patients.html">Patients</a>
+        <a href="/for-providers.html">Providers</a>
+        <a href="/for-pharmacies.html">Pharmacies</a>
+      </div>
+    </div>
+    <div class="fine">© 2026 Orivo Health Inc. Prototype website. Not a clinical product. · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/hipaa-notice.html">HIPAA Notice</a> · <a href="/accessibility.html">Accessibility</a></div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
